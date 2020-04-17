@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function(){
   let savedScheme = localStorage.getItem("scheme");
 
   let darkScheme = document.getElementById("dark-scheme");
+  // read initial scheme from html (and logic of hugo)
+  // but it didn't read if it set to light
   let prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   if (prefersDark) {
