@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>urpylka</title>
+    <link>https://smirart.ru/</link>
+    <description>Recent content on urpylka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Artem Smirnov</copyright>
+    <lastBuildDate>Thu, 16 Apr 2020 16:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://smirart.ru/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://smirart.ru/about/</link>
+      <pubDate>Thu, 16 Apr 2020 16:00:00 +0000</pubDate>
+      
+      <guid>https://smirart.ru/about/</guid>
+      <description>ARTEM SMIRNOV Hi, I am 25 &amp;amp; I am the Robotics developer. This is my personal blog for articles and notes. It created as personal page for help myself and materials that I will be posting here may be copying from other resources or it can be just my notes in Russian. I apologize initially.</description>
+    </item>
+    
+    <item>
+      <title>Nginx reverse proxy</title>
+      <link>https://smirart.ru/posts/post-12/</link>
+      <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smirart.ru/posts/post-12/</guid>
+      <description>Nginx reverse proxy needs where we want to get access to few resources by one external IP address and port.
+I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing server_name and proxy_pass as target location. Pleese look at last section with default_server atribute. It needs to set default site (in this case page with 501 Internal error).
+Quickstart   Create webproxy.</description>
+    </item>
+    
+    <item>
+      <title>Шенген в России: Тонкости</title>
+      <link>https://smirart.ru/posts/2020-02-20_%D1%88%D0%B5%D0%BD%D0%B3%D0%B5%D0%BD-%D0%B2-%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B8-%D1%82%D0%BE%D0%BD%D0%BA%D0%BE%D1%81%D1%82%D0%B8/</link>
+      <pubDate>Thu, 20 Feb 2020 09:34:11 +0000</pubDate>
+      
+      <guid>https://smirart.ru/posts/2020-02-20_%D1%88%D0%B5%D0%BD%D0%B3%D0%B5%D0%BD-%D0%B2-%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B8-%D1%82%D0%BE%D0%BD%D0%BA%D0%BE%D1%81%D1%82%D0%B8/</guid>
+      <description>Оформлении шенгенской визы в России Я много путешествую и так сложилось, что всегда все визы оформлял самостоятельно. Для большего удобства эту статью я разделю на две части: в первой вы узнаете какие организации занимаются оформлением виз, а во второй я поделюсь личными лайфхаками полезными при самостоятельном оформлении документов.
+Часть 1 Оформляя третий шенген, я окончательно разобрался в многообразии учреждений оформляющих визы для россиян. Начну по порядку:
+ Посольство страны занимается только делами своей страны и своих граждан и визы не выдает.</description>
+    </item>
+    
+    <item>
+      <title>Теория радиоволн: антенны</title>
+      <link>https://smirart.ru/posts/post-11/</link>
+      <pubDate>Mon, 12 Nov 2012 00:00:00 +1449</pubDate>
+      
+      <guid>https://smirart.ru/posts/post-11/</guid>
+      <description>Оригинал https://habrahabr.ru/post/158273/
+Помимо свойств радиоволн, необходимо тщательно подбирать антенны, для достижения максимальных показателей при приеме/передаче сигнала. Давайте ближе познакомимся с различными типами антенн и их предназначением.
+Антенны — преобразуют энергию высокочастотного колебания от передатчика в электромагнитную волну, способную распространяться в пространстве. Или в случае приема, производит обратное преобразование — электромагнитную волну, в ВЧ колебания.
+Диаграмма направленности — графическое представление коэффициента усиления антенны, в зависимости от ориентации антенны в пространстве.
+Антенны Симметричный вибратор В простейшем случае состоит из двух токопроводящих отрезков, каждый из которых равен 1/4 длины волны.</description>
+    </item>
+    
+  </channel>
+</rss>

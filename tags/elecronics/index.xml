@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>elecronics on urpylka</title>
+    <link>https://smirart.ru/tags/elecronics/</link>
+    <description>Recent content in elecronics on urpylka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Artem Smirnov</copyright>
+    <lastBuildDate>Mon, 12 Nov 2012 00:00:00 +1449</lastBuildDate>
+    
+	<atom:link href="https://smirart.ru/tags/elecronics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Теория радиоволн: антенны</title>
+      <link>https://smirart.ru/posts/post-11/</link>
+      <pubDate>Mon, 12 Nov 2012 00:00:00 +1449</pubDate>
+      
+      <guid>https://smirart.ru/posts/post-11/</guid>
+      <description>Оригинал https://habrahabr.ru/post/158273/
+Помимо свойств радиоволн, необходимо тщательно подбирать антенны, для достижения максимальных показателей при приеме/передаче сигнала. Давайте ближе познакомимся с различными типами антенн и их предназначением.
+Антенны — преобразуют энергию высокочастотного колебания от передатчика в электромагнитную волну, способную распространяться в пространстве. Или в случае приема, производит обратное преобразование — электромагнитную волну, в ВЧ колебания.
+Диаграмма направленности — графическое представление коэффициента усиления антенны, в зависимости от ориентации антенны в пространстве.
+Антенны Симметричный вибратор В простейшем случае состоит из двух токопроводящих отрезков, каждый из которых равен 1/4 длины волны.</description>
+    </item>
+    
+  </channel>
+</rss>

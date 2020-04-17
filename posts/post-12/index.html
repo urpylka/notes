@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Nginx reverse proxy - urpylka</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta itemprop="name" content="Nginx reverse proxy">
+<meta itemprop="description" content="A few web resources by one external IP address and port.">
+<meta itemprop="datePublished" content="2020-04-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-04-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="182">
+
+
+
+<meta itemprop="keywords" content="nginx,proxy," /><meta property="og:title" content="Nginx reverse proxy" />
+<meta property="og:description" content="A few web resources by one external IP address and port." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://smirart.ru/posts/post-12/" />
+<meta property="article:published_time" content="2020-04-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-16T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Nginx reverse proxy"/>
+<meta name="twitter:description" content="A few web resources by one external IP address and port."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://smirart.ru/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://smirart.ru/css/main.css" /><link id="dark-scheme" rel="stylesheet" type="text/css" href="https://smirart.ru/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://smirart.ru/js/main.js"></script>
+</head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header">
+	
+		<div class="avatar">
+			<a href="https://smirart.ru/">
+				<img src="/img/artem.jpg" alt="urpylka" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://smirart.ru/">urpylka</a></h1>
+	<div class="site-description"><p>Programming, drones, traveling</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">16</span>
+                        <span class="rest">Apr 2020</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Nginx reverse proxy</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Nginx reverse proxy needs where we want to get access to few resources by one external IP address and port.</p>
+<p>I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing <code>server_name</code> and <code>proxy_pass</code> as target location. Pleese look at last section with <code>default_server</code> atribute. It needs to set default site (in this case page with 501 Internal error).</p>
+<h2 id="quickstart">Quickstart</h2>
+<ol>
+<li>
+<p>Create <code>webproxy.conf</code> with your data:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#a31515">&lt;&lt;EOF | sudo tee webproxy.conf &gt; /dev/null
+</span><span style="color:#a31515"># Don&#39;t show server&#39;s version
+</span><span style="color:#a31515">server_tokens off;
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">server {
+</span><span style="color:#a31515">    listen          80 default_server;
+</span><span style="color:#a31515">    server_name     _;
+</span><span style="color:#a31515">    location / {
+</span><span style="color:#a31515">        return 501;
+</span><span style="color:#a31515">    }
+</span><span style="color:#a31515">}
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">server {
+</span><span style="color:#a31515">    listen          80;
+</span><span style="color:#a31515">    server_name     hostname1 hostname2;
+</span><span style="color:#a31515">    location / {
+</span><span style="color:#a31515">        proxy_pass  http://hostname3:1080/;
+</span><span style="color:#a31515">    }
+</span><span style="color:#a31515">}
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">server {
+</span><span style="color:#a31515">    listen          80;
+</span><span style="color:#a31515">    server_name     hostname4;
+</span><span style="color:#a31515">    location / {
+</span><span style="color:#a31515">        proxy_pass  http://8.8.4.4:80/;
+</span><span style="color:#a31515">    }
+</span><span style="color:#a31515">}
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">server {
+</span><span style="color:#a31515">    listen          80;
+</span><span style="color:#a31515">    server_name     hostname5;
+</span><span style="color:#a31515">    location / {
+</span><span style="color:#a31515">        proxy_pass  http://8.8.8.8:3080/;
+</span><span style="color:#a31515">    }
+</span><span style="color:#a31515">}
+</span><span style="color:#a31515">EOF</span>
+</code></pre></div></li>
+<li>
+<p>Download preparing <code>nginx</code> <a href="https://hub.docker.com/_/nginx">image</a> from <code>DockerHub</code> and run <code>webproxy</code> in the container:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--detach=true <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--log-driver=syslog <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--restart=always <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--name=<span style="color:#a31515">&#34;webproxy&#34;</span> <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--publish 80:80 <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--volume ./webproxy.conf:/etc/nginx/conf.d/default.conf
+nginx:1.17.8-alpine /usr/sbin/nginx -g <span style="color:#a31515">&#34;daemon off;&#34;</span>
+</code></pre></div></li>
+</ol>
+<p>Also you can download <a href="/posts/post-12/docker-webproxy.service">docker-webproxy.service</a> file.</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/nginx">nginx</a></li>
+                    
+                    <li><a href="/tags/proxy">proxy</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+
+</html>
