@@ -28,7 +28,7 @@
       
       <guid>https://smirart.ru/posts/post-12/</guid>
       <description>Nginx reverse proxy needs where we want to get access to few resources by one external IP address and port.
-I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing server_name and proxy_pass as target location. Pleese look at last section with default_server atribute. It needs to set default site (in this case page with 501 Internal error).
+I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing server_name and proxy_pass as target location. Pleese look at last section with default_server atribute. It needs to set default site (in this case page with 501 Internal Error).
 Quickstart   Create webproxy.</description>
     </item>
     
