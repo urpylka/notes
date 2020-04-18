@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>https://smirart.ru/tags/en/</loc>
+    <lastmod>2020-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://smirart.ru/tags/nginx/</loc>
     <lastmod>2020-04-16T00:00:00+00:00</lastmod>
   </url>
@@ -28,6 +33,11 @@
   </url>
   
   <url>
+    <loc>https://smirart.ru/tags/programming/</loc>
+    <lastmod>2020-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://smirart.ru/tags/proxy/</loc>
     <lastmod>2020-04-16T00:00:00+00:00</lastmod>
   </url>
@@ -38,7 +48,12 @@
   </url>
   
   <url>
-    <loc>https://smirart.ru/tags/travel/</loc>
+    <loc>https://smirart.ru/tags/ru/</loc>
+    <lastmod>2020-04-17T01:04:57+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://smirart.ru/tags/travelling/</loc>
     <lastmod>2020-04-17T01:04:57+03:00</lastmod>
   </url>
   
@@ -48,7 +63,7 @@
   </url>
   
   <url>
-    <loc>https://smirart.ru/posts/2020-02-20_%D1%88%D0%B5%D0%BD%D0%B3%D0%B5%D0%BD-%D0%B2-%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B8-%D1%82%D0%BE%D0%BD%D0%BA%D0%BE%D1%81%D1%82%D0%B8/</loc>
+    <loc>https://smirart.ru/posts/port-10/</loc>
     <lastmod>2020-04-17T01:04:57+03:00</lastmod>
   </url>
   

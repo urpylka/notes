@@ -13,11 +13,29 @@
     
     
     <item>
+      <title>en</title>
+      <link>https://smirart.ru/tags/en/</link>
+      <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smirart.ru/tags/en/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>nginx</title>
       <link>https://smirart.ru/tags/nginx/</link>
       <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://smirart.ru/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://smirart.ru/tags/programming/</link>
+      <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smirart.ru/tags/programming/</guid>
       <description></description>
     </item>
     
@@ -31,11 +49,20 @@
     </item>
     
     <item>
-      <title>travel</title>
-      <link>https://smirart.ru/tags/travel/</link>
+      <title>ru</title>
+      <link>https://smirart.ru/tags/ru/</link>
       <pubDate>Thu, 20 Feb 2020 09:34:11 +0000</pubDate>
       
-      <guid>https://smirart.ru/tags/travel/</guid>
+      <guid>https://smirart.ru/tags/ru/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>travelling</title>
+      <link>https://smirart.ru/tags/travelling/</link>
+      <pubDate>Thu, 20 Feb 2020 09:34:11 +0000</pubDate>
+      
+      <guid>https://smirart.ru/tags/travelling/</guid>
       <description></description>
     </item>
     
