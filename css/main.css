@@ -464,7 +464,7 @@ code {
 }
 
 .one .post-header .matter h1 {
-    line-height: 34px;
+    line-height: 50px;
     display: inline-block;
     vertical-align: middle;
     margin: 0;
@@ -583,6 +583,9 @@ code {
     }
     .header h1 {
         font-size: 1.8rem;
+    }
+    .one .post-header .matter h1 {
+        line-height: 34px;
     }
     h2 {
         font-size: 1.6rem;
