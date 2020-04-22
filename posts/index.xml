@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 16 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 12:35:00 +0400</lastBuildDate>
     
 	<atom:link href="https://smirart.ru/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Main tools on Python</title>
+      <link>https://smirart.ru/posts/post-89/</link>
+      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/posts/post-89/</guid>
+      <description>Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite of I&amp;rsquo;ve seen it a lot of times, it just can&amp;rsquo;t fit in my head. So I made this article for quickly getting the information.
+Basicly it consist links to russian resources.
+ os.path decorators strings regular expression queue, lock web, asyncio, aiohttp cycles, for, while   Maybe however I will write own copies of these scratches.</description>
+    </item>
     
     <item>
       <title>Nginx reverse proxy</title>

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>programming on urpylka</title>
-    <link>https://smirart.ru/tags/programming/</link>
-    <description>Recent content in programming on urpylka</description>
+    <title>tools on urpylka</title>
+    <link>https://smirart.ru/tags/tools/</link>
+    <description>Recent content in tools on urpylka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
     <lastBuildDate>Wed, 22 Apr 2020 12:35:00 +0400</lastBuildDate>
     
-	<atom:link href="https://smirart.ru/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://smirart.ru/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,17 +21,6 @@
       <description>Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite of I&amp;rsquo;ve seen it a lot of times, it just can&amp;rsquo;t fit in my head. So I made this article for quickly getting the information.
 Basicly it consist links to russian resources.
  os.path decorators strings regular expression queue, lock web, asyncio, aiohttp cycles, for, while   Maybe however I will write own copies of these scratches.</description>
-    </item>
-    
-    <item>
-      <title>Nginx reverse proxy</title>
-      <link>https://smirart.ru/posts/post-12/</link>
-      <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://smirart.ru/posts/post-12/</guid>
-      <description>Nginx reverse proxy needs where we want to get access to few resources by one external IP address and port.
-I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing server_name and proxy_pass as target location. Pleese look at last section with default_server atribute. It needs to set default site (in this case page with 501 Internal Error).
-Quickstart   Create webproxy.</description>
     </item>
     
   </channel>

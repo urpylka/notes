@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Main tools on Python - urpylka</title><link rel="icon" type="image/png" href="https://smirart.ru/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://smirart.ru/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://smirart.ru/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://smirart.ru/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://smirart.ru/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://smirart.ru/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://smirart.ru/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://smirart.ru/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://smirart.ru/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://smirart.ru/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://smirart.ru/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://smirart.ru/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://smirart.ru/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://smirart.ru/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://smirart.ru/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://smirart.ru/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Main tools on Python">
+<meta itemprop="description" content="Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite of I&#39;ve seen it a lot of times, it just can&#39;t fit in my head. So I made this article for quickly getting the information.">
+<meta itemprop="datePublished" content="2020-04-22T12:35:00&#43;04:00" />
+<meta itemprop="dateModified" content="2020-04-22T12:35:00&#43;04:00" />
+<meta itemprop="wordCount" content="85">
+
+
+
+<meta itemprop="keywords" content="en,programming,python,tools," /><meta property="og:title" content="Main tools on Python" />
+<meta property="og:description" content="Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite of I&#39;ve seen it a lot of times, it just can&#39;t fit in my head. So I made this article for quickly getting the information." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://smirart.ru/posts/post-89/" />
+<meta property="article:published_time" content="2020-04-22T12:35:00+04:00" />
+<meta property="article:modified_time" content="2020-04-22T12:35:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Main tools on Python"/>
+<meta name="twitter:description" content="Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite of I&#39;ve seen it a lot of times, it just can&#39;t fit in my head. So I made this article for quickly getting the information."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://smirart.ru/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://smirart.ru/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://smirart.ru/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://smirart.ru/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://smirart.ru/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://smirart.ru/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://smirart.ru/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, drones, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">22</span>
+                        <span class="rest">Apr 2020</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Main tools on Python</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite of I&rsquo;ve seen it a lot of times, it just can&rsquo;t fit in my head. So I made this article for quickly getting the information.</p>
+<p>Basicly it consist links to russian resources.</p>
+<ul>
+<li><a href="https://pythonworld.ru/moduli/modul-os-path.html">os.path</a></li>
+<li><a href="https://pythonworld.ru/osnovy/dekoratory.html">decorators</a></li>
+<li><a href="https://pythonworld.ru/tipy-dannyx-v-python/stroki-funkcii-i-metody-strok.html">strings</a></li>
+<li><a href="https://tproger.ru/translations/regular-expression-python/">regular expression</a></li>
+<li><a href="https://docs.python.org/3/library/queue.html">queue, lock</a></li>
+<li><a href="http://asvetlov.github.io/aiohttp-novosib">web, asyncio, aiohttp</a></li>
+<li><a href="https://python-scripts.com/loops-for-while">cycles, for, while</a></li>
+</ul>
+<blockquote>
+<p>Maybe however I will write own copies of these scratches.</p>
+<p>This article will be updated when it needs.</p>
+</blockquote>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/en">en</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/python">python</a></li>
+                    
+                    <li><a href="/tags/tools">tools</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

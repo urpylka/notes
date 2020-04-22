@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 16 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 12:35:00 +0400</lastBuildDate>
     
 	<atom:link href="https://smirart.ru/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,36 @@
     <item>
       <title>en</title>
       <link>https://smirart.ru/tags/en/</link>
-      <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
       
       <guid>https://smirart.ru/tags/en/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://smirart.ru/tags/programming/</link>
+      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://smirart.ru/tags/python/</link>
+      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tools</title>
+      <link>https://smirart.ru/tags/tools/</link>
+      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/tags/tools/</guid>
       <description></description>
     </item>
     
@@ -27,15 +54,6 @@
       <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://smirart.ru/tags/nginx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://smirart.ru/tags/programming/</link>
-      <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://smirart.ru/tags/programming/</guid>
       <description></description>
     </item>
     
