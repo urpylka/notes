@@ -18,7 +18,7 @@
       <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
       
       <guid>https://smirart.ru/posts/post-89/</guid>
-      <description>Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite of I&amp;rsquo;ve seen it a lot of times, it just can&amp;rsquo;t fit in my head. So I made this article to get the information quickly.
+      <description>Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite that I&amp;rsquo;ve seen it a lot of times, it just can&amp;rsquo;t fit in my head. So I wrote this article to get the information quickly.
 Basically it consist links to russian resources.
  os.path decorators strings regular expression queue, lock web, asyncio, aiohttp cycles, for, while   Maybe however I will write own copies of these scratches.</description>
     </item>
