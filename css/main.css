@@ -264,6 +264,7 @@ ul {
 .highlight code {
     background: 0;
     white-space: pre;
+    padding: 0 !important;
 }
 
 code {
