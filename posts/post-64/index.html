@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Starline Hackathon 2020 - urpylka</title><link rel="icon" type="image/png" href="https://smirart.ru/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://smirart.ru/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://smirart.ru/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://smirart.ru/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://smirart.ru/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://smirart.ru/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://smirart.ru/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://smirart.ru/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://smirart.ru/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://smirart.ru/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://smirart.ru/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://smirart.ru/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://smirart.ru/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://smirart.ru/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://smirart.ru/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://smirart.ru/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Starline Hackathon 2020">
+<meta itemprop="description" content="В конце марта 2020 года компания Starline во второй раз в своей истории провела хакатон. Организаторы в этот раз взяли высокую планку по сложности соревнований. Я с моим другом Артуром решили участвовать вдвоём. Пишу статью с целью передачи опыта, а также для того, чтобы структурировать и закрепить весь тот объем информации, который пришлось перелопатить.">
+<meta itemprop="datePublished" content="2020-06-01T00:00:10&#43;04:00" />
+<meta itemprop="dateModified" content="2020-06-01T00:00:10&#43;04:00" />
+<meta itemprop="wordCount" content="2666">
+
+
+
+<meta itemprop="keywords" content="ru,robots,starline,hackathon,competition,turtlebot,ros,slam,rgbd,autonomous,lane-detection,color-segmentation," /><meta property="og:title" content="Starline Hackathon 2020" />
+<meta property="og:description" content="В конце марта 2020 года компания Starline во второй раз в своей истории провела хакатон. Организаторы в этот раз взяли высокую планку по сложности соревнований. Я с моим другом Артуром решили участвовать вдвоём. Пишу статью с целью передачи опыта, а также для того, чтобы структурировать и закрепить весь тот объем информации, который пришлось перелопатить." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://smirart.ru/posts/post-64/" />
+<meta property="article:published_time" content="2020-06-01T00:00:10+04:00" />
+<meta property="article:modified_time" content="2020-06-01T00:00:10+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Starline Hackathon 2020"/>
+<meta name="twitter:description" content="В конце марта 2020 года компания Starline во второй раз в своей истории провела хакатон. Организаторы в этот раз взяли высокую планку по сложности соревнований. Я с моим другом Артуром решили участвовать вдвоём. Пишу статью с целью передачи опыта, а также для того, чтобы структурировать и закрепить весь тот объем информации, который пришлось перелопатить."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://smirart.ru/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://smirart.ru/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://smirart.ru/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://smirart.ru/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://smirart.ru/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://smirart.ru/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://smirart.ru/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">01</span>
+                        <span class="rest">Jun 2020</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Starline Hackathon 2020</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Всем привет, с целью передачи опыта, а также для того, чтобы структурировать и закрепить весь тот объем информации, который пришлось перелопатить, я пишу эту статью. Я не ставлю перед собой целью изложить мануал по созданию нашего решения (тк <a href="https://github.com/urpylka/starline-hackathon/">исходный код</a> и так полностью открыт). Подразумеваю, что основной интерес в том, чтобы изложить основые принципы построения подобных систем, изложить используемые источники, рассказать о том от чего мы отказались, и к чему мы пришли. Постараюсь сохранить баланс между количеством информацией и читаемостью.</p>
+<p>Если вы не знаете что такое ROS советую к изучению ресурс <a href="http://docs.voltbro.ru/starting-ros/">Voltbto.com</a>, вот например <a href="http://docs.voltbro.ru/starting-ros/messaging/rabota-s-service.html">статья по работе с сервисами в ROS</a>.</p>
+<p>В конце марта 2020 года компания Starline во второй раз в своей истории провела <a href="https://robofinist.ru/event/info/short/id/339">хакатон</a>. По сравнению с <a href="https://robofinist.ru/event/info/short/id/239">предыдущим хакатоном</a> (<a href="https://www.youtube.com/watch?v=g4KLKweEs1E">youtube</a>), проведённым в октябре 2018 года, в этот раз сильно повысился уровень организации: был чёткий регламент, система оценки, равные условия для всех участников и сложное квалификационное задание - такое, каким и должно быть.</p>
+<p>Организаторы в этот раз взяли высокую планку по сложности соревнований: настолько, что из 25 поданных заявок квалификацию прошли только 5. Для решения квалификационного задания было необходимо настроить роботу в <a href="https://github.com/turtlebot/turtlebot_simulator">симуляторе</a> <code>gazebo</code> для проезда из одной точки в другую. Подробнее об этом <a href="https://github.com/urpylka/starline-hackathon/blob/2020-2-stimulator_g/README.md">здесь</a>.</p>
+<p>Такой уровень не может не радовать: наконец в России появилось ещё одно хорошее соревнование по робототехнике для специалистов, а не для школьников. Кстати по этой теме, отнести к таким соревнованиям в России на данный момент я могу лишь несколько (мой личный рейтинг):</p>
+<ol>
+<li><strong>Starline</strong> Hackaton</li>
+<li><strong>COEX</strong> Hackaton (проведение на 2020 год под вопросом)</li>
+<li><strong>Робофест</strong> Autonet 18+</li>
+<li><strong>UpGreat</strong> <a href="https://city.upgreat.one/final/">Зимний город</a> + очень крутая <a href="https://vc.ru/transport/96952-final-sorevnovaniya-bespilotnyh-avtomobiley-zimniy-gorod-s-kommentariyami-komand">статья на vc.ru</a></li>
+<li>Робокросс <a href="https://www.russianrobotics.ru/activities/robokross-2019/">тык-1</a>, <a href="https://life.ru/p/1231991">тык-2</a></li>
+<li><strong>Робофинист</strong> РТК Экстремал Pro (информация есть <a href="https://robofinist.ru/event/info/competitions/id/213">здесь</a>)</li>
+<li><strong>Крок</strong> <a href="https://habr.com/ru/company/croc/blog/192704/">Конкурс летающих роботов</a> [больше не проводит]</li>
+</ol>
+<p>Все эти соревнования отличаются друг от друга достаточно сильно, но в них мне как специалисту было [бы] интересно участвовать.</p>
+<p>Теперь расскажу немного про сам хакатон. Хотя по факту он уже таким не являлся, за исключением, возможно, жеребьевки участников без команды. В нём присутствовали все атрибуты соревнования: есть отборочные, заранее известное и чётко прописанное задание (а соответственно и подготовка).</p>
+<p>Я <a href="https://github.com/urpylka">@urpylka</a> с моим другом Артуром <a href="https://github.com/goldarte">@goldarte</a> решили участвовать вдвоём (в предыдущий раз я занял третье место, а он – первое).</p>
+<h2 id="дано">Дано</h2>
+<p>Каждой команде был выделен робот Turtlebot E2 следующего содержания:</p>
+<ol>
+<li>Платформа Kobuki</li>
+<li>RGBD-камера Orbbec Astra</li>
+<li>Rplidar A2</li>
+<li>Компьютер Intel NUC [BOXNUC7I7BNH]</li>
+<li>Дополнительная камера Logitech HD Pro C920</li>
+</ol>
+<p>По условиям соревнования, для равенства всех участников, разрешалось только менять компоновку из представленных выше компонентов и использовать произвольное ПО. Ставить более мощный компьютер или дополнительные сенсоры, принесённые на площадку, запрещалось.</p>
+<p>Изначально соревование должно было проходить 4 дня в неспешной обстановке, но в конце второго дня мы узнали о том, что организаторам пришлось сократить один день ввиду короновирусной обстановки в городе.</p>
+<p>Организаторами изначально был построен целый город (7x7 клеток): из квадратных черных матов было сделано дорожное полотно с разметкой, а из коробок разного размера с прикрепленными иллюстрациями были оформленны дома. У каждого дома на полу малярной лентой была отмечена его позиция, чтобы если кто-то сместил дом, знал куда его вернуть на место. Это важно для возможности ориентации робота с помощью построенной карты.</p>
+<p>В городе имелись препятствия (про расположение которых мы не знали заранее):</p>
+<ol>
+<li>Светофоры</li>
+<li>Знаки &ldquo;Стоп&rdquo;</li>
+<li>Блоки &ldquo;Дорожные работы&rdquo;</li>
+<li>Другие участники движения в виде статичных моделей машин</li>
+</ol>
+<p>Также была сплошная разметка, где было запрещено движение по встречной полосе и пересечение самой полосы.</p>
+<h2 id="задание-и-решение">Задание и решение</h2>
+<p>По заданию нужно было проехать из точки старта в неё же (при этом вернуться в точку старта нужно с другой стороны) с учетом всех препятствий и сделать это как можно больше раз за отведенное время. При этом нарушения накладывают временны́е штрафы.</p>
+<p><img src="./images/starline2020-map-1.png" alt="image"></p>
+<p>Мы разделили решение на несколько частей и занялись ими по отдельности:</p>
+<ol>
+<li>Стейт машина для управления роботом</li>
+<li>Определение дорожной разметки и способ не пересекать сплошную</li>
+<li>Машинное зрение для распознавания знаков &ldquo;Стоп&rdquo; и светофоров</li>
+<li>Ориентация и перемещение робота по городу с использованием алгоритмов, доступных в ROS</li>
+</ol>
+<p>В начале решения задач по техническому зрению, мы изначально понимали какие есть алгоритмы и как они работают. Хорошей кодовой базой и документацией к ней являются <a href="http://emanual.robotis.com/docs/en/platform/turtlebot3/autonomous_driving/#ros-1-autonomous-driving">мануалы для TurtleBot3 на robotis.com</a>, плюс в их репозитории с соревнований <a href="https://www.youtube.com/watch?v=47YnSBAssOM">autorace</a>: <a href="https://github.com/ROBOTIS-GIT/turtlebot3_autorace">turtlebot3_autorace</a>, <a href="turtlebot3_autorace_2020">https://github.com/ROBOTIS-GIT/turtlebot3_autorace_2020</a>. В этих репозиториях есть хорошие примеры:</p>
+<ul>
+<li><a href="https://github.com/ROBOTIS-GIT/turtlebot3_autorace_2020/tree/master/turtlebot3_autorace_parking">Автоматическая парковка по разметке</a> (правда разметка там упрощенная: одна полоса, плюс левая окращена в желтый цвет);</li>
+<li><a href="https://github.com/ROBOTIS-GIT/turtlebot3_autorace_2020/blob/master/turtlebot3_autorace_traffic_light">Распознание объектов</a>;</li>
+<li><a href="https://github.com/ROBOTIS-GIT/turtlebot3_autorace/blob/master/turtlebot3_autorace_core/nodes/core_node_mission">Реализация стейт-машины</a>.</li>
+</ul>
+<p>Очень хорошая <a href="https://blog.zhaw.ch/icclab/configuring-the-ros-navigation-stack-on-a-new-robot/">статья</a> по настройке ROS Navigation Stack.</p>
+<h3 id="state-machine">State Machine</h3>
+<p>Идея решения изначально была следующая: Делаем стэйт-машину с двумя состояниями: <code>GOTO_0</code>, <code>GOTO_1</code>. Они являются состояниями следования в точки <code>0</code> и <code>1</code> на карте соотвественно.</p>
+<p><img src="./images/starline2020-map-2.png" alt="image"></p>
+<p>В момент, когда робот находится в точке <code>0</code>, на глобальную карту планировщика наносится препятствие, отмеченное красной линией; в момент, когда робот покидает точку <code>0</code>, на глобальной карте удаляется препятствие, отмеченное красной линией, и добавляется другое препятствие, отмеченное зелёной линией. Это нужно для того, чтобы глобальный планировщик не строил маршрутов, ведущих на точку старта по тому же пути, по которому из неё выехал робот.</p>
+<p>По завершению (достижению точки) состояния циклично меняются. Так достигается то, что робот ездит кругами.</p>
+<p>В состояниях <code>GOTO_0</code>, <code>GOTO_1</code> стэйт-машины проверяется, не был ли замечен красный свет светофора или знак &ldquo;Стоп&rdquo;. Если таковые были замечены, делаем остановку до окончания красного света или на одну секунду в случае знака.</p>
+<p>Также впоследствии были добавлены состояния <code>INIT</code> и <code>IDLE</code>. В <code>INIT</code> мы включаем платформу, инициализируем объекты вспомогательных классов и переходим в состояние <code>IDLE</code>. Также перейти в состояние <code>IDLE</code> можно из <code>GOTO_0</code> и <code>GOTO_1</code>. В качестве фреймворка для state-machine было реализовано <a href="https://github.com/urpylka/starline-hackathon/blob/2020-2-stimulator_g/catkin_ws/src/solution_3/src/state_machine.py">собстсвенное решение</a>, построенное на базе <a href="https://dev.to/karn/building-a-simple-state-machine-in-python">стэйт-машины Karn Saheb</a>. В реализацию класса <code>StateMachine</code> добавлено поле <code>S</code> типа пустого класса <code>ObjectStorage</code>. Это позволяет организовать удобную работу с одними данными из разных состояний через <code>setattr(Class, Attr, Value)</code> и через его сокращенный вариант <code>Class.Attr = Value</code>.</p>
+<h3 id="детекция-разметки">Детекция разметки</h3>
+<p>В начале думали использовать, что вроде <code>lane-detection</code>:</p>
+<ol>
+<li><a href="https://github.com/amusi/awesome-lane-detection">github/awesome-lane-detection</a></li>
+<li><a href="https://github.com/search?q=lane+detector">github поиск lane-detection</a></li>
+<li><a href="https://www.hackster.io/kemfic/curved-lane-detection-34f771">hackster.io curved-lane-detection</a></li>
+</ol>
+<p>Затем посмотрели в сторону использования нейронных сетей для детектирования попутной полосы цветом <code>color-segmentation</code>. Нам понравилось решение <a href="https://github.com/dheera/ros-semantic-segmentation">dheera/ros-semantic-segmentation</a>. По размеченной цветом картинке можно высчитать координаты области и передавать эти данные в локальный планировщик.</p>
+<p>На тему семантической сегментации изображений есть <a href="https://habr.com/en/post/452088/">статья</a> на хабре.</p>
+<p><img src="./images/screenshot.gif" alt="image"></p>
+<p>Однако после тестов в симуляторе, мы поняли, что это решение ведет себя ненадежно, и в рамках соревнования нам нужно что-то иное. Идея пришла довольно быстро. Мы решили нанести на глобальную карту сплошную разметку.</p>
+<p>Составленная карта для робота представляет собой растровое изображение. После составления начальной карты алгоритмом <code>gmapping</code> мы дорисовали её руками. Убрали помехи в виде случайно зафиксированных людей и роботов, а также нанесли сплошную разметку.</p>
+<p><img src="./images/starline2020-map-3.png" alt="image"></p>
+<p>Затем нам нужно было как-то правильно выбирать полосу и не ехать по встречке. Мы решили динамически наносить на глобальную карту препятствия, таким образом, что если робот въезжает в радиус <code>R1</code> центра некоторого перекрестка, то во всех запрещенных встречных направлениях перекрестка строятся препятствия, до тех пор пока робот не отдалится от центра данного перекрестка на радиус <code>R2</code>.</p>
+<p><img src="./images/starline2020-map-4.png" alt="image"></p>
+<h3 id="распознание-объектов">Распознание объектов</h3>
+<p>В рамках ограниченного времени хакатона, было решено заранее поискать готовые инструменты для выделения нужных объектов на изображении. Одним из инструментов оказался ROS пакет <a href="http://wiki.ros.org/find_object_2d">find_object_2d</a>: он позволяет на лету сконфигурировать детектор фич и дескриптор для классификации объектов по заранее имеющимся картинкам, а также предоставляет список определённых объектов и их координат с матрицами гомографии в топик <code>/objects</code> и <code>objectsStamped</code>. Помимо выделения объектов нужно было, например, правильно распознать цвет светофора, поэтому помимо готовых решений пришлось применять решения из библиотеки <a href="https://opencv.org/">opencv</a>. Итоговым решением задачи по определению знака стоп и цвета светофора стала нода <a href="https://github.com/urpylka/starline-hackathon/blob/2020-2-stimulator_g/catkin_ws/src/solution_3/src/detect_objects_node/detect_objects_node.py">detect_objects_node.py</a>. Кстати вот <a href="https://github.com/ooleksyuk/CarND-Capstone/blob/master/ros/src/tl_detector/tl_detector.py">неплохой код</a> из проекта по управлению машиной <a href="https://github.com/ooleksyuk/CarND-Capstone">CarND-Capstone</a> в котором мы черпнули много полезного.</p>
+<h4 id="распознавание-знака-стоп">Распознавание знака стоп</h4>
+<p>Распознавание знака стоп было реализовано с помощью пакета <code>find_object_2d</code>. В качестве детектора фич и дескриптора был выбран ORB с увеличенным количеством итераций афинных преобразований для более робастного определения знака под разными углами. Все параметры распознавания доступны <a href="https://github.com/urpylka/starline-hackathon/blob/2020-2-stimulator_g/catkin_ws/src/solution_3/objects/settings.ini">здесь</a>. Для довольно уверенного распознавания знака с разных ракурсов хватило вот этой картинки:</p>
+<p><img src="https://github.com/urpylka/starline-hackathon/blob/2020-2-stimulator_g/catkin_ws/src/solution_3/objects/1.png?raw=true" alt="image"></p>
+<p>С помощью матрицы гомографии, данные которой уже в готовом виде присутствуют в топике <code>/objects</code>, можно восстановить перспективу и размеры объекта для добавления ограничений по размеру знака при его распознавании.</p>
+<p>Для удобной интеграции распознавания знака с машиной состояний был реализован сервис <code>detected_stop</code>, который возвращает информацию о том, распознан знак или нет. Для настройки некоторых параметров детектора был применён механизм динамической конфигурации параметров <a href="http://wiki.ros.org/dynamic_reconfigure">dynamic_reconfigure</a>, который позволяет на лету (что особенно актуально в условиях ограниченного времени) подобрать нужные параметры через инструмент <a href="http://wiki.ros.org/rqt_reconfigure">rqt</a>.</p>
+<h4 id="распознавание-светофора-и-его-цвета">Распознавание светофора и его цвета</h4>
+<p>С распознаванием светофора ситуация оказалась менее очевидной. Изначально был план с помощью <code>find_object_2d</code> определить границы светофора и уже внутри этих границ определять цвет светофора. Но возникло несколько проблем. Во-первых изображение светофора с гораздо меньшим успехом определялось на тех же детекторах, что и знак стоп (с другими за короткое время успеха добиться тоже не удалось). Во-вторых надёжность определения границ светофора страдала при переключении его цвета. Поэтому по ходу тестирования определения объектов на хакатоне пришлось переключиться и придумать другой способ.</p>
+<p>Рабочий алгоритм по выделению цвета светофора выглядел следующим образом: вначале на изображении выделяются области определённой насыщенности в цветовом пространстве HSV, затем среди этих областей производится поиск областей, наиболее похожих на круг (методом Hough Circles) с определёнными границами по размеру. Если такие области есть - мы определили, что находимся у светофора с определённым цветом.</p>
+<p>Минусов такого алгоритма определения состояния светофора было много - как минимум любой объект красного цвета, похожий на круг, мог сбить нас с толку (что и произошло при первом запуске на соревновании). Но также был рассчёт на то, что затянув ограничения должным образом, мы избавимся от ложных случаев и увеличим количество правильных распознаваний состояния светофора, с учётом того, что в помещении не было других красных круглых объектов.</p>
+<p>Особенным моментом стало то, что мы не могли использовать видимое изображение с камеры Astra в виду очень узкого угла обзора. А также не особо подходила камера <code>Logitech HD Pro C920</code> также из-за достаточно узкого угла обзора установленная камера внутри робота не позволяет увидеть знак с другого края дороги – нужна более широкоугольная камера. Мы же более-менее решили эту проблему с выносом камеры за пределы робота.</p>
+<h3 id="navigation-stack">Navigation Stack</h3>
+<p>Приведу схему ROS Navigation Stack (информация взята из <a href="https://github.com/Skydes/Turtlebot-Navigation-Stack/blob/master/doc/presentation/presentation.pdf">презентации PhD Paul‑Edouard Sarlin</a>) для общего понимания процессов.</p>
+<p><img src="images/graph_overview.png" alt="image"></p>
+<ul>
+<li><strong>Map prior</strong>: что заранее известно о окружающей среде</li>
+<li><strong>Kinect</strong>: камера глубины, возвращающая облако точек</li>
+<li><strong>Odometry</strong>: позиция робота в лабиринте</li>
+<li><strong>Map updater</strong>: обрабатывает данные для создания и обновления внутренней карты окружающей среды</li>
+<li><strong>Global planner</strong>: вычисляет маршрут от начальной точки в цель, используюя карту</li>
+<li><strong>Local planner</strong>: выполняет и корректирует с учетом обстановки процесс перемещения робота по построенному маршруту</li>
+</ul>
+<p>Для управления роботом используется <a href="https://github.com/ros-planning/navigation">супер-пакет</a> <code>navigation</code>, он содержит в себе <code>move_base</code> (<a href="http://wiki.ros.org/move_base">утилита</a> для управления роботом через угловые скорости) и два планировщика: локальный и глобальный. Планировщик – это программа, которая, опираясь на положение робота на карте окружающего пространства, может построить маршрут в заданную координату. Локальный планировщик работает с небольшим участком карты в ограниченном пространстве вокруг робота с учётом данных с датчиков робота об окружающих объектах. Глобальный планировщик строит общий маршрут, ориентируясь по всей карте, без учета возможного появления новых препятствий.</p>
+<blockquote>
+<p><a href="http://wiki.ros.org/navigation/Tutorials/RobotSetup">Мануал</a> по настройке Navigation Stack на роботе.</p>
+<p>Также вышел <a href="https://github.com/locusrobotics/robot_navigation">новый пакет</a> <code>robot_navigation</code>, как замена старому.</p>
+</blockquote>
+<p>Для решения задачи ориентирования по построенной карте мы использовали стандартный алгоритм <code>amcl</code>. В него мы передавали подготовленную карту без разметки, чтобы алгоритм не сходил с ума, когда не видел разметки с помощью лидара.</p>
+<p>Вместо стандартного локального планировщика мы решили использовать <a href="http://wiki.ros.org/teb_local_planner"><code>teb_local_planner</code></a> (<a href="https://github.com/rst-tu-dortmund/teb_local_planner">github</a>), который написали ребята из <a href="https://github.com/rst-tu-dortmund">TU Dortmund University</a>. Несколько  ссылочек c примерами:</p>
+<ul>
+<li><a href="https://github.com/rst-tu-dortmund/teb_local_planner_tutorials">https://github.com/rst-tu-dortmund/teb_local_planner_tutorials</a></li>
+<li><a href="http://wiki.ros.org/navigation/Tutorials/Navigation%20Tuning%20Guide#The_Local_Planner">http://wiki.ros.org/navigation/Tutorials/Navigation%20Tuning%20Guide#The_Local_Planner</a></li>
+<li><a href="http://wiki.ros.org/teb_local_planner/Tutorials">http://wiki.ros.org/teb_local_planner/Tutorials</a></li>
+</ul>
+<p>Для описанных выше вещей нужно было как-то добавлять препятствия, построенные на отдельных картах в планировщик или на глобальную карту, которую также кушает планировщик.</p>
+<p>В планировщиках обычно используются простые по назначению слои:</p>
+<ul>
+<li><code>obstacle_layer</code> – динамические препятствия (<a href="https://stackoverflow.com/questions/44194541/obstacle-inflation-in-costmap-2d">пример</a> настройки Obstacle inflation in costmap_2d)</li>
+<li><code>inflation_layer</code> – утолщение препятствий</li>
+<li><code>static_layer</code> – статичная карта</li>
+</ul>
+<p>Каждый слой должен быть определнного типа:</p>
+<ul>
+<li><code>costmap_2d::StaticLayer</code> – препятствия, построенные на базе заданной статической карты</li>
+<li><code>costmap_2d::ObstacleLayer</code> – препятствия добавляемые с помощью топика типа <code>LaserScan</code> или <code>PointCloud</code></li>
+<li><code>costmap_2d::InflationLayer</code> – добавляет в <code>costmap</code> линию некоторого радиуса и определнной плотности вокруг препятствий</li>
+<li><code>costmap_2d::VoxelLayer</code> – добавление 3D объектов</li>
+</ul>
+<p>Помимо использования обычного набора слоев, можно добавить свой. Однако у меня после добавления слоя типа <code>costmap_2d::StaticLayer</code>, содержащего сплошную разметку, получаемый <code>costmap</code> был с сильными дефектами.</p>
+<p>Подробнее про <code>costmap_2d</code> вы можете прочитать в официальной документации <a href="http://wiki.ros.org/costmap_2d">здесь</a>. Там вы можете найти примеры конфигураций (<a href="http://wiki.ros.org/costmap_2d/Tutorials">1</a>, <a href="http://wiki.ros.org/costmap_2d/Tutorials/Creating%20a%20New%20Layer">2</a>, <a href="http://wiki.ros.org/costmap_2d/Tutorials/Configuring%20Layered%20Costmaps">3</a>), описание простых типов (<a href="http://wiki.ros.org/costmap_2d/hydro/staticmap">staticmap</a>, <a href="http://wiki.ros.org/costmap_2d/hydro/obstacles">obstacles</a>), описание <a href="http://wiki.ros.org/costmap_2d/flat">flat</a> и <a href="http://wiki.ros.org/costmap_2d/layered">layered</a>.</p>
+<p>Также я нашел решение <a href="https://github.com/Sr4l/virtual_obstacles">Sr4l/virtual_obstacles</a>, которое представляло из себя Costmap Plugin для добавления слоев типа <code>costmap_2d::MovingObjects</code>. У проекта была не очень хорошая документация, поэтому я написал <a href="https://github.com/Sr4l">Lars Kistner</a> и он дополнил репу и прислал еще дополнительные инструкции и интересное <a href="https://www.youtube.com/watch?v=L57m816jgKE">видео</a>, где он это использует.
+Однако я не успел завести это решение и решил использовать что-то более топорное. В дальнейшем наверное правильнее будет использовать его решение.</p>
+<p>Для построения препятствий на карте я написал <a href="https://github.com/urpylka/starline-hackathon/blob/2020-2-stimulator_g/catkin_ws/src/solution_3/src/publish_wall_to_costmap.py">реализацию</a> рисования линий с помощью простейшего <a href="https://ru.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC_%D0%91%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%85%D1%8D%D0%BC%D0%B0">алгоритма Брезенхэма</a>.</p>
+<p>Для динамического слияния (наложения) карт я написал <a href="https://github.com/urpylka/starline-hackathon/blob/2020-2-stimulator_g/catkin_ws/src/solution_3/src/merge_grids.py">Maps Merger</a>.</p>
+<p>Итого у нас получилось пять карт:</p>
+<ol>
+<li><code>/maps/map_amcl</code> – чистая карта, полученная с помощью алгоритма <code>gmapping</code> (подробнее о построении карты <a href="http://learn.turtlebot.com/2015/02/01/11/">здесь</a>)</li>
+<li><code>/maps/map_mb</code> – <code>/maps/map_amcl</code> + нарисованные сплошные линии (<strong>передавалась в глобальный планировщик</strong>)</li>
+<li><code>/maps/crossroads</code> – карта с динамически наносимыми на неё перекрестками</li>
+<li><code>/maps/start_wall</code> – карта с динамически наносимыми на неё стенками у точки старта</li>
+<li><code>/maps/map_merged</code> - карта динамически строящаяся из <code>/maps/map_mb</code>, <code>/maps/crossroads</code>, <code>/maps/start_wall</code> (<strong>передавалась в локальный планировщик</strong>)</li>
+</ol>
+<blockquote>
+<p>Статические карты поднимаются с помощью стандартной <a href="http://wiki.ros.org/map_server">утилиты</a> <code>map_server</code> входящей в стек <code>navigation</code>.</p>
+</blockquote>
+<p>После настроек стека навигации можно выполнить следующую команды для теста робота:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped <span style="color:#a31515">&#39;{header: {stamp: now, frame_id: &#34;map&#34;}, pose: {position: {x: 0.674, y: 0.119, z: 0.0}, orientation: {w: 1.0}}}&#39;</span>
+<span style="color:#008000"># PS Координаты и фреймы должны быть ваши (выбраны исходя из используемых карт)</span>
+</code></pre></div><p>Подробнее о том как сделать проверку написано <a href="http://learn.turtlebot.com/2015/02/03/11/">здесь</a>. Также чтобы робот не дергался при старте и остановке (при заданных высоких скоростях) можно настроить <code>velocity_smoother</code>, подорбнее об этом <a href="https://github.com/gpldecha/turtlebot-navigation/blob/master/turtlebot_nav/launch/includes/velocity_smoother.launch.xml">здесь</a>.</p>
+<h4 id="другие-интересные-источники-по-теме">Другие интересные источники по теме</h4>
+<ul>
+<li><a href="https://roboticsknowledgebase.com/wiki/state-estimation/ros-cost-maps/">Статья</a> по использованию <code>costmap_2d</code> для квадракоптера на Pixhawk</li>
+<li><a href="http://wustl.probablydavid.com/publications/IROS2014.pdf">Статья Layered Costmaps for Context-Sensitive Navigation</a> David V. Lu, Dave Hershberger, and William D. Smart</li>
+<li><a href="https://github.com/STAR-Center/fastGPOM">Работа Fast Gaussian Process Occupancy Maps. In 2018 15th International Conference on Control, Automation, Robotics and Vision (ICARCV) (pp. 1502–1507). IEEE.</a> Yuan, Y., Kuang, H. &amp; Schwertfeger, S. (<a href="https://github.com/STAR-Center/fastGPOM/blob/master/gp_occ_mapping/src/scripts/gpmaps.py">Файл gpmaps.py</a>)</li>
+<li><a href="https://github.com/ros/geometry2">Супер-пакет</a> ROS <code>geometry2</code> для проведения преобразований. Примеры <a href="https://answers.ros.org/question/35844/help-with-navigation-error-transform-from-base_link-to-map/">здесь 1</a> и <a href="https://github.com/goldarte/arucow/blob/master/aruco_destination_pose.py">здесь 2</a>.</li>
+<li><a href="https://wiki.ros.org/occupancy_grid_utils">Утилита</a> <code>occupancy_grid_utils</code></li>
+<li>Также ребята из того же <a href="https://github.com/rst-tu-dortmund">TU Dortmund University</a> написали <a href="http://wiki.ros.org/costmap_converter"><code>costmap_converter</code></a> утилиту позволяющую вынимать примитивы из <code>costmap</code>. Исходный код выложен на <a href="https://github.com/rst-tu-dortmund/costmap_converter">github</a>, софт написан с использованием алгоритма <a href="https://en.wikipedia.org/wiki/DBSCAN">DBSCAN</a>.</li>
+<li><a href="https://github.com.cnpmjs.org/stonier/cost_map">Аналог</a> для <code>costmap_2d</code>, Это <a href="https://github.com.cnpmjs.org/stonier/cost_map">библиотека</a> C++, прямо аналогичная библиотеке GridMap ETHZ ASL, но разработанная для использования с затратами, когда элемент данных представляет собой беззнаковый символ (в отличие от двойников grid_map).</li>
+</ul>
+<h3 id="определение-препятствий">Определение препятствий</h3>
+<p>Некоторые команды просто убирали несколько уровней платформы TurtleBot и использовали только лидар. Мы же решили разделить эти задачи и завести их на разные сенсоры.</p>
+<p>Для детекции других участников движения и блоков дорожных работ мы решили исопльзовать RGBD-камеру с программной проекцией облака точек в плоскость на заднной высоте (и в дальнейшем использованием этого решения в качестве лидара). Эту информацию мы передавали в локальный планировщик, который выполнял дорисовку карты и перепостроение маршрута для объезда препятствий.</p>
+<p>Для реализации алгоритма SLAM мы использовали лидар, расположенный наверху робота, он не цеплял динамических препятствий, и тем самым снижалась вероятность возникновения ошибки.</p>
+<p>Также для детекции более низких препятствий, нам пришлось сместить RGBD-камеру ниже.</p>
+<h2 id="итог">Итог</h2>
+<p>В этот раз занять призовое место не удалось, проблемы заключалась в том, что мы слишком сосредоточились на прикладных вещах и рассчитывали что отлаженный в симуляторе <code>teb_local_planner</code> будет работать также хорошо. По сути это основной механизм в софте отвечающий за перемещение. Каково было наше удивление, когда за два часа до защиты мы поняли, что робот даже нормально развенуться не может. В итоге, потратив эти пару часов в попытке отладить планировщик, робот поехал. Однако на первом же повороте, увидив препядствие между которым до сплошной полосы оставалось небольшое пространство не перестраивал глобальный маршрут и не мог туда проехать из-за своих размеров.</p>
+<p>Как результат выиграли более простые примитивные решения, которые либо обходили все слева направо, либо двигались по заранее сохраненному маршруту и не считывали ни светофоров, ни знаков.</p>
+<p>У нас же была очень круто проведененная неделя в Питере в компании специалистов и друзей. Мы очень благодарны компании <a href="https://www.starline.ru">Starline</a> в частности: Алексею Хованскому, Николаю Дема, Александру Никифорову, Кириллу Гореву и Веденену Даниилу. Кстати Кирилл Горев основной разработчик портала <a href="https://robofinist.ru">РобоФинист</a>.</p>
+<p>Бонусом укажу пару-тройку ссылочек на ресурсы ребят и компании:</p>
+<ul>
+<li><a href="https://developer.starline.ru">developer.starline.ru</a> – открытое API некоторых продуктов Starline.</li>
+<li><a href="https://robofinist.ru">Портал РобоФинист</a>, кстати его основным разработчик является всего один человек – Кирилл Горев.</li>
+<li><a href="https://www.youtube.com/channel/UCiGwbcr2f2ON77etnY-aVxw">YouTube канал Николая Дема</a>. Коля крутой робототехник и на его ютубчике периодически появляются интересные видосы.</li>
+</ul>
+<p>На этом всё, спасибо большое за прочтение!</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/robots">robots</a></li>
+                    
+                    <li><a href="/tags/starline">starline</a></li>
+                    
+                    <li><a href="/tags/hackathon">hackathon</a></li>
+                    
+                    <li><a href="/tags/competition">competition</a></li>
+                    
+                    <li><a href="/tags/turtlebot">turtlebot</a></li>
+                    
+                    <li><a href="/tags/ros">ros</a></li>
+                    
+                    <li><a href="/tags/slam">slam</a></li>
+                    
+                    <li><a href="/tags/rgbd">rgbd</a></li>
+                    
+                    <li><a href="/tags/autonomous">autonomous</a></li>
+                    
+                    <li><a href="/tags/lane-detection">lane-detection</a></li>
+                    
+                    <li><a href="/tags/color-segmentation">color-segmentation</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
