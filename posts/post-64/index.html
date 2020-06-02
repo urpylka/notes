@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В конце марта 2020 года компания Starline во второй раз в своей истории провела хакатон. Организаторы в этот раз взяли высокую планку по сложности соревнований. Я с моим другом Артуром решили участвовать вдвоём. Пишу статью с целью передачи опыта, а также для того, чтобы структурировать и закрепить весь тот объем информации, который пришлось перелопатить.">
 <meta itemprop="datePublished" content="2020-06-01T00:00:10&#43;04:00" />
 <meta itemprop="dateModified" content="2020-06-01T00:00:10&#43;04:00" />
-<meta itemprop="wordCount" content="2695">
+<meta itemprop="wordCount" content="2702">
 
 
 
@@ -163,7 +163,6 @@ ym("62022457", "init", {
 <li><a href="https://github.com/ROBOTIS-GIT/turtlebot3_autorace_2020/blob/master/turtlebot3_autorace_traffic_light">Распознание объектов</a>;</li>
 <li><a href="https://github.com/ROBOTIS-GIT/turtlebot3_autorace/blob/master/turtlebot3_autorace_core/nodes/core_node_mission">Реализация стейт-машины</a>.</li>
 </ul>
-<p>Очень хорошая <a href="https://blog.zhaw.ch/icclab/configuring-the-ros-navigation-stack-on-a-new-robot/">статья</a> по настройке ROS Navigation Stack.</p>
 <h3 id="state-machine">State Machine</h3>
 <p>Идея решения изначально была следующая: Делаем стэйт-машину с двумя состояниями: <code>GOTO_0</code>, <code>GOTO_1</code>. Они являются состояниями следования в точки <code>0</code> и <code>1</code> на карте соотвественно.</p>
 <p><img src="./images/starline2020-map-2.png" alt="image"></p>
@@ -214,8 +213,8 @@ ym("62022457", "init", {
 <li><strong>Local planner</strong>: выполняет и корректирует с учетом обстановки процесс перемещения робота по построенному маршруту</li>
 </ul>
 <p>Для управления роботом используется <a href="https://github.com/ros-planning/navigation">супер-пакет</a> <code>navigation</code>, он содержит в себе <code>move_base</code> (<a href="http://wiki.ros.org/move_base">утилита</a> для управления роботом через угловые скорости) и два планировщика: локальный и глобальный. Планировщик – это программа, которая, опираясь на положение робота на карте окружающего пространства, может построить маршрут в заданную координату. Локальный планировщик работает с небольшим участком карты в ограниченном пространстве вокруг робота с учётом данных с датчиков робота об окружающих объектах. Глобальный планировщик строит общий маршрут, ориентируясь по всей карте, без учета возможного появления новых препятствий.</p>
+<p>Полезным к изучению будет <a href="http://wiki.ros.org/navigation/Tutorials/RobotSetup">мануал</a> по настройке Navigation Stack на роботе. И туда же очень хорошая <a href="https://blog.zhaw.ch/icclab/configuring-the-ros-navigation-stack-on-a-new-robot/">статья</a> по настройке ROS Navigation Stack.</p>
 <blockquote>
-<p><a href="http://wiki.ros.org/navigation/Tutorials/RobotSetup">Мануал</a> по настройке Navigation Stack на роботе.</p>
 <p>Также вышел <a href="https://github.com/locusrobotics/robot_navigation">новый пакет</a> <code>robot_navigation</code>, как замена старому.</p>
 </blockquote>
 <p>Для решения задачи ориентирования по построенной карте мы использовали стандартный алгоритм <code>amcl</code>. В него мы передавали подготовленную карту без разметки, чтобы алгоритм не сходил с ума, когда не видел разметки с помощью лидара.</p>
