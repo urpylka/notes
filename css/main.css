@@ -247,13 +247,14 @@ ul {
 .highlight pre {
     margin-bottom: 0;
     margin-top: 0;
-    padding: 20px;
+    padding: 0px;
     background-color: transparent !important;
 }
 
 .highlight {
     /* background: 0 0; */
     padding: 16px !important;
+    margin-bottom: 16px;
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
