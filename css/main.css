@@ -143,9 +143,9 @@ textarea {
 }
 
 blockquote {
-    margin-left: 1rem;
+    margin-left: 0px;
     font-style: italic;
-    font-size: 1.4rem;
+    font-size: 19px;
     font-family: Georgia, bitstream charter, serif;
     border-left: 3px solid;
     border-color: #9376fd;
