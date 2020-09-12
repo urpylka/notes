@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Восстановление печати 3D принтера - urpylka</title><link rel="icon" type="image/x-icon" href="https://smirart.ru/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://smirart.ru/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://smirart.ru/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://smirart.ru/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://smirart.ru/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://smirart.ru/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://smirart.ru/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://smirart.ru/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://smirart.ru/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://smirart.ru/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://smirart.ru/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://smirart.ru/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://smirart.ru/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://smirart.ru/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://smirart.ru/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://smirart.ru/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Восстановление печати 3D принтера">
+<meta itemprop="description" content="Алгоритм восстановление печати 3D принтера после неожиданного отключения электричества во время печати">
+<meta itemprop="datePublished" content="2020-09-12T20:00:00&#43;04:00" />
+<meta itemprop="dateModified" content="2020-09-12T20:00:00&#43;04:00" />
+<meta itemprop="wordCount" content="1337">
+
+
+
+<meta itemprop="keywords" content="ru,3d-печать," /><meta property="og:title" content="Восстановление печати 3D принтера" />
+<meta property="og:description" content="Алгоритм восстановление печати 3D принтера после неожиданного отключения электричества во время печати" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://smirart.ru/posts/post-4/" />
+<meta property="article:published_time" content="2020-09-12T20:00:00+04:00" />
+<meta property="article:modified_time" content="2020-09-12T20:00:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Восстановление печати 3D принтера"/>
+<meta name="twitter:description" content="Алгоритм восстановление печати 3D принтера после неожиданного отключения электричества во время печати"/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://smirart.ru/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://smirart.ru/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://smirart.ru/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://smirart.ru/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://smirart.ru/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://smirart.ru/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://smirart.ru/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">12</span>
+                        <span class="rest">Sep 2020</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Восстановление печати 3D принтера</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Последнее время я часто печатаю большие модели, время печати которых от суток и более. При этом начали проявляться проблемы с электроснаблежнием. Поскольку проблема повторяется уже во второй раз, хочу закрепить полученный опыт в этой статье на тему того, <strong>как можно продолжить печать с того же места после прерывания</strong>.</p>
+<blockquote>
+<p>Я использую 3д-принтер <code>Wanhao Duplicator i3 Plus</code> на прошивке <code>Marlin</code>, однако статью постараюсь сделать универсальной, с изложением базовых принципов. Это должно быть применимо и для других <a href="https://3dtool.ru/stati/fdm-tekhnologiya-kak-eto-rabotaet/">FDM принтеров</a>.</p>
+</blockquote>
+<h2 id="краткая-теория">Краткая теория</h2>
+<p>Для начала нужно понимать, из чего состоит и как работает любой станок. В основном это несколько <strong>актуаторов</strong> по осям (движущих механизмов с электродвигателями) и некоторая электроника и механика для управления <strong>рабочим инструментом</strong>. Все эти части управляются соотвествующими <strong>драйверами</strong>, <strong>драйвера</strong> в свою очередь подключены к <strong>контроллерам</strong>.</p>
+<blockquote>
+<p>На старых станках в качестве контроллеров использовались десктопы с LPT портом, тоесть контроллер фактически был вынесен из станка. Однако сейчас роль контроллера может выполнять даже <code>Arduino Uno</code> с её <code>atmega328</code>. Это решает ряд проблем при использовании компьютера в качестве контроллера.</p>
+</blockquote>
+<p>Надо понимать что обычно, роль контроллера – всего лишь выполнять команды, такие как <code>сделай перемещение по оси X на столько-то</code>, <code>включи подогрев стола</code>, <code>используй текущую позицию как начало координат</code> и тд. Закономерно, это привело к созданию абстракции (общего протокола численного программного управления (ЧПУ)) – <a href="https://reprap.org/wiki/G-code/ru"><code>G-code</code></a>. Программа-slicer (например <code>Cura</code>, <code>Fusion 360</code>) создает управляющую программу как раз в формате <code>G-code</code>, однако не стоит забывать, что у <code>G-code</code> есть диалекты, тоесть каждый производитель прошивки, может немного поменять значения тех или иных команд, добавить функционал и тд. Для того, чтобы понимать что же самом деле происходит при посылке той или иной команды в станок, нужно:</p>
+<ol>
+<li>Проверить версию прошивки, узнать что именно за прошивка у вас установлена.</li>
+<li>Найти описание G-code команд на <a href="https://marlinfw.org/meta/gcode/">сайте</a> производителя прошивки или просмотреть исходный код из которого прошивка собрана.</li>
+</ol>
+<h2 id="восстановление-печати">Восстановление печати</h2>
+<p><img src="./images/photo_2020-09-12_21.18.03.jpeg" alt="image"></p>
+<p>На сколько мне известно, в прошивке <code>Marlin</code> на данный момент не реализована функция сохранения последней команды или координат инструмента в энергонезависимую flash-память. А также нет алгоритма который мог бы рассчитать текущую позицию проведя инструмент до концевика. <strong>Ввиду этого, после перезагрузки, принтер не знает где у него находиться инструмент и какая должна быть следующая команда.</strong> И для того, чтобы исполнить любую операцию (и понимать где она будет сделана), нам нужно взять какую-то точку за начало координат и дальше проводить относительно неё все перемещения.</p>
+<h3 id="поиск-системы-координат">Поиск системы координат</h3>
+<p>Нулевая точка отсчета на принтере обуславливается расположением концевиков и, в моём случае, находится на плоскости стола в ближнем левом углу. Если не производить механическую настройку принтера между печатями смещение модели относительно этой точки будет в пределах повторяемости вашего принтера, что вполне удовлетворительно для восстановления печати.</p>
+<blockquote>
+<p>В первый раз при отключении электричества мне сильно повезло тк одновременно печатающиющиеся модели занимали практически весь стол, однако место возле нулевой точки было не занято и позволяло опустить инструмент рядом с моделями, не задев их.</p>
+<p>После этого я всегда не занимаю левый ближний угол для обеспечения возможности подобного манёвра. Однако, если у вас это место занято, можно:</p>
+<ol>
+<li>Аккуратно снять мешающуюся модель, точно запомнив место её нахождения;</li>
+<li>Добавить в <code>G-code</code> операцию паузы (такие используются для смены пластика) или приостановить принтер из его меню после обнуления координат и поднятия инструмента на рабочую высоту;</li>
+<li>Установить вашу модель назад (например с помощью клея);</li>
+<li>Продолжить печать.</li>
+</ol>
+</blockquote>
+<h3 id="редактирование-g-code">Редактирование G-code</h3>
+<p>Все манипуляции нужно произвести в файле G-code текущей модели вручную. Он представляет из себя текстовый файл, зачастую большого размера. При попытке открытия такого обычным <code>блокнотом</code> у вас могут возникнуть проблемы, тк алгоритм данного редактора не рассчитан на работу с большими файлами и то и дело, то пытается весь файл прочитать, то весь файл записать и тд. Мне очень нравится редактор <code>Visual Studio Code</code>, который советую и вам.</p>
+<p>G-code файл (FDM принтера) можно разделить на две части:</p>
+<ol>
+<li>
+<p>Шапка, там где производиться подогрев стола и инструмента, обнуление системы координат. Также зачастую в ней содержатся комментарии.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">;FLAVOR:Marlin
+;TIME:77525
+;Filament used: 40.8961m
+;Layer height: 0.15
+;MINX:59.185
+;MINY:93.595
+;MINZ:0.15
+;MAXX:129.951
+;MAXY:154.405
+;MAXZ:174.9
+;Generated with Cura_SteamEngine 4.6.1
+M140 S60
+M105
+M190 S60
+M104 S210
+M105
+M109 S210
+M82 ;absolute extrusion mode
+G21 ;metric values
+G90 ;absolute positioning
+M82 ;set extruder to absolute mode
+M107 ;start with the fan off
+G28 X0 Y0 ;move X/Y to min endstops
+G28 Z0 ;move Z to min endstops
+G1 Z15.0 F100 ;move the platform down 15mm
+G92 E0 ;zero the extruded length
+G1 F200 E6 ;extrude 6 mm of feed stock
+G92 E0 ;zero the extruded length again
+G1 F100 
+;Put printing message on LCD screen
+M117 Printing...
+G92 E0
+G92 E0
+G1 F1500 E-6.5
+;LAYER_COUNT:1166
+</code></pre></div></li>
+<li>
+<p>Много подобных операция для печати слоёв. При использовании, в качестве slicer&rsquo;a, программы <code>Cura</code>, в <code>G-code</code> все слои любезно прокоментированы.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">;LAYER:0
+M107
+;MESH:200620-?????????????? ?????????????????????? 010720.STL
+G0 F2400 X95.249 Y98.897 Z0.15
+;TYPE:WALL-INNER
+G1 F1500 E0
+G1 F1350 X95.249 Y99.346 E0.01232
+G1 X95.249 Y99.762 E0.02374
+G1 X95.151 Y99.346 E0.02538
+G1 X94.964 Y98.897 E0.03216
+G1 X94.858 Y98.723 E0.03775
+G1 X94.71 Y98.482 E0.04551
+G1 X94.394 Y98.111 E0.05888
+G1 X94.024 Y97.795 E0.07223
+G1 X93.608 Y97.542 E0.08559
+G1 X93.334 Y97.427 E0.09375
+G1 X93.159 Y97.354 E0.09895
+G1 X92.848 Y97.281 E0.10772
+G1 X92.725 Y97.252 E0.11118
+G1 X92.862 Y97.218 E0.11177
+G1 X93.065 Y97.133 E0.11344
+G1 X93.24 Y97.06 E0.11768
+...
+</code></pre></div></li>
+</ol>
+<p>У нас получается примерно следующий алгоритм:</p>
+<ol>
+<li>
+<p>Смотрим всё что находится в шапке и разбираем, что это означает.</p>
+<blockquote>
+<p>Например, мб такая ситуация, использования датчика уровня стола <code>BLTouch</code> – команда <a href="https://marlinfw.org/docs/gcode/G030.html"><code>G30</code></a>. Её нужно заменить на использование концевика.</p>
+</blockquote>
+<p>В целом убираем всё лишнее кроме подогрева стола и инструмента, обнуления координат. Если вы не используете специальных настроек или датчика уровня стола, в принципе можете не изменять настройки, главное понимать их смысл и чтобы он не противоречил с тем, что вам требуется.</p>
+</li>
+<li>
+<p>Затем нужно максимально точно измерить высоту напечанной модели.</p>
+<p><img src="./images/photo_2020-09-12_22.41.38.jpeg" alt="image"></p>
+<p>В моём случае получилось 143.5 мм. Поделив данную высоту на толщину слоя можно получить номер слоя на котором прервалась печать: <strong>143.5 мм / 0.15 мм = 956.[6]</strong>.</p>
+<blockquote>
+<p>Я всегда округляю величину в меньшую сторону, тк экструдер горячий и не сильно страшно, если он чуть прижмет деталь при печати, в отличии от того, если он начнет класть слой в воздухе.</p>
+</blockquote>
+</li>
+<li>
+<p>Теперь следует удалить из файла G-code все операции печати слоёв влоть до 956 (не совсем так).</p>
+<blockquote>
+<p>Имейте ввиду, что нумерация слоёв в Cura идёт с нуля, а не с единицы, поэтому в комментариях ищите 955 слой.</p>
+</blockquote>
+<p>Найти нужны вам слой можно воспользовавшись поиском (ища по слову <code>;LAYER:955</code>). В месте откуда вы хотите удалить код, установить курсор и не меняя его положении прокрутите до начала файла, зажав <code>Shift</code> и установив курсор в новом месте, у вас выделится весь кусок для удаления.</p>
+<blockquote>
+<p>Печать каждого слоя начинается с команды перемещения инструмента на новую высоту, однако в случае, с <code>Cura</code> эта команда содержится в конце предыдущего слоя, соотвественно её нужно тоже сохранить.</p>
+</blockquote>
+<p><img src="./images/Screenshot_2020-09-12_23.20.25.png" alt="image"></p>
+<p>Также за этой командой следует несколько других перемещений, я их тоже оставляю тк эта последовательность не мешает и с неё продолжается печать отсутствующего слоя.</p>
+<blockquote>
+<p>Кстати проверить правильно ли вы определили слой можно как раз исходя из значения Z в этой команде.</p>
+</blockquote>
+</li>
+<li>
+<p>Как было сказано выше: «Печать каждого слоя обычно начинается с команды перемещения в некоторую точку, с которой начинается печатать слоя». Однако не факт, что алгоритм реализованный в прошивке выполнит не быстрое перемещение (одновременное перемещение по всем осям), а сначала подъём по оси Z, а уже затем по осям XY. <strong>В случае быстрого перемещения есть вероятность того, что инструмент</strong>, двигаясь с нулевой точки в точку на которой находится продолжение печати, <strong>заденет модели</strong>.</p>
+<p>Поэтому после операции обнуления координат (шапки G-code), я добавляю команду перемещения в точку над уже напечатанными моделями – <code>G0 F0 X0 Y0 Z145</code>. Подробнее можно прочитать <a href="https://marlinfw.org/docs/gcode/G000-G001.html">здесь</a>.</p>
+</li>
+</ol>
+<p>В моём случае получилась следующая УП:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">...
+G92 E0
+G92 E0
+G1 F1500 E-6.5
+;LAYER_COUNT:1166
+
+G0 F0 X0 Y0 Z145
+
+G0 F600 X127.103 Y148.595 Z143.4
+G0 F6000 X126.565 Y146.809
+G0 X126.408 Y145.762
+G0 X124.034 Y107.27
+G0 X124.034 Y105.896
+G0 X101.832 Y102.425
+G0 X72.108 Y97.564
+;TIME_ELAPSED:66285.243655
+;LAYER:955
+;TYPE:FILL
+;MESH:200620-?????????????? ?????????????????????? 010720.STL
+G1 F1500 E782.58757
+G1 F2400 X80.388 Y105.844 E782.87967
+...
+</code></pre></div><h2 id="действуй">Действуй</h2>
+<ol start="0">
+<li>На случай, если что-то пойдет не так, предлагаю сразу отметить маркером места установки деталей на столе.</li>
+<li><strong>ВАЖНО!</strong> Перед запуском программы нагрейте экструдер принтера и с помощью меню уведить инструмент от детали над точкой начала координат. Я уже два раза начинаю перемещение экструдера на холодную и отрываю одну из моделей.</li>
+<li>Лишь затем запустите исправленную управляющую программу.</li>
+</ol>
+<p><a href="https://www.youtube.com/watch?v=_KoY4Qf3QMA"><img src="./images/Screenshot_2020-09-13_00.18.39.png" alt="image"></a></p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/3d-%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C">3d-печать</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
