@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cnc on urpylka</title>
+    <link>https://smirart.ru/tags/cnc/</link>
+    <description>Recent content in cnc on urpylka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Artem Smirnov</copyright>
+    <lastBuildDate>Sat, 12 Sep 2020 20:00:00 +0400</lastBuildDate>
+    
+	<atom:link href="https://smirart.ru/tags/cnc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Восстановление печати 3D принтера</title>
+      <link>https://smirart.ru/posts/post-4/</link>
+      <pubDate>Sat, 12 Sep 2020 20:00:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/posts/post-4/</guid>
+      <description>Последнее время я часто печатаю большие модели, время печати которых от суток и более. При этом начали проявляться проблемы с электроснаблежнием. Поскольку проблема повторяется уже во второй раз, хочу закрепить полученный опыт в этой статье на тему того, как можно продолжить печать с того же места после прерывания.
+ Я использую 3д-принтер Wanhao Duplicator i3 Plus на прошивке Marlin, однако статью постараюсь сделать универсальной, с изложением базовых принципов. Это должно быть применимо и для других FDM принтеров.</description>
+    </item>
+    
+  </channel>
+</rss>
