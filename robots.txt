@@ -3,5 +3,4 @@ Disallow: /css/
 Disallow: /favicon/
 Disallow: /js/
 Disallow: /fonts/
-Disallow: /tags/
 Sitemap: https://smirart.ru/sitemap.xml
