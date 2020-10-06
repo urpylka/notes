@@ -112,8 +112,8 @@ function load_url_file() {
     const url = "./genogram.json";
     const params = "";
 
-    request.open("POST", url, true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.open("GET", url, true);
+    request.setRequestHeader("Content-type", "application/json");
 
     request.addEventListener("readystatechange", () => {
 
