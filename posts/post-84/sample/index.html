@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Genogram</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="http-equiv" content="Content-type: text/html; charset=UTF-8">
+  <meta name="description" content="A genogram is a family tree diagram for visualizing hereditary patterns." />
+  <script src="./go.js"></script>
+  <script src="./papaparse.min.js"></script>
+  <script src="./genogram_setup.js"></script>
+  <script src="./genogram_layout.js"></script>
+  <script src="./prepare_names.js"></script>
+  <script src="./main.js"></script>
+</head>
+
+<body onload="load_localstorage()">
+  <input type="file" onchange="load_file()" id="uploadInput" />
+  <!-- <button onclick="load_localstorage()">Load LocalStorage</button> -->
+  <button id="save" onclick="save_json()">Export JSON</button>
+  <button onclick="save_svg()">Export SVG</button>
+  <button onclick="load_url_file()">Load Default</button>
+  <button onclick="clear_localstorage()">Clear LocalStorage</button>
+
+  <hr />
+  <style>
+    #myDiagramDiv {
+      border: 0;
+      width:100%;
+      padding: 0;
+      margin: 0;
+      height:750px;
+    }
+    </style>
+  <div id="myDiagramDiv"></div>
+</body>
+
+</html>
