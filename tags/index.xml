@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sat, 12 Sep 2020 20:00:00 +0400</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2020 13:49:00 +0400</lastBuildDate>
     
 	<atom:link href="https://smirart.ru/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>lifestyle</title>
+      <link>https://smirart.ru/tags/lifestyle/</link>
+      <pubDate>Fri, 16 Oct 2020 13:49:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/tags/lifestyle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://smirart.ru/tags/ru/</link>
+      <pubDate>Fri, 16 Oct 2020 13:49:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/tags/ru/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>москва</title>
+      <link>https://smirart.ru/tags/%D0%BC%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/</link>
+      <pubDate>Fri, 16 Oct 2020 13:49:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/tags/%D0%BC%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>3d-печать</title>
@@ -27,15 +54,6 @@
       <pubDate>Sat, 12 Sep 2020 20:00:00 +0400</pubDate>
       
       <guid>https://smirart.ru/tags/cnc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://smirart.ru/tags/ru/</link>
-      <pubDate>Sat, 12 Sep 2020 20:00:00 +0400</pubDate>
-      
-      <guid>https://smirart.ru/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -265,15 +283,6 @@
     </item>
     
     <item>
-      <title>lifestyle</title>
-      <link>https://smirart.ru/tags/lifestyle/</link>
-      <pubDate>Mon, 20 Apr 2020 12:12:00 +0000</pubDate>
-      
-      <guid>https://smirart.ru/tags/lifestyle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>worktravel</title>
       <link>https://smirart.ru/tags/worktravel/</link>
       <pubDate>Mon, 20 Apr 2020 12:12:00 +0000</pubDate>
@@ -324,15 +333,6 @@
       <pubDate>Thu, 20 Feb 2020 09:34:11 +0000</pubDate>
       
       <guid>https://smirart.ru/tags/%D0%B2%D0%B8%D0%B7%D0%B0/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>москва</title>
-      <link>https://smirart.ru/tags/%D0%BC%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/</link>
-      <pubDate>Thu, 20 Feb 2020 09:34:11 +0000</pubDate>
-      
-      <guid>https://smirart.ru/tags/%D0%BC%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/</guid>
       <description></description>
     </item>
     
