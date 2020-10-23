@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 16 Oct 2020 13:49:00 +0400</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2020 19:56:00 +0400</lastBuildDate>
     
 	<atom:link href="https://smirart.ru/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Платформа для собственного блога</title>
+      <link>https://smirart.ru/posts/post-7/</link>
+      <pubDate>Fri, 23 Oct 2020 19:56:00 +0400</pubDate>
+      
+      <guid>https://smirart.ru/posts/post-7/</guid>
+      <description>Статья о том, какую платформу я выбрал для размещения собственного блога. Как я к этому пришёл и какие размышления у меня есть на счет дальнейшего развития этого направления.
+ 2013: Blogger История началась в февраля 2013 года. Я был студентом Аэрокоса (СГАУ – Самарский университет), и уже 4 года занимался веб-разработкой. Тогда мне пришла идея писать заметки. Делать это на собственной платформе вроде WordPress не хотелось, вполне изящным (на фоне Livejournal с его отвратительно перегруженным дизайном и рекламой во всех щелях) казалось решение от Google – платформа Blogger.</description>
+    </item>
     
     <item>
       <title>Как я 2 года прожил в капсульном отеле в Москве</title>
