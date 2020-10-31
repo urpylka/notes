@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>starline on urpylka</title>
-    <link>https://smirart.ru/tags/starline/</link>
+    <link>https://urpylka.com/tags/starline/</link>
     <description>Recent content in starline on urpylka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
     <lastBuildDate>Mon, 01 Jun 2020 00:00:10 +0400</lastBuildDate>
     
-	<atom:link href="https://smirart.ru/tags/starline/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://urpylka.com/tags/starline/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Starline Hackathon 2020</title>
-      <link>https://smirart.ru/posts/post-64/</link>
+      <link>https://urpylka.com/posts/post-64/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:10 +0400</pubDate>
       
-      <guid>https://smirart.ru/posts/post-64/</guid>
+      <guid>https://urpylka.com/posts/post-64/</guid>
       <description>Всем привет, с целью передачи опыта, а также для того, чтобы структурировать и закрепить весь тот объем информации, который пришлось перелопатить, я пишу эту статью. Я не ставлю перед собой целью изложить мануал по созданию нашего решения (тк исходный код и так полностью открыт). Подразумеваю, что основной интерес в том, чтобы изложить основые принципы построения подобных систем, изложить используемые источники, рассказать о том от чего мы отказались, и к чему мы пришли.</description>
     </item>
     

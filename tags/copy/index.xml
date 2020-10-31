@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>copy on urpylka</title>
-    <link>https://smirart.ru/tags/copy/</link>
+    <link>https://urpylka.com/tags/copy/</link>
     <description>Recent content in copy on urpylka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
     <lastBuildDate>Mon, 12 Nov 2012 00:00:00 +1449</lastBuildDate>
     
-	<atom:link href="https://smirart.ru/tags/copy/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://urpylka.com/tags/copy/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Теория радиоволн: антенны</title>
-      <link>https://smirart.ru/posts/post-11/</link>
+      <link>https://urpylka.com/posts/post-11/</link>
       <pubDate>Mon, 12 Nov 2012 00:00:00 +1449</pubDate>
       
-      <guid>https://smirart.ru/posts/post-11/</guid>
+      <guid>https://urpylka.com/posts/post-11/</guid>
       <description>Оригинал https://habrahabr.ru/post/158273/
 Помимо свойств радиоволн, необходимо тщательно подбирать антенны, для достижения максимальных показателей при приеме/передаче сигнала. Давайте ближе познакомимся с различными типами антенн и их предназначением.
 Антенны — преобразуют энергию высокочастотного колебания от передатчика в электромагнитную волну, способную распространяться в пространстве. Или в случае приема, производит обратное преобразование — электромагнитную волну, в ВЧ колебания.
