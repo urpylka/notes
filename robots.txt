@@ -3,4 +3,4 @@ Disallow: /css/
 Disallow: /favicon/
 Disallow: /js/
 Disallow: /fonts/
-Sitemap: https://smirart.ru/sitemap.xml
+Sitemap: https://urpylka.com/sitemap.xml
