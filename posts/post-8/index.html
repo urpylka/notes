@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Питания USB портов Raspberry Pi - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Питания USB портов Raspberry Pi">
+<meta itemprop="description" content="Модернизация схемы Raspberry Pi для подключения «тяжелых» потребителей по USB.">
+<meta itemprop="datePublished" content="2020-11-16T13:32:00&#43;04:00" />
+<meta itemprop="dateModified" content="2020-11-16T13:32:00&#43;04:00" />
+<meta itemprop="wordCount" content="315">
+
+
+
+<meta itemprop="keywords" content="ru,electronics,raspberrypi," /><meta property="og:title" content="Питания USB портов Raspberry Pi" />
+<meta property="og:description" content="Модернизация схемы Raspberry Pi для подключения «тяжелых» потребителей по USB." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-8/" />
+<meta property="article:published_time" content="2020-11-16T13:32:00+04:00" />
+<meta property="article:modified_time" content="2020-11-16T13:32:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Питания USB портов Raspberry Pi"/>
+<meta name="twitter:description" content="Модернизация схемы Raspberry Pi для подключения «тяжелых» потребителей по USB."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">16</span>
+                        <span class="rest">Nov 2020</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Питания USB портов Raspberry Pi</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>USB порты Raspberry Pi имеют ограничение по току (в среднем от 1.2 до 2А, точную информацию смотрите в спецификации к конкретной плате). При подключении сотовых модемов, Wi-Fi модулей и других потребителей требущих от 2х и более ампер требуется внешнее питание. Производитель предлагает использовать USB-HUB со внешним питанием. Однако это решение подойдет не для всех, например, при использовании Raspberry Pi на дроне (где масса и размеры критичны). Ниже изложу устройство ограничителя тока и обход ограничения по току.</p>
+<h2 id="устройство">Устройство</h2>
+<p>Рассмотрим платы Raspberry Pi модели B и B+ – платы со встроенным Ethernet и USB портами. Структурно все платы идентичны за исключением наличия Wi-Fi модуля у последних двух.</p>
+<p><img src="./images/rpi-model-b-selected.jpg" alt="image"></p>
+<blockquote>
+<p>Raspberry Pi 4B не включена в обзор ввиду отличий по схеме.</p>
+</blockquote>
+<p>На рисунке красным я выделил схему питания USB, а зеленым <a href="https://www.microchip.com/wwwproducts/en/LAN9514">контроллер LAN9514</a> USB-HUB'а со встроенной сетевой картой. По сути все порты подключены к этому контроллеру, а он в свою очередь (по USB 2.0 шине) к основному вычислителю. Рассмотрим схему питания выделенную красным.</p>
+<p>На официальном сайте (на странице продукта Raspberry Pi 3B+ по ссылке «schematic diagrams») представлена следующая схема:</p>
+<p><img src="https://www.raspberrypi.org/documentation/hardware/raspberrypi/schematics/rpi_SCH_3bplus_1p0_reduced.pdf" alt="image"></p>
+<p>Но в ней нет части питания USB нагрузки. На схеме даже указано &ldquo;Reduced&rdquo;. Оказывается, что некоторые части схемы находятся под NDA (обсуждение <a href="https://github.com/raspberrypi/documentation/issues/347">здесь</a>).</p>
+<p>Однако в интернете можно найти следующую схему (LAN9514 USB Current Limit):</p>
+<p><img src="./images/photo_2020-11-16_14.16.56.jpeg" alt="image"></p>
+<p>Из схемы можно увидеть название микросхемы отвечающей за ограничение тока – <a href="./images/AP255x-278026.pdf">AP2553W6</a>. Выход <code>USB_OVC_N</code> является сигнальным и идёт на <code>LAN9514</code> для отключения интерфейсов в случае превышения потребляемого тока.</p>
+<p>Фрагмент из <a href="./images/lan9514.pdf">даташита LAN9514</a>:</p>
+<p><img src="./images/usb_pins.png" alt="image"></p>
+<blockquote>
+<p>Полагаю аналогичное подключение и с <code>LAN7515</code> на Raspberry Pi 3B+.</p>
+</blockquote>
+<h2 id="модернизация-схемы">Модернизация схемы</h2>
+<p>Как видно из схемы выше: используя <code>AP2553W6</code> програмно невозможно отключить ограничение по току. Решений два:</p>
+<ol>
+<li>Выпаять <code>AP2553W6</code> и соединить IN - OUT пины перемычкой;</li>
+<li>С вывода 5V (GPIO) кинуть провод на выход 5V в USB порту.</li>
+</ol>
+<blockquote>
+<p>Также в <a href="https://electronics.stackexchange.com/questions/164524/why-are-corresponding-usb-datalines-connected-to-each-other-in-this-usb-hub/164526">обсуждении</a>, я нашел ссылку на еще <a href="./images/Raspberry-Pi-R2.0-Schematics-Issue2.2_027.pdf">одну схему</a> Raspberry Pi c чуть более подробной информацией (но такое ощущение, что она от самой первой Raspberry Pi).</p>
+</blockquote>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/electronics">electronics</a></li>
+                    
+                    <li><a href="/tags/raspberrypi">raspberrypi</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
