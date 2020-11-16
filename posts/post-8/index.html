@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Модернизация схемы Raspberry Pi для подключения «тяжелых» потребителей по USB.">
 <meta itemprop="datePublished" content="2020-11-16T13:32:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-11-16T13:32:00&#43;04:00" />
-<meta itemprop="wordCount" content="315">
+<meta itemprop="wordCount" content="326">
 
 
 
@@ -128,6 +128,9 @@ if (!doNotTrack) {
 <p>На рисунке красным я выделил схему питания USB, а зеленым <a href="https://www.microchip.com/wwwproducts/en/LAN9514">контроллер LAN9514</a> USB-HUB'а со встроенной сетевой картой. По сути все порты подключены к этому контроллеру, а он в свою очередь (по USB 2.0 шине) к основному вычислителю. Рассмотрим схему питания выделенную красным.</p>
 <p>На официальном сайте (на странице продукта Raspberry Pi 3B+ по ссылке «schematic diagrams») представлена следующая схема:</p>
 <p><img src="https://www.raspberrypi.org/documentation/hardware/raspberrypi/schematics/rpi_SCH_3bplus_1p0_reduced.pdf" alt="image"></p>
+<blockquote>
+<p>Включите светлую тему сайта для корректного отображения схемы в PDF формате.</p>
+</blockquote>
 <p>Но в ней нет части питания USB нагрузки. На схеме даже указано &ldquo;Reduced&rdquo;. Оказывается, что некоторые части схемы находятся под NDA (обсуждение <a href="https://github.com/raspberrypi/documentation/issues/347">здесь</a>).</p>
 <p>Однако в интернете можно найти следующую схему (LAN9514 USB Current Limit):</p>
 <p><img src="./images/photo_2020-11-16_14.16.56.jpeg" alt="image"></p>
