@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Mon, 16 Nov 2020 13:32:00 +0400</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2020 22:10:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/electronics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Замена контроллера питания Raspberry Pi 3B&#43;</title>
+      <link>https://urpylka.com/posts/post-3/</link>
+      <pubDate>Mon, 16 Nov 2020 22:10:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-3/</guid>
+      <description>У меня есть Raspberry Pi 3B+ на которой я случайно замкнул на GPIO линии 3V и 5V. Было очень обидно, решил попробовать восстановить. Как всегда начал с теории.
+Теория Поведение у платы следующее: после включения питания, маргает красный светодиод, зеленый не моргает вообще, что указывает на наличие 5 вольт и выключенный SoC контроллер.
+Начиная с версии 3B+ на плате стоит контроллер питания MXL7704-R3:
+На официальном сайте (на странице продукта Raspberry Pi 3B+ по ссылке «schematic diagrams») представлена следующая схема, её фрагмент представлен ниже:</description>
+    </item>
     
     <item>
       <title>Питание USB портов Raspberry Pi</title>
