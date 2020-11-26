@@ -23,7 +23,7 @@
 <meta itemprop="description" content="A few web resources by one external IP address and port.">
 <meta itemprop="datePublished" content="2020-04-16T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-04-16T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="183">
+<meta itemprop="wordCount" content="184">
 
 
 
@@ -164,13 +164,13 @@ if (!doNotTrack) {
 <li>
 <p>Download preparing <code>nginx</code> <a href="https://hub.docker.com/_/nginx">image</a> from <code>DockerHub</code> and run <code>webproxy</code> in the container:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run <span style="color:#a31515">\
-</span><span style="color:#a31515"></span>--detach=true <span style="color:#a31515">\
-</span><span style="color:#a31515"></span>--log-driver=syslog <span style="color:#a31515">\
-</span><span style="color:#a31515"></span>--restart=always <span style="color:#a31515">\
-</span><span style="color:#a31515"></span>--name=webproxy <span style="color:#a31515">\
-</span><span style="color:#a31515"></span>--publish 80:80 <span style="color:#a31515">\
-</span><span style="color:#a31515"></span>--volume ./webproxy.conf:/etc/nginx/conf.d/default.conf
-nginx:1.17.8-alpine /usr/sbin/nginx -g <span style="color:#a31515">&#34;daemon off;&#34;</span>
+</span><span style="color:#a31515"></span>    --detach=true <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    --log-driver=syslog <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    --restart=always <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    --name=webproxy <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    --publish 80:80 <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    --volume ./webproxy.conf:/etc/nginx/conf.d/default.conf <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    nginx:1.17.8-alpine /usr/sbin/nginx -g <span style="color:#a31515">&#34;daemon off;&#34;</span>
 </code></pre></div></li>
 </ol>
 <p>Also you can download <a href="/posts/post-12/docker-webproxy.service">docker-webproxy.service</a> file.</p>
