@@ -13,6 +13,28 @@
     
     
     <item>
+      <title>Заметка по настройке Hugo</title>
+      <link>https://urpylka.com/posts/post-29/</link>
+      <pubDate>Tue, 01 Dec 2020 02:16:51 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-29/</guid>
+      <description>Включение HTML контента &amp;#34;markup&amp;#34;: { &amp;#34;goldmark&amp;#34;: { &amp;#34;renderer&amp;#34;: { &amp;#34;unsafe&amp;#34;:true } } } или, если для конфига используется toml
+[markup] [markup.goldmark] [markup.goldmark.renderer] unsafe = true Источники:
+ https://gohugo.io/news/0.60.0-relnotes/ https://discourse.gohugo.io/t/raw-html-getting-omitted-in-0-60-0/22032  Добавление iframe youtube .thumb-wrap { position: relative; padding-bottom: 56.25%; /* задаёт высоту контейнера для 16:9 (если 4:3 — поставьте 75%) */ height: 0; overflow: hidden; } .thumb-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-width: 0; outline-width: 0; } &amp;lt;div class=&amp;#34;thumb-wrap&amp;#34;&amp;gt; &amp;lt;iframe width=&amp;#34;560&amp;#34; height=&amp;#34;315&amp;#34; src=&amp;#34;https://www.</description>
+    </item>
+    
+    <item>
+      <title>Шреддер для пластика.
+Часть 1: Выбор мотор-редуктора</title>
+      <link>https://urpylka.com/posts/post-23/</link>
+      <pubDate>Mon, 30 Nov 2020 21:00:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-23/</guid>
+      <description>Введение Тема ресайклинка интересовала меня всегда, и в этом году я снова активировался в плане своей давней идеи «сделать шреддер» или по-русски измельчитель пластика.
+Среди всего необходимого оборудования для реализации маленького предприятия по переработки пластика, я выбрал сделать шреддер первым. Потому что чуть ранее я начал сортировать мусор на вторсырьё и понял, что огромные объёмы пластика можно было бы хранить намного выгоднее, а еще из него реально можно что-то сделать. А потом, вообще, осознал, что очень много выкидываю пластика: бампер от машины, корпуса от орг техники итд.</description>
+    </item>
+    
+    <item>
       <title>Замена контроллера питания Raspberry Pi 3B&#43;</title>
       <link>https://urpylka.com/posts/post-3/</link>
       <pubDate>Mon, 16 Nov 2020 22:10:00 +0400</pubDate>
