@@ -30,7 +30,7 @@ RestartSec=10
 Restart=always
 
 Environment="NAME=webproxy"
-Environment="DATA_VOL=/home/user/webproxy.conf"
+Environment="NGINX_CONF=/home/user/webproxy.conf"
 Environment="IMG=nginx:latest"
 Environment="PORT=80:80"
 Environment="COMMAND=/usr/sbin/nginx"
@@ -43,7 +43,12 @@ ExecStartPre=-/usr/bin/docker rm -f ${NAME}
 ExecStartPre=-/usr/bin/docker pull ${IMG}
 
 # Main process
-ExecStart=/usr/bin/docker run --rm --cap-add=NET_ADMIN --network=${NETWORK} -v ${DATA_VOL}:/etc/nginx/conf.d/default.conf --name ${NAME} -p ${PORT} ${IMG} ${COMMAND} ${ARGS}
+ExecStart=/usr/bin/docker run --rm --cap-add=NET_ADMIN \
+    --name ${NAME} \
+    --network=${NETWORK} \
+    -p ${PORT} \
+    -v ${NGINX_CONF}:/etc/nginx/conf.d/default.conf \
+    ${IMG} ${COMMAND} ${ARGS}
 
 [Install]
 WantedBy=multi-user.target
