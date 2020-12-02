@@ -3,22 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://urpylka.com/tags/hugo/</loc>
-    <lastmod>2020-12-01T02:16:51+04:00</lastmod>
+    <loc>https://urpylka.com/tags/dnsmasq/</loc>
+    <lastmod>2020-12-02T20:36:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/openvpn/</loc>
+    <lastmod>2020-12-02T20:36:00+04:00</lastmod>
   </url>
   
   <url>
     <loc>https://urpylka.com/posts/</loc>
-    <lastmod>2020-12-01T02:16:51+04:00</lastmod>
+    <lastmod>2020-12-02T20:36:00+04:00</lastmod>
   </url>
   
   <url>
     <loc>https://urpylka.com/tags/ru/</loc>
-    <lastmod>2020-12-01T02:16:51+04:00</lastmod>
+    <lastmod>2020-12-02T20:36:00+04:00</lastmod>
   </url>
   
   <url>
     <loc>https://urpylka.com/tags/</loc>
+    <lastmod>2020-12-02T20:36:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/posts/post-24/</loc>
+    <lastmod>2020-12-02T20:36:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/hugo/</loc>
     <lastmod>2020-12-01T02:16:51+04:00</lastmod>
   </url>
   
@@ -70,21 +85,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-8/</loc>
     <lastmod>2020-11-16T13:32:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/dnsmasq/</loc>
-    <lastmod>2020-11-02T20:36:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/openvpn/</loc>
-    <lastmod>2020-11-02T20:36:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/posts/post-24/</loc>
-    <lastmod>2020-11-02T20:36:00+04:00</lastmod>
   </url>
   
   <url>

@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 01 Dec 2020 02:16:51 +0400</lastBuildDate>
+    <lastBuildDate>Wed, 02 Dec 2020 20:36:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Настройка DNS на клиенте OpenVPN macOS</title>
+      <link>https://urpylka.com/posts/post-24/</link>
+      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-24/</guid>
+      <description>Я использую связку OpenVPN + dnsmasq для выдачи доменов в удаленной виртуальной сети.
+Настройка клиента У меня MacBook: в macOS 10.15 отсуствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
+sudo brew services list sudo brew services start openvpn sudo brew services restart openvpn sudo brew services stop openvpn  brew services для OpenVPN нужно запускать под sudo, тк это необходимо для работы с сетевыми адаптерами.</description>
+    </item>
     
     <item>
       <title>Заметка по настройке Hugo</title>
@@ -53,17 +64,6 @@
       
       <guid>https://urpylka.com/posts/post-8/</guid>
       <description>USB порты Raspberry Pi имеют ограничение по току (в среднем от 1.2 до 2А, точную информацию смотрите в спецификации к конкретной плате). При подключении сотовых модемов, Wi-Fi модулей и других потребителей требущих от 2х и более ампер требуется внешнее питание. Производитель предлагает использовать USB-HUB со внешним питанием. Однако это решение подойдет не для всех, например, при использовании Raspberry Pi на дроне (где масса и размеры критичны). Ниже изложу устройство ограничителя тока и обход ограничения по току.</description>
-    </item>
-    
-    <item>
-      <title>Настройка DNS на клиенте OpenVPN macOS</title>
-      <link>https://urpylka.com/posts/post-24/</link>
-      <pubDate>Mon, 02 Nov 2020 20:36:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-24/</guid>
-      <description>Я использую связку OpenVPN + dnsmasq для выдачи доменов в удаленной виртуальной сети.
-Настройка клиента У меня MacBook: в macOS 10.15 отсуствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
-sudo brew services list sudo brew services start openvpn sudo brew services restart openvpn sudo brew services stop openvpn  brew services для OpenVPN нужно запускать под sudo, тк это необходимо для работы с сетевыми адаптерами.</description>
     </item>
     
     <item>

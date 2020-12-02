@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 01 Dec 2020 02:16:51 +0400</lastBuildDate>
+    <lastBuildDate>Wed, 02 Dec 2020 20:36:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>dnsmasq</title>
+      <link>https://urpylka.com/tags/dnsmasq/</link>
+      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/dnsmasq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openvpn</title>
+      <link>https://urpylka.com/tags/openvpn/</link>
+      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/openvpn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>hugo</title>
@@ -18,15 +45,6 @@
       <pubDate>Tue, 01 Dec 2020 02:16:51 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Tue, 01 Dec 2020 02:16:51 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -81,24 +99,6 @@
       <pubDate>Mon, 16 Nov 2020 22:10:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/raspberrypi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dnsmasq</title>
-      <link>https://urpylka.com/tags/dnsmasq/</link>
-      <pubDate>Mon, 02 Nov 2020 20:36:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/dnsmasq/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>openvpn</title>
-      <link>https://urpylka.com/tags/openvpn/</link>
-      <pubDate>Mon, 02 Nov 2020 20:36:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/openvpn/</guid>
       <description></description>
     </item>
     

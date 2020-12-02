@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Mon, 02 Nov 2020 20:36:00 +0400</lastBuildDate>
+    <lastBuildDate>Wed, 02 Dec 2020 20:36:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/dnsmasq/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Настройка DNS на клиенте OpenVPN macOS</title>
       <link>https://urpylka.com/posts/post-24/</link>
-      <pubDate>Mon, 02 Nov 2020 20:36:00 +0400</pubDate>
+      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-24/</guid>
       <description>Я использую связку OpenVPN + dnsmasq для выдачи доменов в удаленной виртуальной сети.
