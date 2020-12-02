@@ -20,7 +20,7 @@
 #
 
 [Unit]
-Description=Nginx Reverse Proxy Docker Container
+Description=Nginx reverse proxy docker container
 Documentation=https://urpylka.com/posts/post-12/
 After=network.target docker.service
 Requires=docker.service
