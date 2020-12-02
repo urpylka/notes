@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Настройка DNS на клиенте OpenVPN macOS - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Настройка DNS на клиенте OpenVPN macOS">
+<meta itemprop="description" content="Я использую связку `OpenVPN` &#43; `dnsmasq` для выдачи доменов в удаленной виртуальной сети. В статье рассказыватся как настроить клиент для правильной работы DNS.">
+<meta itemprop="datePublished" content="2020-11-02T20:36:00&#43;04:00" />
+<meta itemprop="dateModified" content="2020-11-02T20:36:00&#43;04:00" />
+<meta itemprop="wordCount" content="203">
+
+
+
+<meta itemprop="keywords" content="ru,openvpn,dnsmasq," /><meta property="og:title" content="Настройка DNS на клиенте OpenVPN macOS" />
+<meta property="og:description" content="Я использую связку `OpenVPN` &#43; `dnsmasq` для выдачи доменов в удаленной виртуальной сети. В статье рассказыватся как настроить клиент для правильной работы DNS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-24/" />
+<meta property="article:published_time" content="2020-11-02T20:36:00+04:00" />
+<meta property="article:modified_time" content="2020-11-02T20:36:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Настройка DNS на клиенте OpenVPN macOS"/>
+<meta name="twitter:description" content="Я использую связку `OpenVPN` &#43; `dnsmasq` для выдачи доменов в удаленной виртуальной сети. В статье рассказыватся как настроить клиент для правильной работы DNS."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">02</span>
+                        <span class="rest">Nov 2020</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Настройка DNS на клиенте OpenVPN macOS</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Я использую связку <code>OpenVPN</code> + <code>dnsmasq</code> для выдачи доменов в удаленной виртуальной сети.</p>
+<h2 id="настройка-клиента">Настройка клиента</h2>
+<p>У меня MacBook: в <code>macOS 10.15</code> отсуствует реализация <code>OpenVPN</code>. Я не любитель всяких графических клиентов вроде <a href="https://tunnelblick.net">TunnelBlick</a>, поэтому я установил <code>OpenVPN</code> через <code>brew</code>. В <code>brew</code> есть прослойка для служб macOS – <code>brew services</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo brew services list
+sudo brew services start openvpn
+sudo brew services restart openvpn
+sudo brew services stop openvpn
+</code></pre></div><blockquote>
+<p><code>brew services</code> для <code>OpenVPN</code> нужно запускать под sudo, тк это необходимо для работы с сетевыми адаптерами. А также для каждого пользователя свой список сервисов.</p>
+<p>Для того, настроить службу я сделал симлинк <code>ovpn</code> файла в <code>/usr/local/etc/openvpn/openvpn.conf</code>.</p>
+</blockquote>
+<h2 id="dns-параметры">DNS параметры</h2>
+<p>Настроить клиент можно двумя способами:</p>
+<ol>
+<li>Прописать параметры в <code>client.ovpn</code> файле;</li>
+<li>Передать параметры с сервера с помощью команды <code>push</code> в конфигурационном файле сервера <code>/etc/openvpn/server/openvpn.conf</code> (путь может отличаться).</li>
+</ol>
+<p>Так выглядит команда для передачи клиенту информации о DNS сервере:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">push &#34;dhcp-option DNS 192.168.10.12&#34;
+</code></pre></div><blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">push &#34;dhcp-option DOMAIN xxxx.local&#34;
+</code></pre></div><p><a href="https://www.linux.org.ru/forum/admin/14794556">https://www.linux.org.ru/forum/admin/14794556</a></p>
+</blockquote>
+<p>Источник: <a href="https://interface31.ru/forum/index.php?topic=251.35">https://interface31.ru/forum/index.php?topic=251.35</a></p>
+<h2 id="решение">Решение</h2>
+<p>Попробовав данные решения я понял, что это не работает просто так. После небольшого поиска нашел следующий материал <a href="https://community.openvpn.net/openvpn/wiki/Pushing-DNS-to-clients">OpenVPN - Pushing-DNS-to-clients</a>. В материале я нашел ссылку на следующее решение <a href="https://github.com/alfredopalhares/openvpn-update-resolv-conf">openvpn-update-resolv-conf</a> заточненное по работе с Linux посредством взаимодействия с <a href="https://roy.marples.name/projects/openresolv/">openresolv</a>.</p>
+<p>После дополнительного поиска нашел следующее решение для macOS – <a href="https://github.com/andrewgdotcom/openvpn-mac-dns">openvpn-mac-dns</a>.</p>
+<h2 id="другое">Другое</h2>
+<ul>
+<li><a href="https://tokmakov.msk.ru/blog/item/521">https://tokmakov.msk.ru/blog/item/521</a></li>
+<li><a href="https://rtfm.co.ua/openvpn-nastrojki-dns-i-dnsmasq/">https://rtfm.co.ua/openvpn-nastrojki-dns-i-dnsmasq/</a></li>
+</ul>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/openvpn">openvpn</a></li>
+                    
+                    <li><a href="/tags/dnsmasq">dnsmasq</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
