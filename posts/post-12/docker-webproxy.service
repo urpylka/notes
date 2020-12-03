@@ -2,7 +2,7 @@
 # Docker + Nginx systemd service
 #
 # Author: Artem Smirnov <urpylka@gmail.com>
-# Source: https://gist.github.com/urpylka/3cc4b3fbb808d542eda6077b030d877a
+# Source: https://urpylka.com/posts/post-12/
 #
 # This service aims to make http reverse proxy service
 #
