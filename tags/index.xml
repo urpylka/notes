@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Wed, 02 Dec 2020 20:36:00 +0400</lastBuildDate>
+    <lastBuildDate>Sat, 12 Dec 2020 18:27:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>diy</title>
+      <link>https://urpylka.com/tags/diy/</link>
+      <pubDate>Sat, 12 Dec 2020 18:27:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>recycling</title>
+      <link>https://urpylka.com/tags/recycling/</link>
+      <pubDate>Sat, 12 Dec 2020 18:27:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/recycling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Sat, 12 Dec 2020 18:27:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shredder</title>
+      <link>https://urpylka.com/tags/shredder/</link>
+      <pubDate>Sat, 12 Dec 2020 18:27:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/shredder/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>dnsmasq</title>
@@ -31,15 +67,6 @@
     </item>
     
     <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>hugo</title>
       <link>https://urpylka.com/tags/hugo/</link>
       <pubDate>Tue, 01 Dec 2020 02:16:51 +0400</pubDate>
@@ -54,33 +81,6 @@
       <pubDate>Tue, 01 Dec 2020 02:16:51 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>diy</title>
-      <link>https://urpylka.com/tags/diy/</link>
-      <pubDate>Mon, 30 Nov 2020 21:00:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/diy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>recycling</title>
-      <link>https://urpylka.com/tags/recycling/</link>
-      <pubDate>Mon, 30 Nov 2020 21:00:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/recycling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>shredder</title>
-      <link>https://urpylka.com/tags/shredder/</link>
-      <pubDate>Mon, 30 Nov 2020 21:00:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/shredder/</guid>
       <description></description>
     </item>
     
