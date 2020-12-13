@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sun, 13 Dec 2020 19:32:00 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 13 Dec 2020 23:06:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Шреддер для пластика #3: Разборка редуктора NMRV150</title>
+      <link>https://urpylka.com/posts/post-27/</link>
+      <pubDate>Sun, 13 Dec 2020 23:06:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-27/</guid>
+      <description>После внешнего осмотра редуктора было выявлено две течи масла: из смотрового окошка и одной из манжет выходного вала.
+Первым дело необходимо слить масло, тк объём масла 6-7 литров, безопаснее сделать это в ведро.
+  Как видно резинки на фотографии резинки заглушек ссохлись и плохо выполняли свою роль.
+После удаления масла необходимо снять крышку. Съёмная крышка находится и одной из стоорон, для снятия необходим шестигранник на 8мм.
+На обратной стороне крышки наиболее наглядно можно оценить количество бронзовой стружки.</description>
+    </item>
     
     <item>
       <title>Заметка по работе с SSH</title>
