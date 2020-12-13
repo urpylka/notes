@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ssh on urpylka</title>
+    <link>https://urpylka.com/tags/ssh/</link>
+    <description>Recent content in ssh on urpylka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Artem Smirnov</copyright>
+    <lastBuildDate>Sun, 13 Dec 2020 19:32:00 +0400</lastBuildDate>
+    
+	<atom:link href="https://urpylka.com/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Заметка по работе с SSH</title>
+      <link>https://urpylka.com/posts/post-5/</link>
+      <pubDate>Sun, 13 Dec 2020 19:32:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-5/</guid>
+      <description>Выкачить что-то:
+scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop Генерация и аутентификация с помощью SSH ключа:
+ habrahabr.ru help.github.com itman.in  Добавить себя в authorization_keys на удаленном хосте:
+ssh-copy-id &amp;#39;-p 22 pi@172.24.1.1&amp;#39; Обратный и прямой туннели:
+ habr.com rus-linux.net itsecforu.ru  </description>
+    </item>
+    
+  </channel>
+</rss>
