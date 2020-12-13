@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sat, 12 Dec 2020 18:27:00 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 13 Dec 2020 13:40:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Заметка по работе с GIT</title>
+      <link>https://urpylka.com/posts/post-20/</link>
+      <pubDate>Sun, 13 Dec 2020 13:40:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-20/</guid>
+      <description>Работа с Submodule https://git-scm.com/book/ru/v1/Инструменты-Git-Подмодули
+git submodule init git submodule update Полезные ссылки  Удаление первого коммита stackoverflow.com Отмена последнего коммита в git evtuhovich.ru Объединение репозиториев eax.me Конфликт при объединении несвязных историй --allow-unrelated-histories stackoverflow.com Продвинутое слияние git-scm.com Работа с удалёнными репозиториями git-scm.com Теория GIT habrahabr.ru Раскрытие тайн reset git-scm.com Объединение репозиториев qaru.site  Первоначальная настройка git Все очень хорошо изложено в этой статье, не вижу смысла копировать
+https://git-scm.com/book/ru/v2/Введение-Первоначальная-настройка-Git
+Базовые команды # Rebase 3х верхних коммитов в интерактивном режиме (через текстовый редактор) git rebase -i HEAD~3 # Перетереть историю в текущем remote git push --force # Снести верхние 3 коммита (без удаления изменений), для полного удаления комитов - флаг `--force` git reset HEAD~3 # Застейджить все изменения git add .</description>
+    </item>
     
     <item>
       <title>Шреддер для пластика #2</title>
