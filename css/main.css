@@ -614,3 +614,14 @@ code {
         width: 100%;
     }
 }
+
+.my-photo-about {
+    float: left;
+    margin-right: 20px;
+    width: 40%;
+}
+
+.hr-reset {
+    clear: both;
+    margin-bottom: 20px;
+}
