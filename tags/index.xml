@@ -7,17 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sun, 13 Dec 2020 23:06:00 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 20 Dec 2020 19:33:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>cnc</title>
+      <link>https://urpylka.com/tags/cnc/</link>
+      <pubDate>Sun, 20 Dec 2020 19:33:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/cnc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>diy</title>
       <link>https://urpylka.com/tags/diy/</link>
-      <pubDate>Sun, 13 Dec 2020 23:06:00 +0400</pubDate>
+      <pubDate>Sun, 20 Dec 2020 19:33:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Sun, 20 Dec 2020 19:33:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -27,15 +45,6 @@
       <pubDate>Sun, 13 Dec 2020 23:06:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/recycling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Sun, 13 Dec 2020 23:06:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -162,15 +171,6 @@
       <pubDate>Sat, 12 Sep 2020 20:00:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/3d-%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cnc</title>
-      <link>https://urpylka.com/tags/cnc/</link>
-      <pubDate>Sat, 12 Sep 2020 20:00:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/cnc/</guid>
       <description></description>
     </item>
     

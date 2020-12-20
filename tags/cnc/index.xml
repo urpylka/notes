@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sat, 12 Sep 2020 20:00:00 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 20 Dec 2020 19:33:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/cnc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Мой первый фрезерный станок с ЧПУ</title>
+      <link>https://urpylka.com/posts/post-19/</link>
+      <pubDate>Sun, 20 Dec 2020 19:33:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-19/</guid>
+      <description>Осмотр станка 14 августа 2020 года я купил свой первый станок. До этого его использовал мой знакомый для раскроя листовых материалах в хоббийных целях. Станок + доставка + самодельный шпиндель мне обошлись в 27 тысяч рублей – что считаю очень выгодной покупкой для станка с такими характеристиками.
+Это старая версия CM-1500 от российской компании Cutmaster. Станок имеет рабочую зону 1000x500x75, что удовлетворяте моим потребностям. Перемещение по осям XY выполнены на зубчатой передаче, а перемещения по оси Z – на ШВП.</description>
+    </item>
     
     <item>
       <title>Восстановление печати 3D принтера</title>
