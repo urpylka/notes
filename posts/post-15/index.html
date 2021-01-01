@@ -23,7 +23,7 @@
 <meta itemprop="description" content="I&#39;ve met a problem with using SQLAlchemy. An error in commit() cause the call to get a new sequence of the table primary key. It updates the sequence number. But rollback() doesn&#39;t fix it.">
 <meta itemprop="datePublished" content="2021-01-01T17:10:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-01-01T17:10:00&#43;04:00" />
-<meta itemprop="wordCount" content="446">
+<meta itemprop="wordCount" content="445">
 
 
 
@@ -127,7 +127,7 @@ if (!doNotTrack) {
     db.session.rollback()
 </code></pre></div><p>An error in <code>commit()</code> cause the call to get a new sequence of the table primary key. It updates the sequence number like:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> nextval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>);
-</code></pre></div><p>I&rsquo;d expected that <code>rollback()</code> must roll back it, but he didn&rsquo;t. I tried to find solution like at <a href="https://www.michaelcho.me/article/sqlalchemy-commit-flush-expire-refresh-merge-whats-the-difference">michaelcho.me</a> but it was unsuccessful.</p>
+</code></pre></div><p>I&rsquo;d expected that <code>rollback()</code> must roll back it, but he didn&rsquo;t. I tried to find solution at <a href="https://www.michaelcho.me/article/sqlalchemy-commit-flush-expire-refresh-merge-whats-the-difference">michaelcho.me</a> but it was unsuccessful.</p>
 <h2 id="solving">Solving</h2>
 <p>First what may be found is the next command:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>, 1)
