@@ -245,6 +245,18 @@ Quickstart   Create webproxy.</description>
     </item>
     
     <item>
+      <title>Бекап сервера на Time Capsule</title>
+      <link>https://urpylka.com/posts/post-16/</link>
+      <pubDate>Tue, 02 Jul 2013 23:55:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-16/</guid>
+      <description>Фото взято из livejournal.com
+ Как видно из названия, эту статью я хочу посвятить опыту настройки моего сервера под хранение бекапов на Time Capsule.
+Проблема: Увеличение объёма жесткого диска сервера стоит денег, а на домашней Time Capsule есть много свободного места, следовательно возникают упущенные возможности.
+Задача: Есть удаленый VPS/VDS сервер с Linux/Unix операционной системой, на котором есть система бекапов. Надо настроить выгрузку бекапов или прямое создание бекапов на домашнюю Time Capsule.</description>
+    </item>
+    
+    <item>
       <title>Теория радиоволн: антенны</title>
       <link>https://urpylka.com/posts/post-11/</link>
       <pubDate>Mon, 12 Nov 2012 00:00:00 +1449</pubDate>
