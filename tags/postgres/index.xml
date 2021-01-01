@@ -21,7 +21,7 @@
       <description>Hello there!
 I&amp;rsquo;ve met a problem with using SQLAlchemy framework. Look below:
 db.session.add(AnObject) try: db.session.commit() except: db.session.rollback() An error in commit() cause the call to get a new sequence of the table primary key. It updates the sequence number like:
-SELECT nextval(&amp;#39;table_id_seq&amp;#39;); I&amp;rsquo;d expected that rollback() must roll back it, but he didn&amp;rsquo;t. I tried to find solution at michaelcho.me but it was unsuccessful.
+SELECT nextval(&amp;#39;table_id_seq&amp;#39;); I&amp;rsquo;d expected that rollback() must roll it back, but it didn&amp;rsquo;t. I tried to find solution at michaelcho.me but it was unsuccessful.
 Solving First what may be found is the next command:</description>
     </item>
     

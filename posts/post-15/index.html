@@ -127,7 +127,7 @@ if (!doNotTrack) {
     db.session.rollback()
 </code></pre></div><p>An error in <code>commit()</code> cause the call to get a new sequence of the table primary key. It updates the sequence number like:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> nextval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>);
-</code></pre></div><p>I&rsquo;d expected that <code>rollback()</code> must roll back it, but he didn&rsquo;t. I tried to find solution at <a href="https://www.michaelcho.me/article/sqlalchemy-commit-flush-expire-refresh-merge-whats-the-difference">michaelcho.me</a> but it was unsuccessful.</p>
+</code></pre></div><p>I&rsquo;d expected that <code>rollback()</code> must roll it back, but it didn&rsquo;t. I tried to find solution at <a href="https://www.michaelcho.me/article/sqlalchemy-commit-flush-expire-refresh-merge-whats-the-difference">michaelcho.me</a> but it was unsuccessful.</p>
 <h2 id="solving">Solving</h2>
 <p>First what may be found is the next command:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>, 1)
@@ -138,7 +138,7 @@ if (!doNotTrack) {
 </code></pre></div><p>If <code>table</code> is empty, it will just return <code>NULL</code> (because NULL and INTEGER cannot be summed).</p>
 <p>A little bit searching at <a href="http://www-cs-students.stanford.edu/~wlam/compsci/sqlnulls">www-cs-students.stanford.edu</a> and at <a href="https://info-comp.ru/obucheniest/489-coalesce-isnull-in-t-sql.html">info-comp.ru</a> pushed the idea to replace with next construction:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">(<span style="color:#00f">SELECT</span> COALESCE(<span style="color:#00f">MAX</span>(id), 0) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span>) + 1
-</code></pre></div><p>It will rerturn <code>0</code>, if the table is empty.</p>
+</code></pre></div><p>It will return <code>0</code>, if the table is empty.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>, (<span style="color:#00f">SELECT</span> COALESCE(<span style="color:#00f">MAX</span>(id), 0) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span>) + 1);
 </code></pre></div><p>But when it is called it also incremented sequence. If it returns <code>1</code>, that next request executed with <code>2</code>. Let&rsquo;s remove <code>+ 1</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>, <span style="color:#00f">SELECT</span> COALESCE(<span style="color:#00f">MAX</span>(id), 0) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span>);
@@ -152,7 +152,7 @@ ERROR:  setval: value 0 <span style="color:#00f">is</span> <span style="color:#0
 <p>There I can&rsquo;t completely understand why that needs?</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">UPDATE</span> t <span style="color:#00f">SET</span> idcolumn=nextval(<span style="color:#a31515">&#39;seq&#39;</span>);
 </code></pre></div></blockquote>
-<p>But it construction require a constant and cannot be concatenated with <code>SELECT</code> query (source at <a href="https://stackoverflow.com/questions/23402859/use-a-variable-or-parameter-to-specify-restart-value-for-alter-sequence">stackoverflow.com</a>).</p>
+<p>But it construction requires a constant and cannot be concatenated with <code>SELECT</code> query (source at <a href="https://stackoverflow.com/questions/23402859/use-a-variable-or-parameter-to-specify-restart-value-for-alter-sequence">stackoverflow.com</a>).</p>
 <p>After burning some time in google, I&rsquo;d found two sources:</p>
 <ul>
 <li><a href="https://stackoverflow.com/questions/12780275/dynamic-sql-query-in-postgres">dynamic sql query in postgres</a></li>
