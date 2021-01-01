@@ -23,7 +23,7 @@
 <meta itemprop="description" content="It needs in changies.">
 <meta itemprop="datePublished" content="2021-01-01T17:10:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-01-01T17:10:00&#43;04:00" />
-<meta itemprop="wordCount" content="438">
+<meta itemprop="wordCount" content="446">
 
 
 
@@ -167,8 +167,8 @@ ERROR:  setval: value 0 <span style="color:#00f">is</span> <span style="color:#0
 	<span style="color:#00f">EXECUTE</span> <span style="color:#a31515">&#39;ALTER SEQUENCE table_id_seq RESTART WITH &#39;</span> || maxid;
 <span style="color:#00f">END</span>;
 <span style="">$$</span>;
-</code></pre></div><h2 id="run-command-at-sqlalchemy">Run command at SQLAlchemy</h2>
-<p>It is strange, but I&rsquo;ve not started up this (source <a href="https://stackoverflow.com/questions/17972020/how-to-execute-raw-sql-in-flask-sqlalchemy-app">stackoverflow.com</a>):</p>
+</code></pre></div><h2 id="using-on-python">Using on Python</h2>
+<p>It is strange, but I&rsquo;ve not started up this at SQLAlchemy (source <a href="https://stackoverflow.com/questions/17972020/how-to-execute-raw-sql-in-flask-sqlalchemy-app">stackoverflow.com</a>):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">result = db.engine.execute(<span style="color:#a31515">&#34;&lt;sql here&gt;&#34;</span>)
 </code></pre></div><p>I made it by <code>psycopg2</code>. Sources: <a href="https://khashtamov.com/ru/postgresql-python-psycopg2/">khashtamov.com</a>, <a href="https://dev-gang.ru/article/rabota-s-postgresql-v-python-xn8721sq0g/">dev-gang.ru</a>.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> reset_counter_id(table_name):
@@ -183,7 +183,8 @@ ERROR:  setval: value 0 <span style="color:#00f">is</span> <span style="color:#0
     cursor.close()
     conn.commit()
     conn.close()
-</code></pre></div><p>Thank you for the reading!</p>
+</code></pre></div><p>I am using it with <code>rollback()</code> function.</p>
+<p>Thank you for the reading!</p>
 
             </div>
 
