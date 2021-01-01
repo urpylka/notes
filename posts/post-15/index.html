@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Postgres: Reset primary key sequence - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Postgres: Reset primary key sequence">
+<meta itemprop="description" content="It needs in changies.">
+<meta itemprop="datePublished" content="2021-01-01T17:10:00&#43;04:00" />
+<meta itemprop="dateModified" content="2021-01-01T17:10:00&#43;04:00" />
+<meta itemprop="wordCount" content="438">
+
+
+
+<meta itemprop="keywords" content="en,sql,postgres," /><meta property="og:title" content="Postgres: Reset primary key sequence" />
+<meta property="og:description" content="It needs in changies." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-15/" />
+<meta property="article:published_time" content="2021-01-01T17:10:00+04:00" />
+<meta property="article:modified_time" content="2021-01-01T17:10:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Postgres: Reset primary key sequence"/>
+<meta name="twitter:description" content="It needs in changies."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">01</span>
+                        <span class="rest">Jan 2021</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Postgres: Reset primary key sequence</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Hello there!</p>
+<p>I&rsquo;ve met a problem with using SQLAlchemy framework. Look below:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">db.session.add(AnObject)
+<span style="color:#00f">try</span>:
+    db.session.commit()
+<span style="color:#00f">except</span>:
+    db.session.rollback()
+</code></pre></div><p>An error in <code>commit()</code> cause the call to get a new sequence of the table primary key. It updates the sequence number like:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> nextval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>);
+</code></pre></div><p>I&rsquo;d expected that <code>rollback()</code> must roll back it, but he didn&rsquo;t. I tried to find solution like at <a href="https://www.michaelcho.me/article/sqlalchemy-commit-flush-expire-refresh-merge-whats-the-difference">michaelcho.me</a> but it was unsuccessful.</p>
+<h2 id="solving">Solving</h2>
+<p>First what may be found is the next command:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>, 1)
+</code></pre></div><p>If add here a function that will be calculating maximum value of id col in the table (<a href="https://gist.github.com/henriquemenezes/962829815e8e7875f5f4376133b2f209">source: gist/henriquemenezes</a>):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>, (<span style="color:#00f">SELECT</span> <span style="color:#00f">MAX</span>(id) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span>) + 1);
+</code></pre></div><p>It will work, but not enough. Look at second part:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">(<span style="color:#00f">SELECT</span> <span style="color:#00f">MAX</span>(id) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span>) + 1
+</code></pre></div><p>If <code>table</code> is empty, it will just return <code>NULL</code> (because NULL and INTEGER cannot be summed).</p>
+<p>A little bit searching at <a href="http://www-cs-students.stanford.edu/~wlam/compsci/sqlnulls">www-cs-students.stanford.edu</a> and at <a href="https://info-comp.ru/obucheniest/489-coalesce-isnull-in-t-sql.html">info-comp.ru</a> pushed the idea to replace with next construction:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">(<span style="color:#00f">SELECT</span> COALESCE(<span style="color:#00f">MAX</span>(id), 0) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span>) + 1
+</code></pre></div><p>It will rerturn <code>0</code>, if the table is empty.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>, (<span style="color:#00f">SELECT</span> COALESCE(<span style="color:#00f">MAX</span>(id), 0) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span>) + 1);
+</code></pre></div><p>But when it is called it also incremented sequence. If it returns <code>1</code>, that next request executed with <code>2</code>. Let&rsquo;s remove <code>+ 1</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;table_id_seq&#39;</span>, <span style="color:#00f">SELECT</span> COALESCE(<span style="color:#00f">MAX</span>(id), 0) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span>);
+</code></pre></div><p>If the table is empty, the command can be reproduced as:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">&gt; <span style="color:#00f">SELECT</span> setval(<span style="color:#a31515">&#39;post_id_seq&#39;</span>, 0);
+ERROR:  setval: value 0 <span style="color:#00f">is</span> <span style="color:#00f">out</span> <span style="color:#00f">of</span> bounds <span style="color:#00f">for</span> sequence <span style="color:#a31515">&#34;post_id_seq&#34;</span> (1..2147483647)
+</code></pre></div><p>I found solution at <a href="https://stackoverflow.com/questions/4678110/how-to-reset-sequence-in-postgres-and-fill-id-column-with-new-data">stackoverflow.com</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">ALTER</span> SEQUENCE seq <span style="color:#00f">RESTART</span> <span style="color:#00f">WITH</span> 1;
+</code></pre></div><p>It works differently: it doesn&rsquo;t increment counter after calling. And we can back <code>+ 1</code>.</p>
+<blockquote>
+<p>There I can&rsquo;t completely understand why that needs?</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">UPDATE</span> t <span style="color:#00f">SET</span> idcolumn=nextval(<span style="color:#a31515">&#39;seq&#39;</span>);
+</code></pre></div></blockquote>
+<p>But it construction require a constant and cannot be concatenated with <code>SELECT</code> query (source at <a href="https://stackoverflow.com/questions/23402859/use-a-variable-or-parameter-to-specify-restart-value-for-alter-sequence">stackoverflow.com</a>).</p>
+<p>After burning some time in google, I&rsquo;d found two sources:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/12780275/dynamic-sql-query-in-postgres">dynamic sql query in postgres</a></li>
+<li><a href="https://stackoverflow.com/questions/1490942/how-to-declare-a-variable-in-a-postgresql-query">How to declare a variable in a PostgreSQL query</a></li>
+</ul>
+<p>I&rsquo;ve cretated next procedure with that:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">DO</span> <span style="">$$</span>
+<span style="color:#00f">DECLARE</span>
+	maxid integer;
+<span style="color:#00f">BEGIN</span>
+	<span style="color:#00f">SELECT</span> (<span style="color:#00f">SELECT</span> COALESCE(<span style="color:#00f">MAX</span>(id), 0) <span style="color:#00f">FROM</span> <span style="color:#00f">table</span> <span style="color:#00f">INTO</span> maxid) + 1;
+	<span style="color:#00f">EXECUTE</span> <span style="color:#a31515">&#39;ALTER SEQUENCE table_id_seq RESTART WITH &#39;</span> || maxid;
+<span style="color:#00f">END</span>;
+<span style="">$$</span>;
+</code></pre></div><h2 id="run-command-at-sqlalchemy">Run command at SQLAlchemy</h2>
+<p>It is strange, but I&rsquo;ve not started up this (source <a href="https://stackoverflow.com/questions/17972020/how-to-execute-raw-sql-in-flask-sqlalchemy-app">stackoverflow.com</a>):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">result = db.engine.execute(<span style="color:#a31515">&#34;&lt;sql here&gt;&#34;</span>)
+</code></pre></div><p>I made it by <code>psycopg2</code>. Sources: <a href="https://khashtamov.com/ru/postgresql-python-psycopg2/">khashtamov.com</a>, <a href="https://dev-gang.ru/article/rabota-s-postgresql-v-python-xn8721sq0g/">dev-gang.ru</a>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> reset_counter_id(table_name):
+
+    sql = <span style="color:#a31515">&#34;DO $$ DECLARE maxid integer; BEGIN SELECT 1 + (SELECT COALESCE(MAX(id), 0) FROM &#34;</span> + table_name + <span style="color:#a31515">&#34; INTO maxid); EXECUTE &#39;ALTER SEQUENCE &#34;</span> + table_name + <span style="color:#a31515">&#34;_id_seq RESTART WITH &#39; || maxid; END; $$;&#34;</span>
+
+    <span style="color:#008000"># pip install psycopg2-binary</span>
+    <span style="color:#00f">import</span> psycopg2
+    conn = psycopg2.connect(dbname=<span style="color:#a31515">&#39;postgres&#39;</span>, user=<span style="color:#a31515">&#39;postgres&#39;</span>, password=<span style="color:#a31515">&#39;example&#39;</span>, host=<span style="color:#a31515">&#39;localhost&#39;</span>, port=<span style="color:#a31515">&#34;5432&#34;</span>)
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    cursor.close()
+    conn.commit()
+    conn.close()
+</code></pre></div><p>Thank you for the reading!</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/en">en</a></li>
+                    
+                    <li><a href="/tags/sql">sql</a></li>
+                    
+                    <li><a href="/tags/postgres">postgres</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

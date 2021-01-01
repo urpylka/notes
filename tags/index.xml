@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sun, 20 Dec 2020 19:33:00 +0400</lastBuildDate>
+    <lastBuildDate>Fri, 01 Jan 2021 17:10:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>en</title>
+      <link>https://urpylka.com/tags/en/</link>
+      <pubDate>Fri, 01 Jan 2021 17:10:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/en/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgres</title>
+      <link>https://urpylka.com/tags/postgres/</link>
+      <pubDate>Fri, 01 Jan 2021 17:10:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/postgres/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>https://urpylka.com/tags/sql/</link>
+      <pubDate>Fri, 01 Jan 2021 17:10:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/sql/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>cnc</title>
@@ -342,15 +369,6 @@
       <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/cheatsheet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>en</title>
-      <link>https://urpylka.com/tags/en/</link>
-      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/en/</guid>
       <description></description>
     </item>
     
