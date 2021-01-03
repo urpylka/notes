@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 01 Jan 2021 17:10:00 +0400</lastBuildDate>
+    <lastBuildDate>Mon, 04 Jan 2021 01:09:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Видеопоток, камера, Raspberry Pi, трансляция. Часть 1: Hardware</title>
+      <link>https://urpylka.com/posts/post-17/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-17/</guid>
+      <description>Во многих прикладных задачах возникает необходимость работы с видеопотоками на одноплатных компьютерах (single board computer – SBC).
+Для себя ставлю задачу изложить в этой статье накопленные теорико-практические знания по организации работы с видеопотоками на SBC:
+ Работа с видеопотоками средствами процессора и графического со-процессора (кодирование / декодирование видео); Основные принципы и программное обеспечение для организации стриминга видео; Узкие аппаратные места некоторых SBC.  Теория Для изложения я буду описывать процесс на примере самых распространных SBC на 2020 год.</description>
+    </item>
     
     <item>
       <title>Postgres: Reset primary key sequence</title>

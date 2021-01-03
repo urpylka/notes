@@ -7,10 +7,82 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 01 Jan 2021 17:10:00 +0400</lastBuildDate>
+    <lastBuildDate>Mon, 04 Jan 2021 01:09:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>av</title>
+      <link>https://urpylka.com/tags/av/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/av/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>camera</title>
+      <link>https://urpylka.com/tags/camera/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/camera/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>photo</title>
+      <link>https://urpylka.com/tags/photo/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/photo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://urpylka.com/tags/programming/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberrypi</title>
+      <link>https://urpylka.com/tags/raspberrypi/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/raspberrypi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>videocapture</title>
+      <link>https://urpylka.com/tags/videocapture/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/videocapture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>videostream</title>
+      <link>https://urpylka.com/tags/videostream/</link>
+      <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/videostream/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>en</title>
@@ -58,29 +130,11 @@
     </item>
     
     <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Sun, 20 Dec 2020 19:33:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>recycling</title>
       <link>https://urpylka.com/tags/recycling/</link>
       <pubDate>Sun, 13 Dec 2020 23:06:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/recycling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://urpylka.com/tags/programming/</link>
-      <pubDate>Sun, 13 Dec 2020 19:32:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/programming/</guid>
       <description></description>
     </item>
     
@@ -153,15 +207,6 @@
       <pubDate>Mon, 16 Nov 2020 22:10:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/electronics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>raspberrypi</title>
-      <link>https://urpylka.com/tags/raspberrypi/</link>
-      <pubDate>Mon, 16 Nov 2020 22:10:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/raspberrypi/</guid>
       <description></description>
     </item>
     
