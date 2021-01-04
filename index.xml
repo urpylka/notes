@@ -29,7 +29,7 @@
       <pubDate>Sun, 03 Jan 2021 23:30:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-18/</guid>
-      <description>This article is a copy from portainer site. Original isn&amp;rsquo;t available anymore for unknown reasons, and I made it copy.
+      <description>This article is a copy from the Portainer site. Original isn&amp;rsquo;t available anymore for unknown reasons, and I made it copy.
  Yep, we know, life can be challenging because you forgot or lost your Admin password to access to Portainer. In this help article, you will learn how to do a password reset to the Admin user of Portainer.
 Resetting Admin password in Portainer running as container
 Reset the password for the Admin user can be accomplished using our reset password container helper.</description>
