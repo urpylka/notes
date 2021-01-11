@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Blender shortcuts</title>
+      <link>https://urpylka.com/posts/post-21/</link>
+      <pubDate>Mon, 11 Jan 2021 12:42:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-21/</guid>
+      <description> Atl+D зависимая копия Shift+D независимая копия при перемещении можно делать по осям X Y Z, или исключить через shift окна в 3d view T - левое, N - правое ctrl+alt+shift+C - изменить координаты ctrl+P вложить объекты анимировать можно и лучше через emtpy object, вложив в него объекты shift+S курсор в центр (спасательный круг) shift+A создание тела X - удалить объект 3dview G - переместить R - вращать S - scale  </description>
+    </item>
+    
+    <item>
       <title>Видеозахват на Raspberry Pi. Часть 1: Hardware</title>
       <link>https://urpylka.com/posts/post-17/</link>
       <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
