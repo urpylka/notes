@@ -23,7 +23,7 @@
 <meta itemprop="description" content="A few web resources by one external IP address and port.">
 <meta itemprop="datePublished" content="2020-04-16T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-04-16T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="291">
+<meta itemprop="wordCount" content="382">
 
 
 
@@ -160,6 +160,36 @@ if (!doNotTrack) {
     }
 }
 <span style="color:#00f">EOF</span>
+</code></pre></div><p>If you wanna use SSL wrapper for HTTP host you can set next options:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#00f">server</span> {
+    <span style="color:#00f">listen</span>       443 <span style="color:#a31515">default_server</span> <span style="color:#a31515">ssl</span>;
+    <span style="color:#00f">listen</span>  <span style="color:#a31515">[::]:443</span> <span style="color:#a31515">default_server</span> <span style="color:#a31515">ssl</span>;
+
+    <span style="color:#00f">server_name</span>     <span style="color:#a31515">hostname4</span>;
+
+    <span style="color:#00f">ssl_certificate</span>     <span style="color:#a31515">/path_to_cred.crt</span>;
+    <span style="color:#00f">ssl_certificate_key</span> <span style="color:#a31515">/path_to_cred.key</span>;
+
+    <span style="color:#00f">ssl_protocols</span>       <span style="color:#a31515">TLSv1</span> <span style="color:#a31515">TLSv1.1</span> <span style="color:#a31515">TLSv1.2</span>;
+    <span style="color:#00f">ssl_ciphers</span>         <span style="color:#a31515">HIGH:!aNULL:!MD5</span>;
+
+    <span style="color:#00f">location</span> <span style="color:#a31515">/</span> {
+        <span style="color:#00f">proxy_pass</span>  <span style="color:#a31515">http://8.8.4.4:80/</span>;
+    }
+}
+</code></pre></div><p>Permanent redirect HTTP to HTTPS (<a href="http://nginx.org/en/docs/http/converting_rewrite_rules.html">source</a>):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#00f">server</span> {
+    <span style="color:#00f">listen</span>  80;
+    <span style="color:#00f">server_name</span> <span style="color:#a31515">hostname4</span>;
+    <span style="color:#00f">return</span> 301 <span style="color:#a31515">https://</span>$server_name$request_uri; <span style="color:#008000"># enforce https
+</span><span style="color:#008000"></span>    <span style="color:#008000"># rewrite ^(.*) https://www.example.com$uri permanent;
+</span><span style="color:#008000"></span>}
+</code></pre></div><p>Also you may need to throw or set some HTTP headers:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#00f">proxy_http_version</span>    1<span style="color:#a31515">.1</span>;
+<span style="color:#00f">proxy_set_header</span>      <span style="color:#a31515">Upgrade</span> $http_upgrade;
+<span style="color:#00f">proxy_set_header</span>      <span style="color:#a31515">Connection</span> <span style="color:#a31515">&#34;upgrade&#34;</span>;
+<span style="color:#00f">proxy_set_header</span>      <span style="color:#a31515">Host</span> $host;
+<span style="color:#00f">proxy_cache_bypass</span>    $http_upgrade;
 </code></pre></div></li>
 <li>
 <p>Download preparing <code>nginx</code> <a href="https://hub.docker.com/_/nginx">image</a> from <code>DockerHub</code> and run <code>webproxy</code> in the container:</p>
