@@ -19,7 +19,7 @@
       
       <guid>https://urpylka.com/posts/post-26/</guid>
       <description>Это краткая заметка по анализу времени загрузки служб ОС.
-В Linux дистрибутивах в которых используется systemd-analyze есть возможность проанализировать сколько какие службы загрузались по времени:
+В Linux дистрибутивах в которых используется systemd-analyze есть возможность проанализировать сколько какие службы загружались по времени:
 Источники:
  https://losst.ru/uskorenie-zagruzki-linux https://wiki.archlinux.org/index.php/Improving_performance/Boot_process  </description>
     </item>
