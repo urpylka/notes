@@ -311,6 +311,16 @@ Quickstart   Create webproxy.</description>
     </item>
     
     <item>
+      <title>Отображение скрытых файлов MacOS X</title>
+      <link>https://urpylka.com/posts/post-25/</link>
+      <pubDate>Sun, 19 May 2013 14:43:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-25/</guid>
+      <description>Cкрытые файлы обычно являются файлами системы или файлами сторонних программ, которые, в виду безопасности или других причин показывать пользователю не нужно. По умолчанию Finder не показывает скрытые файлы, для того чтобы ключить отображение необходимо:
+ Откройте программу Терминал (Terminal), она находится в папке /Applications/Utilities Введите команду: defaults write com.apple.Finder AppleShowAllFiles 1 &amp;amp;&amp;amp; killall Finder Перезапустите Finder, зажав кнопку Option (alt) и нажав на значок Finder в доке.   PS Для отключения данного разрешения снова введите команду, изменив значение c &amp;ldquo;1&amp;rdquo; на &amp;ldquo;0&amp;rdquo;.</description>
+    </item>
+    
+    <item>
       <title>Оффлайновый способ хранить пароль</title>
       <link>https://urpylka.com/posts/post-22/</link>
       <pubDate>Fri, 22 Feb 2013 20:19:00 +0400</pubDate>
