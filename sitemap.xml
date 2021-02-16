@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://urpylka.com/posts/</loc>
+    <lastmod>2021-02-16T12:40:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/programming/</loc>
+    <lastmod>2021-02-16T12:40:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/ru/</loc>
+    <lastmod>2021-02-16T12:40:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/</loc>
+    <lastmod>2021-02-16T12:40:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/posts/post-26/</loc>
+    <lastmod>2021-02-16T12:40:00+04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://urpylka.com/tags/3d/</loc>
     <lastmod>2021-01-11T12:42:00+04:00</lastmod>
   </url>
@@ -18,21 +43,6 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/posts/</loc>
-    <lastmod>2021-01-11T12:42:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/ru/</loc>
-    <lastmod>2021-01-11T12:42:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/</loc>
-    <lastmod>2021-01-11T12:42:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/tags/av/</loc>
     <lastmod>2021-01-04T01:09:00+04:00</lastmod>
   </url>
@@ -44,11 +54,6 @@
   
   <url>
     <loc>https://urpylka.com/tags/photo/</loc>
-    <lastmod>2021-01-04T01:09:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/programming/</loc>
     <lastmod>2021-01-04T01:09:00+04:00</lastmod>
   </url>
   

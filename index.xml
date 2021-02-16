@@ -13,6 +13,18 @@
     
     
     <item>
+      <title>Ускорение загрузки: systemd-analyze</title>
+      <link>https://urpylka.com/posts/post-26/</link>
+      <pubDate>Tue, 16 Feb 2021 12:40:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-26/</guid>
+      <description>Это краткая заметка по анализу времени загрузки служб ОС.
+В Linux дистрибутивах в которых используется systemd-analyze есть возможность проанализировать сколько какие службы загрузались по времени:
+Источники:
+ https://losst.ru/uskorenie-zagruzki-linux https://wiki.archlinux.org/index.php/Improving_performance/Boot_process  </description>
+    </item>
+    
+    <item>
       <title>Blender shortcuts</title>
       <link>https://urpylka.com/posts/post-21/</link>
       <pubDate>Mon, 11 Jan 2021 12:42:00 +0400</pubDate>
