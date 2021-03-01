@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mathematics on urpylka</title>
+    <link>https://urpylka.com/tags/mathematics/</link>
+    <description>Recent content in mathematics on urpylka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Artem Smirnov</copyright>
+    <lastBuildDate>Sun, 23 Jun 2013 17:29:00 +0400</lastBuildDate>
+    
+	<atom:link href="https://urpylka.com/tags/mathematics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Комбинаторика: Перестановки и размещения</title>
+      <link>https://urpylka.com/posts/post-32/</link>
+      <pubDate>Sun, 23 Jun 2013 17:29:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-32/</guid>
+      <description>Статья явяляется заметкой из студенческого курса по теории вероятности.
+Комбинаторика - радел математики, в котором исследуется и решаются задачи выбора элементов из исходного множества и расположение их по заданным правилам.
+Задача 1 Условие: На полке стоят 3 книги (a, b, c). Сколькими cпособами можно расставить книги на полке?
+Решение: Pn - число перестановок. Перестановкой из n элементов называется каждое расположение этих элемнтов в определенном порядке.
+Pn = n! = 1*2*3*&amp;hellip;*(n-2)*(n-1)*nP3 = 3!</description>
+    </item>
+    
+  </channel>
+</rss>
