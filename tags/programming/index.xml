@@ -45,7 +45,7 @@
 scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop Генерация и аутентификация с помощью SSH ключа:
  habrahabr.ru help.github.com itman.in  Добавить себя в authorization_keys на удаленном хосте:
 ssh-copy-id &amp;#39;-p 22 pi@172.24.1.1&amp;#39; Обратный и прямой туннели:
- habr.com rus-linux.net itsecforu.ru  Прокидывание порта
+ habr.com rus-linux.net itsecforu.ru  Прокидывание порта:
 ssh -L 5601:10.246.182.189:5601 Смена пароля приватного RSA ключа:
 ssh-keygen -f &amp;lt;path-to.key&amp;gt; -p Просмотр приватного ключа:
 openssl rsa -text -noout -in &amp;lt;path-to.key&amp;gt;  Также можно сменить пароль на приватный RSA или DSA ключ</description>
