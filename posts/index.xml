@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 16 Feb 2021 13:50:00 +0400</lastBuildDate>
+    <lastBuildDate>Tue, 30 Mar 2021 17:40:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Устройство сети в Linux</title>
+      <link>https://urpylka.com/posts/post-33/</link>
+      <pubDate>Tue, 30 Mar 2021 17:40:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-33/</guid>
+      <description>В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью.
+В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов.
+Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.
+Устройство сети Raspberry Pi OS Информация ниже была написана на момент марта 2021.
+Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
+    </item>
     
     <item>
       <title>Шреддер для пластика #4: Редуктор (новости) и точёные валы</title>

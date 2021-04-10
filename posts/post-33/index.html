@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Устройство сети в Linux - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Устройство сети в Linux">
+<meta itemprop="description" content="В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью. В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов img-builder. Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.">
+<meta itemprop="datePublished" content="2021-03-30T17:40:00&#43;04:00" />
+<meta itemprop="dateModified" content="2021-03-30T17:40:00&#43;04:00" />
+<meta itemprop="wordCount" content="1806">
+
+
+
+<meta itemprop="keywords" content="ru,programming,network," /><meta property="og:title" content="Устройство сети в Linux" />
+<meta property="og:description" content="В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью. В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов img-builder. Во второй части содержатся мои заметки о утилитах Linux для работы с сетью." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-33/" />
+<meta property="article:published_time" content="2021-03-30T17:40:00+04:00" />
+<meta property="article:modified_time" content="2021-03-30T17:40:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Устройство сети в Linux"/>
+<meta name="twitter:description" content="В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью. В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов img-builder. Во второй части содержатся мои заметки о утилитах Linux для работы с сетью."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">30</span>
+                        <span class="rest">Mar 2021</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Устройство сети в Linux</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>В статье две части: <strong>Устройство сети Raspberry Pi OS</strong> и <strong>Инструменты для работы с сетью</strong>.</p>
+<p>В первой части изложено базовое устройство сети в преднастроенной операционной системе <a href="https://www.raspberrypi.org/software/">Raspberry Pi OS</a>. А затем описана структура, которую я использую в своём <a href="https://github.com/urpylka/img-builder">сборщике образов</a>.</p>
+<p>Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.</p>
+<h2 id="устройство-сети-raspberry-pi-os">Устройство сети Raspberry Pi OS</h2>
+<p>Информация ниже была написана на момент марта 2021.</p>
+<h3 id="штатная-конфигурация-сети">Штатная конфигурация сети</h3>
+<p>В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</p>
+<ol>
+<li>
+<p><strong>avahi</strong> – mDNS сервис предоставляющий возможность подключиться к RPi по hostname (<a href="https://www.scivision.dev/raspberry-pi-wifi-avahi/">scivision.dev</a>)</p>
+</li>
+<li>
+<p><strong>dhcpcd</strong> – служба для настройки сетевых интерфейсов (<a href="https://roy.marples.name/projects/dhcpcd/">roy.marples.name</a>)</p>
+<ul>
+<li>Используется как <strong>основная сетевая служба</strong> для настройки интерфейсов;</li>
+<li>Призвана решить проблемы со сложной настройкой интерфейсов и предоставить пользователю рабочую сеть из коробки;</li>
+<li>Настраивает интерфейс с помощью DHCP-клиента или статики описаной в <code>/etc/dhcpcd.conf</code>;</li>
+<li>Нельзя отключить работу службы на отдельном интерфейсе.</li>
+</ul>
+</li>
+<li>
+<p><strong>networking</strong> – служба для настройки сетевых интерфейсов</p>
+<ul>
+<li>Изначально включена, но по факту <strong>не работает</strong> тк запущена с пустым конфигом;</li>
+<li>Использует утилиты <code>ifup</code>, <code>ifdown</code> для своей работы;</li>
+<li>Конфигурационный файл <code>/etc/network/interfaces</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>wpa_supplicant</strong> – служба-клиент защищённого доступа Wi-Fi и проситель IEEE 802.1X</p>
+<ul>
+<li>Запущена как самостоятельная служба, работает с Wi-Fi интерфейсом;
+<img src="./images/screenshot-2017-09-01-v-18.54.55.png" alt="image"></li>
+<li>Если <code>dhcpcd</code> видит поднятый интерфейс от <code>wpa_supplicant</code>, то пытается наладить там адресацию;</li>
+<li>Используется для создания Wi-Fi клиента: реализует обмен ключами и WPA аутентификацию (<a href="http://manpages.ylsoftware.com/ru/wpa_supplicant.8.html">manpages.ylsoftware.com</a>, <a href="https://wiki.archlinux.org/index.php/Wpa_supplicant">wiki.archlinux.org</a>).</li>
+</ul>
+</li>
+</ol>
+<h3 id="отказ-от-штатной-конфигурации">Отказ от штатной конфигурации</h3>
+<p>В 2019 году я делал модуль связи на котором также был развернут Wi-Fi broadcast (WFB). С того момента я полностью отказался от использования <code>dhcpcd</code> по следующим причинам:</p>
+<ul>
+<li>WFB нужно, чтобы в работу интерфейса никто не лез. В <code>dhcpcd</code> есть опция не работать с интерфейсом. Однако, несмотря на использование этой опции, туда с запросами лез DHCP-клиент. После пары дней тестов я сделал вывод, что полностью отключить <code>dhcpcd</code> на отдельном интерфейсе нельзя.</li>
+<li><code>dhcpcd</code> не позволяет также гибко настраивать интерфейсы как и <code>networking</code>.</li>
+<li>Подавляющая часть мануалов в интернете описывают настройку <code>networking</code>, в то время как <code>dhcpcd</code> используется по большей части только в Raspbian OS (Raspberry Pi OS).</li>
+</ul>
+<p>Сетевая конфигурация на которой я остановился на данный момент выполнена следующим образом:</p>
+<ul>
+<li>служба <strong>avahi</strong> не затронута;</li>
+<li>служба <strong>dhcpcd</strong> отключена полностью;</li>
+<li>служба <strong>wpa_supplicant</strong> отключена как самостоятельная и используется в качестве утилиты в составе <code>networking</code> и только для использования в качестве Wi-Fi клиента;</li>
+<li>служба <strong>networking</strong> используется в качестве <strong>основной сетевой службы</strong>. Конфигурационный файл содержит правила запуска для всех интерфейсов: <code>allow-auto</code>, <code>allow-hotplug</code>; Для каждого интерфейса описана его конфигурация (<code>static</code>, <code>manual</code>, <code>dhcp</code> и <code>loopback</code>) и ряд хуков. Формат <code>interfaces</code> описан подробнее на <a href="http://manpages.ylsoftware.com/ru/interfaces.5.html">manpages.ylsoftware.com</a>.</li>
+</ul>
+<blockquote>
+<p>Замечание: <code>dhcpcd</code> и <code>dhclient</code> – не одно и тоже . <code>dhclient</code> - утилита для запроса параметров и настройки интерфейса. Работа с <code>dhclient</code> <a href="https://rtfm.co.ua/linux-poluchenie-adresa-po-dhcp-i-rabota-s-dhclient/">rtfm.co.ua</a>.</p>
+</blockquote>
+<p>Для создания точки доступа используются следующие утилиты:</p>
+<ul>
+<li><strong>bridge-utils</strong> – утилита для создания бридж-интерфейса.</li>
+<li><strong>dnsmasq</strong> – DNS/DHCP-сервер. Запускается службой <code>networking</code>.</li>
+<li><strong>hostapd</strong> включает управление точкой доступа IEEE 802.11 (аутентификация / ассоциация), аутентификатор IEEE 802.1X / WPA / WPA2, сервер EAP и функциональность RADIUS сервера аутентификации. Он может быть построен с различными вариантами конфигурации, например, с автономным решением для управления AP или сервером аутентификации RADIUS с поддержкой ряда методов EAP.</li>
+</ul>
+<blockquote>
+<p><code>wpa_supplicant</code> и <code>hostapd</code> – утилиты выполняющие схожий функционал. Их сравнение описано на <a href="https://www.w1.fi/wpa_supplicant/devel/">w1.fi</a>.</p>
+</blockquote>
+<h2 id="инструменты-для-работы-с-сетью">Инструменты для работы с сетью</h2>
+<h3 id="net-tools-и-iproute2">net-tools и iproute2</h3>
+<p>В версиях ядер Linux 2.4 и ниже для непосредственной работы с сетью использовались инструменты из пакета <code>net-tools</code> такие как:</p>
+<ul>
+<li><code>ifconfig</code> – для управления сетевыми интерфейсами;</li>
+<li><code>route</code> – управление таблицей маршрутизации;</li>
+<li><code>arp</code> – управление таблицей разрешения имен;</li>
+<li><code>netstat</code> – сетевая статистика;</li>
+<li><code>mii-tool</code> – статус сетевых устройств.</li>
+</ul>
+<p>В дистрибутивах, использующих современные ядра внедряется пакет <code>iproute2</code> (иногда называется <code>iproute</code>), <code>net-tools</code> есть не всегда, но его можно скачать.</p>
+<p>В пакет <code>iproute</code> входят 3 основных утилиты:</p>
+<ul>
+<li><code>ip</code> – команда для просмотра параметров и настройки сетевых интерфейсов, IP-адресов, таблиц маршрутизации, правил маршрутизации, таблиц ARP преобразования, IP-туннелей и т.д;</li>
+<li><code>tc</code> (traffic control) – команда для просмотра и настройки параметров управления трафиком (классификация трафика, дисциплины управления очереди для различных классов трафика);</li>
+<li><code>ss</code> – команда для просмотра текущих соединений и открытых портов (аналог <code>netstat</code>).</li>
+</ul>
+<h3 id="примеры-использования-команды-ip">Примеры использования команды ip</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># создание маршрута</span>
+ip r add default via 192.168.1.1 dev wlan0
+ip r add default via 10.64.64.64 dev ppp0
+
+<span style="color:#008000"># удаление маршрута</span>
+ip route del default
+
+ip route del default via 192.168.11.1
+
+<span style="color:#008000"># создание адресации на интерфейсе</span>
+ip addr add 192.168.1.218/24 dev wlan0
+
+<span style="color:#008000"># удаление адресации на интерфейсе</span>
+ip addr del 192.168.11.218/24 dev wlan0
+</code></pre></div><blockquote>
+<p>Подробное использованое команды <code>ip</code> описано на <a href="https://www.k-max.name/linux/nastrojka-i-upravlenie-setevoj-podsistemoj-linux-paket-iproute2/">k-max.name</a>.</p>
+</blockquote>
+<h3 id="разница-между-ifconfig-up-ifup-ip-link-up">Разница между ifconfig up, ifup, ip link up</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ifup eth0
+</code></pre></div><p><code>ifup</code> утилита читает <code>/etc/network/interfaces</code> и выполняет описанные там инструкции для корректной конфигурации интерфейса.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ip link set eth0 up
+</code></pre></div><p>Команда <code>ip link up</code> только меняет статус интерфейса и не проводит никаких дополнтельных настроек. Утилита не имеет никаких конфигураций и тд.</p>
+<p>Чтобы это было понятнее: <code>ip</code> команда которая делает низкоуровневое действие, а команда <code>ifup</code> может/использует <code>ip</code> команду в составе других для настройки согласно конфигурации конфигурации.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ifconfig eth0 up
+</code></pre></div><p><code>ifconfig up</code> тоже самое, что и <code>ip link up</code>, аналоги из <code>net-tools</code> и <code>iproute2</code> соотвественно.</p>
+<p>Больше информации на <a href="https://serverfault.com/questions/603906/ip-link-set-not-assigning-ip-address-but-ifup-does">serverfault.com</a>.</p>
+<h3 id="tuntap-интерфейсы">TUN/TAP интерфейсы</h3>
+<ul>
+<li><a href="https://ru.wikipedia.org/wiki/TUN/TAP">ru.wikipedia.org</a></li>
+<li><a href="https://mkdev.me/posts/kak-rabotayut-seti-chast-2-otkazoustoychivost-s-teaming-rezhem-soedineniya-s-traffic-control-a-tak-zhe-tap-interfeysy-i-linux-bridge">mkdev.me</a></li>
+</ul>
+<h3 id="виртуальные-интерфейсы">Виртуальные интерфейсы</h3>
+<p>С помощью виртуального интерфейса к одному физического сетевому интерфейсу можно присвоить более одгого IP-адреса. Это полезно, например при работе с Apache и виртуальными хостами, так как позволяет получить доступ к одному и тому же серверу Apache с двух разных IP-адресов.</p>
+<p>Источники:</p>
+<ul>
+<li><a href="https://toster.ru/q/30275">toster.ru</a></li>
+<li><a href="http://rus-linux.net/MyLDP/lvs/virt_net.html">rus-linux.net</a></li>
+<li><a href="http://drach.pro/blog/linux/item/71-ip-address-alias-on-centos-6-6">drach.pro</a> Теория по настройке алиасов (пример в redhat)</li>
+<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?f=63&amp;t=154471">raspberrypi.org</a> Идея как запускать виртуальные интерфейсы</li>
+</ul>
+<blockquote>
+<p>Отдельно хочу выделить создание виртуального интерфейса (не алиаса) с помощью <code>uml-utilities</code>:</p>
+<ul>
+<li><a href="https://softnastroy.com/content/virtualnyy-interfeys-v-debian-ubuntu-linux.html">softnastroy.com</a></li>
+<li><a href="http://vladimir-stupin.blogspot.ru/2009/04/qemu.html">vladimir-stupin.blogspot.ru</a></li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># создание виртуального интерфейса router над wlan0</span>
+<span style="color:#008000"># невозможно без указания IP адреса</span>
+ifconfig wlan0:router 192.168.11.1/24 up
+
+<span style="color:#008000"># удаление вирутального интерфейса</span>
+ifconfig wlan0:router down
+</code></pre></div><blockquote>
+<p>Нельзя использовать виртуальный интерфейс в режиме моста или в режиме DHCP-клиента, для интерфейса должен быть задан статичный IP.<br>
+Подробнее тут:</p>
+<ul>
+<li><a href="https://raspberrypi.stackexchange.com/questions/45330/set-multiple-static-ip-in-dhcpcd-conf-raspbian-8-jessie">raspberrypi.stackexchange.com</a></li>
+<li><a href="https://serverfault.com/questions/170185/ifconfig-alias-address-assigned-by-dhcp">serverfault.com</a></li>
+<li><a href="https://serverfault.com/questions/308811/how-to-request-dhcp-using-dhclient-on-a-virtual-interface-i-e-eth01">serverfault.com</a></li>
+<li><a href="https://superuser.com/questions/175475/ip-address-alias-assigned-by-dhcp">superuser.com</a></li>
+</ul>
+</blockquote>
+<p>Как я понял алиас для интерфейса == создание и настройка виртуальных сетевых интерфейсов через <code>/etc/network/interfaces</code>.</p>
+<h4 id="ifconfig-alias">ifconfig alias</h4>
+<p>Сейчас сайт <a href="http://semenushkin.ru/2010/09/28/ifconfig-alias/">semenushkin.ru</a> не доступен, поэтому скопирую статью от 28.09.2010 сюда.</p>
+<p>Устанавливаем несколько IP-адресов на один интерфейс Unix системы</p>
+<p><strong>FreeBSD</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Установка алиаса на интерфейс</span>
+ifconfig fxp0 alias 192.168.111.110
+
+<span style="color:#008000"># Установка алиаса при загрузки системы (rc.conf)</span>
+ifconfig_em0_alias0=<span style="color:#a31515">&#34;inet 192.168.111.110&#34;</span>
+
+<span style="color:#008000"># Удалить существующий алиас с интерфейса:</span>
+ifconfig em0 -alias 192.168.111.110
+</code></pre></div><p><strong>Debian/Ubuntu</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Установка алиаса на интерфейс (eth0 — оригинальный, eth0:0, eth0:1 — дополнителные)</span>
+ifconfig eth0:0 192.168.111.110 up
+
+<span style="color:#008000"># Установка алиаса при загрузке системы (/etc/network/interfaces)</span>
+auto eth0:0
+iface eth0:0 inet static
+    name Ethernet alias LAN card
+    address 192.168.1.11
+    netmask 255.255.255.0
+    broadcast 192.168.1.255
+    network 192.168.1.0
+
+auto eth0:1
+iface eth0:1 inet static
+    name Ethernet alias LAN card
+    address 192.168.10.11
+    netmask 255.255.255.0
+    broadcast 192.168.10.255
+    network 192.168.10.0
+
+<span style="color:#008000"># Удалить существующий алиас с интерфейса</span>
+ifconfig eth0:0 down
+</code></pre></div><h3 id="сетевой-мост">Сетевой мост</h3>
+<p>Сейчас сайт <a href="http://eddnet.org/?p=358">eddnet.org</a> не доступен, поэтому скопирую статью от 14.09.2010, 13:02 сюда.</p>
+<p>Bridge — это способ соединения двух сегментов Ethernet на канальном уровне, т.е. без использования протоколов более высокого уровня, таких как IP. Пакеты передаются на основе Ethernet-адресов, а не IP-адресов (как в маршрутизаторе). Поскольку передача выполняется на канальном уровне (уровень 2 модели OSI), все протоколы более высокого уровня прозрачно проходят через мост.</p>
+<blockquote>
+<p>Отдельно хочу выделить разницу bridge и macvlan <a href="https://hicu.be/bridge-vs-macvlan">hicu.be</a>.</p>
+</blockquote>
+<p>Нам понадобиться bridge-utils. (В RHEL, CentOS, Fedora, воспользуйтесь yum, в Debian подобных apt-get)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># установка bridge-utils</span>
+apt install bridge-utils
+</code></pre></div><p>Настройку производим на системе с двумя сетевыми карточками:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Создаем новый мост</span>
+brctl addbr br0
+
+<span style="color:#008000"># Подключаем к нему сетевой интерфейс</span>
+brctl addif br0 eth0
+
+<span style="color:#008000"># Очень важно, что бы на сетевом интерфейсе не было IP адреса. Команда, что бы удалить IP адрес</span>
+ip addr delete 172.16.0.1 dev eth0
+
+<span style="color:#008000"># Подключаем второй интерфейс</span>
+brctl addif br0 eth1
+
+<span style="color:#008000"># Назначаем мосту IP адрес</span>
+ip addr add 172.16.200.8/24 dev br0
+
+<span style="color:#008000"># Отключаем STP (Spanning Tree Protocol) режим</span>
+brctl stp br0 off
+
+<span style="color:#008000"># Подымаем интерфейсы</span>
+ip link set br0 up
+ip link set eth0 up
+ip link set eth1 up
+</code></pre></div><p>Дополнительные команды:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Информация о сетевых интерфейсах</span>
+ip addr
+ip link
+
+<span style="color:#008000"># Информация о bridge-е</span>
+brctl show
+
+<span style="color:#008000"># Таблица MAC-адресов</span>
+brctl showmacs br0
+</code></pre></div><p>Источники:</p>
+<ul>
+<li><a href="https://habr.com/ru/company/ua-hosting/blog/305184/">habr.com</a></li>
+<li><a href="https://www.pvsm.ru/virtualizatsiya/12752">pvsm.ru</a></li>
+<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=17702">raspberrypi.org</a>: Pi as wireless bridge</li>
+<li><a href="http://xgu.ru/wiki/Linux_Bridge">xgu.ru</a></li>
+</ul>
+<h3 id="vpn-xl2tpd--ipsec">VPN: xl2tpd + ipsec</h3>
+<ul>
+<li><a href="http://ciscotips.ru/pap-chap">ciscotips.ru</a> Разница PAP и CHAP</li>
+<li><a href="https://wiki.debian.org/ru/xl2tpd/Client">wiki.debian.org</a> Настройка xl2tpd</li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/102373/why-the-message-raspberrypi-dhclient-send-packet-network-is-unreachable">raspberrypi.stackexchange.com</a> Проблема с отключение USB hub на Raspberry Pi 3B+</li>
+<li><a href="https://libreswan.org/man/ipsec.conf.5.html">libreswan.org</a> libreswan official ipsec.conf file</li>
+<li><a href="https://habr.com/en/post/425079/">habr.com</a> Непростой IPSec с Linux (Теоретические источники по vpn, ipsec)</li>
+<li><a href="https://www.opennet.ru/docs/RUS/vpn_ipsec/">www.opennet.ru</a> VPN и IPSec на пальцах</li>
+<li><a href="https://habr.com/en/company/xakep/blog/256659/">habr.com</a> Анатомия IPsec. Проверяем на прочность легендарный протокол</li>
+<li><a href="https://book.cyberyozh.com/ru/vyibiraem-protokol-dlya-vpn-sravnenie-openvpn-pptp-l2tp-ipsec-i-ipsec-ikev2/">book.cyberyozh.com</a> Выбираем протокол для VPN. Сравнение OpenVPN, PPTP, L2TP/IPsec и IPsec IKEv2 (libreswan)</li>
+<li><a href="https://github.com/libreswan/libreswan">github.com</a> github libreswan</li>
+<li><a href="https://habr.com/en/post/259479/">habr.com</a> Настройка OpenSWAN IPsec PSK с использованием NAT Traversal (NAT-T)</li>
+<li><a href="https://itsecforu.ru/2017/09/15/%D0%BA%D0%B0%D0%BA-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D1%8C-ipsec-vpn-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D1%8E-libreswan/">itsecforu.ru</a> Как настроить Ipsec VPN используя Libreswan</li>
+<li><a href="http://manpages.ylsoftware.com/ru/xl2tpd.conf.5.html">manpages.ylsoftware.com</a> Перевод руководства xl2tpd.conf</li>
+<li><a href="https://habr.com/en/company/FastVPS/blog/205162/">habr.com</a> Настраиваем VPN связь посредством l2tp + ipsec c использованием в качестве сервера OpenVZ контейнер</li>
+<li><a href="http://sysadminz.ru/index.php?topic=8859.0">sysadminz.ru</a> Форум VPN-сервер с помощью openswan+l2tpd</li>
+<li><a href="https://toster.ru/q/31021">toster.ru</a> IPSEC/L2TP VPN на Ubuntu 12.04.1 на AWS</li>
+<li><a href="https://alexell.ru/blog/ubuntu/podnimaem-svoj-vpn-l2tp-ipsec-na-ubuntu.html">alexell.ru</a> Поднимаем свой VPN — L2TP/IPsec на Ubuntu</li>
+<li><a href="https://itsecforu.ru/2018/11/22/%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-ipsec-vpn-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0-%D1%81-l2tp-%D0%B8-cisco-ipsec-%D0%BD%D0%B0-ubuntu-centos-debian/">itsecforu.ru</a> Настройка IPSec VPN-сервера с L2TP и Cisco IPsec на Ubuntu / CentOS / Debian (просто перевел то, что было в репе hwdsl2</li>
+<li><a href="https://raymii.org/s/tutorials/IPSEC_L2TP_vpn_with_Ubuntu_14.04.html">raymii.org</a> IPSEC L2TP VPN on Ubuntu 14.04 with OpenSwan, xl2tpd and ppp</li>
+<li><a href="https://github.com/sarfata/voodooprivacy/blob/master/voodoo-vpn.sh">github.com</a> github fork hwdsl2 on sarfata/voodooprivacy</li>
+<li><a href="https://github.com/libreswan/libreswan/blob/master/docs/examples/l2tp-psk.conf">github.com</a> github libreswan l2tp-psk.conf</li>
+<li><a href="https://libreswan.org/wiki/VPN_server_for_remote_clients_using_IKEv1_with_L2TP">libreswan.org</a> VPN server for remote clients using IKEv1 with L2TP</li>
+<li><a href="https://gist.github.com/rogerbush8/d959be5ab4e3369fb6c4">gist.github.com</a> install-libreswan-xl2tpd-ipsec-vpn-remote-access-on-aws-ec2_aws_linux_ami_201409</li>
+<li><a href="https://nohats.ca/wordpress/blog/2014/12/29/dont-stop-using-ipsec-just-yet/">nohats.ca</a> Don’t stop using IPsec just yet</li>
+<li><a href="https://wiki.contribs.org/Smeserver-libreswan-xl2tpd">wiki.contribs.org</a> Smeserver-libreswan-xl2tpd
+<a href="https://ru.wikipedia.org/wiki/IPsec">ru.wikipedia.org</a> wikipedia IPsec</li>
+<li><a href="https://www.ixbt.com/comm/ipsecure.shtml">www.ixbt.com</a> IPSec — протокол защиты сетевого трафика на IP-уровне</li>
+<li><a href="https://github.com/juusechec/vpn-L2TP-IPsec-strongswan-xl2tpd">github.com</a> github Un conjunto de instrucciones y script para conectarse a la VPN 2016 de la Universidad Distrital</li>
+<li><a href="https://github.com/xelerance/xl2tpd/issues/1">github.com</a> github xelerance/xl2tpd</li>
+</ul>
+<h3 id="смена-mac-адреса">Смена MAC адреса</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Выключаем нужный нам интерфейс eth1:</span>
+ifconfig eth1 down
+
+<span style="color:#008000"># Изменяем mac-адрес:</span>
+ifconfig eth0 hw ether 01:a2:55:04:d0:f1
+
+<span style="color:#008000"># Включаем интерфейс eth1:</span>
+ifconfig eth1 up
+</code></pre></div><p>Чтобы конфигурация сохранилась после перезагрузки, необходимо прописать следующую строку в файл <code>/etc/network/interfaces</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">hwaddress ether 01:a2:55:04:d0:f1
+</code></pre></div><p>Выполняем рестарт сети:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/etc/init.d/networking restart
+<span style="color:#008000"># or</span>
+systemctl restart networking
+</code></pre></div><p>Источники:</p>
+<ul>
+<li><a href="https://linux-freebsd.ru/linux/set-linux/smena-mac-adresa-v-linux-kak-smenit-mac-adres-v-linux/">linux-freebsd.ru</a></li>
+<li><a href="https://notessysadmin.com/change-mac-address-in-linux">notessysadmin.com</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/MAC_address_spoofing_%28%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%29">wiki.archlinux.org</a></li>
+</ul>
+<h3 id="работа-с-сотовым-модемом">Работа с сотовым модемом</h3>
+<p>USB модемы можно разделить на два типа:</p>
+<ol>
+<li>Предоставляющие интерфейс для dialup соединения;</li>
+<li>Определяющиеся как сетевая карта со всеми операциями выполняемыми под капотом.</li>
+</ol>
+<p>В первом случае для установки соединения можно использовать <a href="https://github.com/wlach/wvdial"><code>wvdial</code></a> (<a href="http://dnevnik--konstantin.blogspot.com/2012/09/setting-internet-in-console-linux-in-aid-wvdial.html">инструкция</a>) + <code>ppp</code> или sakis3g (<a href="http://robocraft.ru/blog/electronics/3131.html">robocraft.ru</a>).</p>
+<p>Также есть обёртка над <code>sakis</code> – <code>umtskeeper</code>. Она является полноценным менеджером соединения + ведет статистику по трафику.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/home/pi/3g_modem/umtskeeper —sakisoperators <span style="color:#a31515">&#34;USBINTERFACE=&#39;0&#39; OTHER=&#39;USBMODEM&#39; USBMODEM=&#39;12d1:1506&#39; APN=&#39;CUSTOM_APN&#39; CUSTOM_APN=&#39;internet.beeline.ru&#39; SIM_PIN=&#39;0000&#39; APN_USER=&#39;beeline&#39; APN_PASS=&#39;beeline&#39;&#34;</span> —sakisswitches <span style="color:#a31515">&#34;--sudo —console&#34;</span> —devicename <span style="color:#a31515">&#39;Huawei&#39;</span> —log —silent —nat <span style="color:#a31515">&#39;no&#39;</span> &amp;
+</code></pre></div><h3 id="пакет-wireless-tools">Пакет Wireless Tools</h3>
+<p><code>Wireless Extension</code> (WE) является универсальным API, реализованным в ядре Linux и позволяющим драйверу отображать в пользовательском пространстве конфигурацию и конкретные особенности обычных беспроводных сетей. Если в драйвере поддерживается использование технологии <code>Wireless Extensions</code>, то с помощью одного комплекта инструментальных средств можно поддерживать всевозможные варианты беспроводных сетей, независимо от их типа. Параметры WE можно менять на лету без перезагрузки драйвера (или Linux).</p>
+<p>Пакет <code>Wireless Tools</code> представляет собой набор инструментальных средств, позволяющих использовать <code>Wireless Extensions</code>. Для поддержки всех возможностей <code>Wireless Extensions</code> используется текстовый интерфейс.</p>
+<ul>
+<li><code>ifrename</code> – переименовывает сетевые интерфейсы в соответствие с различными статическими критериями</li>
+<li><code>iwconfig</code> – конфигурирует беспроводный сетевой интерфейс</li>
+<li><code>iwevent</code> – отображает события беспроводной сети, вызванные работой драйверов и изменением настроек</li>
+<li><code>iwgetid</code> – отображает параметры ESSID и NWID или адрес AP/Cell беспроводных сетей</li>
+<li><code>iwlist</code> – получает от беспроводного интерфейса информацию о беспроводной сети</li>
+<li><code>iwpriv</code> – конфигурирует необязательные (приватные) параметры сетевого беспроводного интерфейса</li>
+<li><code>iwspy</code> – получает от конкретного узла статистические данные о беспроводной сети</li>
+<li><code>libiw.so</code> – содержит функции, необходимые программам, работающим с беспроводными сетями, и предоставляет API для других программ.</li>
+</ul>
+<p>Источник <a href="http://rus-linux.net/nlib.php?name=/MyLDP/BOOKS/BLFS-ru/14/blfs-ru-14-12.html">rus-linux.net</a></p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/network">network</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
