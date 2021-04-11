@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 30 Mar 2021 17:40:00 +0400</lastBuildDate>
+    <lastBuildDate>Mon, 12 Apr 2021 01:28:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Калибровка экструдера 3D принтера на прошивке Marlin</title>
+      <link>https://urpylka.com/posts/post-89/</link>
+      <pubDate>Mon, 12 Apr 2021 01:28:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-89/</guid>
+      <description>Для корректной работы экструдера нужно чтобы длина перемещения в gcode программе, соотвествовала реальному перемещению прутка. Для взаимосвязи шагов двигателя и перемещения по оси экструдера используется числовой коэффициент. В этой статье изложен его расчет.
+Для нахождения коэффициента необходимо выполнить команду перемещения пластика по оси эструдера и произвести замер на сколько пруток продвинулся. Произвести замер можно с двух сторон:
+  С верхней стороны эструдера, заранее сделав отметки на прутке. Этот вариант подходит тем, кто использует direct экструдер.</description>
+    </item>
     
     <item>
       <title>Устройство сети в Linux</title>

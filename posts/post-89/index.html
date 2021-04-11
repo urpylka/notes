@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Калибровка экструдера 3D принтера на прошивке Marlin - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Калибровка экструдера 3D принтера на прошивке Marlin">
+<meta itemprop="description" content="Для корректной работы экструдера нужно чтобы длина перемещения в gcode программе, соотвествовала реальному перемещению прутка. Для взаимосвязи шагов двигателя и перемещения по оси экструдера используется числовой коэффициент. В этой статье  изложен его расчет.">
+<meta itemprop="datePublished" content="2021-04-12T01:28:00&#43;04:00" />
+<meta itemprop="dateModified" content="2021-04-12T01:28:00&#43;04:00" />
+<meta itemprop="wordCount" content="485">
+
+
+
+<meta itemprop="keywords" content="ru,3d-печать," /><meta property="og:title" content="Калибровка экструдера 3D принтера на прошивке Marlin" />
+<meta property="og:description" content="Для корректной работы экструдера нужно чтобы длина перемещения в gcode программе, соотвествовала реальному перемещению прутка. Для взаимосвязи шагов двигателя и перемещения по оси экструдера используется числовой коэффициент. В этой статье  изложен его расчет." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-89/" />
+<meta property="article:published_time" content="2021-04-12T01:28:00+04:00" />
+<meta property="article:modified_time" content="2021-04-12T01:28:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Калибровка экструдера 3D принтера на прошивке Marlin"/>
+<meta name="twitter:description" content="Для корректной работы экструдера нужно чтобы длина перемещения в gcode программе, соотвествовала реальному перемещению прутка. Для взаимосвязи шагов двигателя и перемещения по оси экструдера используется числовой коэффициент. В этой статье  изложен его расчет."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">12</span>
+                        <span class="rest">Apr 2021</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Калибровка экструдера 3D принтера на прошивке Marlin</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Для корректной работы экструдера нужно чтобы длина перемещения в gcode программе, соотвествовала реальному перемещению прутка. Для взаимосвязи шагов двигателя и перемещения по оси экструдера используется числовой коэффициент. В этой статье  изложен его расчет.</p>
+<p>Для нахождения коэффициента необходимо выполнить команду перемещения пластика по оси эструдера и произвести замер на сколько пруток продвинулся. Произвести замер можно с двух сторон:</p>
+<ol>
+<li>
+<p><strong>С верхней стороны эструдера, заранее сделав отметки на прутке.</strong> Этот вариант подходит тем, кто использует direct экструдер. При этом вы потратите продавливаемый пластик, если не открутить сопло.</p>
+</li>
+<li>
+<p><strong>В случае с откручиванием сопла, можно произвести замер с нижней стороны экструдера.</strong> Этот вариант подходит всем. Плюс позволяет минимизировать расход пластика на этапе калибровки (если не отрезать пластик). А также он наиболее удобен для разметки, тк мы размечаем пластик по факту его перемещения.</p>
+</li>
+</ol>
+<p>Я рассмотрю второй вариант, тк он мне кажется наиболее практичным. Алгоритм следующий:</p>
+<ol>
+<li>
+<p>Нагрейте heatblock до температуры плавления пластика, отведите пластик от сопла, выкрутите сопло.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">M109 S240       // температуру нагрева замените на необходимую для вашего вида пластика
+G91             // переход в относительную систему координат
+G1 E-100 F1000  // отвод прутка на 100мм
+</code></pre></div></li>
+<li>
+<p>Охлождаем экструдер до комнатной температуры, проводим пруток так, чтобы он торчал снизу экструдера, делаем отметку маркером на пластике на уровне эструдера.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">M109 S0         // отключаем нагрев экструдера
+M302 P1         // отключаем проверку минимальной температуры для прокатки прутка
+G91             // переход в относительную систему координат
+G1 E150 F1000   // выдавливаем пруток на 150мм, что бы пруток торчал из экструдера
+</code></pre></div></li>
+<li>
+<p>Выполняем команду прокатки прутка, делаем вторую отметку прутка у экструдера, замеряем длину между отметками на прутке.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">G91             // переход в относительную систему координат
+G1 E200 F100    // выдавливаем пруток на 200мм
+</code></pre></div><blockquote>
+<p>Скорость прокатки (feedrate) лучше использовать небольшой, чтобы минимизировать ошибки. А длину прутка лучше указать максимально удобной для измерения. Исходя из того, чем длиньше прокатываемый пруток, тем меньше удельная ошибка связанная с точностью измерений.</p>
+</blockquote>
+</li>
+<li>
+<p>Производим расчет коэфициента согласно формуле.</p>
+<p><img src="./images/formula.png" alt="image"></p>
+<ul>
+<li><code>steps/mm</code> - текущий коэффициент (количество шагов на 1 мм)</li>
+<li><code>length</code> - длина экструзии заданная командой (мм)</li>
+<li><code>real lenght</code> - длина прутка получившегося после экструзии на самом деле (мм)</li>
+<li><code>X</code> - правильное количество шагов/мм</li>
+</ul>
+<p>Для того, чтобы узнать текущий коэффициент <code>steps/mm</code>:</p>
+<ol>
+<li>
+<p>Выполните команду <code>M501</code>.</p>
+</li>
+<li>
+<p>В выденной информации найдите строку начинающуюся на <code>M92</code>, числовое значение в этой строке стоящее за символом <code>E</code> будет текущий коэффициент:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">M92 X80.00 Y80.00 Z1600.00 E180.00 \\ 180 - текущий коэффициент
+</code></pre></div></li>
+</ol>
+<blockquote>
+<p>В случае, если у вас получилась дробь, округлите её в противном случае это будет лишней нагрузкой на мк принтера.</p>
+</blockquote>
+</li>
+<li>
+<p>Сохраните полученной значение и проверьте.</p>
+<p>Для сохранения вычисленного коэффициента в EEPROM мк:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">M92 E123        // Установить 123 шага/мм для экструдера (где 123 - вычисленный вами коэффициент)
+M500            // Сохранение данных в EEPROM
+</code></pre></div><p>Далее проверьте записалось ли расчетное значение в память после перезагрузки принтера командой <code>M501</code>. А также произведите проверку реальной длины прутка описанной на 3м шаге.</p>
+</li>
+</ol>
+<blockquote>
+<p>Более правильно задать расчетное значение в код прошивки. Таким образом в случае сброса всех настроек принтера корректное значение будет выставлено по умолчанию.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define DEFAULT_AXIS_STEPS_PER_UNIT { 80, 80, 1600, 123 }
+</span></code></pre></div></blockquote>
+<p>Источник: <a href="https://3dtoday.ru/blogs/lis92/kalibrovka-shagov-ekstrudera-marlin-ili-esli-u-vas-problemy-s-podachey-plastika">3dtoday.ru</a>.</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/3d-%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C">3d-печать</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
