@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Mon, 12 Apr 2021 01:28:00 +0400</lastBuildDate>
+    <lastBuildDate>Thu, 06 May 2021 20:15:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>cnc</title>
+      <link>https://urpylka.com/tags/cnc/</link>
+      <pubDate>Thu, 06 May 2021 20:15:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/cnc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>diy</title>
+      <link>https://urpylka.com/tags/diy/</link>
+      <pubDate>Thu, 06 May 2021 20:15:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Thu, 06 May 2021 20:15:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>3d</title>
@@ -31,15 +58,6 @@
     </item>
     
     <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Mon, 12 Apr 2021 01:28:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>network</title>
       <link>https://urpylka.com/tags/network/</link>
       <pubDate>Tue, 30 Mar 2021 17:40:00 +0400</pubDate>
@@ -54,15 +72,6 @@
       <pubDate>Tue, 30 Mar 2021 17:40:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>diy</title>
-      <link>https://urpylka.com/tags/diy/</link>
-      <pubDate>Tue, 16 Feb 2021 13:50:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/diy/</guid>
       <description></description>
     </item>
     
@@ -198,15 +207,6 @@
       <pubDate>Fri, 01 Jan 2021 17:10:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/sql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cnc</title>
-      <link>https://urpylka.com/tags/cnc/</link>
-      <pubDate>Sun, 20 Dec 2020 19:33:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/cnc/</guid>
       <description></description>
     </item>
     
