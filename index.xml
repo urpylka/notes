@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 16 Apr 2020 16:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 May 2021 20:15:01 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -311,16 +311,6 @@ Basically it consist links to russian resources.
       <description>Пост носит характер заметки и изложения собственных мыслей на тему)
  Всю жизнь я куда-то стремлюсь, бегу. До сих пор не могу представить, как жить без цели и стремлений. Режим стагнации я ощущаю “под коркой” и схожу с ума.
 Я родился в Самаре, поступил на мой взгляд в лучший ВУЗ области, но на последних курсах уже понял, что магистратура — не моё. Большинство идёт туда с непониманием, что делать дальше.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://urpylka.com/about/</link>
-      <pubDate>Thu, 16 Apr 2020 16:00:00 +0000</pubDate>
-      
-      <guid>https://urpylka.com/about/</guid>
-      <description>ARTEM SMIRNOV Hi, I am 25 &amp;amp; I am the Robotics developer. This is my personal blog for articles and notes. It was created as my personal page for help myself. Materials that I will be posting here can be copying from other resources or it can be just my notes in Russian.
- My links  Github Habr Instagram Linkedin account Facebook vk.com Telegram Twitter Youtube Stackoverflow  </description>
     </item>
     
     <item>

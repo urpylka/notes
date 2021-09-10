@@ -24,7 +24,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://urpylka.com/" />
-<meta property="og:updated_time" content="2020-04-16T16:00:00+00:00" />
+<meta property="og:updated_time" content="2021-05-06T20:15:01+04:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="urpylka"/>
 <meta name="twitter:description" content=""/>
@@ -56,8 +56,26 @@ if (!doNotTrack) {
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+<style>
+    .dark .dark\:text-gray-400 {
+         
+        color: rgb(163, 163, 163) !important;
+    }
+    .uppercase {
+        text-transform: uppercase;
+    }
+    .avatar-number {
+        display: grid;
+        padding-left: 10px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: #ccFF;
+    }
+
+</style>
 <body>
-	<div class="container wrapper"><div class="header"><div class="avatar">
+    <div class="container wrapper"><div class="header"><div class="avatar">
 		<a href="https://urpylka.com/">
 			<img src="/img/artem.jpg" alt="urpylka" />
 		</a>
@@ -75,11 +93,7 @@ if (!doNotTrack) {
 			</li>
 			
 			<li>
-				<a href="/posts">All posts</a>
-			</li>
-			
-			<li>
-				<a href="/about">About</a>
+				<a href="/posts">Posts</a>
 			</li>
 			
 			<li>
@@ -89,99 +103,116 @@ if (!doNotTrack) {
 		</ul>
 	</nav>
 </div>
-<div class="recent-posts section">
-			<div class="posts"><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">02</span>
-									<span class="rest">Jul 2013</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-16/">Бекап сервера на Time Capsule</a>
-								</h4>
-								<span class="description">Настройка сброса файлов между Time Capsule в домашней сети и сервером на CentOS.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">23</span>
-									<span class="rest">Jun 2013</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-32/">Комбинаторика: Перестановки и размещения</a>
-								</h4>
-								<span class="description">Заметка из студенческого курса</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">19</span>
-									<span class="rest">May 2013</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-25/">Отображение скрытых файлов MacOS X</a>
-								</h4>
-								<span class="description">Краткая заметка по включению отображения скрытых файлов в MacOS X</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">22</span>
-									<span class="rest">Feb 2013</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-22/">Оффлайновый способ хранить пароль</a>
-								</h4>
-								<span class="description">Однажды увидел пост посвященный офлайновому способу хранения паролей основанном на примитивной криптографии. Сервис passwordcard позволяет генерировать и распечатывать карточки с паролями.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">12</span>
-									<span class="rest">Nov 2012</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-11/">Теория радиоволн: антенны</a>
-								</h4>
-								<span class="description">Стандарты связи, Беспроводные технологии.</span>
-							</div>
-						</div>
-					</div>
+<img alt="Artem Smirnov" aria-hidden="true" src="/img/artem2.jpg" style="max-width: 100%; display: block; margin: 0px; border: none; padding: 0px; float: right;" class="avatar-number">
+        <h1 class="font-regular mt-4 text-black dark:text-white text-4xl tracking-tight sm:mt-0">Hey! <span>👋</span> I'm <b>Artem</b></h1>
+
+
+        <section class="mt-20 sm:mt-24">
+            <h3 class="mb-3 dark:text-gray-400 text-gray-500 tracking-wide uppercase">About in 10 Seconds</h3>
+            <div class="prose dark:prose-dark sm:prose-lg">
+                <p>I write software, do machines and type about it articles and notes.<br>It was created as my personal page for help myself. Materials that I will post here can be copied from other resources or it can be just my notes in Russian.</p>
+            </div>
+        </section>
+
+        <br/>
+        <div class="mt-8" style="float: right; padding-top: 4.5px;"><a class="px-6 py-3 text-white text-xs font-medium tracking-wider bg-black dark:bg-indigo-800 rounded-md disabled:opacity-30 uppercase" href="/posts">VIEW ALL POSTS</a> / <a class="px-6 py-3 text-white text-xs font-medium tracking-wider bg-black dark:bg-indigo-800 rounded-md disabled:opacity-30 uppercase" href="/tags">TAGS</a></div>
+        <h3 class="mb-3 dark:text-gray-400 text-gray-500 tracking-wide uppercase">Latest Posts</h3>
+
+        <div class="recent-posts section">
+            <div class="posts"><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">02</span>
+                                    <span class="rest">Dec 2020</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-24/">Настройка DNS на клиенте OpenVPN macOS</a>
+                                </h4>
+                                <span class="description">Я использую связку OpenVPN вместе с dnsmasq для выдачи доменов в удаленной виртуальной сети. В статье рассказыватся как настроить клиент для правильной работы DNS.</span>
+                            </div>
+                        </div>
+                    </div><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">01</span>
+                                    <span class="rest">Dec 2020</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-29/">Заметка по настройке Hugo</a>
+                                </h4>
+                                <span class="description">Небольшая заметка по настройки статического генератора сайтов – Hugo.</span>
+                            </div>
+                        </div>
+                    </div><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">30</span>
+                                    <span class="rest">Nov 2020</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-23/">Шреддер для пластика #1: Выбор мотор-редуктора</a>
+                                </h4>
+                                <span class="description">Начало постройки собственного шреддера для пластика. Выбор мотор-редуктора.</span>
+                            </div>
+                        </div>
+                    </div><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">16</span>
+                                    <span class="rest">Nov 2020</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-3/">Замена контроллера питания Raspberry Pi 3B&#43;</a>
+                                </h4>
+                                <span class="description">Восстановление работы Raspberry Pi 3B&#43; после короткого замыкания.</span>
+                            </div>
+                        </div>
+                    </div><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">16</span>
+                                    <span class="rest">Nov 2020</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-8/">Питание USB портов Raspberry Pi</a>
+                                </h4>
+                                <span class="description">Модернизация схемы Raspberry Pi для подключения «тяжелых» потребителей по USB.</span>
+                            </div>
+                        </div>
+                    </div>
 
 <ul class="pagination">
-	<li class="page-item page-prev">
-	
+    <li class="page-item page-prev">
+    
     <a href="/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">← Prev page</span></a>
-	
-	</li>
-	<li class="page-item page-next">
-	
-	</li>
+    
+    </li>
+    <li class="page-item page-next">
+    
+    <a href="/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">Next page →</span></a>
+    
+    </li>
 </ul>
 </div>
-		</div>
-	</div><div class="footer wrapper">
+        </div>
+    </div><div class="footer wrapper">
 	<nav class="nav">
-		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
 	</nav>
 </div><script>feather.replace()</script></body>
 </html>

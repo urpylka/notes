@@ -24,7 +24,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://urpylka.com/" />
-<meta property="og:updated_time" content="2020-04-16T16:00:00+00:00" />
+<meta property="og:updated_time" content="2021-05-06T20:15:01+04:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="urpylka"/>
 <meta name="twitter:description" content=""/>
@@ -56,8 +56,26 @@ if (!doNotTrack) {
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+<style>
+    .dark .dark\:text-gray-400 {
+         
+        color: rgb(163, 163, 163) !important;
+    }
+    .uppercase {
+        text-transform: uppercase;
+    }
+    .avatar-number {
+        display: grid;
+        padding-left: 10px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: #ccFF;
+    }
+
+</style>
 <body>
-	<div class="container wrapper"><div class="header"><div class="avatar">
+    <div class="container wrapper"><div class="header"><div class="avatar">
 		<a href="https://urpylka.com/">
 			<img src="/img/artem.jpg" alt="urpylka" />
 		</a>
@@ -75,11 +93,7 @@ if (!doNotTrack) {
 			</li>
 			
 			<li>
-				<a href="/posts">All posts</a>
-			</li>
-			
-			<li>
-				<a href="/about">About</a>
+				<a href="/posts">Posts</a>
 			</li>
 			
 			<li>
@@ -89,174 +103,114 @@ if (!doNotTrack) {
 		</ul>
 	</nav>
 </div>
-<div class="recent-posts section">
-			<div class="posts"><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">06</span>
-									<span class="rest">May 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-31/">Установка и настройка Grbl</a>
-								</h4>
-								<span class="description">После пересборки станка в него была установлена Arduino Uno c CNC Shield. Тк драйвера не стандартные типа A4988, возникли проблемы. В статье изложены возникшие проблемы и их решение, а также описания настроек Grbl.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">06</span>
-									<span class="rest">May 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-30/">Модернизация Cutmaster CM-1500</a>
-								</h4>
-								<span class="description">Собрал корпус из алюминия и разместил в нём электронику, переделал концевики на нормально замкнутые, добавил контроллер и произвел подключение всей электроники.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">12</span>
-									<span class="rest">Apr 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-34/">Калибровка экструдера 3D принтера на прошивке Marlin</a>
-								</h4>
-								<span class="description">Для корректной работы экструдера необходимо чтобы длина перемещения заданная в gcode программе, соотвествовала реальному перемещению прутка. Для взаимосвязи количества шагов двигателя и перемещения по оси экструдера используется числовой коэффициент. В этой статье изложен его расчет.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">30</span>
-									<span class="rest">Mar 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-33/">Устройство сети в Linux</a>
-								</h4>
-								<span class="description">В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью. В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов img-builder. Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">16</span>
-									<span class="rest">Feb 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-28/">Шреддер для пластика #4: Редуктор (новости) и точёные валы</a>
-								</h4>
-								<span class="description">Чистка редуктора, поиск манжет, гильзование выходного вала.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">16</span>
-									<span class="rest">Feb 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-26/">Ускорение загрузки: systemd-analyze</a>
-								</h4>
-								<span class="description">Краткая заметка про анализ времени загрузки служб ОС с помощью systemd-analyze.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">11</span>
-									<span class="rest">Jan 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-21/">Blender shortcuts</a>
-								</h4>
-								<span class="description">Заметка по используемыми мною сокращениями в Blender.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">04</span>
-									<span class="rest">Jan 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-17/">Видеозахват на Raspberry Pi. Часть 1: Hardware</a>
-								</h4>
-								<span class="description">В этой статье рассмотрим аппаратные ограничения Raspberry Pi 3B и Raspberry Pi 4B в области видеозахвата, обработки, передачи видеострима и сохранению полученного потока.</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">03</span>
-									<span class="rest">Jan 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-18/">Portainer: How to reset password for the Admin user</a>
-								</h4>
-								<span class="description">Resetting Admin password in Portainer running as container</span>
-							</div>
-						</div>
-					</div><div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">01</span>
-									<span class="rest">Jan 2021</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="/posts/post-15/">Postgres: Reset primary key sequence</a>
-								</h4>
-								<span class="description">I&#39;ve met a problem with using SQLAlchemy. An error in commit() cause the call to get a new sequence of the table primary key. It updates the sequence number. But rollback() doesn&#39;t fix it.</span>
-							</div>
-						</div>
-					</div>
+<img alt="Artem Smirnov" aria-hidden="true" src="/img/artem2.jpg" style="max-width: 100%; display: block; margin: 0px; border: none; padding: 0px; float: right;" class="avatar-number">
+        <h1 class="font-regular mt-4 text-black dark:text-white text-4xl tracking-tight sm:mt-0">Hey! <span>👋</span> I'm <b>Artem</b></h1>
+
+
+        <section class="mt-20 sm:mt-24">
+            <h3 class="mb-3 dark:text-gray-400 text-gray-500 tracking-wide uppercase">About in 10 Seconds</h3>
+            <div class="prose dark:prose-dark sm:prose-lg">
+                <p>I write software, do machines and type about it articles and notes.<br>It was created as my personal page for help myself. Materials that I will post here can be copied from other resources or it can be just my notes in Russian.</p>
+            </div>
+        </section>
+
+        <br/>
+        <div class="mt-8" style="float: right; padding-top: 4.5px;"><a class="px-6 py-3 text-white text-xs font-medium tracking-wider bg-black dark:bg-indigo-800 rounded-md disabled:opacity-30 uppercase" href="/posts">VIEW ALL POSTS</a> / <a class="px-6 py-3 text-white text-xs font-medium tracking-wider bg-black dark:bg-indigo-800 rounded-md disabled:opacity-30 uppercase" href="/tags">TAGS</a></div>
+        <h3 class="mb-3 dark:text-gray-400 text-gray-500 tracking-wide uppercase">Latest Posts</h3>
+
+        <div class="recent-posts section">
+            <div class="posts"><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">06</span>
+                                    <span class="rest">May 2021</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-31/">Установка и настройка Grbl</a>
+                                </h4>
+                                <span class="description">После пересборки станка в него была установлена Arduino Uno c CNC Shield. Тк драйвера не стандартные типа A4988, возникли проблемы. В статье изложены возникшие проблемы и их решение, а также описания настроек Grbl.</span>
+                            </div>
+                        </div>
+                    </div><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">06</span>
+                                    <span class="rest">May 2021</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-30/">Модернизация Cutmaster CM-1500</a>
+                                </h4>
+                                <span class="description">Собрал корпус из алюминия и разместил в нём электронику, переделал концевики на нормально замкнутые, добавил контроллер и произвел подключение всей электроники.</span>
+                            </div>
+                        </div>
+                    </div><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">12</span>
+                                    <span class="rest">Apr 2021</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-34/">Калибровка экструдера 3D принтера на прошивке Marlin</a>
+                                </h4>
+                                <span class="description">Для корректной работы экструдера необходимо чтобы длина перемещения заданная в gcode программе, соотвествовала реальному перемещению прутка. Для взаимосвязи количества шагов двигателя и перемещения по оси экструдера используется числовой коэффициент. В этой статье изложен его расчет.</span>
+                            </div>
+                        </div>
+                    </div><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">30</span>
+                                    <span class="rest">Mar 2021</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-33/">Устройство сети в Linux</a>
+                                </h4>
+                                <span class="description">В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью. В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов img-builder. Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.</span>
+                            </div>
+                        </div>
+                    </div><div class="post">
+                        <div class="post-header">
+                            <div class="meta">
+                                <div class="date">
+                                    <span class="day">16</span>
+                                    <span class="rest">Feb 2021</span>
+                                </div>
+                            </div>
+                            <div class="matter">
+                                <h4 class="title small">
+                                    <a href="/posts/post-28/">Шреддер для пластика #4: Редуктор (новости) и точёные валы</a>
+                                </h4>
+                                <span class="description">Чистка редуктора, поиск манжет, гильзование выходного вала.</span>
+                            </div>
+                        </div>
+                    </div>
 
 <ul class="pagination">
-	<li class="page-item page-prev">
-	
-	</li>
-	<li class="page-item page-next">
-	
+    <li class="page-item page-prev">
+    
+    </li>
+    <li class="page-item page-next">
+    
     <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">Next page →</span></a>
-	
-	</li>
+    
+    </li>
 </ul>
 </div>
-		</div>
-	</div><div class="footer wrapper">
+        </div>
+    </div><div class="footer wrapper">
 	<nav class="nav">
-		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
 	</nav>
 </div><script>feather.replace()</script></body>
 </html>
