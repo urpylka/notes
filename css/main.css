@@ -578,6 +578,10 @@ code {
         margin: 0 10px 0 0;
         font-size: 14px;
     }
+    .main-avatar {
+        width: 140px !important;
+        height: 140px !important;
+    }
 }
 @media (max-width: 900px) {
     body {
