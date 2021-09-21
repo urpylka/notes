@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>CNCjs &#43; ESP-Link - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="CNCjs &#43; ESP-Link">
+<meta itemprop="description" content="Продолжение серии статей про модернизацию Cutmaster CM1500D. В этой статье расскажу о CNCjs и настройке Wi-Fi линка с использованием ESP8266.">
+<meta itemprop="datePublished" content="2021-09-21T16:22:00&#43;04:00" />
+<meta itemprop="dateModified" content="2021-09-21T16:22:00&#43;04:00" />
+<meta itemprop="wordCount" content="852">
+
+
+
+<meta itemprop="keywords" content="ru,cnc,diy,docker,esp," /><meta property="og:title" content="CNCjs &#43; ESP-Link" />
+<meta property="og:description" content="Продолжение серии статей про модернизацию Cutmaster CM1500D. В этой статье расскажу о CNCjs и настройке Wi-Fi линка с использованием ESP8266." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-35/" />
+<meta property="article:published_time" content="2021-09-21T16:22:00+04:00" />
+<meta property="article:modified_time" content="2021-09-21T16:22:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CNCjs &#43; ESP-Link"/>
+<meta name="twitter:description" content="Продолжение серии статей про модернизацию Cutmaster CM1500D. В этой статье расскажу о CNCjs и настройке Wi-Fi линка с использованием ESP8266."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">21</span>
+                        <span class="rest">Sep 2021</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">CNCjs &#43; ESP-Link</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <hr>
+<p>Навигация по проекту:</p>
+<ol>
+<li><a href="/posts/post-19/">Покупка и разбор фрезерного станка Cutmaster CM-1500</a></li>
+<li><a href="/posts/post-30/">Модернизация Cutmaster CM-1500</a></li>
+<li><a href="/posts/post-31/">Установка и настройка Grbl</a></li>
+<li><a href="/posts/post-35/">CNCjs + ESP-Link</a></li>
+</ol>
+<hr>
+<h2 id="зачем-нужен-cncjs">Зачем нужен CNCjs?</h2>
+<p>После замены компьютера на котором был Mach3 на Arduino. У станка не стало оконного интерфейса, взамен появился UART-интерфейс способный испольнять gcode-команды. Однако использовать терминал для управления станком не удобно. Нужен какой-то интерфейс, который позволит выполнять ручное управление станком (как пультом), а также позволит производить запуск управляющих программ.</p>
+<p>Дополнительный фактором, который для меня был критичен – я не хотел запускать программу для управления станком локально, а хотел использовать веб-приложение запускаемое на стороне станка. К которому я подключался бы через Wi-Fi сеть развернутую на Raspberry Pi.</p>
+<p>Собственно, достаточно-известных проектов предстовляющих веб-интерфейс для управления CNC машиной всего пару штук:</p>
+<ol>
+<li><a href="https://octoprint.org">Octoprint</a></li>
+<li><a href="https://cnc.js.org">CNCjs</a></li>
+</ol>
+<p>И тогда как Octoprint заточен под 3D печать, CNCjs как раз наоборот под milling / cutting machine.</p>
+<p><img src="./images/imagesimage2829.png" alt="image"></p>
+<h2 id="создание-docker-образа-cncjs">Создание Docker образа CNCjs</h2>
+<p>Впервые я узнал о CNCjs из <a href="https://www.balena.io/blog/add-new-functionality-to-affordable-cnc-machines-using-cnc-js-and-balena/">статьи</a> компании <a href="https://www.balena.io">Balena</a>. Данное решение предназначено для использования в среде <a href="https://dashboard.balena-cloud.com/">balenaCloud</a>. В кратце этот сервис предоставялет экосистему состоящую из:</p>
+<ul>
+<li>преднастроенных образов ОС для разных видов однопланных компьютеров (SBC)</li>
+<li>облака с веб интерфейсом</li>
+</ul>
+<p>После скачивания и установки образа, SBC автоматически подключается к облаку через выбранный вами вариант подключение к интернету. Затем с помощью облачного интерфейса можно управлять приложениями на ваших одноплатных компьютерах. Запуск нескольких приложений осуществляется с помощью немного дополненного docker-compose файла и шаблонизатора на стороне сервиса.</p>
+<p>Я решил не использовать balenaCloud, тк собрал собственное облако. А сборку преднастроенных ОС для Raspberry Pi делаю с помощью <a href="https://github.com/urpylka/img-builder">img-builder</a>. К сожалению в <a href="https://github.com/balena-io-playground/balena-cncjs">репозитории Balena</a> не было готовой версии для arm64 и они не публикуют свои docker-образы, а также в сборке уже поломались зависимости.</p>
+<p>Собрать CNCjs из <a href="https://github.com/cncjs/cncjs">исходников</a> мне никак не удавалось, и я решил пойти другим путём. Тк CNCjs поставляется в виде <a href="https://www.npmjs.com/package/cncjs">NodeJS пакета</a> я решил его так и установить. Однако и тут тоже возникли сложности, например я хотел использовать за основу образ Alpine, но из-за отсуствующих зависимостей удалось все завести только на Debian.</p>
+<p>Взяв за основу <a href="https://github.com/balena-io-playground/balena-cncjs/blob/master/cncjs/Dockerfile.template">Dockerfile от Balena</a>, я сделал <a href="https://github.com/urpylka/docker-cncjs/blob/master/Dockerfile">свою реализацию</a>. Затем собрал образ для arm64 и выгрузил на <a href="https://hub.docker.com/repository/docker/urpylka/cncjs/general">Docker Hub</a>.</p>
+<p>Запускаю я своё решение через <code>docker run</code> тк это всего один контейнер. Для хранения настроек использую внешний <code>docker volume</code>. Подробнее вы можете прочитать об этом в <a href="https://github.com/urpylka/docker-cncjs">моём репозитории</a>.</p>
+<h2 id="wi-fi-link-или-как-я-пришел-к-esp-link">Wi-Fi Link или как я пришел к ESP-Link</h2>
+<p>Изначально я планировал разместить Raspberry Pi внутри станка, так и сделал. Я ожидал, что после закрытия крышки сигнал будет слабый, но достаточный для работы на расстоянии пары метров. Однако сигнал пропадал вовсе.</p>
+<p>Было три варианта:</p>
+<ol>
+<li>Распаять коннектор на Raspberry Pi 3B+</li>
+<li>Использовать внешний Wi-Fi адаптер со съёмной антенной который вывести за корпус</li>
+<li>Вытащить Raspberry Pi из станка, а к Arduino подключить ESP8266 в качестве модема UART в Wi-Fi</li>
+</ol>
+<p>Я выбрал 3й вариант.</p>
+<p>С счатью задача передачи UART интерфейса по сети достаточно широко-используется. Поэтому я с легкостью нашел проект – <a href="https://github.com/jeelabs/esp-link">ESP-Link</a>.</p>
+<p><img src="./images/f8128c92-90ad-11e6-804e-9a4796035e9a.png" alt="image"></p>
+<p>У него есть как минусы:</p>
+<ol>
+<li>Передача gcode-команд осуществялется по воздуху и возможна как потеря команд, тк и задержки при их передаче. Однако как показали тесты, проблем с этим замечено не было, тк Raspberry Pi находится буквально в метре от антенны ESP8266.</li>
+<li>Отсуствует линия DTR, а значит перепрошивка Arduino по воздуху невозможна. Хотя думаю, что в ESP-Link всё таки есть такая функция, просто я её не искал.</li>
+<li>Нужно придумать как создать виртуальный интерфейс на Raspberry Pi для работы с CNCjs.</li>
+</ol>
+<p>Так и плюсы:</p>
+<ol>
+<li>Raspberry Pi у меня также используется в качестве роутера с сотовым модемом и сама раздает интернет и подключается в моё облако.</li>
+<li>ESP8266 с ESP-Link очень быстро загружается и подключается к Wi-Fi сети, таким образом не приходится ждать пока загрузиться ОС на Raspberry Pi.</li>
+<li>Очень упростилась отладка ввиду, того, что больше не нужно проверять соединение между Arduino и Raspberry Pi. А также доступ к Raspberry Pi намного удобнее.</li>
+<li>Есть возможность использовать Raspberry Pi для подключения камеры или других устройств, например 3D принтера стоящего на столе.</li>
+</ol>
+<p>Описывать прошивку и настройку ESP-Link я не стану, все достаточно легко гуглится. Единственное, покажу очень удобную для этих целей плату:</p>
+<p><img src="./images/IMG_8094.jpg" alt="image"></p>
+<h2 id="виртуальный-uart-интерфейс">Виртуальный UART интерфейс</h2>
+<p>Собственно единственным реальным затыком было придумать как подключить CNCjs к сокету в который публикует байты ESP-Link. Путей два:</p>
+<ol>
+<li>Дописать прошику CNCjs и добавить возможность работы с сокетами напрямую</li>
+<li>Виртуализировать UART интерфейс</li>
+</ol>
+<p>Я выбрал второй путь, тк он мне представляется как более лёгкий, хоть мб и не такой изящный и правильный.</p>
+<p>Немного погуглив, я нашел утилиту <code>socat</code> которая умеет делать link сокета к файлу. Можно, конечно, заморочиться и использовать напрямую <code>nc</code>, но в данном контексте, думаю, что socat – идеальное решение.</p>
+<p>Изначально я планировал сделать два контейнера CNCjs и socat. Однако несмотря на то, что в linux есть файловая абстракция, мне не удалось прокинуть файл сокета из одного в контейнера в другой средствами Docker. Не найдя ответа, я решил разместить оба процесса в одном контейнере, а для управления их состоянием добавил мастер-процесс – <code>supervisor</code>. Образ также выгрузил на <a href="https://hub.docker.com/repository/docker/urpylka/cncjs/tags?page=1&amp;ordering=last_updated">Docker Hub</a>. Код выложен в отдельной ветке <a href="https://github.com/urpylka/docker-cncjs/tree/feature-esplink">feature-esplink</a>.</p>
+<h2 id="результат">Результат</h2>
+<ul>
+<li>Собственно была проделана работа по созданию своего образа с CNCjs для arm64</li>
+<li>Выбрано решение для UART Wi-Fi линка</li>
+<li>Добавлена реализация создания виртуального интерфейса внутри docker контейнера</li>
+</ul>
+<p>Из ньюансов данного решения: наблюдается падение линка в каких-то нештатных ситуациях без его переподъёма. Связано это с тем, что supervisor не умеет детектировать упал ли линк.</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/cnc">cnc</a></li>
+                    
+                    <li><a href="/tags/diy">diy</a></li>
+                    
+                    <li><a href="/tags/docker">docker</a></li>
+                    
+                    <li><a href="/tags/esp">esp</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

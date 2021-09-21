@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on urpylka</title>
-    <link>https://urpylka.com/tags/docker/</link>
-    <description>Recent content in docker on urpylka</description>
+    <title>esp on urpylka</title>
+    <link>https://urpylka.com/tags/esp/</link>
+    <description>Recent content in esp on urpylka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
     <lastBuildDate>Tue, 21 Sep 2021 16:22:00 +0400</lastBuildDate>
     
-	<atom:link href="https://urpylka.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://urpylka.com/tags/esp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,18 +20,6 @@
       <guid>https://urpylka.com/posts/post-35/</guid>
       <description>Навигация по проекту:
  Покупка и разбор фрезерного станка Cutmaster CM-1500 Модернизация Cutmaster CM-1500 Установка и настройка Grbl CNCjs + ESP-Link   Зачем нужен CNCjs? После замены компьютера на котором был Mach3 на Arduino. У станка не стало оконного интерфейса, взамен появился UART-интерфейс способный испольнять gcode-команды. Однако использовать терминал для управления станком не удобно. Нужен какой-то интерфейс, который позволит выполнять ручное управление станком (как пультом), а также позволит производить запуск управляющих программ.</description>
-    </item>
-    
-    <item>
-      <title>Portainer: How to reset password for the Admin user</title>
-      <link>https://urpylka.com/posts/post-18/</link>
-      <pubDate>Sun, 03 Jan 2021 23:30:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-18/</guid>
-      <description>This article is a copy from the Portainer site. Original isn&amp;rsquo;t available anymore for unknown reasons, and I made it copy.
- Yep, we know, life can be challenging because you forgot or lost your Admin password to access to Portainer. In this help article, you will learn how to do a password reset to the Admin user of Portainer.
-Resetting Admin password in Portainer running as container
-Reset the password for the Admin user can be accomplished using our reset password container helper.</description>
     </item>
     
   </channel>

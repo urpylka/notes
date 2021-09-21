@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 06 May 2021 20:15:01 +0400</lastBuildDate>
+    <lastBuildDate>Tue, 21 Sep 2021 16:22:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>cnc</title>
       <link>https://urpylka.com/tags/cnc/</link>
-      <pubDate>Thu, 06 May 2021 20:15:01 +0400</pubDate>
+      <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/cnc/</guid>
       <description></description>
@@ -24,16 +24,34 @@
     <item>
       <title>diy</title>
       <link>https://urpylka.com/tags/diy/</link>
-      <pubDate>Thu, 06 May 2021 20:15:01 +0400</pubDate>
+      <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/diy/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>docker</title>
+      <link>https://urpylka.com/tags/docker/</link>
+      <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>esp</title>
+      <link>https://urpylka.com/tags/esp/</link>
+      <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/esp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>ru</title>
       <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Thu, 06 May 2021 20:15:01 +0400</pubDate>
+      <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
@@ -153,15 +171,6 @@
       <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/videostream/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://urpylka.com/tags/docker/</link>
-      <pubDate>Sun, 03 Jan 2021 23:30:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/docker/</guid>
       <description></description>
     </item>
     
