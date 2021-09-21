@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 21 Sep 2021 16:22:00 +0400</lastBuildDate>
+    <lastBuildDate>Tue, 21 Sep 2021 19:10:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>cnc</title>
       <link>https://urpylka.com/tags/cnc/</link>
-      <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
+      <pubDate>Tue, 21 Sep 2021 19:10:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/cnc/</guid>
       <description></description>
@@ -24,9 +24,36 @@
     <item>
       <title>diy</title>
       <link>https://urpylka.com/tags/diy/</link>
-      <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
+      <pubDate>Tue, 21 Sep 2021 19:10:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>esc</title>
+      <link>https://urpylka.com/tags/esc/</link>
+      <pubDate>Tue, 21 Sep 2021 19:10:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/esc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grbl</title>
+      <link>https://urpylka.com/tags/grbl/</link>
+      <pubDate>Tue, 21 Sep 2021 19:10:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/grbl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Tue, 21 Sep 2021 19:10:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -45,15 +72,6 @@
       <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/esp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
