@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Wed, 22 Sep 2021 01:12:00 +0400</lastBuildDate>
+    <lastBuildDate>Wed, 22 Sep 2021 18:52:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>diy</title>
+      <link>https://urpylka.com/tags/diy/</link>
+      <pubDate>Wed, 22 Sep 2021 18:52:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lifestyle</title>
+      <link>https://urpylka.com/tags/lifestyle/</link>
+      <pubDate>Wed, 22 Sep 2021 18:52:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/lifestyle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Wed, 22 Sep 2021 18:52:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watch</title>
+      <link>https://urpylka.com/tags/watch/</link>
+      <pubDate>Wed, 22 Sep 2021 18:52:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/watch/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>cnc</title>
@@ -18,15 +54,6 @@
       <pubDate>Wed, 22 Sep 2021 01:12:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/cnc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>diy</title>
-      <link>https://urpylka.com/tags/diy/</link>
-      <pubDate>Wed, 22 Sep 2021 01:12:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/diy/</guid>
       <description></description>
     </item>
     
@@ -45,15 +72,6 @@
       <pubDate>Wed, 22 Sep 2021 01:12:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/grbl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Wed, 22 Sep 2021 01:12:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -306,15 +324,6 @@
       <pubDate>Fri, 23 Oct 2020 19:56:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lifestyle</title>
-      <link>https://urpylka.com/tags/lifestyle/</link>
-      <pubDate>Fri, 23 Oct 2020 19:56:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/lifestyle/</guid>
       <description></description>
     </item>
     
