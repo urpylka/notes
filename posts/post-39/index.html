@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Эталонная модель OSI - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Эталонная модель OSI">
+<meta itemprop="description" content="Часто в проектах которыми я занимаюсь приходится оперировать и обсуждать уровнями модели OSI. Для стандартизации знаний на эту тему подготовил эту статью.">
+<meta itemprop="datePublished" content="2021-09-23T17:39:00&#43;04:00" />
+<meta itemprop="dateModified" content="2021-09-23T17:39:00&#43;04:00" />
+<meta itemprop="wordCount" content="375">
+
+
+
+<meta itemprop="keywords" content="ru,programming,osi," /><meta property="og:title" content="Эталонная модель OSI" />
+<meta property="og:description" content="Часто в проектах которыми я занимаюсь приходится оперировать и обсуждать уровнями модели OSI. Для стандартизации знаний на эту тему подготовил эту статью." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-39/" />
+<meta property="article:published_time" content="2021-09-23T17:39:00+04:00" />
+<meta property="article:modified_time" content="2021-09-23T17:39:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Эталонная модель OSI"/>
+<meta name="twitter:description" content="Часто в проектах которыми я занимаюсь приходится оперировать и обсуждать уровнями модели OSI. Для стандартизации знаний на эту тему подготовил эту статью."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">23</span>
+                        <span class="rest">Sep 2021</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Эталонная модель OSI</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Часто в проектах которыми я занимаюсь приходится оперировать и обсуждать уровнями модели OSI. Для унификации знаний на эту тему подготовил эту статью. Основным источником для неё послужила <a href="https://pcradar.ru/yetalonnaya-model-osi/">статья с pcradar.ru</a>, а я лишь добавил немного информации и причесал оформление.</p>
+<p>Для согласования работы устройств сети от разных производителей, обеспечения взаимодействия сетей, которые используют различную среду распространения сигнала создана эталонная модель взаимодействия открытых систем (<a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F_%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C_OSI">сетевая модель OSI</a>).</p>
+<p>Эталонная модель построена по иерархическому принципу. Каждый уровень обеспечивает сервис вышестоящему уровню и пользуется услугами нижестоящего уровня.</p>
+<p>Обработка данных начинается с прикладного уровня. После этого, данные проходят через все уровни эталонной модели, и через физический уровень отправляются в канал связи. На приеме происходит обратная обработка данных.</p>
+<p>В эталонной модели OSI вводятся два понятия: <code>протокол</code> и <code>интерфейс</code>.</p>
+<ul>
+<li>Протокол – это набор правил, на основе которых взаимодействуют уровни различных открытых систем.</li>
+<li>Интерфейс – это совокупность средств и методов взаимодействия между элементами открытой системы (на одном узле).</li>
+</ul>
+<p>Всего существует семь уровней эталонной модели OSI. Стоит отметить, что в реальных стеках используется меньше уровней. Например, в популярном <code>TCP/IP</code> используется всего четыре уровня.</p>
+<p><img src="./images/osi-model.png" alt="image"></p>
+<p>После знакомства со эталонной моделью, рассмотрим стек протоколов TCP/IP.</p>
+<p><img src="./images/tcp-ip.png" alt="image"></p>
+<p>В модели TCP/IP определено четыре уровня. Как видно из рисунка выше – один уровень TCP/IP может соответствовать нескольким уровням модели OSI.</p>
+<p>Далее рассмотрим еще одно важное понятие, которое позволяет понять каким образом происходит подготовка пакета данных для передачи.</p>
+<p><strong>Инкапсуляция</strong> – это метод упаковки пакета данных, при котором независимые друг от друга служебные заголовки пакета абстрагируются от заголовков нижестоящих уровней путем их включения в вышестоящие уровни.</p>
+<p><img src="./images/incapsulation.gif" alt="image"></p>
+<p>Рассмотрим на конкретном примере. Пусть мы хотим попасть с компьютера на сайт.</p>
+<ul>
+<li>Для этого наш компьютер должен подготовить http-запрос на получение ресурсов веб-сервера, на котором хранится нужная нам страница сайта.</li>
+<li>На прикладном уровне к данным (Data) браузера добавляется HTTP-заголовок.</li>
+<li>Далее на транспортном уровне к нашему пакету прибавляется TCP-заголовок, содержащий номера портов отправителя и получателя (80 порт – для HTTP).</li>
+<li>На сетевом уровне формируется IP-заголовок, содержащий IP-адреса отправителя и получателя.</li>
+<li>Непосредственно перед передачей, на канальном уровне добавляется Ethernet-заголовок, который содержит физические (MAC-адреса) отправителя и получателя.</li>
+</ul>
+<p>После всех этих процедур пакет в виде битов информации передается по сети. На приеме происходит обратная процедура. Web-сервер на каждом уровне будет проверять соответствующий заголовок. Если проверка прошла удачно, то заголовок отбрасывается и пакет переходит на верхний уровень. В противном случае весь пакет отбрасывается.</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/osi">osi</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

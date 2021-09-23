@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров">
+<meta itemprop="description" content="Когда я задаю себе казалось бы простые вопросы: Что такое Wi-Fi? Какие есть версии? Я не могу на них ответить, в рамках этого, я хочу документировать знания на эту тему, что мне удалось собрать.">
+<meta itemprop="datePublished" content="2021-09-23T17:58:00&#43;04:00" />
+<meta itemprop="dateModified" content="2021-09-23T17:58:00&#43;04:00" />
+<meta itemprop="wordCount" content="609">
+
+
+
+<meta itemprop="keywords" content="ru,programming,networks," /><meta property="og:title" content="Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров" />
+<meta property="og:description" content="Когда я задаю себе казалось бы простые вопросы: Что такое Wi-Fi? Какие есть версии? Я не могу на них ответить, в рамках этого, я хочу документировать знания на эту тему, что мне удалось собрать." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-40/" />
+<meta property="article:published_time" content="2021-09-23T17:58:00+04:00" />
+<meta property="article:modified_time" content="2021-09-23T17:58:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров"/>
+<meta name="twitter:description" content="Когда я задаю себе казалось бы простые вопросы: Что такое Wi-Fi? Какие есть версии? Я не могу на них ответить, в рамках этого, я хочу документировать знания на эту тему, что мне удалось собрать."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">23</span>
+                        <span class="rest">Sep 2021</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <h2 id="общая-теория-ieee-80211">Общая теория IEEE 802.11</h2>
+<p><code>IEEE 802.11</code> — набор стандартов связи для коммуникации в беспроводной локальной сетевой зоне частотных диапазонов 0,9; 2,4; 3,6; 5 и 60 ГГц. Больше на <a href="https://ru.wikipedia.org/wiki/IEEE_802.11">wiki</a>.</p>
+<p>Пользователям более известен по названию <code>Wi-Fi</code>, фактически являющемуся брендом, предложенным и продвигаемым организацией <code>Wi-Fi Alliance</code>.</p>
+<p>В стандарте IEEE 802.11 определены два способа организации сети:</p>
+<ol>
+<li><strong>Инфраструктурный</strong> (<code>Infrastructure</code>);</li>
+<li><strong>Независимый</strong> (<code>Independent</code>), часто также называемый <code>одноранговым</code> (<code>Ad-Hoc</code>).</li>
+</ol>
+<p>В <strong>инфраструктурном режиме</strong> функции координации передачи данных выполняет специальный выделенный узел, <code>точка доступа</code> (<code>ТД</code>, <code>Access Point</code>, <code>АР</code>). Беспроводные станции пользователей через нее взаимодействуют друг с другом и машинами в проводной сети. Схема такой сети приведена на рисунок.</p>
+<p><img src="./images/infrastructure_mode.jpg" alt="image"></p>
+<p>В <strong>одноранговой (Ad-Hoc) сети</strong> центральный узел отсутствует, и все станции являются равноправными членами системы.</p>
+<p><img src="./images/ad_hoc_mode.jpg" alt="image"></p>
+<p>Совокупность станций, взаимодействующих друг с другом в рам­ках одной точки доступа или одной одноранговой сети, носит на­звание <code>базового набора обслуживания</code> (<code>Basic Service Set</code>, <code>BSS</code>), ли­бо <code>независимого базового набора обслуживания</code> (<code>Independed Basic Service Set</code>, <code>IBSS</code>).</p>
+<p>Несколько сетей BSS, объединенных с помощью проводной или беспроводной сети, называются расширенным набором обслужи­вания (<code>Extended Service Set</code>, <code>ESS</code>). Схема такой сети приведена на рисунке.</p>
+<p><img src="./images/extended_maintenance.jpg" alt="image"></p>
+<blockquote>
+<p>В ESS могут объединяться только BSS, работающие в инфраструктурном режиме, но не IBSS. Это не значит, что сеть Ad-Hoc не может взаимодействовать с провод­ными сетями, просто механизмы подобного взаимодействия не описаны в стандарте 802.11; должны быть задействованы методы канального (сетевой мост) или сетевого уровня (маршрутизаторы).</p>
+</blockquote>
+<p>Все станции и точки доступа одной сети ESS и сети BSS обозна­чаются с помощью <code>идентификатора набора обслуживания</code> (<code>Service Set Inditifier</code>, <code>SSID</code>). Конфигурационный параметр выбирает админи­стратор и обычно он представляет собой набор символов, помо­гающий пользователю определить, к какой сети относится та или иная точка доступа.</p>
+<p>Очень часто хочется использовать для обозначения сетей BSS при­вычный термин «сегмент», однако такое упрощение неверно. Дело в том, что с точки зрения сетевого уровня один сегмент может включать несколь­ко сетей BSS или даже разные сети ESS. Например, сеть, схема которой приведена на рисунке выше, вполне может представлять собой один широкове­щательный домен с точки зрения Ethernet и одну подсеть с точки зрения сетевого уровня.</p>
+<p>Источник: <a href="https://catamobile.org.ua/struktura-seti.html">https://catamobile.org.ua/struktura-seti.html</a></p>
+<h2 id="режимы-работы-wi-fi-адаптера">Режимы работы Wi-Fi адаптера</h2>
+<p>Каждый Wi-Fi адаптер, а точнее, антенна, на физическом уровне улавливает любые сигналы, пересылаемые устройствами в радиусе действия. Антенна не может <strong>не принимать</strong> посторонние пакеты.</p>
+<p>Wi-Fi адаптер – это железка, и для работы с ней из программы её нужно представить в цифровом виде, этим занимается драйвер.</p>
+<p>В следующем, что я здесь пишу до конца я не уверен что есть что. Например, я полагал, что на базе <code>Ad-hoc</code> работает например <code>Wi-Fi Direct</code>, оказалось это не так. Также не понятно, что такое AirDrop. В общем текст ниже я постараюсь обновить в ближайшеим будущем и закрыть все эти вопросы.</p>
+<p>Драйвер Wi-Fi адаптера может работать в 6 режимах:</p>
+<ol>
+<li><strong>Master mode</strong> – работает как <code>точка доступа</code> (также было упоминание как <code>мастер синхронизации</code>).</li>
+<li><strong>Client mode</strong> (<strong>Managed</strong>) – используется в инфраструктурном режиме.
+<ul>
+<li>Пакеты, не предназначенные этому адаптеру — отбрасываются, а остальные передаются внутрь ОС как «полученные».</li>
+<li>Повреждённые пакеты также отбрасываются.</li>
+</ul>
+</li>
+<li><strong>Ad-hoc</strong> – однорагновые сети методологии точка-точка.</li>
+<li><strong>Repeater</strong> – перенаправляет пакеты между другими беспроводными узлами.</li>
+<li><strong>Secondary</strong> – выступает в качестве резервного мастера/повторителя.</li>
+<li><strong>Monitor mode</strong> (<strong>RFMON mode</strong>) – драйвер не фильтрует пакеты и передаёт всё, что улавливает антенна, в ОС. Пакеты с неверной контрольной суммой не отбрасываются и их можно видеть, к примеру, в <strong>Wireshark</strong>. В этом режиме мы можем напрямую работать с радио-частью, тоесть мы настраиваем её только на конкретную частоту, а дальше видим абсолютно все пакеты на радио-канале “как есть” и также можем туда слать абсолютно любые пакеты.
+<blockquote>
+<p>Обычно этот режим используется в дистрибутивах для пентеста (поиска уязвимостей и взлома сетей). Режим монитора зачастую доступен далеко не на всех адаптерах, для этого нужен специальный драйвер. В первую очередь это обусловлено безопасностью: чтобы не каждый человек мог засорить эфир и спровоцировать обрыв связи других клиентов.</p>
+</blockquote>
+</li>
+</ol>
+<p>Источники:</p>
+<ol>
+<li><a href="https://hackware.ru/?p=60">https://hackware.ru/?p=60</a></li>
+<li><a href="https://habr.com/en/post/225483/">https://habr.com/en/post/225483/</a></li>
+<li><a href="http://lazysolutions.blogspot.com/2008/10/difference-promiscuous-vs-monitor-mode.html">http://lazysolutions.blogspot.com/2008/10/difference-promiscuous-vs-monitor-mode.html</a></li>
+</ol>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/networks">networks</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

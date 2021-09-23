@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу структурировать в своей заметке.">
 <meta itemprop="datePublished" content="2020-04-16T02:14:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-04-16T02:14:00&#43;04:00" />
-<meta itemprop="wordCount" content="648">
+<meta itemprop="wordCount" content="728">
 
 
 
@@ -297,6 +297,30 @@ virt-configure</p>
 </ul>
 <h2 id="название-вкладки">Название вкладки</h2>
 <p><img src="./images/screenshot-2017-11-15-v-13.48.57.png" alt="image"></p>
+<h2 id="ros-переполнение-логов">ROS: Переполнение логов</h2>
+<p>Стандартная утилита для мониторинга и чистки <a href="http://wiki.ros.org/rosclean">http://wiki.ros.org/rosclean</a>
+<a href="https://answers.ros.org/question/258978/is-there-an-alternative-way-to-get-rid-of-ros-log-files/">https://answers.ros.org/question/258978/is-there-an-alternative-way-to-get-rid-of-ros-log-files/</a></p>
+<p><img src="./images/screenshot-2017-09-12-v-14.58.30.png" alt="image"></p>
+<p><img src="./images/screenshot-2017-09-12-v-16.13.44.png" alt="image"></p>
+<blockquote>
+<p>Переполнение логов 20 метров (то, что я сохранил)
+<a href="/posts/post-53/cecd58fa-972b-11e7-ad41-3974d4b0fb26.zip">.ros/log/cecd58fa-972b-11e7-ad41-3974d4b0fb26</a></p>
+</blockquote>
+<p>Скрипт очистки логов, если накопилось более 300MB</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">if [[ $(du -s .ros | awk &#39;{ print $1 }&#39;) -ge 300000 ]]; then yes | rosclean purge; echo &#34;urpylka: cleaned ros log&#34;; fi
+</code></pre></div><h2 id="утилита-logrotate">Утилита logrotate</h2>
+<ul>
+<li><a href="https://answers.ros.org/question/267503/log-rotation-in-ros/">https://answers.ros.org/question/267503/log-rotation-in-ros/</a></li>
+<li><a href="https://github.com/mikepurvis/ros-system-daemon/blob/master/debian/ros-system-daemon.ros.logrotate">https://github.com/mikepurvis/ros-system-daemon/blob/master/debian/ros-system-daemon.ros.logrotate</a></li>
+<li><a href="https://askubuntu.com/questions/847790/why-is-logrotate-not-running-automatically">https://askubuntu.com/questions/847790/why-is-logrotate-not-running-automatically</a></li>
+<li><a href="https://www.opennet.ru/base/sys/logrotate_howto.txt.html">https://www.opennet.ru/base/sys/logrotate_howto.txt.html</a></li>
+<li><a href="https://stackoverflow.com/questions/25485047/hourly-rotation-of-files-using-logrotate">https://stackoverflow.com/questions/25485047/hourly-rotation-of-files-using-logrotate</a></li>
+</ul>
+<h2 id="неразрывные-символы">Неразрывные символы</h2>
+<ul>
+<li><a href="https://unicode-table.com/ru/2011/">неразрыный дефис</a> «‑»</li>
+<li><a href="https://ru.wikipedia.org/wiki/%D0%9D%D0%B5%D1%80%D0%B0%D0%B7%D1%80%D1%8B%D0%B2%D0%BD%D1%8B%D0%B9_%D0%BF%D1%80%D0%BE%D0%B1%D0%B5%D0%BB">неразрывный пробел</a>. Неразрывные пробелы есть разной длины, « » – стандартный. Другие можно найти по ссылке.</li>
+</ul>
 
             </div>
 

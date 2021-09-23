@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>osi on urpylka</title>
+    <link>https://urpylka.com/tags/osi/</link>
+    <description>Recent content in osi on urpylka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Artem Smirnov</copyright>
+    <lastBuildDate>Thu, 23 Sep 2021 17:39:00 +0400</lastBuildDate>
+    
+	<atom:link href="https://urpylka.com/tags/osi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Эталонная модель OSI</title>
+      <link>https://urpylka.com/posts/post-39/</link>
+      <pubDate>Thu, 23 Sep 2021 17:39:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-39/</guid>
+      <description>Часто в проектах которыми я занимаюсь приходится оперировать и обсуждать уровнями модели OSI. Для унификации знаний на эту тему подготовил эту статью. Основным источником для неё послужила статья с pcradar.ru, а я лишь добавил немного информации и причесал оформление.
+Для согласования работы устройств сети от разных производителей, обеспечения взаимодействия сетей, которые используют различную среду распространения сигнала создана эталонная модель взаимодействия открытых систем (сетевая модель OSI).
+Эталонная модель построена по иерархическому принципу.</description>
+    </item>
+    
+  </channel>
+</rss>

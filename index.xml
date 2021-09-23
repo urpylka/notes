@@ -7,10 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 23 Sep 2021 17:18:00 +0400</lastBuildDate>
+    <lastBuildDate>Thu, 23 Sep 2021 17:58:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров</title>
+      <link>https://urpylka.com/posts/post-40/</link>
+      <pubDate>Thu, 23 Sep 2021 17:58:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-40/</guid>
+      <description>Общая теория IEEE 802.11 IEEE 802.11 — набор стандартов связи для коммуникации в беспроводной локальной сетевой зоне частотных диапазонов 0,9; 2,4; 3,6; 5 и 60 ГГц. Больше на wiki.
+Пользователям более известен по названию Wi-Fi, фактически являющемуся брендом, предложенным и продвигаемым организацией Wi-Fi Alliance.
+В стандарте IEEE 802.11 определены два способа организации сети:
+ Инфраструктурный (Infrastructure); Независимый (Independent), часто также называемый одноранговым (Ad-Hoc).  В инфраструктурном режиме функции координации передачи данных выполняет специальный выделенный узел, точка доступа (ТД, Access Point, АР).</description>
+    </item>
+    
+    <item>
+      <title>Эталонная модель OSI</title>
+      <link>https://urpylka.com/posts/post-39/</link>
+      <pubDate>Thu, 23 Sep 2021 17:39:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-39/</guid>
+      <description>Часто в проектах которыми я занимаюсь приходится оперировать и обсуждать уровнями модели OSI. Для унификации знаний на эту тему подготовил эту статью. Основным источником для неё послужила статья с pcradar.ru, а я лишь добавил немного информации и причесал оформление.
+Для согласования работы устройств сети от разных производителей, обеспечения взаимодействия сетей, которые используют различную среду распространения сигнала создана эталонная модель взаимодействия открытых систем (сетевая модель OSI).
+Эталонная модель построена по иерархическому принципу.</description>
+    </item>
     
     <item>
       <title>Аппаратные интерфейсы Raspberry Pi</title>
