@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Terminal: Команды на заметку - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Terminal: Команды на заметку">
+<meta itemprop="description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу структурировать в своей заметке.">
+<meta itemprop="datePublished" content="2020-04-16T02:14:00&#43;04:00" />
+<meta itemprop="dateModified" content="2020-04-16T02:14:00&#43;04:00" />
+<meta itemprop="wordCount" content="648">
+
+
+
+<meta itemprop="keywords" content="ru,programming,bash," /><meta property="og:title" content="Terminal: Команды на заметку" />
+<meta property="og:description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу структурировать в своей заметке." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-45/" />
+<meta property="article:published_time" content="2020-04-16T02:14:00+04:00" />
+<meta property="article:modified_time" content="2020-04-16T02:14:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Terminal: Команды на заметку"/>
+<meta name="twitter:description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу структурировать в своей заметке."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">16</span>
+                        <span class="rest">Apr 2020</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Terminal: Команды на заметку</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>У меня накопилось достаточно большое количество переодически гуглящихся вещей, которые хочу структурировать в этой заметке. Заметка будет обновлена.</p>
+<h2 id="bash-перенаправления-и-pipe">Bash: перенаправления и pipe</h2>
+<p><code>|</code> - передача аргумента<br>
+<code>&gt;</code> – передача вывода команды в новый файл или перезапись существующего файла<br>
+<code>&gt;&gt;</code> - передача вывода команды в новый файл или дозапись с конца</p>
+<p>Стандартный вывод команды происходит с числом <code>1</code>, вывод ошибок с числом <code>2</code>. Выводы перенаправлять в разные файлы отдельно.</p>
+<p><code>2&gt;&amp;1</code> – перенаправляет вывод ошибки на стандартный вывод, поэтому они появляются вместе и могут быть совместно перенаправлены в файл.<br>
+<code>2&gt;1</code> – перенаправит вывод ошибки в файл с именем <code>1</code>, а не в стандартный вывод <code>1</code>.</p>
+<p>Источники:</p>
+<ul>
+<li><a href="https://unix.stackexchange.com/questions/89386/what-is-symbol-and-in-unix-linux">unix.stackexchange.com</a></li>
+<li><a href="https://www.linux.org.ru/forum/general/13119156">linux.org.ru</a></li>
+</ul>
+<h2 id="параллельно-исполнение-в-bash">Параллельно исполнение в Bash</h2>
+<p>Источники:</p>
+<ul>
+<li><a href="http://user.hashcode.ru/questions/4573/bash-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE-%D0%BB%D0%B8-%D0%B2-linux-%D0%BF%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-sh-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B0">user.hashcode.ru</a></li>
+<li><a href="https://mnorin.com/parallelnoe-vypolnenie-v-bash.html">mnorin.com</a></li>
+</ul>
+<h2 id="полезные-ссылки">Полезные ссылки</h2>
+<ul>
+<li>Изменение значения окружения указывающей на разделение списка <a href="http://www.f-notes.info/linux:bash_lists">f-notes.info/linux:bash_lists</a></li>
+<li>Хороший справочник по встроенным командам bash <a href="https://losst.ru/osnovnye-komandy-bash">losst.ru/osnovnye-komandy-bash</a></li>
+<li>bash awk <a href="https://habrahabr.ru/company/ruvds/blog/327754/">habr.ru/company/ruvds/blog/327754/</a></li>
+<li>bash uniq (удаление повторов строк) <a href="https://www.linux.org.ru/forum/general/7476629">linux.org.ru/forum/general/7476629</a></li>
+</ul>
+<h2 id="вывод-echo-r">Вывод echo \r</h2>
+<ul>
+<li><a href="https://losst.ru/komanda-echo-v-linux">https://losst.ru/komanda-echo-v-linux</a></li>
+</ul>
+<h2 id="отладка-программ">Отладка программ</h2>
+<ul>
+<li>strace - системные вызовы</li>
+<li>ltrace - трейсить вызовы из SO</li>
+<li>ldd - посмотреть зависимые библиотеки</li>
+</ul>
+<p>Посмотреть какому пакету принадлежит файл</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo dpkg -S FILE
+</code></pre></div><p>Посмотреть какие файлы принадлежат пакету</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo dpkg -L ros-kinetic-catkin
+</code></pre></div><h2 id="vscode">VSCODE</h2>
+<p><code>CMD + /</code> - комментирование</p>
+<h2 id="удаление-любых-программ-на-macos">Удаление любых программ на macos</h2>
+<p><a href="https://geektimes.ru/post/297121/">geektimes.ru/post/297121/</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir /Applications/*.app/Contents/_MASReceipt &amp;&amp; sudo touch /Applications/*.app/Contents/_MASReceipt/receipt
+</code></pre></div><p><a href="https://lifehacker.ru/2015/10/06/chto-takoe-system-integrity-protection-v-os-x-el-capitan-i-kak-ee-otklyuchit/">lifehacker.ru/2015/10/06/chto-takoe-system-integrity-protection-v-os-x-el-capitan-i-kak-ee-otklyuchit/</a></p>
+<p><a href="https://support.apple.com/en-us/HT204899">support.apple.com/en-us/HT204899</a></p>
+<p>Sounds like it could be <a href="https://support.apple.com/kb/HT204899">System Integrity Protection</a>? Make sure it&rsquo;s disabled before you mess around with system files.</p>
+<p>To disable it, restart in recovery mode (hold ⌘+R), open Terminal, and use this command:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">csrutil disable
+</code></pre></div><h2 id="resize-volume-on-macos">Resize volume on macos</h2>
+<ul>
+<li><a href="https://apple.stackexchange.com/questions/197640/diskutil-resizevolume-noob">apple.stackexchange.com/questions/197640/diskutil-resizevolume-noob</a></li>
+<li><a href="https://www.macworld.com/article/1055274/software-utilities/marchgeekfactor.html">www.macworld.com/article/1055274/software-utilities/marchgeekfactor.html</a></li>
+</ul>
+<h2 id="losetup-macos">losetup macos</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hdiutil attach build_server_backup.img
+</code></pre></div><p><a href="https://ctrld.me/blog/2009/10/03/rabotaem-s-obrazami-diskov-v-terminal-app-hdiutil/">ctrld.me/blog/2009/10/03/rabotaem-s-obrazami-diskov-v-terminal-app-hdiutil/</a></p>
+<h2 id="проверка-версии-raspbian">Проверка версии Raspbian</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsb_release -a
+</code></pre></div><p><img src="./images/screenshot-2017-09-01-v-1.54.17.png" alt="image"></p>
+<h2 id="монитрование-файловых-систем-ext2-ext3-ext4">Монитрование файловых систем ext2, ext3, ext4</h2>
+<ul>
+<li><a href="https://github.com/alperakcan/fuse-ext2">github.com/alperakcan/fuse-ext2</a></li>
+<li>brew ext <a href="https://github.com/gerard/ext4fuse">github.com/gerard/ext4fuse</a></li>
+</ul>
+<h2 id="установка-гостевой-штуки-для-virtualbox">Установка гостевой штуки для VirtualBox</h2>
+<p><code>/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get install dkms build-essential
+</code></pre></div><p>Настройка гостевой штуки <a href="https://serverfault.com/questions/674974/how-to-mount-a-virtualbox-shared-folder/674978">serverfault.com/questions/674974/how-to-mount-a-virtualbox-shared-folder/674978</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mount -t vboxsf share moint_poin
+</code></pre></div><h2 id="использования-мака-в-качестве-монитора">Использования мака в качестве монитора</h2>
+<p><a href="https://support.apple.com/en-us/ht204592">support.apple.com/en-us/ht204592</a></p>
+<h2 id="update-coda-license">Update Coda License</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo rm ~/Library/Preferences/com.panic.Coda2.plist
+</code></pre></div><p>Cron on macOS <a href="komandi-na-zametku.md">ole.michelsen.dk/blog/schedule-jobs-with-crontab-on-mac-osx.html</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">crontab -l
+0 12 * * *  rm /Users/smirart/Library/Preferences/com.panic.Coda2.plist
+</code></pre></div><h2 id="смена-ttl-на-macos">Смена TTL на macOS</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo sysctl -w net.inet.ip.ttl=65
+</code></pre></div><p>Скрипт для создания скрипта)))</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">echo &#34;#! /bin/bash&#34;
+&gt;
+ ch_ttl.sh
+echo &#34;sudo sysctl -w net.inet.ip.ttl=65&#34;
+&gt;
+&gt;
+ ch_ttl.sh
+chmod +x ch_ttl.sh
+</code></pre></div><h2 id="копирование-с-exclude">Копирование с exclude</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">rsync -av --progress * --exclude sakis_install.sh
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp -r * -i sakis_install.sh
+</code></pre></div><h2 id="работа-с-логами">Работа с логами</h2>
+<ul>
+<li>
+<p>выборка</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">grep &#39;Aug  8 16:&#39; aug8_daemon.log  &gt; aug8_16hour_daemon.log
+</code></pre></div></li>
+<li>
+<p>работа с grep <a href="komandi-na-zametku.md">admins.su/grep-nezamenimyj-instrument-linuksoida/</a></p>
+</li>
+</ul>
+<h2 id="logrotate-in-ros">Logrotate in ROS</h2>
+<ul>
+<li><a href="https://answers.ros.org/question/267503/log-rotation-in-ros/">answers.ros.org/question/267503/log-rotation-in-ros/</a></li>
+<li><a href="https://github.com/mikepurvis/ros-system-daemon/blob/master/debian/ros-system-daemon.ros.logrotate">github.com/mikepurvis/ros-system-daemon/blob/master/debian/ros-system-daemon.ros.logrotate</a></li>
+<li><a href="https://askubuntu.com/questions/847790/why-is-logrotate-not-running-automatically">askubuntu.com/questions/847790/why-is-logrotate-not-running-automatically</a></li>
+<li><a href="https://www.opennet.ru/base/sys/logrotate_howto.txt.html">www.opennet.ru/base/sys/logrotate_howto.txt.html</a></li>
+<li><a href="https://stackoverflow.com/questions/25485047/hourly-rotation-of-files-using-logrotate">stackoverflow.com/questions/25485047/hourly-rotation-of-files-using-logrotate</a></li>
+</ul>
+<h2 id="на-маке-что-исправлено">на маке что исправлено</h2>
+<ol>
+<li>сочетание клавишь для заметок на com+T для создания новой</li>
+<li>Настроить терминал: перемещение словами, перемещение в начало и конец строки</li>
+<li>Ctrl + k удаление строки в nano</li>
+<li>Поиск по истории bck-i-search (типа ctrl+i)</li>
+</ol>
+<h2 id="wireshark">Wireshark</h2>
+<p>мониторинг пакетов с помощью wireshark tcpdump</p>
+<p><img src="./images/screenshot-2017-09-20-v-15.00.27.png" alt="image"></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">ip.addr == 192.168.11.1 and udp and udp.port == 14550
+</code></pre></div><h2 id="поиск">Поиск</h2>
+<ul>
+<li>Поиск по содержимому grep <a href="https://losst.ru/gerp-poisk-vnutri-fajlov-v-linux">losst.ru/gerp-poisk-vnutri-fajlov-v-linux</a></li>
+<li>Поиск по файлам find <a href="https://losst.ru/komanda-find-v-linux">losst.ru/komanda-find-v-linux</a></li>
+</ul>
+<h2 id="дебиан-просто-так-не-завелся">Дебиан просто так не завелся</h2>
+<p>Добавление прав для выполнения sudo:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">usermod -a -G sudo artem
+</code></pre></div><p>Установление норм репы в<code>/etc/apt/sources.list</code></p>
+<h2 id="cкрин-окна-с-тенью-на-macos">Cкрин окна с тенью на macOS</h2>
+<p><code>cmd+shift+4+space</code></p>
+<h2 id="мощное-удаление-всего-что-можно">Мощное удаление всего что можно</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo apt-get remove lxde-common lxde-icon-theme omxplayer x11-common midori lxde python3 python3-minimal
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo apt-get remove $(sudo dpkg --get-selections | grep -v &#34;deinstall&#34; | grep x11 | sed s/install//)
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo apt-get remove $(sudo dpkg --get-selections | grep -v &#34;deinstall&#34; | grep audio | sed s/install//)
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo apt-get autoremove
+</code></pre></div><h2 id="откат-по-apt">Откат ПО apt</h2>
+<p><a href="https://system-admins.ru/kak-otkatit-obnovleniya-na-debian-ubuntu-linux-v-sluchae-problem/">system-admins.ru/kak-otkatit-obnovleniya-na-debian-ubuntu-linux-v-sluchae-problem/</a></p>
+<h2 id="работа-с-файловой-системой">Работа с файловой системой</h2>
+<ul>
+<li>Parted (аля fdisk) <a href="http://wiki.dieg.info/parted">http://wiki.dieg.info/parted</a></li>
+<li>форматирование с parted <a href="https://losst.ru/formatirovanie-diska-v-linux">losst.ru/formatirovanie-diska-v-linux</a></li>
+<li>Удаление разделов с исп. parted <a href="https://www.stableit.ru/2010/09/blog-post_06.html">www.stableit.ru/2010/09/blog-post_06.html</a></li>
+</ul>
+<p>Какой-то бред с использование mount, dd. Обратить внимание на status=WHICH.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mount /dev/sda1 /home/pi/flash
+sudo dd status=WHICH <span style="color:#00f">if</span>=/dev/sdb of=flash/urpylka_network.img bs=100M
+
+sudo dd status=progress <span style="color:#00f">if</span>=/dev/mmcblk0 of=&lt;filename&gt;.img bs=100M
+sudo dd status=progress <span style="color:#00f">if</span>=/dev/sdb of=/home/pi/flash/urpylka_network.img bs=100M
+
+sudo dd <span style="color:#00f">if</span>=/dev/sdc of=image_builder_20180515_v2_1.img bs=1M count=3065 status=progress
+</code></pre></div><p>Форматирование флешки в какую-то файловую систему:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkfs [options] [-t &lt;type&gt;] [fs-options] &lt;device&gt; [&lt;size&gt;]
+</code></pre></div><h3 id="резервирование-места-на-диске">Резервирование места на диске</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo tune2fs -m1 /dev/mmcblk0p2
+</code></pre></div><h3 id="настройка-сети-ubuntu-server">настройка сети ubuntu server</h3>
+<ul>
+<li><a href="https://losst.ru/nastrojka-seti-iz-konsoli-ubuntu">https://losst.ru/nastrojka-seti-iz-konsoli-ubuntu</a></li>
+<li><a href="https://theintobooks.wordpress.com/2016/03/03/installing-qemu-on-mac-os-x-el-capitan/">https://theintobooks.wordpress.com/2016/03/03/installing-qemu-on-mac-os-x-el-capitan/</a></li>
+</ul>
+<h3 id="очистить-history">очистить history</h3>
+<ul>
+<li><a href="https://askubuntu.com/questions/191999/how-to-clear-bash-history-completely">https://askubuntu.com/questions/191999/how-to-clear-bash-history-completely</a></li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /dev/null &gt; ~/.bash_history &amp;&amp; history -c &amp;&amp; exit
+</code></pre></div><h3 id="screen-in-chroot-getty-tty">screen in chroot (getty tty)</h3>
+<ul>
+<li><a href="https://stackoverflow.com/questions/19104894/screen-must-be-connected-to-a-terminal/25646444">https://stackoverflow.com/questions/19104894/screen-must-be-connected-to-a-terminal/25646444</a></li>
+</ul>
+<h2 id="unconfigure">unconfigure</h2>
+<p>virt-sysprep
+virt-configure</p>
+<h2 id="здесь-оставлю-ссылочки-на-заметки-по-работе-с-bash">Здесь оставлю ссылочки на заметки по работе с bash</h2>
+<ul>
+<li>Изменение значения окружения указывающей на разделение списка
+<a href="http://www.f-notes.info/linux:bash_lists">http://www.f-notes.info/linux:bash_lists</a></li>
+<li>Хороший справочник по встроенным командам bash
+<a href="https://losst.ru/osnovnye-komandy-bash">losst.ru/osnovnye-komandy-bash</a></li>
+</ul>
+<h2 id="название-вкладки">Название вкладки</h2>
+<p><img src="./images/screenshot-2017-11-15-v-13.48.57.png" alt="image"></p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/bash">bash</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
