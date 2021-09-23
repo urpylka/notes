@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>systemctl on urpylka</title>
+    <link>https://urpylka.com/tags/systemctl/</link>
+    <description>Recent content in systemctl on urpylka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Artem Smirnov</copyright>
+    <lastBuildDate>Thu, 16 Apr 2020 02:14:00 +0400</lastBuildDate>
+    
+	<atom:link href="https://urpylka.com/tags/systemctl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Управление службами в Linux (systemctl)</title>
+      <link>https://urpylka.com/posts/post-48/</link>
+      <pubDate>Thu, 16 Apr 2020 02:14:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-48/</guid>
+      <description>systemctl start SOME_SERVICE systemctl stop SOME_SERVICE systemctl enable SOME_SERVICE systemctl disable SOME_SERVICE journalctl -f -u SOME_SERVICE journalctl -u SOME_SERVICE --since=&amp;#34;2017-08-14 00:00:00&amp;#34; Чтобы добавить свой сервис, можно либо выполнить команду sudo systemctl enable &amp;lt;path-to-service-file&amp;gt; или, лучше, добавить его в директорию /etc/systemd/system/ с расширением .service. Также есть другие пути, подробнее ниже:
+Источники:
+ habr.ru власть над демонами habr.ru Уровни загрузки системы, как я понял апдейт рси как раз запихивает службы туды сюды habr.</description>
+    </item>
+    
+  </channel>
+</rss>
