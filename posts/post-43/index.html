@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Оперативная память с ECC - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Оперативная память с ECC">
+<meta itemprop="description" content="Что такое буферезированное ОЗУ с ECC и чем она отличается от обычной оперативной памяти используемой в компьютере.">
+<meta itemprop="datePublished" content="2013-02-08T22:41:00&#43;04:00" />
+<meta itemprop="dateModified" content="2013-02-08T22:41:00&#43;04:00" />
+<meta itemprop="wordCount" content="430">
+
+
+
+<meta itemprop="keywords" content="ru,programming,ram," /><meta property="og:title" content="Оперативная память с ECC" />
+<meta property="og:description" content="Что такое буферезированное ОЗУ с ECC и чем она отличается от обычной оперативной памяти используемой в компьютере." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-43/" />
+<meta property="article:published_time" content="2013-02-08T22:41:00+04:00" />
+<meta property="article:modified_time" content="2013-02-08T22:41:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Оперативная память с ECC"/>
+<meta name="twitter:description" content="Что такое буферезированное ОЗУ с ECC и чем она отличается от обычной оперативной памяти используемой в компьютере."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">08</span>
+                        <span class="rest">Feb 2013</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Оперативная память с ECC</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>В районе двух лет назад, столкнулся с интересным для себя открытием, при покупке комплектующих, мне в довесок досталась серверная память <code>Samsung M395T6553CZ4-CE61</code>. Мне стало интересно, чем она отличается от обычной ОЗУ, и я решил найти о ней информацию. Искать долго не пришлось, но среди источников не было ни одного, содержащего всё и сразу. Тогда я и написал эту заметку, в которой постарался объединить для себя всю полезную информацию.</p>
+<p><img src="./images/UmP_gBmHbE4.jpg" alt="image"></p>
+<p>Надо заметить, что ножки у неё смещены и вместо обычной DDR2 её не вставишь.</p>
+<p>Для начала есть два основных отличия этой памяти от обычной:</p>
+<ol>
+<li>Это ригистровая или буфферизированная память</li>
+<li>Эта память с поддержкой ECC</li>
+</ol>
+<p>Я не стану писать, что такое буфферизированная память, тк есть <a href="https://club.dns-shop.ru/blog/t-103-operativnaya-pamyat/37557-chto-takoe-registrovaya-rdimm-pamyat-i-zachem-nujen-ecc/">отличная статья</a> объясняющая это.</p>
+<p><strong>ECC (error-correcting code)</strong> - технология, позволяющая проверять и исправлять данные при записи на носитель - ячейку оперативной памяти. Технология позволяет избавиться от одиночных ошибок, но при этом замедляет процесс копирования/записи данных. <strong>non-ECC</strong> - отсутствие таковой защиты.</p>
+<p>Отличие буферизованного оперативного запоминающего устройства от обычного ОЗУ: Обычно, оперативное запоминающее устройство с функцией EСC стоит в серверах, где важна надежность. А дома ставится без ЕСС, так как нужна скорость.</p>
+<p>Принцип действия:</p>
+<p>Работает буферизованная память таким образом: ширина шины обычной non-ECC памяти - 64 бита, а на память с ECC устанавливается 9-я микросхема, которая расширяет шину до 72 бит, то есть она хранит не бит, а байт четности. Эти лишние 8 бит, используют специальный алгоритм, который позволяет контролеру памяти исправлять на лету одиночные ошибки и обнаруживать двойные (тройные и более старшие) ошибки, при считывании каждого слова. Если находится более одной ошибки, то генерируется системная ошибка, а дальше по обстоятельствам.</p>
+<p>Пример алгоритма определения ошибок:</p>
+<p>Для битовых последовательностей данных определенной длины можно построить, так называемый, полный код радиуса 3 - код Шеннона  (если собственная память не глючит). Для байта количество контрольных бит кода Шеннона равно трём, для 8 байт (64 бит) - 8-ми. Поэтому, собственно, ECC-память 72-битная.</p>
+<p>ECC-память только предоставляет дополнительные 8 разрядов для хранения контрольной суммы, а сам алгоритм обнаружения и исправления ошибки реализуется на уровне северного моста – чипсета. Код радиуса 3 позволяет обнаружить не только сам факт наличия одиночной ошибки, но и бит, в котором она произошла. Соответственно, если известен бит с ошибкой, то его исправление есть просто инвертирование. Естественно, что в случае одновременной ошибки в двух битах контрольный байт будет указывать на двойную ошибку без возможности исправления, при трех и более неверных битах - будет содержать неверную информацию и результат исправления будет плачевен, но вероятность такого события крайне низка.</p>
+<p>Примечание:</p>
+<p>Если хотите подробно узнать о ECC и алгоритмах обнаружения ошибок, то возьмите любой учебник по дискретной математике, наверняка в нем отыщется раздел о кодах, исправляющих ошибки.</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/ram">ram</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2013  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
