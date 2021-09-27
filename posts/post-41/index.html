@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В этой заметке изложены некоторые особенности по настройке и работе с аппаратными интерфейсами Raspberry Pi.">
 <meta itemprop="datePublished" content="2021-09-23T17:18:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-09-23T17:18:00&#43;04:00" />
-<meta itemprop="wordCount" content="39">
+<meta itemprop="wordCount" content="225">
 
 
 
@@ -117,8 +117,58 @@ if (!doNotTrack) {
                 <p>Это страничка будет обновляться по мере того, как я буду использовать те или иные технологии. Заметка больше является моим справочником.</p>
 <h2 id="распиновка-gpio-разъёма">Распиновка GPIO разъёма</h2>
 <p><img src="./images/raspberrypi_gpio_layout_withopsoverlay.png" alt="image"></p>
-<h2 id="работа-с-i2c-на-raspberry-pi">Работа с I2C на Raspberry Pi</h2>
+<h2 id="работа-с-i2c">Работа с I2C</h2>
 <p>Хорошая статья про работу с I2C на Raspberry Pi <a href="http://web.archive.org/web/20180401055512/http://skpang.co.uk/blog/archives/575">skpang.co.uk/blog/archives/575</a>.</p>
+<h2 id="работа-с-сервоприводами">Работа с сервоприводами</h2>
+<p><code>pygpiod</code> и <code>spi</code></p>
+<h2 id="работа-с-ws2812b-sk6812">Работа с WS2812B SK6812</h2>
+<p>Принцип работы адресной светодиодной ленты заключается в последовательной передачи кодированных байт информации через светодиоды с определенным периодом. Соотвественно для управления такой лентой требуется кодирование и модуляция сигнала. Сделать это с помощью дерганья обычных GPIO невозможно. Однако, есть несколько вариантов управления умной лентой. Я попробовал пару: с помощью ШИМ и SPI.</p>
+<h3 id="способ-1-через-шим">Способ №1 через ШИМ</h3>
+<p>Библиотека для управления через ШИМ – <a href="https://github.com/DPOH-VAR/pi-strip-websocket">DPOH-VAR/pi-strip-websocket</a>. Использует <code>nodejs-websocket 1.4.1</code>, <code>rpi-ws281x-native 0.8.1</code>.</p>
+<p>Управление черезе WebSocket:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">ws = <span style="color:#00f">new</span> WebSocket(<span style="color:#a31515">&#34;ws://192.168.1.223:4440/LED3&#34;</span>)
+
+ws.onopen = <span style="color:#00f">function</span>(){
+setInterval(<span style="color:#00f">function</span>(){
+<span style="color:#00f">var</span> a = <span style="color:#00f">new</span> Uint8Array(357).fill(0, 0, 356).map(() =&gt; Math.random()*255);
+ws.send(a);
+},500)
+}
+
+ws.send(<span style="color:#00f">new</span> Uint8Array([255,100,100,100,255,100,255,255,255,255,100,100,0,255,255]));
+ws.send(<span style="color:#00f">new</span> Uint8Array([100,0,0,0,100,0,0,0,100,100,0,0,0,100,0]));
+ws.send(<span style="color:#00f">new</span> Uint8Array([255,255,255,255,255,255,255,255,255,255,255,255,255,255,255]));
+</code></pre></div><p>Подача радномного цвета на светодиоды:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">ws.onopen = <span style="color:#00f">function</span>(){
+	setInterval(<span style="color:#00f">function</span>(){
+		ws.send(<span style="color:#00f">new</span> Uint8Array([
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255,
+			Math.random()*255
+		]));
+	},500)
+}
+</code></pre></div><h3 id="способ-2-через-spi">Способ №2 через SPI</h3>
+<p>Для включения этого способа нужно включить SPI в raspi-config. Для коммутирования ленты используется вывод MOSI (GPIO10).</p>
+<p>Основная библиотека – <a href="https://github.com/joosteto/ws2812-spi">joosteto/ws2812-spi</a>, также она использует <a href="https://github.com/doceme/py-spidev">doceme/py-spidev</a>.</p>
+<h3 id="источники">Источники</h3>
+<ul>
+<li>основной источник по теории управления адресными лентами <a href="https://wp.josh.com/2014/05/13/ws2812-neopixels-are-not-so-finicky-once-you-get-to-know-them/">wp.josh.com</a></li>
+<li>информация о подключении различных видов светодиодных лент <a href="https://pikabu.ru/story/upravlenie_svetodiodnoy_lentoy_s_pomoshchyu_raspberry_pi_3864124">pikabu.ru</a></li>
+<li>о расчете применения SPI, ошибках и возможном количестве светодиодов <a href="https://m.pikabu.ru/story/upravlenie_svetodiodnoy_lentoy_na_raspberry_pi_cherez_websocket_3881519">pikabu.ru</a></li>
+</ul>
 
             </div>
 
