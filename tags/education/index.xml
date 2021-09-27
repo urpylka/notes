@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>education on urpylka</title>
+    <link>https://urpylka.com/tags/education/</link>
+    <description>Recent content in education on urpylka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Artem Smirnov</copyright>
+    <lastBuildDate>Wed, 20 Mar 2013 23:33:00 +0400</lastBuildDate>
+    
+	<atom:link href="https://urpylka.com/tags/education/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Список тем по линейной алгебре</title>
+      <link>https://urpylka.com/posts/post-50/</link>
+      <pubDate>Wed, 20 Mar 2013 23:33:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-50/</guid>
+      <description>Линейная алгебра – раздел алгебры, изучающий объекты линейной природы: векторные (или линейные) пространства, линейные отображения, системы линейных уравнений, среди основных инструментов, используемых в линейной алгебре — определители, матрицы, сопряжение. Подробнее на ru.wikipedia.org.
+В этой заметке сохранен список тем по предмету Линейная алгебра для специальности ФИИТ в СГАУ, в 2013 году 2 семестре. Преподаватель: Калядин Владимир Петрович.
+ Поверхности 2-го порядка 14.02.2013 Линейные пространства 19.02.2013 Линейная зависимость/независимость систем векторов Базис пространства 28.</description>
+    </item>
+    
+  </channel>
+</rss>
