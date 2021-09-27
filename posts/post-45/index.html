@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу структурировать в своей заметке.">
 <meta itemprop="datePublished" content="2020-04-16T02:14:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-04-16T02:14:00&#43;04:00" />
-<meta itemprop="wordCount" content="716">
+<meta itemprop="wordCount" content="638">
 
 
 
@@ -226,24 +226,6 @@ virt-configure</p>
 </blockquote>
 <p>Скрипт очистки логов, если накопилось более 300MB</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">if [[ $(du -s .ros | awk &#39;{ print $1 }&#39;) -ge 300000 ]]; then yes | rosclean purge; echo &#34;urpylka: cleaned ros log&#34;; fi
-</code></pre></div><h2 id="работа-с-файловой-системой">Работа с файловой системой</h2>
-<ul>
-<li>Parted (аля fdisk) <a href="http://wiki.dieg.info/parted">wiki.dieg.info/parted</a></li>
-<li>форматирование с parted <a href="https://losst.ru/formatirovanie-diska-v-linux">losst.ru/formatirovanie-diska-v-linux</a></li>
-<li>Удаление разделов с исп. parted <a href="https://www.stableit.ru/2010/09/blog-post_06.html">stableit.ru/2010/09/blog-post_06</a></li>
-</ul>
-<p>Какой-то бред с использование mount, dd. Обратить внимание на status=WHICH.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo mount /dev/sda1 /home/pi/flash
-sudo dd status=WHICH <span style="color:#00f">if</span>=/dev/sdb of=flash/urpylka_network.img bs=100M
-
-sudo dd status=progress <span style="color:#00f">if</span>=/dev/mmcblk0 of=&lt;filename&gt;.img bs=100M
-sudo dd status=progress <span style="color:#00f">if</span>=/dev/sdb of=/home/pi/flash/urpylka_network.img bs=100M
-
-sudo dd <span style="color:#00f">if</span>=/dev/sdc of=image_builder_20180515_v2_1.img bs=1M count=3065 status=progress
-</code></pre></div><p>Форматирование флешки в какую-то файловую систему:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkfs [options] [-t &lt;type&gt;] [fs-options] &lt;device&gt; [&lt;size&gt;]
-</code></pre></div><h3 id="резервирование-места-на-диске">Резервирование места на диске</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo tune2fs -m1 /dev/mmcblk0p2
 </code></pre></div><h2 id="macos">macOS</h2>
 <h3 id="удаление-любых-программ-на-macos">Удаление любых программ на macos</h3>
 <p><a href="https://geektimes.ru/post/297121/">geektimes.ru/post/297121/</a></p>
