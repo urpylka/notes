@@ -25,6 +25,17 @@
     </item>
     
     <item>
+      <title>Сборка драйвера rtl8812au для Raspberry Pi</title>
+      <link>https://urpylka.com/posts/post-53/</link>
+      <pubDate>Thu, 29 Apr 2021 00:19:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-53/</guid>
+      <description>В качестве драйвера rtl8812au я выбрал opensource реализацию под aircrack-ng:
+ https://github.com/aircrack-ng/rtl8812au https://github.com/svpcom/rtl8812au (форк первого)  Для сборки драйвера я написал небольшой скрипт make-rtl8812au.sh.
+#! /usr/bin/env bash  set -e # To get your kernel version use &amp;#39;uname -r&amp;#39; # Set this version in next variable LINUX_HEADERS=&amp;#34;4.19.97-v7+&amp;#34; apt install -y \  git \  dkms \  build-essential \  bc \  libelf-dev \  linux-headers-${LINUX_HEADERS} \  &amp;amp;&amp;amp; echo &amp;#34;Everything was installed!</description>
+    </item>
+    
+    <item>
       <title>Видеозахват на Raspberry Pi. Часть 1: Hardware</title>
       <link>https://urpylka.com/posts/post-17/</link>
       <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
