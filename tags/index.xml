@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 23 Sep 2021 17:58:00 +0400</lastBuildDate>
+    <lastBuildDate>Thu, 14 Oct 2021 12:24:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>3d</title>
+      <link>https://urpylka.com/tags/3d/</link>
+      <pubDate>Thu, 14 Oct 2021 12:24:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/3d/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>diy</title>
+      <link>https://urpylka.com/tags/diy/</link>
+      <pubDate>Thu, 14 Oct 2021 12:24:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Thu, 14 Oct 2021 12:24:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>network</title>
@@ -40,29 +67,11 @@
     </item>
     
     <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Thu, 23 Sep 2021 17:58:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>osi</title>
       <link>https://urpylka.com/tags/osi/</link>
       <pubDate>Thu, 23 Sep 2021 17:39:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/osi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>diy</title>
-      <link>https://urpylka.com/tags/diy/</link>
-      <pubDate>Thu, 23 Sep 2021 17:18:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/diy/</guid>
       <description></description>
     </item>
     
@@ -135,15 +144,6 @@
       <pubDate>Tue, 21 Sep 2021 16:22:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/esp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>3d</title>
-      <link>https://urpylka.com/tags/3d/</link>
-      <pubDate>Mon, 12 Apr 2021 01:28:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/3d/</guid>
       <description></description>
     </item>
     

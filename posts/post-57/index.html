@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Подключение BTT Smart Filament Sensor к SKR v1.3 - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Подключение BTT Smart Filament Sensor к SKR v1.3">
+<meta itemprop="description" content="В статье изложено как подключить датчик и пересобрать прошивку Marlin 2 для платы SKR v1.3">
+<meta itemprop="datePublished" content="2021-10-14T12:24:00&#43;04:00" />
+<meta itemprop="dateModified" content="2021-10-14T12:24:00&#43;04:00" />
+<meta itemprop="wordCount" content="463">
+
+
+
+<meta itemprop="keywords" content="ru,diy,3d," /><meta property="og:title" content="Подключение BTT Smart Filament Sensor к SKR v1.3" />
+<meta property="og:description" content="В статье изложено как подключить датчик и пересобрать прошивку Marlin 2 для платы SKR v1.3" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-57/" />
+<meta property="article:published_time" content="2021-10-14T12:24:00+04:00" />
+<meta property="article:modified_time" content="2021-10-14T12:24:00+04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Подключение BTT Smart Filament Sensor к SKR v1.3"/>
+<meta name="twitter:description" content="В статье изложено как подключить датчик и пересобрать прошивку Marlin 2 для платы SKR v1.3"/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">14</span>
+                        <span class="rest">Oct 2021</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Подключение BTT Smart Filament Sensor к SKR v1.3</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Привет. Уже давно, при печати больших изделий, начал испытвать потребность в датчике, который сигнализировал бы о том, что печать пластик закончился и нужно притормозить печать и сменить катушку. Такие датчики делятся на два вида: <strong>простой</strong> (кнопка которая нажимается прутком) и <strong>умный</strong>. В умом идёт детекция того, что пластик двигается. Это важный момент тк:</p>
+<ol>
+<li>Позволяет детектировать застревание пластика в экструдере;</li>
+<li>В случае использовании боудена размещать датчик после фидера (как в моём случае).</li>
+</ol>
+<p>В этом году я наконец купил датчик филамента, и все никак не мог подключить его. Одной из причин этому было отсутствие информации как это сделать.</p>
+<p>И хотя одним из первых ответов в поисковике выдается статья на сайте <a href="https://www.makenprint.uk/3d-printing/3d-printing-guides/skr-v1-3-filament-runout-sensor/">makenprint.uk</a>, из-за отвратительной рекламы пронизывающей сам текст, дизайна сайта и стиля повествования автора, статья вышла нечитаемой. Плюс, для многих русскоязычных, английский может стать барьером, поэтому я решил описать это всё у себя в блоге. А заодно проверить на практике.</p>
+<h2 id="подключение">Подключение</h2>
+<p>Я купил датчик <code>Smart Filament Sensor</code> от компании <code>Bigtreetech</code> (<code>BTT</code>). Вместе с датчиков поставляется провод, которого мне хватило для прокладке в гофре от хотэнда. Также провод сразу обжат под разъём концевика в плате <code>BTT SKR v1.3</code>. Как раз такая плата установлена в моём принетере <code>UltiSteel</code>.</p>
+<p><img src="./images/IMG_0050.jpg" alt="image"></p>
+<blockquote>
+<p>Учитываете распиновку на вашей плате, и при необходимости поменяйте местами пины на проводе от датчика. Для этого чем-то тонким зажмите ключ, что держит контакт в разъёме и вытащите его для замены.</p>
+</blockquote>
+<p>На моёй плате подключены концевики в разъёмы: <code>X_MIN_PIN</code>, <code>Y_MIN_PIN</code>, <code>Z_MIN_PIN</code>. А все положительные – свободны.</p>
+<p><img src="./images/IMG_9845.jpg" alt="image"></p>
+<p>Я как и автор оригинальной статьи предлагаю использовать <code>Z_MAX_PIN</code> хотя на самом деле вы можете выбрать и любой другой. Главное указать это в настройках <code>Marlin 2</code>. Для этого необходимо найти файл конфигурации платы, например для <code>SKR v1.3</code> это будет файл <code>pins/pins_BIGTREE_SKR_V1.3.h</code>. И в этой файле найти следующие строки.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">X_MIN_PIN   P1_29
+X_MAX_PIN   P1_28
+Y_MIN_PIN   P1_27
+Y_MAX_PIN   P1_26
+Z_MIN_PIN   P1_25
+Z_MAX_PIN   P1_24
+</code></pre></div><p>Соотвествующее значение пина микроконтроллера к которому вы подключили датчик, прописать в этом же файле в секцию</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">ifndef FIL_RUNOUT_PIN
+define FIL_RUNOUT_PIN   P1_24  <span style="color:#008000">// Z_MAX_PIN
+</span><span style="color:#008000"></span>endif
+</code></pre></div><h2 id="включение-в-прошивке-датчика">Включение в прошивке датчика</h2>
+<p>После подключения разъёма и определения <code>FIL_RUNOUT_PIN</code> можно раскомментировать функцию использования датчика в прошивке. Для этого в файле <code>Configuration.h</code> раскомментируйте следующую секцию:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define FILAMENT_RUNOUT_SENSOR
+</span><span style="color:#00f">#if ENABLED(FILAMENT_RUNOUT_SENSOR)
+</span><span style="color:#00f"></span>    <span style="color:#00f">#define FIL_RUNOUT_ENABLED_DEFAULT true
+</span><span style="color:#00f"></span>    <span style="color:#00f">#define NUM_RUNOUT_SENSORS 1
+</span><span style="color:#00f"></span>    <span style="color:#00f">#define FIL_RUNOUT_STATE LOW
+</span><span style="color:#00f"></span>    <span style="color:#00f">#define FIL_RUNOUT_PULLUP
+</span><span style="color:#00f"></span>    <span style="color:#008000">// #define FIL_RUNOUT_PULLDOWN
+</span><span style="color:#008000"></span>
+    <span style="color:#00f">#define FILAMENT_RUNOUT_SCRIPT &#34;M600&#34;
+</span><span style="color:#00f"></span>
+    <span style="color:#008000">// If you use non-smart sensor comment this
+</span><span style="color:#008000"></span>    <span style="color:#00f">#define FILAMENT_RUNOUT_DISTANCE_MM 25
+</span><span style="color:#00f"></span>    <span style="color:#00f">#ifdef FILAMENT_RUNOUT_DISTANCE_MM
+</span><span style="color:#00f"></span>        <span style="color:#008000">// If you use non-smart sensor comment this
+</span><span style="color:#008000"></span>        <span style="color:#00f">#define FILAMENT_MOTION_SENSOR
+</span><span style="color:#00f"></span>    <span style="color:#00f">#endif
+</span><span style="color:#00f">#endif
+</span></code></pre></div><p>Настройки могут немного менять с разными версиями прошивки, поэтому я советую опираться на комменатарии и код именно в вашей версии прошивки.</p>
+<p>Далее необходимо настроить алгоритм который будет отрабатывать срабатывание датчика. Для этого необходимо открыть файл <code>Configuration_adv.h</code> и раскомментировать секцию <code>#define ADVANCED_PAUSE_FEATURE</code>. Эта секция содержит большое количество настроек, поэтому советую оставить их стандартный набор и менять что-то после тестов по необходимости.</p>
+<p>Собственно затем необходимо собрать прошивку и загрузить в МК.</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/diy">diy</a></li>
+                    
+                    <li><a href="/tags/3d">3d</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2021  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 23 Sep 2021 17:58:00 +0400</lastBuildDate>
+    <lastBuildDate>Thu, 14 Oct 2021 12:24:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Подключение BTT Smart Filament Sensor к SKR v1.3</title>
+      <link>https://urpylka.com/posts/post-57/</link>
+      <pubDate>Thu, 14 Oct 2021 12:24:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-57/</guid>
+      <description>Привет. Уже давно, при печати больших изделий, начал испытвать потребность в датчике, который сигнализировал бы о том, что печать пластик закончился и нужно притормозить печать и сменить катушку. Такие датчики делятся на два вида: простой (кнопка которая нажимается прутком) и умный. В умом идёт детекция того, что пластик двигается. Это важный момент тк:
+ Позволяет детектировать застревание пластика в экструдере; В случае использовании боудена размещать датчик после фидера (как в моём случае).</description>
+    </item>
     
     <item>
       <title>Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров</title>
