@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>python on urpylka</title>
-    <link>https://urpylka.com/tags/python/</link>
-    <description>Recent content in python on urpylka</description>
+    <title>prometheus on urpylka</title>
+    <link>https://urpylka.com/tags/prometheus/</link>
+    <description>Recent content in prometheus on urpylka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
     <lastBuildDate>Thu, 28 Oct 2021 19:28:00 +0400</lastBuildDate>
     
-	<atom:link href="https://urpylka.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://urpylka.com/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -27,17 +27,6 @@ import request request = requests.post(&amp;#34;http://localhost:9090/-/reload&a
 Bash example:
 # apt install psmisc killall -HUP prometheus # apt install procps kill -SIGHUP $(pgrep prometheus) Python example:
 hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;user ssh = paramiko.</description>
-    </item>
-    
-    <item>
-      <title>Cheatsheet: Python</title>
-      <link>https://urpylka.com/posts/post-9/</link>
-      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-9/</guid>
-      <description>Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite that I&amp;rsquo;ve seen it a lot of times, it just can&amp;rsquo;t fit in my head. So I wrote this article to get the information quickly.
-Basically it consist links to russian resources.
- os.path decorators strings regular expression queue, lock web, asyncio, aiohttp cycles, for, while by value / by path list cycle for list remove spaces in a string low register in a string  Serial monitor on Python import serial port = serial.</description>
     </item>
     
   </channel>

@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 14 Oct 2021 12:24:00 +0400</lastBuildDate>
+    <lastBuildDate>Thu, 28 Oct 2021 19:28:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>en</title>
+      <link>https://urpylka.com/tags/en/</link>
+      <pubDate>Thu, 28 Oct 2021 19:28:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/en/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://urpylka.com/tags/programming/</link>
+      <pubDate>Thu, 28 Oct 2021 19:28:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>prometheus</title>
+      <link>https://urpylka.com/tags/prometheus/</link>
+      <pubDate>Thu, 28 Oct 2021 19:28:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://urpylka.com/tags/python/</link>
+      <pubDate>Thu, 28 Oct 2021 19:28:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/tags/python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>3d</title>
@@ -54,15 +90,6 @@
       <pubDate>Thu, 23 Sep 2021 17:58:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/networks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://urpylka.com/tags/programming/</link>
-      <pubDate>Thu, 23 Sep 2021 17:58:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/programming/</guid>
       <description></description>
     </item>
     
@@ -225,15 +252,6 @@
       <pubDate>Mon, 04 Jan 2021 01:09:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/videostream/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>en</title>
-      <link>https://urpylka.com/tags/en/</link>
-      <pubDate>Sun, 03 Jan 2021 23:30:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/en/</guid>
       <description></description>
     </item>
     
@@ -522,15 +540,6 @@
       <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/cheatsheet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://urpylka.com/tags/python/</link>
-      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/python/</guid>
       <description></description>
     </item>
     

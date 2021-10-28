@@ -7,10 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 23 Sep 2021 17:58:00 +0400</lastBuildDate>
+    <lastBuildDate>Thu, 28 Oct 2021 19:28:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to reload Prometheus&#39;s configuration?</title>
+      <link>https://urpylka.com/posts/post-58/</link>
+      <pubDate>Thu, 28 Oct 2021 19:28:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-58/</guid>
+      <description>Hi! So, about prometheus configuration reloading on the fly.
+Prometheus has two options to do that:
+  Use Lifecycle API
+Bash example:
+curl -s -XPOST http://localhost:9090/-/reload Python example:
+import request request = requests.post(&amp;#34;http://localhost:9090/-/reload&amp;#34;) if request.status_code != 200: sys.exit(1)   Send HUP signal to Prometheus
+Bash example:
+# apt install psmisc killall -HUP prometheus # apt install procps kill -SIGHUP $(pgrep prometheus) Python example:
+hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;user ssh = paramiko.</description>
+    </item>
     
     <item>
       <title>Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров</title>
