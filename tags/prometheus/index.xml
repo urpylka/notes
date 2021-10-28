@@ -13,20 +13,15 @@
     
     
     <item>
-      <title>How to reload Prometheus&#39;s configuration?</title>
+      <title>How to update Prometheus&#39;s configuration?</title>
       <link>https://urpylka.com/posts/post-58/</link>
       <pubDate>Thu, 28 Oct 2021 19:28:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-58/</guid>
-      <description>Hi! So, about prometheus configuration reloading on the fly.
-Prometheus has two options to do that:
-  Use Lifecycle API
-Bash example:
-curl -s -XPOST http://localhost:9090/-/reload Python example:
-import request request = requests.post(&amp;#34;http://localhost:9090/-/reload&amp;#34;) if request.status_code != 200: sys.exit(1)   Send HUP signal to Prometheus
-Bash example:
-# apt install psmisc killall -HUP prometheus # apt install procps kill -SIGHUP $(pgrep prometheus) Python example:
-hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;user ssh = paramiko.</description>
+      <description>Hi! So, about prometheus configuration updating on the fly.
+Update configution file The one problem is the deleting configuration file and changing inode file data.
+Upload file to remote server and update conf file there:
+import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;user ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(hostname=hostname, username=username) sftp = ssh.open_sftp() # https://docs.paramiko.org/en/stable/api/sftp.html#paramiko.sftp_client.SFTPClient.file with sftp.file(target_file, &amp;#39;w+&amp;#39;) as output, open(local_file, &amp;#39;r&amp;#39;) as input: while True: try: buffer = input.read(5000) # 5KB if buffer == &amp;#39;&amp;#39;: print(&amp;#34;Uploading was finished&amp;#34;) break output.</description>
     </item>
     
   </channel>

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>How to reload Prometheus&#39;s configuration? - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>How to update Prometheus&#39;s configuration? - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
@@ -19,23 +19,23 @@
 	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="How to reload Prometheus&#39;s configuration?">
-<meta itemprop="description" content="Aggregated information about reloading prometheus configuration.">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="How to update Prometheus&#39;s configuration?">
+<meta itemprop="description" content="Aggregated information about updating prometheus configuration.">
 <meta itemprop="datePublished" content="2021-10-28T19:28:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-10-28T19:28:00&#43;04:00" />
-<meta itemprop="wordCount" content="87">
+<meta itemprop="wordCount" content="193">
 
 
 
-<meta itemprop="keywords" content="en,programming,python,prometheus," /><meta property="og:title" content="How to reload Prometheus&#39;s configuration?" />
-<meta property="og:description" content="Aggregated information about reloading prometheus configuration." />
+<meta itemprop="keywords" content="en,programming,python,prometheus," /><meta property="og:title" content="How to update Prometheus&#39;s configuration?" />
+<meta property="og:description" content="Aggregated information about updating prometheus configuration." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-58/" />
 <meta property="article:published_time" content="2021-10-28T19:28:00+04:00" />
 <meta property="article:modified_time" content="2021-10-28T19:28:00+04:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="How to reload Prometheus&#39;s configuration?"/>
-<meta name="twitter:description" content="Aggregated information about reloading prometheus configuration."/>
+<meta name="twitter:title" content="How to update Prometheus&#39;s configuration?"/>
+<meta name="twitter:description" content="Aggregated information about updating prometheus configuration."/>
 <link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
 	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
@@ -109,12 +109,46 @@ if (!doNotTrack) {
                 </div>
                 
                 <div class="matter">
-                    <h1 class="title">How to reload Prometheus&#39;s configuration?</h1>
+                    <h1 class="title">How to update Prometheus&#39;s configuration?</h1>
                 </div>
             </div>
 
             <div class="markdown">
-                <p>Hi! So, about prometheus configuration reloading on the fly.</p>
+                <p>Hi! So, about prometheus configuration updating on the fly.</p>
+<h2 id="update-configution-file">Update configution file</h2>
+<p>The one problem is the deleting configuration file and changing <code>inode</code> file data.</p>
+<p>Upload file to remote server and update conf file there:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">import</span> paramiko
+
+hostname = <span style="color:#a31515">&#34;example.com&#34;</span>
+username = <span style="color:#a31515">&#34;user</span>
+
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect(hostname=hostname, username=username)
+sftp = ssh.open_sftp()
+
+<span style="color:#008000"># https://docs.paramiko.org/en/stable/api/sftp.html#paramiko.sftp_client.SFTPClient.file</span>
+<span style="color:#00f">with</span> sftp.file(target_file, <span style="color:#a31515">&#39;w+&#39;</span>) <span style="color:#00f">as</span> output, open(local_file, <span style="color:#a31515">&#39;r&#39;</span>) <span style="color:#00f">as</span> input:
+    <span style="color:#00f">while</span> True:
+        <span style="color:#00f">try</span>:
+            buffer = input.read(5000) <span style="color:#008000"># 5KB</span>
+            <span style="color:#00f">if</span> buffer == <span style="color:#a31515">&#39;&#39;</span>:
+                <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;Uploading was finished&#34;</span>)
+                <span style="color:#00f">break</span>
+            output.write(buffer)
+        <span style="color:#00f">except</span> Exception <span style="color:#00f">as</span> ex:
+            <span style="color:#00f">print</span>(str(ex))
+            <span style="color:#00f">break</span>
+
+sftp.close()
+ssh.close()
+</code></pre></div><blockquote>
+<p>Using <code>sftp.put(local_file, target_file)</code> will cause deleting the file.</p>
+</blockquote>
+<p>Also you can use next bash construction:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat input_file &gt; target_file; rm input_file
+</code></pre></div><h2 id="reload-configuration">Reload configuration</h2>
 <p>Prometheus has two options to do that:</p>
 <ol>
 <li>
@@ -136,7 +170,10 @@ killall -HUP prometheus
 <span style="color:#008000"># apt install procps</span>
 kill -SIGHUP <span style="color:#00f">$(</span>pgrep prometheus<span style="color:#00f">)</span>
 </code></pre></div><p>Python example:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">hostname = <span style="color:#a31515">&#34;example.com&#34;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">import</span> paramiko
+<span style="color:#00f">import</span> time
+
+hostname = <span style="color:#a31515">&#34;example.com&#34;</span>
 username = <span style="color:#a31515">&#34;user</span>
 
 ssh = paramiko.SSHClient()
