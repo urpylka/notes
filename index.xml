@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 28 Oct 2021 19:28:00 +0400</lastBuildDate>
+    <lastBuildDate>Fri, 05 Nov 2021 23:36:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Видеозахват на Raspberry Pi. Часть 2: Software</title>
+      <link>https://urpylka.com/posts/post-59/</link>
+      <pubDate>Fri, 05 Nov 2021 23:36:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-59/</guid>
+      <description>Это вторая статья из серии про работу с видео-устройствами на Raspberry Pi. Если в первой статье я делал акцент на физические ограничения компьютера, то в этой я постараюсь описать общие принципы работы с видео-устройствами в плоскости софта. На это меня подтолкнуло собственное непонимание общей картины как стримится видео. И сколько я не читал статей, получалось всё хуже – сколько людей, столько и способов. Потратив кучу времени мне удалось структурировать знания и для того, чтобы моё время было потрачено не зря, а все знания не забылись через год, я и пишу эту статью.</description>
+    </item>
     
     <item>
       <title>How to update Prometheus&#39;s configuration?</title>
@@ -184,15 +193,6 @@ import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;use
       
       <guid>https://urpylka.com/posts/post-21/</guid>
       <description> Atl+D зависимая копия Shift+D независимая копия при перемещении можно делать по осям X Y Z, или исключить через shift окна в 3d view T - левое, N - правое ctrl+alt+shift+C - изменить координаты ctrl+P вложить объекты анимировать можно и лучше через emtpy object, вложив в него объекты shift+S курсор в центр (спасательный круг) shift+A создание тела X - удалить объект 3dview G - переместить R - вращать S - scale  </description>
-    </item>
-    
-    <item>
-      <title>Видеозахват на Raspberry Pi. Часть 2: Software</title>
-      <link>https://urpylka.com/posts/post-59/</link>
-      <pubDate>Thu, 07 Jan 2021 13:25:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-59/</guid>
-      <description>Это вторая статья из серии про работу с видео-устройствами на Raspberry Pi. Если в первой статье я делал акцент на физические ограничения компьютера, то в этой я постараюсь описать общие принципы работы с видео-устройствами в плоскости софта. На это меня подтолкнуло собственное непонимание общей картины как стримится видео. И сколько я не читал статей, получалось всё хуже – сколько людей, столько и способов. Потратив кучу времени мне удалось структурировать знания и для того, чтобы моё время было потрачено не зря, а все знания не забылись через год, я и пишу эту статью.</description>
     </item>
     
     <item>
