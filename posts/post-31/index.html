@@ -23,7 +23,7 @@
 <meta itemprop="description" content="После пересборки станка в него была установлена Arduino Uno c CNC Shield. Тк драйвера не стандартные типа A4988, возникли проблемы. В статье изложены возникшие проблемы и их решение, а также описания настроек Grbl.">
 <meta itemprop="datePublished" content="2021-05-06T20:15:01&#43;04:00" />
 <meta itemprop="dateModified" content="2021-05-06T20:15:01&#43;04:00" />
-<meta itemprop="wordCount" content="4662">
+<meta itemprop="wordCount" content="4683">
 
 
 
@@ -128,13 +128,13 @@ if (!doNotTrack) {
 <p>В плане выбора прошивок я рассматривал легкие opensource проекты. А в качестве контроллера изначально тыкнул пальцем в Arduino Uno просто потому что это самое дешевое и простое решение. И я хочу доказать, что даже оно на голову круче чем вариант со старым компом с LPT портом, который использовался на моем станке раньше.</p>
 <p>На 8-битный мк Atmega328p который используется в Arduino Uno самыми известными прошивками являются Marlin и Grbl. При этом Marlin давно разросся и начиная со второй версии уже не подходит на 8-битные мк. В тоже время Grbl поддерживается по сей день и является узким и производительным решением под 8-битный AVR контроллер.</p>
 <h2 id="установка">Установка</h2>
-<p>Проект Grbl раньше распологался в репозитории <a href="https://github.com/grbl/grbl">github.com/grbl/grbl</a>, но сейчас переехал в <a href="https://github.com/gnea/grbl">github.com/gnea/grbl</a>. Это обусловлено смещением фокуса на главный продукт – G-code парсер <a href="https://github.com/gnea/gnea">gnea</a>.</p>
+<p>Проект Grbl раньше распологался в репозитории <a href="https://github.com/grbl/grbl">github.com/grbl/grbl</a>, но сейчас переехал в <a href="https://github.com/gnea/grbl">github.com/gnea/grbl</a>. На сколько я понимаю, это обусловлено смещением фокуса на главный продукт – G-code парсер <a href="https://github.com/gnea/gnea">gnea</a>.</p>
 <p>Прошивку можно скачать из вкладки релизы в репозитории в виде hex-файла или собрать самому с помощью <code>Makefile</code>.</p>
 <p>Для загрузки на мк необходимо воспользоваться утилитой <code>avrdude</code> (не обязательно скачивать Arduino IDE). Чтобы вручную не вводить аргументы можно воспользоваться <code>Makefile</code> находящимся в репозитории:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make flash
 </code></pre></div><p>Данная команда исполняет следущую конструкцию:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c avrisp2 -P usb -p atmega328p -B 10 -F -U flash:w:grbl.hex:i
-</code></pre></div><p>При использовании этого метода необходим AVR программатор для загрузки прошивки по AVR ISP порту, это не всегда удобно ввиду отсуствия проргамматора. В этом случае можно воспользоваться встроенным в Arduino загрузчиком. Для прошивки таким способом достаточно иметь USB провод и саму плату Arduino. Это также позволяет удобнее загрузить скаченный hex-файл:</p>
+</code></pre></div><p>При использовании этого метода необходим AVR программатор для загрузки прошивки по AVR ISP порту, это не всегда удобно ввиду отсуствия проргамматора. В этом случае можно воспользоваться предустановленным в Arduino загрузчиком. Загрузчик это специальная программа записанная в память мк (работает аналогично BIOS), однако её может и не быть. Для прошивки таким способом достаточно иметь USB провод и саму плату Arduino. Это также позволяет удобнее загрузить скаченный hex-файл:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c arduino -p m328p -U flash:w:path/to/firmware.hex:i -P /dev/tty.usbserial-A804CL9D
 </code></pre></div><p>Где <code>path/to/firmware.hex</code> – путь к файлу прошивки, а <code>/dev/tty.usbserial-A804CL9D</code> – serial порт подключенной Arduino.</p>
 <h2 id="настройка-grbl">Настройка Grbl</h2>
