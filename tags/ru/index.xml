@@ -119,17 +119,6 @@
     </item>
     
     <item>
-      <title>Сборка драйвера rtl8812au для Raspberry Pi</title>
-      <link>https://urpylka.com/posts/post-53/</link>
-      <pubDate>Thu, 29 Apr 2021 00:19:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-53/</guid>
-      <description>В качестве драйвера rtl8812au я выбрал opensource реализацию под aircrack-ng:
- https://github.com/aircrack-ng/rtl8812au https://github.com/svpcom/rtl8812au (форк первого)  Для сборки драйвера я написал небольшой скрипт make-rtl8812au.sh.
-#! /usr/bin/env bash  set -e # To get your kernel version use &amp;#39;uname -r&amp;#39; # Set this version in next variable LINUX_HEADERS=&amp;#34;4.19.97-v7+&amp;#34; apt install -y \  git \  dkms \  build-essential \  bc \  libelf-dev \  linux-headers-${LINUX_HEADERS} \  &amp;amp;&amp;amp; echo &amp;#34;Everything was installed!</description>
-    </item>
-    
-    <item>
       <title>Калибровка экструдера 3D принтера на прошивке Marlin</title>
       <link>https://urpylka.com/posts/post-34/</link>
       <pubDate>Mon, 12 Apr 2021 01:28:00 +0400</pubDate>
@@ -146,10 +135,10 @@
       <pubDate>Tue, 30 Mar 2021 17:40:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-33/</guid>
-      <description>В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью.
-В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов.
-Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.
-Устройство сети Raspberry Pi OS Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
+      <description>В статье две части:
+ Устройство сети Raspberry Pi OS
+в которой описано базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
+в которой содержатся мои заметки о утилитах Linux для работы с сетью.  Устройство сети Raspberry Pi OS Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
     </item>
     
     <item>

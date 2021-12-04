@@ -131,17 +131,6 @@ import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;use
     </item>
     
     <item>
-      <title>Сборка драйвера rtl8812au для Raspberry Pi</title>
-      <link>https://urpylka.com/posts/post-53/</link>
-      <pubDate>Thu, 29 Apr 2021 00:19:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-53/</guid>
-      <description>В качестве драйвера rtl8812au я выбрал opensource реализацию под aircrack-ng:
- https://github.com/aircrack-ng/rtl8812au https://github.com/svpcom/rtl8812au (форк первого)  Для сборки драйвера я написал небольшой скрипт make-rtl8812au.sh.
-#! /usr/bin/env bash  set -e # To get your kernel version use &amp;#39;uname -r&amp;#39; # Set this version in next variable LINUX_HEADERS=&amp;#34;4.19.97-v7+&amp;#34; apt install -y \  git \  dkms \  build-essential \  bc \  libelf-dev \  linux-headers-${LINUX_HEADERS} \  &amp;amp;&amp;amp; echo &amp;#34;Everything was installed!</description>
-    </item>
-    
-    <item>
       <title>Калибровка экструдера 3D принтера на прошивке Marlin</title>
       <link>https://urpylka.com/posts/post-34/</link>
       <pubDate>Mon, 12 Apr 2021 01:28:00 +0400</pubDate>
@@ -158,10 +147,10 @@ import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;use
       <pubDate>Tue, 30 Mar 2021 17:40:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-33/</guid>
-      <description>В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью.
-В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов.
-Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.
-Устройство сети Raspberry Pi OS Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
+      <description>В статье две части:
+ Устройство сети Raspberry Pi OS
+в которой описано базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
+в которой содержатся мои заметки о утилитах Linux для работы с сетью.  Устройство сети Raspberry Pi OS Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
     </item>
     
     <item>
@@ -418,6 +407,15 @@ Basically it consist links to russian resources.
       <description>Пост носит характер заметки и изложения собственных мыслей на тему)
  Всю жизнь я куда-то стремлюсь, бегу. До сих пор не могу представить, как жить без цели и стремлений. Режим стагнации я ощущаю “под коркой” и схожу с ума.
 Я родился в Самаре, поступил на мой взгляд в лучший ВУЗ области, но на последних курсах уже понял, что магистратура — не моё. Большинство идёт туда с непониманием, что делать дальше.</description>
+    </item>
+    
+    <item>
+      <title>Система связи дрона и зарядной станции</title>
+      <link>https://urpylka.com/posts/post-38/</link>
+      <pubDate>Mon, 20 Apr 2020 12:12:00 +0000</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-38/</guid>
+      <description>Введение Я начал писать эту статью в апреле 2020 года. Однако вместо изложения того, чем я занимался, я начал копать вглубь и пытаться объяснить себе как правильно должна выглядеть разработанная система во всех ньансах. Как итог, потратя кучу усилий, и понял, что обрекаю себя на научно-исследовательскую работу. И это немного не соотвествует моей цели, а именно – закрепить все те знания, что я применял при разработке и внедрении робототехнических комплексов на прошлом месте работы.</description>
     </item>
     
     <item>

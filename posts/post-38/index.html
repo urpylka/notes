@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Система связи дрона и зарядной станции - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Система связи дрона и зарядной станции">
+<meta itemprop="description" content="Цель этой статьи закрепить все те знания, что я применял при разработке и внедрении робототехнических комплексов на прошлом месте работы.">
+<meta itemprop="datePublished" content="2020-04-20T12:12:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-12-05T01:10:00&#43;01:00" />
+<meta itemprop="wordCount" content="2904">
+
+
+
+<meta itemprop="keywords" content="" /><meta property="og:title" content="Система связи дрона и зарядной станции" />
+<meta property="og:description" content="Цель этой статьи закрепить все те знания, что я применял при разработке и внедрении робототехнических комплексов на прошлом месте работы." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-38/" />
+<meta property="article:published_time" content="2020-04-20T12:12:00+00:00" />
+<meta property="article:modified_time" content="2021-12-05T01:10:00+01:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Система связи дрона и зарядной станции"/>
+<meta name="twitter:description" content="Цель этой статьи закрепить все те знания, что я применял при разработке и внедрении робототехнических комплексов на прошлом месте работы."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">20</span>
+                        <span class="rest">Apr 2020</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Система связи дрона и зарядной станции</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <h2 id="введение">Введение</h2>
+<p>Я начал писать эту статью в апреле 2020 года. Однако вместо изложения того, чем я занимался, я начал копать вглубь и пытаться объяснить себе как правильно должна выглядеть разработанная система во всех ньансах. Как итог, потратя кучу усилий, и понял, что обрекаю себя на научно-исследовательскую работу. И это немного не соотвествует моей цели, а именно – закрепить все те знания, что я применял при разработке и внедрении робототехнических комплексов на прошлом месте работы.</p>
+<p>Теперь немного предыстории. В 2017 году, сразу после окончания университета, я устроился в компанию КоптерЭкспресс, ту самую которая делала доставку Додо-пиццы дронами. Компания занимается производством автономных мультикоптеров и имеет два основных направления:</p>
+<ol>
+<li>образовательная робототехника – продукт обучающего конструктора <a href="https://github.com/copterexpress/clover">Clover</a>;</li>
+<li>промышленная робототехника тут у компании целый ряд наработок среди которых дрон <a href="https://coex.tech/pelicanairdelivery">Pelican</a> с зарядной станцией.</li>
+</ol>
+<p>В 2018 году я перешел работать в дочернюю компанию Роснефти – Сибинтек. Моей задачей было соединить и запустить решения КоптерЭкспресс и внутреннего отдела ML для создания автономного комплекса по мониторингу нефтеразливов и охранному мониторингу (детекция людей и машин).</p>
+<p>Полученный комплекс должен был стать коробочным автономным решением устанавливаемым на объект. Где по расписанию проводить облёт объекта и выдавать отчет о событиях сотрудникам службы безопасности.</p>
+<p>Вместе с КоптерЭкспресс мы провели этап опытной эксплуатации под Горячим ключом в Краснодарском крае.</p>
+<p><img src="./images/6a3939cd776fecf78333e406957a2ebb99fdae4652018eccb5a288be06d8f6cd-1440x788.jpeg" alt="image"></p>
+<p>В 2019 году пришел этап апробации. Ввиду некоторых причин был выбран другой подрядчик – Тольяттинская компания Сокол. Это позволило обеспечить полный контроль применяемых средств, тк по сути всю разработку софта я вел самостоятельно.</p>
+<p>Об одном из решений, которое было разработано и применено, а также выявленные проблемы и дальнейшие идеи о развитии и станут основным материалом этой статьи.</p>
+<h2 id="постановка-задач">Постановка задач</h2>
+<p>В июне 2019 года мне сообщается, что у нас появился новый подрядчик и мне нужно ехать в командировку в Тольятти. Из интересного было то, что софт который был у компании совершенно не подходил под тот стек который мы собирались применять в наших решениях, что предлполагало написание всего с нуля.</p>
+<p>Для начала мы определили основные компоненты системы:</p>
+<ul>
+<li>дрон</li>
+<li>две камеры (ик-камера и цветная FullHD) на подвесе</li>
+<li>зарядная станция</li>
+<li>система связи (вышка с приёмо-передатчиком, обычно комбинируемая с метеостанцией и RTK GPS Base)</li>
+<li>сервер видеоаналитики (ML)</li>
+<li>внешний сервер для связи удаленных сегментов (Нижневартовск и Краснодар)</li>
+</ul>
+<p>Затем определили задачи по харду, а именно:</p>
+<ul>
+<li>собрать зарядные станции</li>
+<li>собрать дроны</li>
+<li>разработать наземный модуль системы связи</li>
+</ul>
+<p>Основными нововведениями при сборке станций были необходимость разработки системы поддержания температуры – климат контроль, и добавление инфракрасной метки и сервера видеоаналитики со свичом. А стороны дрона это внедрение дальномера, сенсора для посадки на инфракрасную метку и подвеса с двумя камерами. Также встал вопрос о том как соединять все компоненты с точки зрения сети.</p>
+<p>Задач по софту было больше, спасало то, что многое было уже реализовано. Вот основные задачи, которые столяли перед нами:</p>
+<ul>
+<li>научить дрон <strong>садиться на инфракрасную метку</strong> в режиме посадки в станцию</li>
+<li>научить дрон <strong>общаться со станцией</strong> (открывать, закрывать, проверять состояние)</li>
+<li>написать <strong>прошивку для зарядной станции</strong> и соединить это с остальными компонентами MAVLink системы</li>
+<li>разработать <strong>систему связи объединяющую дрон и зарядную станцию</strong> (обычный Wi-Fi не особо подходит)</li>
+<li>переделать <strong>драйвер для лазерного дальномера</strong> (поправить в нем ошибку с краевыми значениями расстояния)</li>
+<li>научиться <strong>делать много кадров с большой частотой с двух камер одновременно</strong> + производить трансляцию изображения в реальном времени, а также добавлять в контейнер изображений всю необходимую информацию в EXIF, управлять камерой с контроллера дрона</li>
+<li>настроить и соединить все компоненты друг с другом</li>
+<li>настроить <strong>на удаленном сервере VPN</strong> и организовать доступ к ней</li>
+<li>организовать <strong>передачу изображений с дрона на сервер видеоаналитики</strong></li>
+</ul>
+<p>На все у меня было 3 месяца, поэтому для помощи мне с задачами мы заключили договор с ещё одним специалистом, благодаря этому было:</p>
+<ol>
+<li>найдено и отлажение решение передачи изображений на сервер видеоаналитики;</li>
+<li>найдено решение для связи дрона и зарядной станции.</li>
+</ol>
+<p>Собственно о втором решении для связи дрона с зарядной станцией и пойдет речь дальше. Я считаю это очень интересной технологией которая позволяет получить неплохие показатели по дальности и ёмкости передачи информации с помощью гражданских средств.</p>
+<h2 id="система-связи-дрона-и-станции">Система связи дрона и станции</h2>
+<p><img src="./images/drones-solution.png" alt="image"></p>
+<p><strong>Сегментом</strong> на диаграмме является некоторая территория ограниченная возможной дальностью полета дрона от зарядной станции (туда-обратно, примем, что оно константно - тоесть независит от внешних условий). <strong>Зарядная станция</strong> (ЗС) – робототехническое сооружение для автономной зарядки и сохранения дрона/дронов.</p>
+<blockquote>
+<p>Зачастую, ввиду рельефа местности, используемого типа оборудования и высоты на которой устанавливается модуль связи, <em>связь между ЗС и дроном меньше радиуса сегмента</em>. Это обуславливается в первую очередь необходимостью прямой видимости. Например, в одном из наших первых тестов при нахождении модуля связи на высоте 2 метра, дальность сигнала достигала 400 метров; при расположении на высоте 30 метров – 1.6 км (в качестве полезной нагрузки передавалась HD картинка с битрейтом 30 кадров/сек).</p>
+</blockquote>
+<p>Теперь нужно сделать замечание которое испортит весь кайф. Данная схема является желаемой и не была реализована. Различия заключаются в том, что в дронах нет ретрансляции сигнала и соотвественно нет самоораганизуемой сети между всеми агентами (связь только до ближайших). Плюс даже, если два дрона летают рядом и они настроены на одну частоту передачи сигнала и ключи шифрования совпадают, то мы не использовали кейсы с их общением друг с другом.</p>
+<h3 id="выбор-канала-передачи-данных">Выбор канала передачи данных</h3>
+<p>Для того, чтобы определить какой канал передачи данных подойдет для использования, необходимо определить критерии для его организации. Начнем с типов передаваемых данных:</p>
+<ol>
+<li>Управляющие команды, телеметрия (<a href="https://mavlink.io/en/">MAVLink протокол</a>).</li>
+<li>Видео-поток, например упакованный с помощью <a href="https://ru.wikipedia.org/wiki/RTSP">RTSP протокола</a>. Не было использовано, однако в некоторых кейсах планировалось возможность прямой трансляции.</li>
+<li>IP-туннель (UDP протокол для работы по <code>SSH</code> и всего остального. Также у нас по <code>sftp</code> передавался отснятый на камеру материал).</li>
+</ol>
+<p><img src="./images/communication-diagram.drawio.svg" alt="image"></p>
+<p>Поскольку нам было нужно передавать такие тяжелые данные как отснятый материал или видеострим, первое что пришло на ум – обычный Wi-Fi (или по-другому семейство протоколов <a href="./ieee-802-11.pdf">IEEE 802.11 Infrastructure Network</a>) и мы взяли его за основу. Рассмотрим минусы при использовании этого семейства протоколов:</p>
+<ol>
+<li>Может неконтролируемо менять частоту, тип модуляции и ширину канала в зависимости от качества сигнала. В <a href="https://nag.ru/articles/reviews/104595/obzor-tehnologii-wi-fi.html">этой статье</a> изложена теория модуляции и схемы кодирования – <code>MCS</code> (<code>Modulation and Coding Scheme</code>).</li>
+<li>Клиенты не могут связываться друг с другом напрямую (топология сети &ldquo;звезда&rdquo;).</li>
+<li>При передаче <a href="https://ru.wikipedia.org/wiki/%D0%A8%D0%B8%D1%80%D0%BE%D0%BA%D0%BE%D0%B2%D0%B5%D1%89%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB">broadcast-сообщений</a> сообщения в радио-канале дублируются для каждого клиента. (Например, в RTK GPS (<a href="https://ru.wikipedia.org/wiki/Real_Time_Kinematic">ru.wikipedia.org</a>, <a href="https://ardupilot.org/rover/docs/common-here-plus-gps.html">ardupilot.org</a>), передача <code>RTCM</code> сообщений от Base к нескольким Rover). Прочитать больше про типы трафика в IP сетях вы сможете <a href="https://zametkinapolyah.ru/kompyuternye-seti/4-8-vidy-trafika-v-ip-setyax-unicast-broadcast-multicast-anycast-loopback-adresa-i-interfejsy.html">здесь</a>.</li>
+<li>Также полагаю, что любой пересылаемый по радио-каналу пакет (даже <code>UDP</code>) будет проходить процедуру гарантии доставки на канальном уровне IEEE 802.11 Infrastructure Networks. В случае передачи <a href="https://www.maxplant.ru/article/siemens_tutorial_28.php">time-based</a> команд или передачи потокового видео данная процедура будет вызывать задержки.
+<ul>
+<li>При потере пакета, нужно принимать следующий (тк время уже упущено).</li>
+<li>Если пакет передался с ошибкой, его нужно по возможности исправить или отбросить.</li>
+</ul>
+</li>
+</ol>
+<p>Исходя из этого мы решили, что будущая реализация протокола передачи данных должна сама настраивать адаптер на определенную частоту и видеть все пакеты, что есть в эфире (без авторизации), а также иметь возможность свободно отсылать собственные произвольные пакеты в эфир для чего можно перевести обычный Wi-Fi адаптер в режим <code>Monitoring</code>.</p>
+<p>К сожалению, драйвера с данным режимом работы написаны и открыты не для всех чипсетов, в связи с чем задача свелась к выбору подходящего по характеристикам чипсета и драйвера написанного для него под ARM-архитектуру. Эта работа уже была проделана и применялась как на прошлой работе, так и в сообществе.</p>
+<p>На момент написания статьи (29 августа 2019) самый распространенный Wi-Fi чипсет, обладающей достаточной мощностью, чувствительностью, распространенностью на гражданском бытовом рынке и поддержкой двух диапазонов сетей (2.4GHz и 5GHz) и, главное, свободно распространяемых драйверов являлся <strong><em>Realtek RTL8212AU.</em></strong></p>
+<p>На рынке представлено несколько неплохих с точки зрения реализации аппаратной части модемов на базе этого чипсета:</p>
+<ol>
+<li><a href="https://www.asus.com/ru/Networking-IoT-Servers/Adapters/All-series/USBAC56/">ASUS USB-AC56</a></li>
+<li>netis WF2190</li>
+<li>Alpha AWUS036ACH</li>
+<li>Alpha AWUS036AC</li>
+</ol>
+<p>В официальной сборке <a href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian OS</a> версии <code>February 2020</code> Wi-Fi драйвер при работе с чипсетом <code>rtl8812au</code> поддерживает только два режима: <code>Client AP</code> и <code>AP</code> (Access point). Поэтому для работы требуется другой драйвер, поддерживающего режим <code>Monitoring</code>, таких драйвером достаточно много и они выложены в открытом виде на Github:</p>
+<ol>
+<li><a href="https://github.com/gnab/rtl8812au">github.com/gnab/rtl8812au</a></li>
+<li><a href="https://github.com/sloretz/rtl8811au">github.com/sloretz/rtl8811au</a></li>
+<li><a href="https://github.com/abperiasamy/rtl8812AU_8821AU_linux">github.com/abperiasamy/rtl8812AU_8821AU_linux</a></li>
+<li><a href="https://github.com/svpcom/rtl8812au">github.com/svpcom/rtl8812au</a></li>
+<li><a href="https://github.com/aircrack-ng/rtl8812au">github.com/aircrack-ng/rtl8812au</a></li>
+</ol>
+<p>Я остановился на последнем варианте от разработчиков утилит для пентеста беспроводных сетей – <a href="https://aircrack-ng.org">Aircrack-ng</a>. Решение было проверено на теге <code>v5.2.20</code>.</p>
+<p>Однако, строго следуя описанию из репозитория, собрать драйвер под Raspberry Pi не получится. Проблема описана в <a href="https://github.com/respeaker/seeed-voicecard/issues/36">топике</a>. Дело в том, что для сборки модуля ядра (динамически подгружаемого драйвера через modprobe) требуются <a href="https://www.raspberrypi.org/documentation/linux/kernel/headers.md">заголовочные файлы ядра</a> ОС, а изначально они отсутствуют в образе, вместо этого используются <a href="https://github.com/raspberrypi/firmware">предкомпилированные файлы</a>. Проблема заключается в том, что нужно достать заголовочники именно для вашей версии ядра, а для того чтобы утилита <code>raspberrypi-kernel-headers</code> содержала исходники новой версии ядра требуется время (обычно несколько недель). Поэтому предлагается собрать свое ядро и скопировать его вместе с исходниками, подробнее описано на <a href="https://www.raspberrypi.org/documentation/linux/kernel/building.md">raspberrypi.org</a>.</p>
+<p>Также вы можете найти другую полезную информацию о ядре Raspbian в <a href="https://www.raspberrypi.org/documentation/linux/kernel/">основном разделе</a> документации Raspberry Foundation о ядре, в тч про <a href="https://www.raspberrypi.org/documentation/linux/kernel/patching.md">патчинг ядра</a>, также скачать исходники ядра в <a href="https://github.com/raspberrypi/linux">оффициальном репозитории</a> Raspberry Foundation.</p>
+<p>Сначала я попробовал собрать ядро из оф документации RPi, но в итоге прервал и исполнил <code>make prepare</code> как было написано в <a href="https://github.com/raspberrypi/linux/issues/1307">этом топике</a>. Затем я наткнулся на проекты <code>@Hexxeh</code> и <code>@notro</code> – эти проект содержат скрипты:</p>
+<ul>
+<li><code>rpi-update</code> (<a href="https://github.com/Hexxeh/rpi-update">github</a>) – для обновления файлов ядра (а точнее возможности установить предкомпилированное ядро определенных коммитов из форка официального репозитория <a href="https://github.com/Hexxeh/rpi-firmware">Hexxeh/rpi-firmware</a> и перемещаться между ними).</li>
+<li><code>rpi-source</code> (<a href="https://github.com/notro/rpi-source">github</a>) - для установки исходных файлов в том числе заголовочных на текущую прошивку, из <a href="https://github.com/Hexxeh/rpi-firmware">Hexxeh/rpi-firmware</a>. Подробнее про эту утилиту написано в <a href="https://github.com/notro/rpi-source/wiki">wiki на github</a>.</li>
+</ul>
+<p>Я обновил ядро с помощью <code>rpi-update</code> и обнаружил, что скрипт обновил ядро до <code>4.19.75-v7</code>.
+Затем я скачал исходники с помощью <code>rpi-source</code> и, сопоставив коммиты в <a href="https://github.com/raspberrypi/linux">официальной репе</a> и в <a href="https://github.com/Hexxeh/rpi-firmware">репозитории проекта Hexxeh</a>, я нашел пару коммитов указывающих на версию ядра <code>4.19.75-v7</code>, это был коммит <a href="https://github.com/raspberrypi/linux/commit/642e12d892e694214e387208ebd9feb4a654d287">pinctrl: bcm2835: Add support for BCM2711 pull-up functionality</a>.</p>
+<p>После чего можно собрать драйвер и установить его в систему, для этого я написал небольшой скрипт:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#! /usr/bin/env bash
+</span><span style="color:#00f"></span>
+set -e
+
+<span style="color:#008000"># To get your kernel version use &#39;uname -r&#39;</span>
+<span style="color:#008000"># Set this version in next variable</span>
+LINUX_HEADERS=<span style="color:#a31515">&#34;4.19.97-v7+&#34;</span>
+
+apt install -y <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    git <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    dkms <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    build-essential <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    bc <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    libelf-dev <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    linux-headers-<span style="color:#a31515">${</span>LINUX_HEADERS<span style="color:#a31515">}</span> <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    &amp;&amp; echo <span style="color:#a31515">&#34;Everything was installed!&#34;</span> <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    || (echo <span style="color:#a31515">&#34;Some packages wasn&#39;t installed!&#34;</span>; exit 1)
+
+cd /root
+git clone https://github.com/aircrack-ng/rtl8812au -b v5.2.20
+cd rtl8812au
+
+wget <span style="color:#a31515">&#34;https://raw.githubusercontent.com/notro/rpi-source/master/rpi-source&#34;</span> -O /usr/bin/rpi-source
+chmod 755 /usr/bin/rpi-source
+
+<span style="color:#008000"># Check what MCU installed on your Raspberry Pi</span>
+<span style="color:#008000"># PROCESSOR_TYPES_NAMES = [1=&#39;BCM2835&#39;, 2=&#39;BCM2836&#39;, 3=&#39;BCM2837&#39;, 4=&#39;BCM2711&#39;]</span>
+rpi-source --processor 3
+
+sed -i <span style="color:#a31515">&#39;s/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g&#39;</span> Makefile
+sed -i <span style="color:#a31515">&#39;s/CONFIG_PLATFORM_ARM64_RPI = n/CONFIG_PLATFORM_ARM64_RPI = y/g&#39;</span> Makefile
+
+make
+make install
+
+./dkms-install.sh
+</code></pre></div><p>Для увеличения мощности передатчика (использования максимальной возможной мощности) есть <a href="https://github.com/svpcom/wifibroadcast/wiki/Kernel-patches">ряд интрукций</a>, также описанных Василием Евсеенко. И следующая команда:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo iw wlan1 set txpower fixed 4000
+</code></pre></div><h3 id="wi-fi-broadcast">Wi-Fi broadcast</h3>
+<p>После выбора модема и установки драйвера, необходимо реализовать передачу данных. Для этого необходим некоторый софт. Который бы работал модемом и позволял кодировать и шифровать передаваемую информацию, а также предоставлял некоторый интерфейс для работы с данными. Есть несколько проектов для дронов включающих в себя еще и драйвер. Обычно они поставляются как образ для Raspberry Pi:</p>
+<ol>
+<li><a href="https://github.com/HD-Fpv/Open.HD">Open.HD</a> + <a href="https://github.com/HD-Fpv/Open.HD_Image_Builder">Image Builder</a></li>
+<li><a href="https://github.com/rodizio1/EZ-WifiBroadcast">EZ-WifiBroadcast</a></li>
+<li><a href="https://github.com/seeul8er/DroneBridge">DroneBridge</a></li>
+</ol>
+<p>Однако все эти решения заточены:</p>
+<ol>
+<li>Под использование преднастроенного образа с их софтом. Что не подходит по концепции поставки приложения.</li>
+<li>Для передачи MAVLink телеметрии, видео-потока, что не может не огорчать, ведь область применения этой технологии мб куда шире, например передача файлов или подключение по SSH к удаленной системе. Необходим некоторый уровень абстракции – реализация UDP.</li>
+</ol>
+<p>Позже был найден проект – <a href="https://github.com/svpcom/wifibroadcast">svpcom/wifibroadcast</a>, предлагаю с ним и ознакомиться. Также он описан в проекте <a href="http://dev.px4.io">dev.px4.io</a> – <a href="https://dev.px4.io/v1.9.0/en/qgc/video_streaming_wifi_broadcast.html">Long-distance Video Streaming</a>.</p>
+<p><a href="https://github.com/svpcom/wifibroadcast">svpcom/wifibroadcast</a> (WFB) – реализация ПО для передачи UDP, MAVLink, RTP пакетов с использованием Wi-Fi адапатеров. Данные с endpoint'ов поступают в виде байтового потока, затем шифруются с помощью библиотеки <a href="https://doc.libsodium.org">libsodium</a> и передаются с использованиаем алгоритма корректировки ошибок <code>FEC</code> (forward error correction).</p>
+<p>Для каждого endpoint'а используется отдельные настройки <code>FEC</code>. Эти настройки подбираются исходя из приоретета скорости передачи данных над надежностью передачи данных. Также для каждого endpoint'а может использоваться как двухсторонний канал связи так и односторонний (например используемый при передачи RTP пакетов). Подробную информацию можно найти в <a href="https://github.com/svpcom/wifibroadcast/issues/41">этой ветке обсуждения</a>.</p>
+<p>Wiki по сборке и настройки <code>WFB</code>:</p>
+<ul>
+<li><a href="https://github.com/svpcom/wifibroadcast/wiki/Install-from-scratch">https://github.com/svpcom/wifibroadcast/wiki/Install-from-scratch</a></li>
+<li><a href="https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO">https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO</a></li>
+</ul>
+<h2 id="архитектура-сети-комплекса">Архитектура сети комплекса</h2>
+<p>На этом этапе мы решили задачу по передачи информации между дроном и зарядной станцией. Далее необходимо построить спроектировать и настроить сеть связующую все части комплекса.</p>
+<p>Для начала стоит сказать, что мы решили вынести из станции телекоммуникационный модуль – что-то вроде домашнего роутера, только еще с поддержкой WFB и cmavnode на борту. cmavnode – программа для маршрутизации MAVLink сообщений поверх UDP.</p>
+<p><img src="./images/network-digram.drawio.svg" alt="image"></p>
+<blockquote>
+<p>На схеме не отображены не значимые преобразователи напряжения, разъёмы и антенны. Также на схеме отсуствует используемый на дронах вспомогательный контроллер для обработки изображений со второй камеры, тк при испытаниях оказалось, что драйвер V4L2 не поддерживает одновременный видозахват с двух USB камер.</p>
+</blockquote>
+<p>Все сети я разделю на несколько групп:</p>
+<ol>
+<li><code>Сервисная сеть</code> – локальная сеть которая объединяет наземные компоненты: <strong>зарядная станция</strong>, <strong>сервер видеоаналитики</strong>, <strong>телекоммуникационный модуль</strong>. Также к этой сети можно подключить оператора с ПК и получить доступ к дронам через <code>IPoverWFB</code>. Роутером данной сети является телекоммуникационный модуль. Данная сеть может быть развернута с помощью витой пары, Wi-Fi, оптического канала (через конвертор подключенный к Ethernet порту Raspberry Pi (пропускная способность которого будет варьироваться в зависимости от версии RPi)). В нашем случае на телекоммуникационном модуле Wi-Fi интерфейс был объединен с Ethernet. Это удобно при отладке тк можно подключиться к сети с ноутбука находясь рядом.</li>
+<li><code>Внешние сети</code> – это сети которые работают через сети интернет или интранет, в стандартном варианте это интернет + удаленный доступ к VPN сети объединяющей сегменты и предоставляющей удаленный доступ.</li>
+<li><code>Радио-сеть</code> – это сеть связывающая дрон и телекоммуникационный модуль.</li>
+<li><code>Внутри-локальные сеть</code> – к ним относится единственная сеть для работы с <code>loopback</code>. Такая сеть есть на каждом узле тк является стандартной и зачастую нужна для функционирования внутренних сервисов.</li>
+</ol>
+<p>В пример приведу как устроена настройка сетевых интерфейсов на телекоммуникационном модуле, я думаю это будет неплохим примером, тк по аналогии настроена сеть на всех остальных устройствах.</p>
+<table>
+<thead>
+<tr>
+<th>Интерфейс</th>
+<th>Описание</th>
+<th>Адресация</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lo</td>
+<td>Виртуальный сетевой интерфейс для <strong>loopback</strong></td>
+<td>127.0.0.1/32</td>
+</tr>
+<tr>
+<td>eth0</td>
+<td>Встроенный Ethernet интерфейс, используемый в сервисной сети</td>
+<td>None</td>
+</tr>
+<tr>
+<td>wlan0</td>
+<td>Встроенный Wi-Fi интерфейс, используемый в сервисной сети (мб выключен на продакшен системах)</td>
+<td>None</td>
+</tr>
+<tr>
+<td>br0</td>
+<td>Мост между интерфесами используемый для организации сервисной сети (интерфейсы 2 и 3)</td>
+<td>192.168.11.0/24</td>
+</tr>
+<tr>
+<td>wlan1</td>
+<td>Внешний Wi-Fi адаптер на базе <code>RTL8812AU</code> используемый <code>WFB</code></td>
+<td>None</td>
+</tr>
+<tr>
+<td>gs-wfb</td>
+<td><code>IPoverWFB</code> развернутый с помощью <code>WFB</code></td>
+<td>10.5.0.2/32</td>
+</tr>
+<tr>
+<td>eth1</td>
+<td>LTE модем подключеный через USB и определяемый как сетевое устройство (также сам раздает адресацию)</td>
+<td>192.168.1.100/24 (хотя тут всего два адреса)</td>
+</tr>
+<tr>
+<td>tun0</td>
+<td>IP-тунелль на удаленный сервер для связи сегметов сети через VPN</td>
+<td>192.168.255.0/24</td>
+</tr>
+</tbody>
+</table>
+<p>Для создания такой архитектуры мы использовали следующие пакеты: <code>hostapd</code>, <code>dnsmasq</code>, <code>bridge-utils</code>, <code>openvpn</code>.</p>
+<p>Также мы отказались от использования штатных средств организации сети на Raspberry Pi OS, в сторону утилиты <code>ifupdown</code> (<code>/etc/network/interfaces</code>):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#008000"># interfaces(5) file used by ifup(8) and ifdown(8)</span>
+
+<span style="color:#008000"># Include files from /etc/network/interfaces.d:</span>
+source-directory /etc/network/interfaces.d
+
+auto lo
+iface lo inet loopback
+<span style="color:#008000"># It doesn&#39;t work</span>
+<span style="color:#008000"># pre-up sh -c `echo 1 &gt; /proc/sys/net/ipv4/ip_forward`</span>
+
+auto eth0
+allow-hotplug eth0
+iface eth0 inet manual
+
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet manual
+
+auto br0
+iface br0 inet static
+    address 192.168.11.1
+    netmask 255.255.255.0
+    gateway 192.168.11.1
+    <span style="color:#008000"># wlan0 is not needed because use bridge=wlan0 in /etc/hostapd/hostapd.conf</span>
+    bridge_ports eth0
+    <span style="color:#008000"># post-up ip addr flush dev br0</span>
+    <span style="color:#008000"># pre-up ip addr flush dev br0</span>
+    <span style="color:#008000"># post-up iptables -A FORWARD -i br0 -o eth1 -j ACCEPT</span>
+    <span style="color:#008000"># post-up iptables -A FORWARD -i eth1 -o br0 -j ACCEPT</span>
+    <span style="color:#008000"># post-up iptables -A POSTROUTING -o eth1 -t nat -j MASQERADE</span>
+
+<span style="color:#008000"># LTE modem</span>
+auto eth1
+allow-hotplug eth1
+iface eth1 inet dhcp
+    post-up sh -c &#34;echo 1 &gt; /proc/sys/net/ipv4/ip_forward&#34;
+    post-up iptables -A FORWARD -i br0 -o eth1 -j ACCEPT
+    post-up iptables -A FORWARD -i eth1 -o br0 -j ACCEPT
+    post-up iptables -A POSTROUTING -o eth1 -t nat -j MASQUERADE
+
+auto wlan1
+allow-hotplug wlan1
+iface wlan1 inet manual
+
+auto gs-wfb
+iface gs-wfb inet manual
+    post-up sh -c &#34;echo 1 &gt; /proc/sys/net/ipv4/ip_forward&#34;
+    <span style="color:#008000"># Access to local network</span>
+    post-up iptables -A FORWARD -i gs-wfb -o br0 -j ACCEPT
+    post-up iptables -A FORWARD -i br0 -o gs-wfb -j ACCEPT
+    <span style="color:#008000"># post-up ip route add 192.168.12.0/24 via 10.5.0.2</span>
+
+    <span style="color:#008000"># Access to internet </span>
+    post-up iptables -A FORWARD -i gs-wfb -o eth1 -j ACCEPT
+    post-up iptables -A FORWARD -i eth1 -o gs-wfb -j ACCEPT
+
+    post-up iptables -A POSTROUTING -o gs-wfb -t nat -j MASQUERADE
+
+    <span style="color:#008000"># Actions on a drone</span>
+    <span style="color:#008000"># post-up route add default gw 10.5.0.1 drone-wfb</span>
+    <span style="color:#008000"># post-up ip route add default via 10.5.0.1</span>
+    <span style="color:#008000"># post-up ip route add 192.168.11.0/24 via 10.5.0.1</span>
+
+auto tun0
+iface tun0 inet manual
+    pre-up route del -net 0.0.0.0/1
+    pre-up route del -net 128.0.0.0/1
+    pre-up route del -host 255.255.255.0
+</code></pre></div><p>О причинах выбора такого способа настройки сети вы можете найти информацию в моей отдельной статье – <a href="/posts/post-33/">Устройство сети в Linux</a>. А исходный код конфигурационных файлов <code>dnsmasq</code>, <code>hostapd</code> можете найти в моём проекте по сборке преднастроенных ОС – <a href="https://github.com/urpylka/img-builder">img-builder</a>.</p>
+<p>Замечание которое нужно сделать, это чтобы использовать встроенный DNS сервер на телекоммуникационном модуле, нужно добавить следующую запись в файл <code>/etc/resolv.conf</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">nameserver 192.168.11.1
+</code></pre></div><p>На останых устройвах сервисной сети эта запись будет проставляться автоматически DHCP клиентом от DHCP сервера, которым помимо прочего является <code>dnsmasq</code>.</p>
+<p>Также я должен сказать о нескольких странных ошибках, которые пока не удалось решить:</p>
+<h3 id="ошибка-при-использовании-моста">Ошибка при использовании моста</h3>
+<p>При использовании моста возникают такого рода ошибки. Они не влияют на работоспобность. И остаются при перезапуске службы <code>networking</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">failed to bring up br0
+ifup: failed to bring up br0
+rtnetlink answers: file exist
+</code></pre></div><p>Описание ошибки в других источниках:</p>
+<ul>
+<li><a href="https://notessysadmin.com/oshibka-podnyatiya-setevogo-interfejsa">notessysadmin.com</a></li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/13895/solving-rtnetlink-answers-file-exists-when-running-ifup">raspberrypi.stackexchange.com</a></li>
+<li><a href="https://serverfault.com/questions/946439/failed-to-start-raise-network-interfaces-for-bridge-br0-even-though-br0-exists">serverfault.com</a></li>
+<li><a href="https://unix.stackexchange.com/questions/400671/how-to-set-up-a-bridge-with-bridge-ports-none-on-debian-stretch-in-etc-networ">unix.stackexchange.com</a></li>
+</ul>
+<h3 id="создание-лишнего-маршрута">Создание лишнего маршрута</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">root@nanopim4:/home/john# ip route show
+
+default via 10.5.0.1 dev drone-wfb
+10.5.0.0/24 dev drone-wfb proto kernel scope link src 10.5.0.2
+<span style="font-weight:bold">**169.254.0.0/16 dev drone-wfb scope link metric 1000**</span>
+192.168.11.0/24 via 10.5.0.1 dev drone-wfb
+</code></pre></div><h2 id="дальнейшее-развитие-системы-связи">Дальнейшее развитие системы связи</h2>
+<p>Дальнейшее развитие системы связи мне видется в сторону создания одноранговой самоорганизуемой сети с динамической адресацией. Интересными примерами служат <code>cjdns</code> и <code>yggdrasil</code>.</p>
+<ul>
+<li><a href="https://habr.com/en/post/443934/">CJDNS мертв, да здравствует Yggdrasil</a></li>
+<li><a href="https://github.com/cjdelisle/cjdns">CJDNS on github</a></li>
+<li><a href="https://xakep.ru/2014/09/05/mesh-networks/">Как построить свою Mesh-сеть</a></li>
+<li><a href="https://habr.com/en/company/cjdns/blog/198428/">Карта Mesh Wi-Fi: А давайте построим свою Mesh сеть в России и СНГ</a></li>
+<li><a href="https://habr.com/en/post/196562/">Wi-Fi Mesh сети для самых маленьких</a></li>
+<li><a href="https://nag.ru/articles/article/102081/proektirovanie-mesh-setey.html">Проектирование Mesh-сетей</a></li>
+<li><a href="https://www.itweek.ru/infrastructure/article/detail.php?ID=72723">Первая mesh-сеть в Москве</a></li>
+<li><a href="https://wifigid.ru/besprovodnye-tehnologii/mesh-set">Что такое Wi-Fi Mesh сеть и для чего она нужна?</a></li>
+<li><a href="https://pikabu.ru/story/pro_meshseti_3126564">Про меш-сети</a></li>
+</ul>
+
+            </div>
+
+            <div class="tags">
+                  
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2020  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

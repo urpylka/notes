@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью. В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов img-builder. Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.">
 <meta itemprop="datePublished" content="2021-03-30T17:40:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-03-30T17:40:00&#43;04:00" />
-<meta itemprop="wordCount" content="1798">
+<meta itemprop="wordCount" content="2315">
 
 
 
@@ -114,9 +114,13 @@ if (!doNotTrack) {
             </div>
 
             <div class="markdown">
-                <p>В статье две части: <strong>Устройство сети Raspberry Pi OS</strong> и <strong>Инструменты для работы с сетью</strong>.</p>
-<p>В первой части изложено базовое устройство сети в преднастроенной операционной системе <a href="https://www.raspberrypi.org/software/">Raspberry Pi OS</a>. А затем описана структура, которую я использую в своём <a href="https://github.com/urpylka/img-builder">сборщике образов</a>.</p>
-<p>Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.</p>
+                <p>В статье две части:</p>
+<ol>
+<li><strong>Устройство сети Raspberry Pi OS</strong><br>
+в которой описано базовое устройство сети в преднастроенной операционной системе <a href="https://www.raspberrypi.org/software/">Raspberry Pi OS</a>. А затем описана структура, которую я использую в своём <a href="https://github.com/urpylka/img-builder">сборщике образов</a>.</li>
+<li><strong>Инструменты для работы с сетью</strong><br>
+в которой содержатся мои заметки о утилитах Linux для работы с сетью.</li>
+</ol>
 <h2 id="устройство-сети-raspberry-pi-os">Устройство сети Raspberry Pi OS</h2>
 <h3 id="штатная-конфигурация-сети">Штатная конфигурация сети</h3>
 <p>В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</p>
@@ -344,6 +348,15 @@ brctl showmacs br0
 <li><a href="http://xgu.ru/wiki/Linux_Bridge">xgu.ru</a></li>
 </ul>
 <h3 id="vpn-xl2tpd--ipsec">VPN: xl2tpd + ipsec</h3>
+<p>Я пытался отладить работу L2TP + IPsec сборки состоящей из двух отдельный контейнеров, связанных сетью с помощью утилиты <code>tcpdump</code>, однако у меня не получилось это сделать.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Pluto listening for IKE on udp 500
+Pluto listening for NAT-T on udp 4500
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">IP libreswan &gt; zz217.113.124-243.tlt.ru: ICMP libreswan udp port 1701 unreachable, length 121
+
+IP ipsec-vpn-server.1701 &gt; zz217.113.124-243.tlt.ru.54767:  l2tp:[TLS](27/0)Ns=0,Nr=1 *MSGTYPE(SCCRP) *PROTO_VER(1.0) *FRAMING_CAP(AS) *BEARER_CAP() FIRM_VER(1680) *HOST_NAME(ipsec-vpn-server) VENDOR_NAME(xelerance.com) *ASSND_TUN_ID(22763) *RECV_WIN_SIZE(4)
+
+IP ipsec-vpn-server.1701 &gt; 185.211.158.69.53760:  l2tp:[](31/15401) {LCP, Conf-Request (0x01), id 1, length 27}
+</code></pre></div><p>Больше примеров в <a href="https://lumpics.ru/examples-tcpdump-in-linux/">этой статье</a>.</p>
 <ul>
 <li><a href="http://ciscotips.ru/pap-chap">ciscotips.ru</a> Разница PAP и CHAP</li>
 <li><a href="https://wiki.debian.org/ru/xl2tpd/Client">wiki.debian.org</a> Настройка xl2tpd</li>
@@ -373,6 +386,38 @@ brctl showmacs br0
 <li><a href="https://www.ixbt.com/comm/ipsecure.shtml">www.ixbt.com</a> IPSec — протокол защиты сетевого трафика на IP-уровне</li>
 <li><a href="https://github.com/juusechec/vpn-L2TP-IPsec-strongswan-xl2tpd">github.com</a> github Un conjunto de instrucciones y script para conectarse a la VPN 2016 de la Universidad Distrital</li>
 <li><a href="https://github.com/xelerance/xl2tpd/issues/1">github.com</a> github xelerance/xl2tpd</li>
+</ul>
+<p>Статьи для поднятия L2TP на роутере Mikrotik (раньше планировал использовать его в качестве соединительного узла):</p>
+<ul>
+<li><a href="https://serveradmin.ru/nastrojka-vpn-openvpn-l2tp-ipsec-server-v-mikrotik/">serveradmin.ru</a> <code>mikrotik</code>, <code>l2tp</code>, <code>ipsec</code>, <code>openvpn</code>;</li>
+<li><a href="http://routeworld.ru/set-i-internet/web_practice/202-podnimaem-vpn-cherez-l2tp-ipsec-na-mikrotik.html">routeworld.ru</a> <code>mikrotik</code>, <code>l2tp</code>, <code>ipsec</code>;</li>
+<li><a href="https://qna.habr.com/q/225041">qna.habr.com</a> <code>mikrotik</code>, <code>l2tp</code>, <code>ipsec</code>;</li>
+</ul>
+<p>Статьи по настройке IPsec:</p>
+<ul>
+<li><a href="https://github.com/xelerance/Openswan/wiki/L2tp-ipsec-configuration-using-openswan-and-xl2tpd">github.com/xelerance/Openswan</a> <code>openswan</code>, <code>ipsec</code>, <code>l2tp</code>;</li>
+<li><a href="https://habr.com/en/post/438176/">habr.com</a> <code>mikrotik</code>, <code>ipsec</code>;</li>
+<li><a href="https://libreswan.org/man/ipsec.conf.5.html">libreswan.org</a> <code>ipsec</code>;</li>
+</ul>
+<h3 id="openvpn">OpenVPN</h3>
+<ul>
+<li><a href="https://github.com/kylemanna/docker-openvpn">https://github.com/kylemanna/docker-openvpn</a></li>
+<li><a href="https://habr.com/en/post/354632/">https://habr.com/en/post/354632/</a></li>
+<li><a href="https://www.8host.com/blog/zapusk-openvpn-v-kontejnere-docker-v-ubuntu-14-04/">https://www.8host.com/blog/zapusk-openvpn-v-kontejnere-docker-v-ubuntu-14-04/</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-run-openvpn-in-a-docker-container-on-ubuntu-14-04">https://www.digitalocean.com/community/tutorials/how-to-run-openvpn-in-a-docker-container-on-ubuntu-14-04</a></li>
+<li><a href="https://itc-life.ru/podnimaem-openvpn-so-staticheskim-ip-v-docker-compose/">https://itc-life.ru/podnimaem-openvpn-so-staticheskim-ip-v-docker-compose/</a></li>
+<li><a href="https://mimiz.github.io/2017/09/08/OpenVPN-Server-in-a-Docker-Container.html">https://mimiz.github.io/2017/09/08/OpenVPN-Server-in-a-Docker-Container.html</a></li>
+<li><a href="https://wiki.mikrotik.com/wiki/OpenVPN">https://wiki.mikrotik.com/wiki/OpenVPN</a></li>
+<li><a href="https://blog.amd-nick.me/docker-openvpn-server/">https://blog.amd-nick.me/docker-openvpn-server/</a></li>
+</ul>
+<h3 id="wirequard">Wirequard</h3>
+<ul>
+<li><a href="https://habr.com/en/post/432686/">https://habr.com/en/post/432686/</a></li>
+<li><a href="https://github.com/l-n-s/wireguard-install/blob/master/wireguard-install.sh">https://github.com/l-n-s/wireguard-install/blob/master/wireguard-install.sh</a></li>
+<li><a href="https://stackoverflow.com/questions/37570910/rtnetlink-answers-operation-not-supported">https://stackoverflow.com/questions/37570910/rtnetlink-answers-operation-not-supported</a></li>
+<li><a href="https://sysadmin.pm/wireguard/">https://sysadmin.pm/wireguard/</a></li>
+<li><a href="https://www.wireguard.com/install/">https://www.wireguard.com/install/</a></li>
+<li><a href="https://www.wireguard.com/quickstart/">https://www.wireguard.com/quickstart/</a></li>
 </ul>
 <h3 id="смена-mac-адреса">Смена MAC адреса</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Выключаем нужный нам интерфейс eth1:</span>
@@ -404,7 +449,8 @@ systemctl restart networking
 <p>В первом случае для установки соединения можно использовать <a href="https://github.com/wlach/wvdial"><code>wvdial</code></a> (<a href="http://dnevnik--konstantin.blogspot.com/2012/09/setting-internet-in-console-linux-in-aid-wvdial.html">инструкция</a>) + <code>ppp</code> или sakis3g (<a href="http://robocraft.ru/blog/electronics/3131.html">robocraft.ru</a>).</p>
 <p>Также есть обёртка над <code>sakis</code> – <code>umtskeeper</code>. Она является полноценным менеджером соединения + ведет статистику по трафику.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/home/pi/3g_modem/umtskeeper —sakisoperators <span style="color:#a31515">&#34;USBINTERFACE=&#39;0&#39; OTHER=&#39;USBMODEM&#39; USBMODEM=&#39;12d1:1506&#39; APN=&#39;CUSTOM_APN&#39; CUSTOM_APN=&#39;internet.beeline.ru&#39; SIM_PIN=&#39;0000&#39; APN_USER=&#39;beeline&#39; APN_PASS=&#39;beeline&#39;&#34;</span> —sakisswitches <span style="color:#a31515">&#34;--sudo —console&#34;</span> —devicename <span style="color:#a31515">&#39;Huawei&#39;</span> —log —silent —nat <span style="color:#a31515">&#39;no&#39;</span> &amp;
-</code></pre></div><h3 id="пакет-wireless-tools">Пакет Wireless Tools</h3>
+</code></pre></div><p>В <a href="https://wifi-hotspot.zp.ua/wp/2011/01/ubuntu-3g-modem-terminal/">данной статье</a> описано как использовать модем с помощью <code>AT-комманд</code> и подключения через <code>ppp</code>.</p>
+<h3 id="пакет-wireless-tools">Пакет Wireless Tools</h3>
 <p><code>Wireless Extensions</code> (WE) является универсальным API, реализованным в ядре Linux и позволяющим драйверу отображать в пользовательском пространстве конфигурацию и конкретные особенности обычных беспроводных сетей. Если в драйвере поддерживается использование технологии <code>Wireless Extensions</code>, то с помощью одного комплекта инструментальных средств можно поддерживать всевозможные варианты беспроводных сетей, независимо от их типа. Параметры WE можно менять на лету без перезагрузки драйвера (или Linux).</p>
 <p>Пакет <code>Wireless Tools</code> представляет собой набор инструментальных средств, позволяющих использовать <code>Wireless Extensions</code>. Для поддержки всех возможностей <code>Wireless Extensions</code> используется текстовый интерфейс.</p>
 <ul>
@@ -418,6 +464,95 @@ systemctl restart networking
 <li><code>libiw.so</code> – содержит функции, необходимые программам, работающим с беспроводными сетями, и предоставляет API для других программ.</li>
 </ul>
 <p>Источник <a href="http://rus-linux.net/nlib.php?name=/MyLDP/BOOKS/BLFS-ru/14/blfs-ru-14-12.html">rus-linux.net</a></p>
+<h3 id="dnsmasq">DNSMASQ</h3>
+<p>Команды для просмотра основных файлов:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Основной конфигурационный файл</span>
+cat /etc/dnsmasq.conf
+
+<span style="color:#008000"># Кажется файл с описанием выдачи статических адресов</span>
+cat /var/lib/misc/dnsmasq.leases
+
+<span style="color:#008000"># Лог-файл выданных адресов</span>
+cat /var/log/dnsmasq/dnsmasq.leases
+</code></pre></div><h3 id="отключение-networkmanager">Отключение NetworkManager</h3>
+<p>Информация о отключении собрана в паре топиков:</p>
+<ul>
+<li><a href="https://web.archive.org/web/20191225092551/http://xmodulo.com/disable-network-manager-linux.html">https://web.archive.org/web/20191225092551/http://xmodulo.com/disable-network-manager-linux.html</a></li>
+<li><a href="https://askubuntu.com/questions/1091653/how-do-i-disable-network-manager-permanently">https://askubuntu.com/questions/1091653/how-do-i-disable-network-manager-permanently</a></li>
+</ul>
+<p>Если коротко, то:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get purge network-manager
+
+sudo systemctl stop NetworkManager.service
+sudo systemctl disable NetworkManager.service
+
+sudo systemctl stop NetworkManager-wait-online.service
+sudo systemctl disable NetworkManager-wait-online.service
+
+sudo systemctl stop NetworkManager-dispatcher.service
+sudo systemctl disable NetworkManager-dispatcher.service
+
+sudo systemctl stop network-manager.service
+sudo systemctl disable network-manager.service
+
+sudo reboot
+</code></pre></div><blockquote>
+<p>Также мб установлена <code>nmtui</code>, её тоже можно удалить.</p>
+</blockquote>
+<h3 id="отключение-mac-именования-интерфейсов">Отключение MAC именования интерфейсов</h3>
+<p>На некоторых ОС в тч на Armbian изначально включена функция именования интерфейсов с использованием MAC адреса. Например, не <code>eth1</code>, а <code>wlx0072631836f7</code>. Её нужно выключить, иначе на разных устройствах в куче конфигурационных файлов служб придется вручную менять все имена интерфейсов. <a href="https://jakondo.ru/imenovanie-setevyh-interfejsov-v-debian-9-stretch-kak-pereimenovat-setevoj-interfejs-kak-vernut-staroe-imenovanie-setevyh-interfejsov/">Здесь</a> написано как это сделать.</p>
+<h2 id="ссылки-на-тему-настройки-сети">Ссылки на тему настройки сети</h2>
+<ul>
+<li><a href="https://wiki.debian.org/ru/NetworkConfiguration">wiki.debian.org</a>;</li>
+<li><a href="https://ubuntugeeks.com/questions/266372/how-to-create-post-up-and-pre-down-routes-in-interfaces-file">ubuntugeeks.com</a> <code>ifupdown</code>;</li>
+<li><a href="http://dragonflybsd.blogspot.com/2013/10/debian-allow-hotplug-auto.html">dragonflybsd.blogspot.com</a> чем отличается <code>allow</code> от <code>hotplug</code> в <code>/etc/network/interfaces</code>;</li>
+<li><a href="https://serveradmin.ru/nastroyka-seti-v-debian/">serveradmin.ru</a> обширная информация по настройке сети в ubuntu.</li>
+<li><a href="https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking">Configuring Networking</a></li>
+<li><a href="http://manpages.org/dhcpcdconf/5">dhcpcdconf</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/WPA_supplicant_%28%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%29">wpa_supplicant</a></li>
+<li><a href="https://superuser.com/questions/985082/is-there-a-way-to-disable-the-dhcp-client-in-raspbian-linux-on-a-rasperry-pi">Is there a way to disable the DHCP client in Raspbian Linux on a Rasperry Pi?</a></li>
+<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=140252">Static IP address templates for dhcpcd.conf</a></li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/43720/disable-wifi-wlan0-on-pi-3">Disable WiFi (wlan0) on Pi 3</a></li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/68477/static-ip-configuration-in-dhcpcd-conf-ignored">Static IP configuration in dhcpcd.conf ignored</a></li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/39785/differences-between-etc-dhcpcd-conf-and-etc-network-interfaces">Differences between /etc/dhcpcd.conf and /etc/network/interfaces?</a></li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/74538/how-do-i-configure-dhcpcd-to-call-wpa-supplicant-for-a-specific-interface">How do I configure dhcpcd to call wpa_supplicant for a specific interface?</a></li>
+<li><a href="https://forum.ubuntu.ru/index.php?topic=58492.0">forum.ubuntu.ru #1</a> есть пример для <code>bridge-utils</code>, настройка DNS <code>resolv.conf</code>;</li>
+<li><a href="https://forum.ubuntu.ru/index.php?topic=302684.0">forum.ubuntu.ru #2</a> настройка DNS (проблема с <code>systemd-resolved</code>);</li>
+<li><a href="https://losst.ru/kak-posmotret-dns-v-linux">losst.ru</a> настройка DNS.</li>
+<li><a href="https://abc-unix.ru/ALL/dnsmasq.html">abc-unix.ru</a> очень интересный материал по настройке <code>dnsmasq</code>;</li>
+<li><a href="https://m.habr.com/ru/post/55045/">habr.com</a> <code>dnsmasq</code> as DHCP server;</li>
+<li><a href="https://raspberrytips.com/raspberry-pi-dns-server/">raspberrytips.com</a> <code>dnsmasq</code> теория и настройка;</li>
+<li><a href="https://www.cyberciti.biz/faq/linux-setup-default-gateway-with-route-command/">cyberciti.biz</a> <code>route</code> setup default linux gateway;</li>
+<li><a href="https://losst.ru/nastrojka-iptables-dlya-chajnikov">losst.ru</a> <code>iptables</code>;</li>
+<li><a href="https://irternus.blogspot.com/2011/06/iptables.html">irternus.blogspot.com</a> <code>iptables</code>;</li>
+<li><a href="https://wiki.dieg.info/dhcp">wiki.dieg.info</a> <code>isp-dhcp-server</code>, а также немного теории в тч про авторитарный DHCP сервер;</li>
+<li><a href="https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md">raspberrypi.org</a> <code>wpa_supplicant</code>;</li>
+<li><a href="http://xgu.ru/wiki/Linux_Bridge">xgu.ru/wiki</a> обширная статья про brctl и теорию;</li>
+<li><a href="https://willhaley.com/blog/raspberry-pi-wifi-ethernet-bridge/">willhaley.com</a> хороший гайд по настройке бриджа между Wi-Fi и Ethernet на RPi;</li>
+<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=132674">raspberrypi.org/forums #1</a> <code>bridge-utils</code>;</li>
+<li><a href="https://www.linux.org.ru/forum/admin/14318602">linux.org.ru/forum</a> <code>bridge-utils</code>;</li>
+<li><a href="https://stackoverflow.com/questions/9326438/dnsmasq-serve-different-ip-addresses-based-on-interface-used">stackoverflow.com</a> running <code>dnsmasq</code> on two interfaces;</li>
+<li><a href="https://webhamster.ru/mytetrashare/index/mtb4/1366919091hg2kjtslrp">webhamster.ru</a> <code>dnsmasq</code>;</li>
+<li><a href="https://set-os.ru/static-ip-raspberry-pi/">set-os.ru</a> <code>dhcpcd</code>, <code>ifupdown</code>;</li>
+<li><a href="https://ru-linux.livejournal.com/2897149.html">ru-linux.livejournal.com #1</a> <code>dnsmasq</code>;</li>
+<li><a href="https://ru-linux.livejournal.com/2910740.html">ru-linux.livejournal.com #2</a> <code>bridge-utils</code>;</li>
+<li><a href="https://web.archive.org/web/20191003081521/http://xmodulo.com/how-to-configure-linux-bridge-interface.html">xmodulo.com</a> <code>bridge-utils</code>;</li>
+<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=235598">raspberrypi.org/forums #2</a> <code>hostapd</code>, <code>dnsmasq</code>;</li>
+<li><a href="https://habr.com/en/post/188274/">habr.com</a> <code>isc-dhcp-server</code>, <code>hostapd</code>;</li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/34968/bridge-eth0-and-eth1-and-run-dnsmasq">raspberrypi.stackexchange.com</a> <code>dnsmasq</code>, <code>bridge-utils</code>;</li>
+<li><a href="https://unix.stackexchange.com/questions/400671/how-to-set-up-a-bridge-with-bridge-ports-none-on-debian-stretch-in-etc-networ">unix.stackexchange.com</a> <code>ifupdown</code>, <code>bridge-utils</code>;</li>
+<li><a href="https://askubuntu.com/questions/1108841/etc-network-interfaces-is-not-changing-my-static-ip">askubuntu.com</a> <code>ifupdown</code>;</li>
+<li><a href="http://blog.slor.net/2013/09/turning-your-raspberri-pi-into-wireless.html">blog.slor.net</a> <code>bridge-utils</code>, <code>ifupdown</code>, <code>wpa_supplicant</code>;</li>
+<li><a href="https://pikabu.ru/story/razdaem_wifi_naraspberry_pi_s_usb_modema_6109095">pikabu.ru</a> <code>isc-dhcp-server</code>, <code>hostapd</code>, <code>routing</code>;</li>
+<li><a href="https://helpugroup.ru/sdelajte-iz-vashej-raspberry-pi-tochku-dostupa-wi-fi/">helpugroup.com</a> <code>hostapd</code>, <code>dnsmasq</code>, <code>routing</code>;</li>
+<li><a href="https://ph0en1x.net/105-raspberry-pi-handmade-server-router-software.html">ph0en1x.net</a> <code>isc-dhcp-server</code>, <code>hostapd</code>;</li>
+<li><a href="https://alexatnet.com/wifi-to-ethernet-raspberry-pi-router/">alexatnet.com</a> <code>routing</code>, <code>dnsmasq</code>;</li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/99570/how-can-i-set-my-pi-3-up-to-be-wifi-and-ethernet-router-simultaneously">raspberrypi.stackexchange.com #1</a> <code>systemd-networkd</code>;</li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/88954/workaround-for-a-wifi-bridge-on-a-raspberry-pi-with-proxy-arp/88955">raspberrypi.stackexchange.com #2</a> proxy arp;</li>
+<li><a href="https://www.instructables.com/id/Share-WiFi-With-Ethernet-Port-on-a-Raspberry-Pi/">instructables.com</a> <code>routing</code>, <code>dnsmasq</code>;</li>
+<li><a href="https://eax.me/raspberry-pi-wifi-router/">eax.me</a> <code>routing</code>, <code>dnsmasq</code>;</li>
+<li><a href="https://myraspberry.ru/prevrashhaem-raspberry-pi-v-router.html">myraspberry.ru</a> <code>isc-dhcp-server</code>;</li>
+</ul>
 
             </div>
 
