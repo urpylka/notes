@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 05 Nov 2021 23:36:00 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 05 Dec 2021 01:10:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Система связи дрона и зарядной станции</title>
+      <link>https://urpylka.com/posts/post-38/</link>
+      <pubDate>Sun, 05 Dec 2021 01:10:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-38/</guid>
+      <description>Введение Я начал писать эту статью в апреле 2020 года. Однако вместо изложения того, чем я занимался, я начал копать вглубь и пытаться объяснить себе как правильно должна выглядеть разработанная система во всех ньансах. Как итог, потратя кучу усилий, и понял, что обрекаю себя на научно-исследовательскую работу. И это немного не соотвествует моей цели, а именно – закрепить все те знания, что я применял при разработке и внедрении робототехнических комплексов на прошлом месте работы.</description>
+    </item>
     
     <item>
       <title>Видеозахват на Raspberry Pi. Часть 2: Software</title>
