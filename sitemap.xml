@@ -3,32 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://urpylka.com/tags/grafana/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/metrics/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/node-exporter/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/posts/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/prometheus/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/ru/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/posts/post-55/</loc>
+    <lastmod>2021-12-05T10:50:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://urpylka.com/tags/drones/</loc>
     <lastmod>2021-12-05T01:10:00+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://urpylka.com/posts/</loc>
-    <lastmod>2021-12-05T01:10:00+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/tags/raspberry/</loc>
-    <lastmod>2021-12-05T01:10:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/ru/</loc>
-    <lastmod>2021-12-05T01:10:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/</loc>
-    <lastmod>2021-12-05T01:10:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/</loc>
     <lastmod>2021-12-05T01:10:00+02:00</lastmod>
   </url>
   
@@ -74,11 +99,6 @@
   
   <url>
     <loc>https://urpylka.com/posts/post-58/</loc>
-    <lastmod>2021-10-28T19:28:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/prometheus/</loc>
     <lastmod>2021-10-28T19:28:00+04:00</lastmod>
   </url>
   

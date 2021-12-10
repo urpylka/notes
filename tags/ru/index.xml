@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sun, 05 Dec 2021 01:10:00 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 05 Dec 2021 10:50:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Сбор метрик с Raspberry Pi</title>
+      <link>https://urpylka.com/posts/post-55/</link>
+      <pubDate>Sun, 05 Dec 2021 10:50:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-55/</guid>
+      <description>Достаточно давно у меня появилась необходимость создать своё облако для объединения ресурсов и предоставления доступа ко внутренним сервисам.
+В этом году я добавил в эту систему работу с метриками, и буквально пару дней назад сделал так, чтобы Prometheus из Docker контейнера смог собирать метрики с устройств в сети VPN. Однако в случае с Raspberry Pi обычного node-exporter мне стало недостаточно. Тк он не собирает такие важные метрики как напряжение, температура и частота процессора.</description>
+    </item>
     
     <item>
       <title>Система связи дрона и зарядной станции</title>
