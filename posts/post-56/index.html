@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Сборка Marlin для UlTi-Steel (SKR 1.3) - urpylka</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Сборка Marlin для UlTi-Steel (SKR 1.3)">
+<meta itemprop="description" content="В статье разобрался и изложил как собрать свою прошивку для принтера UlTi-Steel. За основу взял репозиторий производителя и сделал описание всех изменений. Согласно изложенной информации можно собрать прошивку самостоятельно, отдавая полный отчет в том, какие настройки сделаны.">
+<meta itemprop="datePublished" content="2022-01-04T09:39:00&#43;02:00" />
+<meta itemprop="dateModified" content="2022-01-04T09:39:00&#43;02:00" />
+<meta itemprop="wordCount" content="1446">
+
+
+
+<meta itemprop="keywords" content="ru,programming,3dprint," /><meta property="og:title" content="Сборка Marlin для UlTi-Steel (SKR 1.3)" />
+<meta property="og:description" content="В статье разобрался и изложил как собрать свою прошивку для принтера UlTi-Steel. За основу взял репозиторий производителя и сделал описание всех изменений. Согласно изложенной информации можно собрать прошивку самостоятельно, отдавая полный отчет в том, какие настройки сделаны." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-56/" />
+<meta property="article:published_time" content="2022-01-04T09:39:00+02:00" />
+<meta property="article:modified_time" content="2022-01-04T09:39:00+02:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Сборка Marlin для UlTi-Steel (SKR 1.3)"/>
+<meta name="twitter:description" content="В статье разобрался и изложил как собрать свою прошивку для принтера UlTi-Steel. За основу взял репозиторий производителя и сделал описание всех изменений. Согласно изложенной информации можно собрать прошивку самостоятельно, отдавая полный отчет в том, какие настройки сделаны."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="avatar">
+		<a href="https://urpylka.com/">
+			<img src="/img/artem.jpg" alt="urpylka" />
+		</a>
+	</div><div class="flex-block">
+		<h1 class="site-title"><a href="https://urpylka.com/">urpylka</a></h1>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">04</span>
+                        <span class="rest">Jan 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Сборка Marlin для UlTi-Steel (SKR 1.3)</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Привет! Необходимость собрать прошивку для UlTi-Steel у меня возникла по трём причинам:</p>
+<ol>
+<li>Потому что сами ребята из Ivilol больше не обновляют прошивку для первой версии UlTi-Steel.</li>
+<li>Если посмотреть в их репозиторий у меня кровь из глаз идет и возникает много вопросов.</li>
+<li>У меня есть необходимость добавить в прошивку свои настройки.</li>
+<li>Полный бардак происходит в истории и коде самого Marlin. Учитывая это, я бы не хотел обновлять прошивку с использованием операции Merge, а делать Rebase небольшого количества своих коммитов (учитывая, что это не изменения к Marlin, а лишь ограниченный набор настроек для конкретного принтера, я позволю себе это).</li>
+</ol>
+<p>Собственно идея следующая – написать небольшое руководство, по которому любой легко сможет изменить актуальную версию Marlin под свой UlTi-Steel, не опираясь на разработчиков самого принтера или какие-то другие репозитории.</p>
+<p>Я буду рассказыать все на примере своего ульти с драйверами подключенными по UART, с контоллером <a href="https://reprap.org/wiki/RepRapDiscount_Smart_Controller">RepRap SmartController</a> с дисплеем <code>LCD2004</code>.</p>
+<p><img src="./images/reprapsmartcontroller.jpg" alt="image"></p>
+<p>Добавление всяких ништяков будет в отдельной статьях, например <a href="/posts/post-57">Подключение BTT Smart Filament Sensor к SKR v1.3</a>.</p>
+<p>За основу я возьму последний на сегодняшний день тег <code>2.0.9.3</code> из мастер ветки (<code>2.0.x</code>) в upstream (Marlin). И буду добавлять коммиты сверху. Моя ветка <code>urpylka_ultisteel</code> будет располагаться в <a href="https://github.com/urpylka/Marlin">моём репозитории</a>. Базовые настройки я возьму из официального репозитория Ivilol.</p>
+<h2 id="настройка-прошивки">Настройка прошивки</h2>
+<p>Для простоты я разделю эти изменения на несколько категорий:</p>
+<ol>
+<li>Информация о прошивке</li>
+<li>Общие настройки</li>
+<li>Дополнительные настройки</li>
+</ol>
+<h3 id="информация-о-прошивке">Информация о прошивке</h3>
+<ol>
+<li>
+<p><strong>Определение информации о вашей прошивке</strong></p>
+<p>В моём случае я не буду менять версию и дату выпуска прошивки, тк вношу лишь настройки по конфигурации принтера, а версия указывает на исходный код используемой логики. Однако, я поменяю параметры, которые указывают на то, где найти исходный код прошивки и ссылку на веб-сайт, где можно найти описание с изменениям прошивки от оригинала (в моём случае это ссылка на эту статью).</p>
+<p><code>/Marlin/src/inc/Version.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SOURCE_CODE_URL &#34;github.com/urpylka/Marlin&#34;
+</span><span style="color:#00f"></span>...
+<span style="color:#00f">#define WEBSITE_URL &#34;urpylka.com/posts/post-56&#34;
+</span></code></pre></div><p>Думаю менять <code>MACHINE_NAME</code> в этом файле не стоит, тк переопределить его можно в основном конфигурационном файле, о чем речь пойдет ниже.</p>
+</li>
+<li>
+<p><strong>Меняем название машины, которое высвечивается на экране после загрузки</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define CUSTOM_MACHINE_NAME &#34;UlTi-Steel&#34;
+</span></code></pre></div></li>
+<li>
+<p><strong>Определяем автора конфигурации</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define STRING_CONFIG_H_AUTHOR &#34;(urpylka, UlTi-Steel)&#34; </span><span style="color:#008000">// Who made the changes.
+</span></code></pre></div></li>
+</ol>
+<h3 id="общие-настройки">Общие настройки</h3>
+<ol>
+<li>
+<p><strong>Измененяем микроконтроллер для сборки</strong></p>
+<p><code>platformio.ini</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini">default_envs = <span style="color:#a31515">LPC1768</span>
+</code></pre></div></li>
+<li>
+<p><strong>Определяем используемую плату принтера</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#ifndef MOTHERBOARD
+</span><span style="color:#00f"></span>  <span style="color:#00f">#define MOTHERBOARD BOARD_BTT_SKR_V1_3
+</span><span style="color:#00f">#endif
+</span></code></pre></div></li>
+<li>
+<p><strong>Определяем режим работы 2го Serial порта</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SERIAL_PORT_2 -1
+</span></code></pre></div></li>
+<li>
+<p><strong>Определяем порт МК для управления вентилятором (E0_AUTO_FAN_PIN)</strong></p>
+<p><code>Configuration_adv.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define E0_AUTO_FAN_PIN P2_04
+</span></code></pre></div></li>
+<li>
+<p><strong>Определяем драйвера двигателей</strong></p>
+<p>Для <code>TMC2208</code> есть два варианта подключения:</p>
+<ol>
+<li><code>TMC2208</code> – по UART</li>
+<li><code>TMC2208_STANDALONE</code> – через пины <code>STP</code> и <code>DIR</code></li>
+</ol>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define X_DRIVER_TYPE TMC2208
+</span><span style="color:#00f">#define Y_DRIVER_TYPE TMC2208
+</span><span style="color:#00f">#define Z_DRIVER_TYPE TMC2208
+</span><span style="color:#00f">#define E0_DRIVER_TYPE TMC2208
+</span></code></pre></div></li>
+<li>
+<p><strong>Включаем мониторинг состояния драйверов</strong></p>
+<p><code>Configuration_adv.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define MONITOR_DRIVER_STATUS
+</span></code></pre></div></li>
+<li>
+<p><strong>Включаем вывод отладочной информации для драйвера</strong></p>
+<p><code>Configuration_adv.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define TMC_DEBUG
+</span></code></pre></div></li>
+<li>
+<p><strong>Меняем разрешение осей</strong></p>
+<p>Это количество шагов шагового двигателя на 1мм. Значение рассчитаны Ivilol.</p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 148.50 }
+</span></code></pre></div></li>
+<li>
+<p><strong>Меняем фидрейт для осей</strong></p>
+<p>Значение рассчитаны Ivilol.</p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 100 }
+</span></code></pre></div></li>
+<li>
+<p><strong>Задаем лимит по оси Z</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define Z_MAX_POS 270
+</span></code></pre></div></li>
+<li>
+<p><strong>Включаем работу EEPROM</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define EEPROM_SETTINGS
+</span><span style="color:#00f"></span>...
+<span style="color:#00f">#define EEPROM_AUTO_INIT
+</span></code></pre></div></li>
+<li>
+<p><strong>Выбор контроллера управления</strong></p>
+<p><code>Configuration.h</code></p>
+<ul>
+<li>
+<p>На новой версии принтера используется контроллер <code>FYSETC_MINI_12864</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define FYSETC_MINI_12864_2_1
+</span></code></pre></div></li>
+<li>
+<p>На старой версии принтера решение <code>RepRap Smart Controller</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define REPRAP_DISCOUNT_SMART_CONTROLLER
+</span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>Изменение стороны вращения энкодера</strong></p>
+<p>В моём случае не понадобилось. Если требуется, расскоментируем строку.</p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define REVERSE_ENCODER_DIRECTION
+</span></code></pre></div></li>
+<li>
+<p><strong>Настройка кодировки для LCD дисплея</strong></p>
+<p>В прошивке от Ivilol параметры в файле <code>Configuration.h</code> заданы следующим образом:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LCD_LANGUAGE ru
+</span><span style="color:#00f"></span>...
+<span style="color:#00f">#define DISPLAY_CHARSET_HD44780 CYRILLIC
+</span></code></pre></div><p>Я не планирую использовать русский язык и буду использовать стандартные настройки</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LCD_LANGUAGE en
+</span><span style="color:#00f"></span>...
+<span style="color:#00f">#define DISPLAY_CHARSET_HD44780 JAPANESE
+</span></code></pre></div></li>
+<li>
+<p><strong>Определяем цвет и яркость подсветки дисплея</strong></p>
+<p>По умолчанию в файле <code>Configuration_adv.h</code> заданы такие настройки:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LED_USER_PRESET_RED        255  </span><span style="color:#008000">// User defined RED value
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_GREEN      128  </span><span style="color:#008000">// User defined GREEN value
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_BLUE         0  </span><span style="color:#008000">// User defined BLUE value
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_WHITE      255  </span><span style="color:#008000">// User defined WHITE value
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_BRIGHTNESS 255  </span><span style="color:#008000">// User defined intensity
+</span><span style="color:#008000">//#define LED_USER_PRESET_STARTUP       // Have the printer display the user preset color on startup
+</span></code></pre></div><p>Ivilol изменил их на такие:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LED_USER_PRESET_RED        0    </span><span style="color:#008000">// User defined RED value
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_GREEN      255  </span><span style="color:#008000">// User defined GREEN value
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_BLUE       255  </span><span style="color:#008000">// User defined BLUE value
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_WHITE      0    </span><span style="color:#008000">// User defined WHITE value
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_BRIGHTNESS 150  </span><span style="color:#008000">// User defined intensity
+</span><span style="color:#008000"></span><span style="color:#00f">#define LED_USER_PRESET_STARTUP         </span><span style="color:#008000">// Have the printer display the user preset color on startup
+</span></code></pre></div><p>Тк у меня используется <code>RepRap Smart Controller</code>, я оставлю стандартные настроки.</p>
+</li>
+<li>
+<p><strong>Включаем поддержку SD карт</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SDSUPPORT
+</span></code></pre></div></li>
+<li>
+<p><strong>Проверка контрольных сумм для файлов на карте</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SD_CHECK_AND_RETRY
+</span></code></pre></div></li>
+<li>
+<p><strong>Включаем работу с SD картой из <code>RepRap Smart Controller</code></strong></p>
+<p><code>Configuration_adv.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SDCARD_CONNECTION LCD
+</span></code></pre></div></li>
+<li>
+<p><strong>Определяем толщину используемого пластика</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
+</span></code></pre></div></li>
+<li>
+<p><strong>Конфигурация нагрева стола</strong></p>
+<p>В первую очередь, нужно включить ПИД регулятор, что это можете прочитать Википедии.</p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define PIDTEMPBED
+</span></code></pre></div><p>И изменим дефолтные значения на расчитанные компанией Ivilol:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define DEFAULT_bedKp 97.56
+</span><span style="color:#00f">#define DEFAULT_bedKi 8.51
+</span><span style="color:#00f">#define DEFAULT_bedKd 279.73
+</span></code></pre></div></li>
+<li>
+<p><strong>Задаём минимальную температуру при которой разрешаем выдавливание пластика</strong></p>
+<p>Это нужно в первую очередь для печати воском и другими пластиками которым требуется низкая температура.</p>
+<p>В прошике от Ivilol задана температура 80 градусов Цельсия. Однако я не планирую это и оставлю девольное значение в 170 градусов. Для защиты механизма фидера и фитингов.</p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define EXTRUDE_MINTEMP 170
+</span></code></pre></div></li>
+<li>
+<p><strong>Задаём максимальную длину пластика в мм, которую можно выдавить одной командой</strong></p>
+<p>Сделано для безопасности, чтобы по ошибке принитер не выдавил всё что есть. В процессе печати это не страшно, тк слайсер делает много небольших выдавливаний. А вот при загрузке пластика – актуально. Тк у меня боуден, то меняю параметр с 200мм на 1000мм.</p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define EXTRUDE_MAXLENGTH 1000
+</span></code></pre></div></li>
+<li>
+<p><strong>Меняем температуру экструдера и стола для операции преднагрева</strong></p>
+<p>Ivilol прелагает использовать для этого следующие температуры:</p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define PREHEAT_1_TEMP_HOTEND = 190
+</span><span style="color:#00f"></span>...
+<span style="color:#00f">#define PREHEAT_2_TEMP_HOTEND = 230
+</span><span style="color:#00f">#define PREHEAT_2_TEMP_BED = 90
+</span></code></pre></div><p>Я не понимаю зачем это было сделано, поэтому я оставлю значения по умолчанию:</p>
+<ul>
+<li>для PLA – 180/70 градусов</li>
+<li>для ABS – 240/110 градусов</li>
+</ul>
+</li>
+<li>
+<p><strong>Задаём клиренс при калибровке стола</strong></p>
+<p>Ivilol задали его равным нулю. Для меня это спорный вопрос, с одной стороны хорошо что экструдер пойдет по столу до следующей точки. С другой стороны, если стол будет задран, то экструдер упрется или прокорябает по нему.</p>
+<p>Я думаю что дефотное значение в 5мм вполне объективно.</p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define Z_CLEARANCE_BETWEEN_PROBES  5
+</span></code></pre></div></li>
+<li>
+<p><strong>Включаем автоматическую парковку</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define NOZZLE_PARK_FEATURE
+</span></code></pre></div></li>
+<li>
+<p><strong>Настраиваем работу ADVANCED_PAUSE_FEATURE</strong></p>
+<p>Такие параметры заданы Ivilol, я сделаю также.</p>
+<p><code>Configuration_adv.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define FILAMENT_CHANGE_UNLOAD_FEEDRATE     300   </span><span style="color:#008000">// (mm/s) Unload filament feedrate. This can be pretty fast.
+</span><span style="color:#008000"></span>...
+<span style="color:#00f">#define FILAMENT_CHANGE_UNLOAD_LENGTH      800    </span><span style="color:#008000">// (mm) The length of filament for a complete unload.
+</span><span style="color:#008000"></span>                                                  <span style="color:#008000">//   For Bowden, the full length of the tube and nozzle.
+</span><span style="color:#008000"></span>                                                  <span style="color:#008000">//   For direct drive, the full length of the nozzle.
+</span><span style="color:#008000"></span>                                                  <span style="color:#008000">//   Set to 0 for manual unloading.
+</span><span style="color:#008000"></span>...
+<span style="color:#00f">#define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE   300  </span><span style="color:#008000">// (mm/s) Load filament feedrate. This can be pretty fast.
+</span><span style="color:#008000"></span>...
+<span style="color:#00f">#define FILAMENT_CHANGE_FAST_LOAD_LENGTH     800  </span><span style="color:#008000">// (mm) Load length of filament, from extruder gear to nozzle.
+</span><span style="color:#008000"></span>                                                  <span style="color:#008000">//   For Bowden, the full length of the tube and nozzle.
+</span><span style="color:#008000"></span>                                                  <span style="color:#008000">//   For direct drive, the full length of the nozzle.
+</span><span style="color:#008000"></span>...
+<span style="color:#00f">#define ADVANCED_PAUSE_CONTINUOUS_PURGE           </span><span style="color:#008000">// Purge continuously up to the purge length until interrupted.
+</span><span style="color:#008000"></span>...
+<span style="color:#00f">#define PARK_HEAD_ON_PAUSE                        </span><span style="color:#008000">// Park the nozzle during pause and filament change.
+</span></code></pre></div></li>
+</ol>
+<h3 id="дополнительные-настройки">Дополнительные настройки</h3>
+<p>Из всех дополнительных настроек я включил только первую, она подсчитывает сколько принтер наработал.</p>
+<ol>
+<li>
+<p><strong>Включаем сбор статистики принтера</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define PRINTCOUNTER
+</span></code></pre></div></li>
+<li>
+<p><strong>Вывод информации о принтере</strong></p>
+<p><code>Configuration_adv.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LCD_INFO_MENU
+</span></code></pre></div></li>
+<li>
+<p><strong>Добавление кастомных в команд в главное меню (CUSTOM_MENU_MAIN)</strong></p>
+<p>Вы можете добавить в главное меню до 25 кастомных команд. Я этого делать не стал, тк все, что мне нужно у меня и так есть. Однако если вам это нужно обратите внимание на секцию <code>Custom Menu: Main Menu</code> в файле <code>Configuration_adv.h</code>.</p>
+</li>
+<li>
+<p><strong>Дополнительный алгоритм калибровки стола</strong></p>
+<p>В общем случае она включается расскоментированием опции <code>LEVEL_BED_CORNERS</code> в <code>Configuration.h</code>.</p>
+<p>Там же есть все настройки. Которые я не советую изменять. Однако должен привести пример того, как Ivilol добавили в алгоритм калибровку по трем точкам.</p>
+<p>Для этого они в <code>Configuration.h</code> внесли новый дефайн:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_3POINT
+</span></code></pre></div><p>А также заменили:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } </span><span style="color:#008000">// (mm) Left, Front, Right, Back insets
+</span></code></pre></div><p>на</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_INSET_LFRB { 5, 5, 5, 5 } </span><span style="color:#008000">// (mm) Left, Front, Right, Back insets
+</span></code></pre></div><p>чтобы калибровка снизить общую ошибку при калиброке по трём точкам.</p>
+<p>А также внесли изменения в файл с логикой калбровки <code>/Marlin/src/lcd/menu/menu_bed_corners.cpp</code>:</p>
+<p>Было:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  line_to_z(LEVEL_CORNERS_Z_HOP);
+  <span style="color:#00f">switch</span> (bed_corner) {
+    <span style="color:#00f">case</span> 0: current_position   = lf;   <span style="color:#00f">break</span>; <span style="color:#008000">// copy xy
+</span><span style="color:#008000"></span>    <span style="color:#00f">case</span> 1: current_position.x = rb.x; <span style="color:#00f">break</span>;
+    <span style="color:#00f">case</span> 2: current_position.y = rb.y; <span style="color:#00f">break</span>;
+    <span style="color:#00f">case</span> 3: current_position.x = lf.x; <span style="color:#00f">break</span>;
+    <span style="color:#00f">#if ENABLED(LEVEL_CENTER_TOO)
+</span><span style="color:#00f"></span>      <span style="color:#00f">case</span> 4: current_position.set(X_CENTER, Y_CENTER); <span style="color:#00f">break</span>;
+    <span style="color:#00f">#endif
+</span><span style="color:#00f"></span>  }
+</code></pre></div><p>Стало:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  line_to_z(LEVEL_CORNERS_Z_HOP);
+  <span style="color:#00f">switch</span> (bed_corner) {
+    <span style="color:#00f">case</span> 0: current_position   = lf;   <span style="color:#00f">break</span>; <span style="color:#008000">// copy xy
+</span><span style="color:#008000"></span>    <span style="color:#00f">case</span> 1: current_position.x = rb.x; <span style="color:#00f">break</span>;
+    <span style="color:#00f">#if ENABLED(LEVEL_CORNERS_3POINT)
+</span><span style="color:#00f"></span>      <span style="color:#00f">case</span> 2: current_position.set(X_CENTER, rb.y); <span style="color:#00f">break</span>;
+    <span style="color:#00f">#else
+</span><span style="color:#00f"></span>      <span style="color:#00f">case</span> 2: current_position.y = rb.y; <span style="color:#00f">break</span>;
+      <span style="color:#00f">case</span> 3: current_position.x = lf.x; <span style="color:#00f">break</span>;
+      <span style="color:#00f">#if ENABLED(LEVEL_CENTER_TOO)
+</span><span style="color:#00f"></span>        <span style="color:#00f">case</span> 4: current_position.set(X_CENTER, Y_CENTER); <span style="color:#00f">break</span>;
+      <span style="color:#00f">#endif
+</span><span style="color:#00f"></span>    <span style="color:#00f">#endif
+</span><span style="color:#00f"></span>  }
+</code></pre></div><p>Также этот алгоритм менял <a href="https://github.com/DeZepTup/Marlin_UlTi/">DeZepTup</a>, ветка <code>main</code> коммиты <code>bb9ad1fc6a02e290b30cf57b7e401b10b675026a</code> и <code>b048505a395452af94f228470fb653eac1ba1877</code>, добавив туда работы с <code>BLtouch</code>.</p>
+<p>Я пока не вижу необходимости в такой калибровке, поэтому если и буду использовать, то обычную – по четырем точкам.</p>
+</li>
+</ol>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/3dprint">3dprint</a></li>
+                    
+                </ul>
+                 
+            </div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'urpylka';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

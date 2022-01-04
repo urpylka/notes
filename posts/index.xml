@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 10 Dec 2021 18:42:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 04 Jan 2022 09:39:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Сборка Marlin для UlTi-Steel (SKR 1.3)</title>
+      <link>https://urpylka.com/posts/post-56/</link>
+      <pubDate>Tue, 04 Jan 2022 09:39:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-56/</guid>
+      <description>Привет! Необходимость собрать прошивку для UlTi-Steel у меня возникла по трём причинам:
+ Потому что сами ребята из Ivilol больше не обновляют прошивку для первой версии UlTi-Steel. Если посмотреть в их репозиторий у меня кровь из глаз идет и возникает много вопросов. У меня есть необходимость добавить в прошивку свои настройки. Полный бардак происходит в истории и коде самого Marlin. Учитывая это, я бы не хотел обновлять прошивку с использованием операции Merge, а делать Rebase небольшого количества своих коммитов (учитывая, что это не изменения к Marlin, а лишь ограниченный набор настроек для конкретного принтера, я позволю себе это).</description>
+    </item>
     
     <item>
       <title>Сбор метрик с Raspberry Pi</title>
