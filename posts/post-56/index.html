@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В статье разобрался и изложил как собрать свою прошивку для принтера UlTi-Steel. За основу взял репозиторий производителя и сделал описание всех изменений. Согласно изложенной информации можно собрать прошивку самостоятельно, отдавая полный отчет в том, какие настройки сделаны.">
 <meta itemprop="datePublished" content="2022-01-04T09:39:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-01-04T09:39:00&#43;02:00" />
-<meta itemprop="wordCount" content="1497">
+<meta itemprop="wordCount" content="1500">
 
 
 
@@ -122,7 +122,7 @@ if (!doNotTrack) {
 <li>Полный бардак происходит в истории и коде самого Marlin. Учитывая это, я бы не хотел обновлять прошивку с использованием операции Merge, а делать Rebase небольшого количества своих коммитов (учитывая, что это не изменения к Marlin, а лишь ограниченный набор настроек для конкретного принтера, я позволю себе это).</li>
 </ol>
 <p>Собственно идея следующая – написать небольшое руководство, по которому любой легко сможет изменить актуальную версию Marlin под свой UlTi-Steel, не опираясь на разработчиков самого принтера или какие-то другие репозитории.</p>
-<p>Я буду рассказыать все на примере своего ульти с драйверами подключенными по UART, с контоллером <a href="https://reprap.org/wiki/RepRapDiscount_Smart_Controller">RepRap SmartController</a> с дисплеем <code>LCD2004</code>.</p>
+<p>Я буду рассказывать все на примере своего ульти с драйверами подключенными по UART, с контоллером <a href="https://reprap.org/wiki/RepRapDiscount_Smart_Controller">RepRap SmartController</a> с дисплеем <code>LCD2004</code>.</p>
 <p><img src="./images/reprapsmartcontroller.jpg" alt="image"></p>
 <p>Добавление всяких ништяков будет в отдельной статьях, например <a href="/posts/post-57">Подключение BTT Smart Filament Sensor к SKR v1.3</a>.</p>
 <p>За основу я возьму последний на сегодняшний день тег <code>2.0.9.3</code> из мастер ветки (<code>2.0.x</code>) в upstream (Marlin). И буду добавлять коммиты сверху. Моя ветка <code>urpylka_ultisteel</code> будет располагаться в <a href="https://github.com/urpylka/Marlin">моём репозитории</a>. Базовые настройки я возьму из официального репозитория Ivilol.</p>
@@ -136,7 +136,7 @@ if (!doNotTrack) {
 <h3 id="информация-о-прошивке">Информация о прошивке</h3>
 <ol>
 <li>
-<p><strong>Определение информации о вашей прошивке</strong></p>
+<p><strong>Определяем информацию о вашей прошивке</strong></p>
 <p>В моём случае я не буду менять версию и дату выпуска прошивки, тк вношу лишь настройки по конфигурации принтера, а версия указывает на исходный код используемой логики. Однако, я поменяю параметры, которые указывают на то, где найти исходный код прошивки и ссылку на веб-сайт, где можно найти описание с изменениям прошивки от оригинала (в моём случае это ссылка на эту статью).</p>
 <p><code>/Marlin/src/inc/Version.h</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SOURCE_CODE_URL &#34;github.com/urpylka/Marlin&#34;
@@ -227,7 +227,7 @@ if (!doNotTrack) {
 <span style="color:#00f">#define EEPROM_AUTO_INIT
 </span></code></pre></div></li>
 <li>
-<p><strong>Выбор контроллера управления</strong></p>
+<p><strong>Выбираем контроллер управления</strong></p>
 <p><code>Configuration.h</code></p>
 <ul>
 <li>
@@ -241,13 +241,13 @@ if (!doNotTrack) {
 </ul>
 </li>
 <li>
-<p><strong>Изменение стороны вращения энкодера</strong></p>
+<p><strong>Измененяем стороны вращения энкодера</strong></p>
 <p>В моём случае не понадобилось. Если требуется, расскоментируем строку.</p>
 <p><code>Configuration.h</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define REVERSE_ENCODER_DIRECTION
 </span></code></pre></div></li>
 <li>
-<p><strong>Настройка кодировки для LCD дисплея</strong></p>
+<p><strong>Настраиваем кодировку для LCD дисплея</strong></p>
 <p>В прошивке от Ivilol параметры в файле <code>Configuration.h</code> заданы следующим образом:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LCD_LANGUAGE ru
 </span><span style="color:#00f"></span>...
@@ -296,7 +296,7 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
 </span></code></pre></div></li>
 <li>
-<p><strong>Конфигурация нагрева стола</strong></p>
+<p><strong>Определяем конфигурацию нагрева стола</strong></p>
 <p>В первую очередь, нужно включить ПИД регулятор, что это можете прочитать Википедии.</p>
 <p><code>Configuration.h</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define PIDTEMPBED
@@ -375,16 +375,16 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define PRINTCOUNTER
 </span></code></pre></div></li>
 <li>
-<p><strong>Вывод информации о принтере</strong></p>
+<p><strong>Включаем вывод информации о принтере</strong></p>
 <p><code>Configuration_adv.h</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LCD_INFO_MENU
 </span></code></pre></div></li>
 <li>
-<p><strong>Добавление кастомных в команд в главное меню (CUSTOM_MENU_MAIN)</strong></p>
+<p><strong>Добавляем кастомные в команды в главное меню (CUSTOM_MENU_MAIN)</strong></p>
 <p>Вы можете добавить в главное меню до 25 кастомных команд. Я этого делать не стал, тк все, что мне нужно у меня и так есть. Однако если вам это нужно обратите внимание на секцию <code>Custom Menu: Main Menu</code> в файле <code>Configuration_adv.h</code>.</p>
 </li>
 <li>
-<p><strong>Дополнительный алгоритм калибровки стола</strong></p>
+<p><strong>Добавляем дополнительный алгоритм калибровки стола</strong></p>
 <p>В общем случае она включается расскоментированием опции <code>LEVEL_BED_CORNERS</code> в <code>Configuration.h</code>.</p>
 <p>Там же есть все настройки. Которые я не советую изменять. Однако должен привести пример того, как Ivilol добавили в алгоритм калибровку по трем точкам.</p>
 <p>Для этого они в <code>Configuration.h</code> внесли новый дефайн:</p>
