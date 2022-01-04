@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 04 Jan 2022 09:39:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 04 Jan 2022 19:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>bash</title>
+      <link>https://urpylka.com/tags/bash/</link>
+      <pubDate>Tue, 04 Jan 2022 19:00:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://urpylka.com/tags/programming/</link>
+      <pubDate>Tue, 04 Jan 2022 19:00:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Tue, 04 Jan 2022 19:00:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>3d</title>
@@ -27,24 +54,6 @@
       <pubDate>Tue, 04 Jan 2022 09:39:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/3dprint/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://urpylka.com/tags/programming/</link>
-      <pubDate>Tue, 04 Jan 2022 09:39:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Tue, 04 Jan 2022 09:39:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -639,15 +648,6 @@
       <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://urpylka.com/tags/proxy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>bash</title>
-      <link>https://urpylka.com/tags/bash/</link>
-      <pubDate>Thu, 16 Apr 2020 02:14:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/bash/</guid>
       <description></description>
     </item>
     
