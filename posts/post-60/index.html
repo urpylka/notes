@@ -121,12 +121,12 @@ if (!doNotTrack) {
 </blockquote>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#00f">#!/bin/sh
 </span><span style="color:#00f"></span>
-ENV=(
+HOSTS=(
     <span style="color:#a31515">&#39;example-1.com::9000&#39;</span>
     <span style="color:#a31515">&#39;example-2.com::9090&#39;</span>
 )
 
-<span style="color:#00f">for</span> i in <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>ENV[@]<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>; <span style="color:#00f">do</span>
+<span style="color:#00f">for</span> i in <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>HOSTS[@]<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>; <span style="color:#00f">do</span>
     echo <span style="color:#a31515">&#34;a=</span><span style="color:#a31515">${</span>i%%::*<span style="color:#a31515">}</span><span style="color:#a31515"> c=</span><span style="color:#a31515">${</span>i##*::<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>;
 <span style="color:#00f">done</span>
 </code></pre></div><ul>
@@ -136,12 +136,12 @@ ENV=(
 <p>Unfortunately in Shell you cannot put string instead parametr, but in Bash you can do that.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#!/bin/bash
 </span><span style="color:#00f"></span>
-ENV=(
+HOSTS=(
     <span style="color:#a31515">&#39;example-1.com::9000::/api&#39;</span>
     <span style="color:#a31515">&#39;example-2.com::9090::/metrics&#39;</span>
 )
 
-<span style="color:#00f">for</span> i in <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>ENV[@]<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>; <span style="color:#00f">do</span>
+<span style="color:#00f">for</span> i in <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>HOSTS[@]<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>; <span style="color:#00f">do</span>
     echo <span style="color:#a31515">&#34;a=</span><span style="color:#a31515">${</span>i%%::*<span style="color:#a31515">}</span><span style="color:#a31515"> b=</span><span style="color:#a31515">${${</span>i%::*<span style="color:#a31515">}</span>#*::<span style="color:#a31515">}</span><span style="color:#a31515"> c=</span><span style="color:#a31515">${</span>i##*::<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>;
 <span style="color:#00f">done</span>
 </code></pre></div><p>Where <code>${${i%::*}#*::}</code> consists from <code>${i%::*}</code> and <code>${&lt;STR&gt;#*::}</code></p>

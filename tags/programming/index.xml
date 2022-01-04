@@ -21,7 +21,7 @@
       <description>Main idea how to make nested array in Shell is use a separator for example ::.
 But the trick is in using Parameter Expansion for split elements.
  Parameter Expansion is the term that refers to any operation that causes a parameter to be expanded (replaced by content). In its most basic appearance, the expansion of a parameter is achieved by prefixing that parameter with a $ sign.
- #!/bin/sh  ENV=( &amp;#39;example-1.</description>
+ #!/bin/sh  HOSTS=( &amp;#39;example-1.</description>
     </item>
     
     <item>
