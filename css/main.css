@@ -310,7 +310,6 @@ code {
     font-family: 'Playfair Display';
     /* line-height: 0.7em; */
     margin: 0;
-    margin-top: 0px;
 }
 
 .header .ico li {
@@ -336,7 +335,7 @@ code {
 }
 
 #subtitle {
-    margin-top: 0px;
+    margin-top: 5px;
     font-family: medium-marketing-display-font;
     font-size: 0.8em;
     font-weight: 400;
@@ -346,16 +345,17 @@ code {
     height: 110px;
 }
 
-.header h1 {
+.header .site-title {
     /* font-size: 2.5rem !important; */
     font-size: 2.4rem;
-    line-height: 2.4rem;
+    /* line-height: 2.4rem; */
+    line-height: 1;
 }
 
 .header .flex-block {
     margin: 0;
     display: flex;
-    justify-content: space-between;;
+    justify-content: space-between;
 }
 
 .header nav {
@@ -567,7 +567,23 @@ code {
     text-align: right;
 }
 
-@media (max-width: 370px) {
+@media (max-width: 450px) {
+    .header {
+        margin-bottom: -25px;
+    }
+    .header nav ul {
+        margin-top: 0;
+    }
+    .header .site-title {
+        margin-top: -2px !important;
+        font-size: 1.1rem;
+        line-height: 1;
+    }
+    #subtitle {
+        margin-top: -15px;
+        font-size: 8px;
+        margin-bottom: 2px;
+    }
     .header .ico li {
         margin: 0;
         padding: 0;
@@ -578,9 +594,9 @@ code {
         margin: 0 10px 0 0;
         font-size: 14px;
     }
-    .main-avatar {
-        width: 140px !important;
-        height: 140px !important;
+    .homepage_avatar {
+        width: 100px !important;
+        height: 100px !important;
     }
 }
 @media (max-width: 900px) {
@@ -629,3 +645,32 @@ code {
     clear: both;
     margin-bottom: 20px;
 }
+
+.dark .dark\:text-gray-400 {
+    /* --tw-text-opacity: 1;
+    color:rgba(163, 163, 163, var(--tw-text-opacity)); */
+    color: rgb(163, 163, 163) !important;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.homepage_cons {
+    display: -webkit-flex;
+    display: flex;
+}
+.homepage_avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: none;
+    background: #ccFF;
+    margin-right: 20px;
+}
+.mb-3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 1.1rem;
+}
+
+/* .h1_homepage {
+    line-height: 1 !important;
+} */
