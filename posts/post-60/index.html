@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Simple idea how to make nested array in bash / shell.">
 <meta itemprop="datePublished" content="2022-01-04T19:00:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-01-04T19:00:00&#43;02:00" />
-<meta itemprop="wordCount" content="184">
+<meta itemprop="wordCount" content="186">
 
 
 
@@ -130,8 +130,8 @@ HOSTS=(
 <li><code>${i%%::*}</code> – deletes all symbols since <code>::</code> to right direction</li>
 <li><code>${i##*::}</code> – deletes all symbols since <code>::</code> to left direction, but starts from the end</li>
 </ul>
-<p>Unfortunately in Shell you cannot put string instead parametr, but in Bash you can do that.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#!/bin/bash
+<p>Unfortunately in Shell or Bash you cannot put string instead parametr, but in Zsh you can do that.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#!/bin/zsh
 </span><span style="color:#00f"></span>
 HOSTS=(
     <span style="color:#a31515">&#39;example-1.com::9000::/api&#39;</span>
