@@ -293,7 +293,7 @@
 
 .commento-root .commento-mod-tools button {
     text-transform: uppercase;
-    color: #495057;
+    color: inherit;
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
@@ -306,7 +306,7 @@
 .commento-root .commento-mod-tools::before {
     content: "Moderator Tools";
     text-transform: uppercase;
-    color: #3b5bdb;
+    color: #9375fd;
     font-size: 12px;
     font-weight: 700
 }
