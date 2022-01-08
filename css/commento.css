@@ -251,7 +251,7 @@
     text-align: right;
     margin-right: 16px;
     height: 38px;
-    color: #868e96;
+    color: inherit;
     font-weight: 700;
     cursor: pointer;
     display: block
@@ -475,7 +475,7 @@
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #495057
+    color: inherit
 }
 
 .commento-root .commento-anonymous-checkbox-container input[type=checkbox]+label:before {
@@ -487,7 +487,7 @@
 }
 
 .commento-root .commento-markdown-button {
-    color: #868e96;
+    color: inherit;
     margin: 0 16px;
     font-size: 12px;
     text-transform: uppercase;
