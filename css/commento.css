@@ -1149,3 +1149,7 @@
 .commento-root-font * {
     font-family: 'Source Sans Pro', sans-serif
 }
+
+.commento-logo-container {
+    display: none;
+}
