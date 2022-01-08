@@ -1153,3 +1153,9 @@
 #commento-footer {
     display: none;
 }
+
+@media (max-width: 460px) {
+    #markdown_text {
+        display: none;
+    }
+}
