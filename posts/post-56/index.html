@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В статье разобрался и изложил как собрать свою прошивку для принтера UlTi-Steel. За основу взял репозиторий производителя и сделал описание всех изменений. Согласно изложенной информации можно собрать прошивку самостоятельно, отдавая полный отчет в том, какие настройки сделаны.">
 <meta itemprop="datePublished" content="2022-01-04T09:39:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-01-04T09:39:00&#43;02:00" />
-<meta itemprop="wordCount" content="1593">
+<meta itemprop="wordCount" content="1582">
 
 
 
@@ -395,71 +395,45 @@ if (!doNotTrack) {
 <p>Вы можете добавить в главное меню до 25 кастомных команд. Я этого делать не стал, тк все, что мне нужно у меня и так есть. Однако если вам это нужно обратите внимание на секцию <code>Custom Menu: Main Menu</code> в файле <code>Configuration_adv.h</code>.</p>
 </li>
 </ol>
-<h3 id="добавляем-дополнительный-алгоритм-калибровки-стола"><strong>Добавляем дополнительный алгоритм калибровки стола</strong></h3>
-<pre><code>В общем случае она включается расскоментированием опции `LEVEL_BED_CORNERS` в `Configuration.h`. Я не вижу в нём необходимости, однако мб кому-то это мб полезно, учитывая, что Ivilol заморочился написать это.
-
-Там же есть все настройки. Которые я не советую изменять. Однако должен привести пример того, как Ivilol добавили в алгоритм калибровку по трем точкам.
-
-Для этого они в `Configuration.h` внесли новый дефайн:
-
-```cpp
-#define LEVEL_CORNERS_3POINT
-```
-
-А также заменили:
-
-```cpp
-#define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
-```
-
-на
-
-```cpp
-#define LEVEL_CORNERS_INSET_LFRB { 5, 5, 5, 5 } // (mm) Left, Front, Right, Back insets
-```
-
-чтобы калибровка снизить общую ошибку при калиброке по трём точкам.
-
-А также внесли изменения в файл с логикой калбровки `/Marlin/src/lcd/menu/menu_bed_corners.cpp`:
-
-Было:
-
-```cpp
-  line_to_z(LEVEL_CORNERS_Z_HOP);
-  switch (bed_corner) {
-    case 0: current_position   = lf;   break; // copy xy
-    case 1: current_position.x = rb.x; break;
-    case 2: current_position.y = rb.y; break;
-    case 3: current_position.x = lf.x; break;
-    #if ENABLED(LEVEL_CENTER_TOO)
-      case 4: current_position.set(X_CENTER, Y_CENTER); break;
-    #endif
-  }
-```
-
-Стало:
-
-```cpp
-  line_to_z(LEVEL_CORNERS_Z_HOP);
-  switch (bed_corner) {
-    case 0: current_position   = lf;   break; // copy xy
-    case 1: current_position.x = rb.x; break;
-    #if ENABLED(LEVEL_CORNERS_3POINT)
-      case 2: current_position.set(X_CENTER, rb.y); break;
-    #else
-      case 2: current_position.y = rb.y; break;
-      case 3: current_position.x = lf.x; break;
-      #if ENABLED(LEVEL_CENTER_TOO)
-        case 4: current_position.set(X_CENTER, Y_CENTER); break;
-      #endif
-    #endif
-  }
-```
-
-Также этот алгоритм менял [DeZepTup](https://github.com/DeZepTup/Marlin_UlTi/), ветка `main` коммиты `bb9ad1fc6a02e290b30cf57b7e401b10b675026a` и `b048505a395452af94f228470fb653eac1ba1877`, добавив туда работы с `BLtouch`.
-
-Я пока не вижу необходимости в такой калибровке, поэтому если и буду использовать, то обычную – по четырем точкам.
-</code></pre>
+<h3 id="дополнительный-алгоритм-калибровки-стола">Дополнительный алгоритм калибровки стола</h3>
+<p>В общем случае она включается расскоментированием опции <code>LEVEL_BED_CORNERS</code> в <code>Configuration.h</code>. Я не вижу в нём необходимости, однако мб кому-то это мб полезно, учитывая, что Ivilol заморочился написать это.</p>
+<p>Там же есть все настройки. Которые я не советую изменять. Однако должен привести пример того, как Ivilol добавили в алгоритм калибровку по трем точкам.</p>
+<p>Для этого они в <code>Configuration.h</code> внесли новый дефайн:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_3POINT
+</span></code></pre></div><p>А также заменили:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } </span><span style="color:#008000">// (mm) Left, Front, Right, Back insets
+</span></code></pre></div><p>на</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_INSET_LFRB { 5, 5, 5, 5 } </span><span style="color:#008000">// (mm) Left, Front, Right, Back insets
+</span></code></pre></div><p>чтобы калибровка снизить общую ошибку при калиброке по трём точкам.</p>
+<p>А также внесли изменения в файл с логикой калбровки <code>/Marlin/src/lcd/menu/menu_bed_corners.cpp</code>:</p>
+<p>Было:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    line_to_z(LEVEL_CORNERS_Z_HOP);
+    <span style="color:#00f">switch</span> (bed_corner) {
+    <span style="color:#00f">case</span> 0: current_position   = lf;   <span style="color:#00f">break</span>; <span style="color:#008000">// copy xy
+</span><span style="color:#008000"></span>    <span style="color:#00f">case</span> 1: current_position.x = rb.x; <span style="color:#00f">break</span>;
+    <span style="color:#00f">case</span> 2: current_position.y = rb.y; <span style="color:#00f">break</span>;
+    <span style="color:#00f">case</span> 3: current_position.x = lf.x; <span style="color:#00f">break</span>;
+    <span style="color:#00f">#if ENABLED(LEVEL_CENTER_TOO)
+</span><span style="color:#00f"></span>        <span style="color:#00f">case</span> 4: current_position.set(X_CENTER, Y_CENTER); <span style="color:#00f">break</span>;
+    <span style="color:#00f">#endif
+</span><span style="color:#00f"></span>    }
+</code></pre></div><p>Стало:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    line_to_z(LEVEL_CORNERS_Z_HOP);
+    <span style="color:#00f">switch</span> (bed_corner) {
+    <span style="color:#00f">case</span> 0: current_position   = lf;   <span style="color:#00f">break</span>; <span style="color:#008000">// copy xy
+</span><span style="color:#008000"></span>    <span style="color:#00f">case</span> 1: current_position.x = rb.x; <span style="color:#00f">break</span>;
+    <span style="color:#00f">#if ENABLED(LEVEL_CORNERS_3POINT)
+</span><span style="color:#00f"></span>        <span style="color:#00f">case</span> 2: current_position.set(X_CENTER, rb.y); <span style="color:#00f">break</span>;
+    <span style="color:#00f">#else
+</span><span style="color:#00f"></span>        <span style="color:#00f">case</span> 2: current_position.y = rb.y; <span style="color:#00f">break</span>;
+        <span style="color:#00f">case</span> 3: current_position.x = lf.x; <span style="color:#00f">break</span>;
+        <span style="color:#00f">#if ENABLED(LEVEL_CENTER_TOO)
+</span><span style="color:#00f"></span>        <span style="color:#00f">case</span> 4: current_position.set(X_CENTER, Y_CENTER); <span style="color:#00f">break</span>;
+        <span style="color:#00f">#endif
+</span><span style="color:#00f"></span>    <span style="color:#00f">#endif
+</span><span style="color:#00f"></span>    }
+</code></pre></div><p>Также этот алгоритм менял <a href="https://github.com/DeZepTup/Marlin_UlTi/">DeZepTup</a>, ветка <code>main</code> коммиты <code>bb9ad1fc6a02e290b30cf57b7e401b10b675026a</code> и <code>b048505a395452af94f228470fb653eac1ba1877</code>, добавив туда работы с <code>BLtouch</code>.</p>
+<p>Я пока не вижу необходимости в такой калибровке, поэтому если и буду использовать, то обычную – по четырем точкам.</p>
 <h2 id="сборка-прошивки">Сборка прошивки</h2>
 <p>Я работаю с исходным кодом в <code>VScode</code>. Для сборки использую плагин <code>Platformio</code>. Как установить плагин и собрать прошивку хорошо изложено в официальной <a href="https://marlinfw.org/docs/basics/install_platformio.html">документации Marlin</a>.</p>
 <hr>
