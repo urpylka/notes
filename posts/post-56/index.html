@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В статье разобрался и изложил как собрать свою прошивку для принтера UlTi-Steel. За основу взял репозиторий производителя и сделал описание всех изменений. Согласно изложенной информации можно собрать прошивку самостоятельно, отдавая полный отчет в том, какие настройки сделаны.">
 <meta itemprop="datePublished" content="2022-01-04T09:39:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-01-04T09:39:00&#43;02:00" />
-<meta itemprop="wordCount" content="1500">
+<meta itemprop="wordCount" content="1593">
 
 
 
@@ -122,24 +122,26 @@ if (!doNotTrack) {
 <p>Я буду рассказывать все на примере своего ульти с драйверами подключенными по UART, с контоллером <a href="https://reprap.org/wiki/RepRapDiscount_Smart_Controller">RepRap SmartController</a> с дисплеем <code>LCD2004</code>.</p>
 <p><img src="./images/reprapsmartcontroller.jpg" alt="image"></p>
 <p>Добавление всяких ништяков будет в отдельной статьях, например <a href="/posts/post-57">Подключение BTT Smart Filament Sensor к SKR v1.3</a>.</p>
-<p>За основу я возьму последний на сегодняшний день тег <code>2.0.9.3</code> из мастер ветки (<code>2.0.x</code>) в upstream (Marlin). И буду добавлять коммиты сверху. Моя ветка <code>urpylka_ultisteel</code> будет располагаться в <a href="https://github.com/urpylka/Marlin">моём репозитории</a>. Базовые настройки я возьму из официального репозитория Ivilol.</p>
+<p>За основу я возьму последний на сегодняшний день тег <code>2.0.9.2</code> из мастер ветки (<code>2.0.x</code>) в upstream (Marlin). И буду добавлять коммиты сверху. Моя ветка <code>urpylka_ultisteel</code> будет располагаться в <a href="https://github.com/urpylka/Marlin">моём репозитории</a>. Базовые настройки я возьму из официального репозитория Ivilol.</p>
+<blockquote>
+<p>Тэг <code>2.0.9.3</code> получился битым – на нем не работает дисплей.</p>
+</blockquote>
 <h2 id="настройка-прошивки">Настройка прошивки</h2>
-<p>Для простоты я разделю эти изменения на несколько категорий:</p>
-<ol>
-<li>Информация о прошивке</li>
-<li>Общие настройки</li>
-<li>Дополнительные настройки</li>
-</ol>
-<h3 id="информация-о-прошивке">Информация о прошивке</h3>
 <ol>
 <li>
 <p><strong>Определяем информацию о вашей прошивке</strong></p>
-<p>В моём случае я не буду менять версию и дату выпуска прошивки, тк вношу лишь настройки по конфигурации принтера, а версия указывает на исходный код используемой логики. Однако, я поменяю параметры, которые указывают на то, где найти исходный код прошивки и ссылку на веб-сайт, где можно найти описание с изменениям прошивки от оригинала (в моём случае это ссылка на эту статью).</p>
+<p>Тк я вношу лишь настройки по конфигурации принтера, я не планировал менять версию и дату выпуска прошивки, тк версия указывает на исходный код используемой логики. Однако, я планировал поменять параметры, которые указывают на то, где найти исходный код прошивки и ссылку на веб-сайт, где можно найти описание с изменениям прошивки от оригинала (в моём случае это ссылка на эту статью).</p>
 <p><code>/Marlin/src/inc/Version.h</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SOURCE_CODE_URL &#34;github.com/urpylka/Marlin&#34;
 </span><span style="color:#00f"></span>...
 <span style="color:#00f">#define WEBSITE_URL &#34;urpylka.com/posts/post-56&#34;
-</span></code></pre></div><p>Думаю менять <code>MACHINE_NAME</code> в этом файле не стоит, тк переопределить его можно в основном конфигурационном файле, о чем речь пойдет ниже.</p>
+</span></code></pre></div><p>Однако, я понял, что даже это лишнее и отказался от этого тк:</p>
+<ol>
+<li>Я не меняю логики прошивки, а лишь конфигурационные файлы.</li>
+<li>В разделе меню информация о принтере отображается только <code>WEBSITE_URL</code> и не полностью.</li>
+<li>Получается я вношу изменения в допольнительные файлы во вне конфигурации которые должен потом таскать.</li>
+</ol>
+<p>Менять <code>MACHINE_NAME</code> в этом файле также не стоит, тк переопределить его можно в основном конфигурационном файле, о чем пойдет речь в следующем пункте.</p>
 </li>
 <li>
 <p><strong>Меняем название машины, которое высвечивается на экране после загрузки</strong></p>
@@ -151,9 +153,6 @@ if (!doNotTrack) {
 <p><code>Configuration.h</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define STRING_CONFIG_H_AUTHOR &#34;(urpylka, UlTi-Steel)&#34; </span><span style="color:#008000">// Who made the changes.
 </span></code></pre></div></li>
-</ol>
-<h3 id="общие-настройки">Общие настройки</h3>
-<ol>
 <li>
 <p><strong>Измененяем микроконтроллер для сборки</strong></p>
 <p><code>platformio.ini</code></p>
@@ -238,10 +237,24 @@ if (!doNotTrack) {
 </ul>
 </li>
 <li>
-<p><strong>Измененяем стороны вращения энкодера</strong></p>
-<p>В моём случае не понадобилось. Если требуется, расскоментируем строку.</p>
+<p><strong>Включаем звуковую индикацию при нажатии</strong></p>
 <p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SPEAKER
+</span><span style="color:#00f">#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 100
+</span><span style="color:#00f">#define LCD_FEEDBACK_FREQUENCY_HZ 5000
+</span></code></pre></div><p>А также позволяем отключать её из меню:</p>
+<p><code>Configuration_adv.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define SOUND_MENU_ITEM
+</span></code></pre></div></li>
+<li>
+<p><strong>Измененяем стороны вращения энкодера</strong></p>
+<p>Если требуется, расскоментируем нужные строки. В моём случае понадобилось расскоментировать параметр <code>REVERSE_ENCODER_DIRECTION</code>
+<code>Configuration.h</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define REVERSE_ENCODER_DIRECTION
+</span><span style="color:#00f"></span>...
+<span style="color:#008000">// #define REVERSE_MENU_DIRECTION
+</span><span style="color:#008000"></span>...
+<span style="color:#008000">// #define REVERSE_SELECT_DIRECTION
 </span></code></pre></div></li>
 <li>
 <p><strong>Настраиваем кодировку для LCD дисплея</strong></p>
@@ -291,6 +304,11 @@ if (!doNotTrack) {
 <p><strong>Определяем толщину используемого пластика</strong></p>
 <p><code>Configuration.h</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
+</span></code></pre></div></li>
+<li>
+<p><strong>Включаем работу нагревательного стола</strong></p>
+<p><code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define TEMP_SENSOR_BED 1
 </span></code></pre></div></li>
 <li>
 <p><strong>Определяем конфигурацию нагрева стола</strong></p>
@@ -362,10 +380,6 @@ if (!doNotTrack) {
 </span><span style="color:#008000"></span>...
 <span style="color:#00f">#define PARK_HEAD_ON_PAUSE                        </span><span style="color:#008000">// Park the nozzle during pause and filament change.
 </span></code></pre></div></li>
-</ol>
-<h3 id="дополнительные-настройки">Дополнительные настройки</h3>
-<p>Из всех дополнительных настроек я включил только первую, она подсчитывает сколько принтер наработал.</p>
-<ol>
 <li>
 <p><strong>Включаем сбор статистики принтера</strong></p>
 <p><code>Configuration.h</code></p>
@@ -380,48 +394,72 @@ if (!doNotTrack) {
 <p><strong>Добавляем кастомные в команды в главное меню (CUSTOM_MENU_MAIN)</strong></p>
 <p>Вы можете добавить в главное меню до 25 кастомных команд. Я этого делать не стал, тк все, что мне нужно у меня и так есть. Однако если вам это нужно обратите внимание на секцию <code>Custom Menu: Main Menu</code> в файле <code>Configuration_adv.h</code>.</p>
 </li>
-<li>
-<p><strong>Добавляем дополнительный алгоритм калибровки стола</strong></p>
-<p>В общем случае она включается расскоментированием опции <code>LEVEL_BED_CORNERS</code> в <code>Configuration.h</code>.</p>
-<p>Там же есть все настройки. Которые я не советую изменять. Однако должен привести пример того, как Ivilol добавили в алгоритм калибровку по трем точкам.</p>
-<p>Для этого они в <code>Configuration.h</code> внесли новый дефайн:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_3POINT
-</span></code></pre></div><p>А также заменили:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } </span><span style="color:#008000">// (mm) Left, Front, Right, Back insets
-</span></code></pre></div><p>на</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_INSET_LFRB { 5, 5, 5, 5 } </span><span style="color:#008000">// (mm) Left, Front, Right, Back insets
-</span></code></pre></div><p>чтобы калибровка снизить общую ошибку при калиброке по трём точкам.</p>
-<p>А также внесли изменения в файл с логикой калбровки <code>/Marlin/src/lcd/menu/menu_bed_corners.cpp</code>:</p>
-<p>Было:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  line_to_z(LEVEL_CORNERS_Z_HOP);
-  <span style="color:#00f">switch</span> (bed_corner) {
-    <span style="color:#00f">case</span> 0: current_position   = lf;   <span style="color:#00f">break</span>; <span style="color:#008000">// copy xy
-</span><span style="color:#008000"></span>    <span style="color:#00f">case</span> 1: current_position.x = rb.x; <span style="color:#00f">break</span>;
-    <span style="color:#00f">case</span> 2: current_position.y = rb.y; <span style="color:#00f">break</span>;
-    <span style="color:#00f">case</span> 3: current_position.x = lf.x; <span style="color:#00f">break</span>;
-    <span style="color:#00f">#if ENABLED(LEVEL_CENTER_TOO)
-</span><span style="color:#00f"></span>      <span style="color:#00f">case</span> 4: current_position.set(X_CENTER, Y_CENTER); <span style="color:#00f">break</span>;
-    <span style="color:#00f">#endif
-</span><span style="color:#00f"></span>  }
-</code></pre></div><p>Стало:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">  line_to_z(LEVEL_CORNERS_Z_HOP);
-  <span style="color:#00f">switch</span> (bed_corner) {
-    <span style="color:#00f">case</span> 0: current_position   = lf;   <span style="color:#00f">break</span>; <span style="color:#008000">// copy xy
-</span><span style="color:#008000"></span>    <span style="color:#00f">case</span> 1: current_position.x = rb.x; <span style="color:#00f">break</span>;
-    <span style="color:#00f">#if ENABLED(LEVEL_CORNERS_3POINT)
-</span><span style="color:#00f"></span>      <span style="color:#00f">case</span> 2: current_position.set(X_CENTER, rb.y); <span style="color:#00f">break</span>;
-    <span style="color:#00f">#else
-</span><span style="color:#00f"></span>      <span style="color:#00f">case</span> 2: current_position.y = rb.y; <span style="color:#00f">break</span>;
-      <span style="color:#00f">case</span> 3: current_position.x = lf.x; <span style="color:#00f">break</span>;
-      <span style="color:#00f">#if ENABLED(LEVEL_CENTER_TOO)
-</span><span style="color:#00f"></span>        <span style="color:#00f">case</span> 4: current_position.set(X_CENTER, Y_CENTER); <span style="color:#00f">break</span>;
-      <span style="color:#00f">#endif
-</span><span style="color:#00f"></span>    <span style="color:#00f">#endif
-</span><span style="color:#00f"></span>  }
-</code></pre></div><p>Также этот алгоритм менял <a href="https://github.com/DeZepTup/Marlin_UlTi/">DeZepTup</a>, ветка <code>main</code> коммиты <code>bb9ad1fc6a02e290b30cf57b7e401b10b675026a</code> и <code>b048505a395452af94f228470fb653eac1ba1877</code>, добавив туда работы с <code>BLtouch</code>.</p>
-<p>Я пока не вижу необходимости в такой калибровке, поэтому если и буду использовать, то обычную – по четырем точкам.</p>
-</li>
 </ol>
+<h3 id="добавляем-дополнительный-алгоритм-калибровки-стола"><strong>Добавляем дополнительный алгоритм калибровки стола</strong></h3>
+<pre><code>В общем случае она включается расскоментированием опции `LEVEL_BED_CORNERS` в `Configuration.h`. Я не вижу в нём необходимости, однако мб кому-то это мб полезно, учитывая, что Ivilol заморочился написать это.
+
+Там же есть все настройки. Которые я не советую изменять. Однако должен привести пример того, как Ivilol добавили в алгоритм калибровку по трем точкам.
+
+Для этого они в `Configuration.h` внесли новый дефайн:
+
+```cpp
+#define LEVEL_CORNERS_3POINT
+```
+
+А также заменили:
+
+```cpp
+#define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
+```
+
+на
+
+```cpp
+#define LEVEL_CORNERS_INSET_LFRB { 5, 5, 5, 5 } // (mm) Left, Front, Right, Back insets
+```
+
+чтобы калибровка снизить общую ошибку при калиброке по трём точкам.
+
+А также внесли изменения в файл с логикой калбровки `/Marlin/src/lcd/menu/menu_bed_corners.cpp`:
+
+Было:
+
+```cpp
+  line_to_z(LEVEL_CORNERS_Z_HOP);
+  switch (bed_corner) {
+    case 0: current_position   = lf;   break; // copy xy
+    case 1: current_position.x = rb.x; break;
+    case 2: current_position.y = rb.y; break;
+    case 3: current_position.x = lf.x; break;
+    #if ENABLED(LEVEL_CENTER_TOO)
+      case 4: current_position.set(X_CENTER, Y_CENTER); break;
+    #endif
+  }
+```
+
+Стало:
+
+```cpp
+  line_to_z(LEVEL_CORNERS_Z_HOP);
+  switch (bed_corner) {
+    case 0: current_position   = lf;   break; // copy xy
+    case 1: current_position.x = rb.x; break;
+    #if ENABLED(LEVEL_CORNERS_3POINT)
+      case 2: current_position.set(X_CENTER, rb.y); break;
+    #else
+      case 2: current_position.y = rb.y; break;
+      case 3: current_position.x = lf.x; break;
+      #if ENABLED(LEVEL_CENTER_TOO)
+        case 4: current_position.set(X_CENTER, Y_CENTER); break;
+      #endif
+    #endif
+  }
+```
+
+Также этот алгоритм менял [DeZepTup](https://github.com/DeZepTup/Marlin_UlTi/), ветка `main` коммиты `bb9ad1fc6a02e290b30cf57b7e401b10b675026a` и `b048505a395452af94f228470fb653eac1ba1877`, добавив туда работы с `BLtouch`.
+
+Я пока не вижу необходимости в такой калибровке, поэтому если и буду использовать, то обычную – по четырем точкам.
+</code></pre>
 <h2 id="сборка-прошивки">Сборка прошивки</h2>
 <p>Я работаю с исходным кодом в <code>VScode</code>. Для сборки использую плагин <code>Platformio</code>. Как установить плагин и собрать прошивку хорошо изложено в официальной <a href="https://marlinfw.org/docs/basics/install_platformio.html">документации Marlin</a>.</p>
 <hr>
