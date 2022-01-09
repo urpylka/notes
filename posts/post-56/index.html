@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В статье разобрался и изложил как собрать свою прошивку для принтера UlTi-Steel. За основу взял репозиторий производителя и сделал описание всех изменений. Согласно изложенной информации можно собрать прошивку самостоятельно, отдавая полный отчет в том, какие настройки сделаны.">
 <meta itemprop="datePublished" content="2022-01-04T09:39:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-01-04T09:39:00&#43;02:00" />
-<meta itemprop="wordCount" content="1582">
+<meta itemprop="wordCount" content="1561">
 
 
 
@@ -390,8 +390,7 @@ if (!doNotTrack) {
 </li>
 </ol>
 <h3 id="дополнительный-алгоритм-калибровки-стола">Дополнительный алгоритм калибровки стола</h3>
-<p>В общем случае она включается расскоментированием опции <code>LEVEL_BED_CORNERS</code> в <code>Configuration.h</code>. Я не вижу в нём необходимости, однако мб кому-то это мб полезно, учитывая, что Ivilol заморочился написать это.</p>
-<p>Там же есть все настройки. Которые я не советую изменять. Однако должен привести пример того, как Ivilol добавили в алгоритм калибровку по трем точкам.</p>
+<p>Обычная калибровка включается расскоментированием опции <code>LEVEL_BED_CORNERS</code> в <code>Configuration.h</code>. Я не вижу в этом необходимости, однако мб кому-то это мб полезно, учитывая, что Ivilol заморочились и добавили алгоритм калибровки по трем точкам.</p>
 <p>Для этого они в <code>Configuration.h</code> внесли новый дефайн:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define LEVEL_CORNERS_3POINT
 </span></code></pre></div><p>А также заменили:</p>
