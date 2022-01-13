@@ -135,7 +135,7 @@ ws.send(a);
 ws.send(<span style="color:#00f">new</span> Uint8Array([255,100,100,100,255,100,255,255,255,255,100,100,0,255,255]));
 ws.send(<span style="color:#00f">new</span> Uint8Array([100,0,0,0,100,0,0,0,100,100,0,0,0,100,0]));
 ws.send(<span style="color:#00f">new</span> Uint8Array([255,255,255,255,255,255,255,255,255,255,255,255,255,255,255]));
-</code></pre></div><p>Подача радномного цвета на светодиоды:</p>
+</code></pre></div><p>Подача рандомного цвета на светодиоды:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">ws.onopen = <span style="color:#00f">function</span>(){
 	setInterval(<span style="color:#00f">function</span>(){
 		ws.send(<span style="color:#00f">new</span> Uint8Array([
