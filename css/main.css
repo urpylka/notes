@@ -676,6 +676,7 @@ code {
 .homepage_cons {
     display: -webkit-flex;
     display: flex;
+    justify-content: space-between;
 }
 .homepage_avatar {
     width: 200px;
