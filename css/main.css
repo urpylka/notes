@@ -613,8 +613,8 @@ code {
     .homepage_avatar {
         width: 100px !important;
         height: 100px !important;
-        margin-left: 10px;
         margin-right: unset;
+        margin-left: 10px;
     }
 }
 
