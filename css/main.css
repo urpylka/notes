@@ -273,7 +273,7 @@ code {
     padding: .2em .4em;
     margin: 0;
     font-size: 85%;
-    background-color: rgba(27,31,35,.05);
+    background-color: rgba(27, 31, 35, .05);
     border-radius: 3px;
 }
 
@@ -461,7 +461,6 @@ code {
     font-size: 0.75em;
 }
 
-
 .one .post-header h1.title {
     font-family: "Merriweather-Bold";
     font-weight: 700;
@@ -618,6 +617,7 @@ code {
         margin-right: unset;
     }
 }
+
 @media (max-width: 900px) {
     body {
         padding: 20px;
@@ -670,14 +670,17 @@ code {
     color:rgba(163, 163, 163, var(--tw-text-opacity)); */
     color: rgb(163, 163, 163) !important;
 }
+
 .uppercase {
     text-transform: uppercase;
 }
+
 .homepage_cons {
     display: -webkit-flex;
     display: flex;
     justify-content: space-between;
 }
+
 .homepage_avatar {
     width: 200px;
     height: 200px;
@@ -686,10 +689,12 @@ code {
     background: #ccFF;
     margin-left: 10px;
 }
+
 .mb-3 {
     font-size: 1.1rem !important;
     margin-bottom: 1.1rem;
 }
+
 
 /* .h1_homepage {
     line-height: 1 !important;
