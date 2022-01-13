@@ -614,7 +614,8 @@ code {
     .homepage_avatar {
         width: 100px !important;
         height: 100px !important;
-        margin: unset;
+        margin-left: 10px;
+        margin-right: unset;
     }
 }
 @media (max-width: 900px) {
