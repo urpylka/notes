@@ -613,8 +613,6 @@ code {
     .homepage_avatar {
         width: 100px !important;
         height: 100px !important;
-        margin-right: unset;
-        margin-left: 10px;
     }
 }
 
@@ -688,6 +686,7 @@ code {
     border: none;
     background: #ccFF;
     margin-left: 10px;
+    margin-right: unset;
 }
 
 .mb-3 {
