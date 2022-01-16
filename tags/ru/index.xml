@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 04 Jan 2022 19:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 16 Jan 2022 13:11:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Приветственное сообщение на Raspberry Pi (motd, profile.d)</title>
+      <link>https://urpylka.com/posts/post-61/</link>
+      <pubDate>Sun, 16 Jan 2022 13:11:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-61/</guid>
+      <description>Я в принципе уже знал как +/- работает вывод текстовой информации при логине. Однако написать это меня побудил следующий вывод. А точнее две его последние строки.
+artemsmirnov@Artems-MacBook-Pro ~ % ssh pi@theimage-9373.local Linux theimage-9373 5.10.17+ #1403 Mon Feb 22 11:26:13 GMT 2021 armv6l The programs included with the Debian GNU/Linux system are free software; the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright. Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.</description>
+    </item>
     
     <item>
       <title>Bash: Parameter Expansion to do a nested array</title>

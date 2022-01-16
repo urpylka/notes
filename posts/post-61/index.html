@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Приветственное сообщение на Raspberry Pi (motd, profile.d) – urpylka՚s blog!</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Приветственное сообщение на Raspberry Pi (motd, profile.d)">
+<meta itemprop="description" content="Я в принципе уже знал как &#43;/- работает вывод текстовой информации при логине. Однако написать это меня побудил следующий вывод. А точнее две его последние строки.
+artemsmirnov@Artems-MacBook-Pro ~ % ssh pi@theimage-9373.local Linux theimage-9373 5.10.17&#43; #1403 Mon Feb 22 11:26:13 GMT 2021 armv6l The programs included with the Debian GNU/Linux system are free software; the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright. Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.">
+<meta itemprop="datePublished" content="2022-01-16T13:11:00&#43;02:00" />
+<meta itemprop="dateModified" content="2022-01-16T13:11:00&#43;02:00" />
+<meta itemprop="wordCount" content="609">
+
+
+
+<meta itemprop="keywords" content="ru,programming,bash," /><meta property="og:title" content="Приветственное сообщение на Raspberry Pi (motd, profile.d)" />
+<meta property="og:description" content="Я в принципе уже знал как &#43;/- работает вывод текстовой информации при логине. Однако написать это меня побудил следующий вывод. А точнее две его последние строки.
+artemsmirnov@Artems-MacBook-Pro ~ % ssh pi@theimage-9373.local Linux theimage-9373 5.10.17&#43; #1403 Mon Feb 22 11:26:13 GMT 2021 armv6l The programs included with the Debian GNU/Linux system are free software; the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright. Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-61/" />
+<meta property="article:published_time" content="2022-01-16T13:11:00+02:00" />
+<meta property="article:modified_time" content="2022-01-16T13:11:00+02:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Приветственное сообщение на Raspberry Pi (motd, profile.d)"/>
+<meta name="twitter:description" content="Я в принципе уже знал как &#43;/- работает вывод текстовой информации при логине. Однако написать это меня побудил следующий вывод. А точнее две его последние строки.
+artemsmirnov@Artems-MacBook-Pro ~ % ssh pi@theimage-9373.local Linux theimage-9373 5.10.17&#43; #1403 Mon Feb 22 11:26:13 GMT 2021 armv6l The programs included with the Debian GNU/Linux system are free software; the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright. Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">16</span>
+                        <span class="rest">Jan 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Приветственное сообщение на Raspberry Pi (motd, profile.d)</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Я в принципе уже знал как +/- работает вывод текстовой информации при логине. Однако написать это меня побудил следующий вывод. А точнее две его последние строки.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">artemsmirnov@Artems-MacBook-Pro ~ % ssh pi@theimage-9373.local
+Linux theimage-9373 5.10.17+ #1403 Mon Feb 22 11:26:13 GMT 2021 armv6l
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sun Jan  9 17:44:07 2022 from 192.168.11.1
+
+SSH is enabled and the default password for the &#39;pi&#39; user has not been changed.
+This is a security risk - please login as the &#39;pi&#39; user and type &#39;passwd&#39; to set a new password.
+
+rfkill: cannot open /dev/rfkill: Permission denied
+rfkill: cannot read /dev/rfkill: Bad file descriptor
+</code></pre></div><blockquote>
+<p>За основу образа был взят <a href="https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-03-25/2021-03-04-raspios-buster-armhf-lite.zip">Raspberry Pi OS версии armhf от 2021-03-25</a>.
+Запуск производился на <code>Raspberry Pi Model B Plus Rev 1.2</code> (на которой нет Wi-Fi чипа)</p>
+</blockquote>
+<h2 id="как-это-все-устроено">Как это все устроено</h2>
+<p>При логине, SSH сервер использует PAM модули: <code>/etc/pam.d/login</code> и <code>/etc/pam.d/sshd</code>. Которые помимо аутентификации пользователей, выводят <code>motd</code> сообщение, и производят логин, в котором запускается скрипт <code>profile</code> (<a href="https://devacademy.ru/article/razbiraiemsia-s-failami-etc-profile-i-etc-bashrc">Разбираемся с файлами /etc/profile и /etc/bashrc</a>).</p>
+<p><code>motd</code> – <a href="http://manpages.ubuntu.com/manpages/trusty/man5/motd.5.html">man</a> настраивается в двух местах:</p>
+<ol>
+<li>
+<p><code>/etc/motd</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+</code></pre></div></li>
+<li>
+<p><code>/etc/update-motd.d</code>, здесь в моём образе есть только один файл <code>10-uname</code> со следующим содержанием:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#!/bin/sh
+uname -snrvm
+</code></pre></div></li>
+</ol>
+<p>Как видно это верхушка в привестсвенном сообщении. Далее запускается скрипт, который инициализирует окружение пользователя (инициализирует переменные, сорсит <code>~/.bashrc</code> итд), помимо этого он и выводит, остальную часть сообщения которую мы видим. Его конфигурация находится в следующих местах.</p>
+<ol>
+<li>
+<p><code>/etc/profile</code> – основной файл, который всё запускает</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># /etc/profile: system-wide .profile file for the Bourne shell (sh(1))</span>
+<span style="color:#008000"># and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).</span>
+
+<span style="color:#00f">if</span> [ <span style="color:#a31515">&#34;`id -u`&#34;</span> -eq 0 ]; <span style="color:#00f">then</span>
+PATH=<span style="color:#a31515">&#34;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&#34;</span>
+<span style="color:#00f">else</span>
+PATH=<span style="color:#a31515">&#34;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games&#34;</span>
+<span style="color:#00f">fi</span>
+export PATH
+
+<span style="color:#00f">if</span> [ <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>PS1-<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span> ]; <span style="color:#00f">then</span>
+<span style="color:#00f">if</span> [ <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>BASH-<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span> ] &amp;&amp; [ <span style="color:#a31515">&#34;</span>$BASH<span style="color:#a31515">&#34;</span> != <span style="color:#a31515">&#34;/bin/sh&#34;</span> ]; <span style="color:#00f">then</span>
+    <span style="color:#008000"># The file bash.bashrc already sets the default PS1.</span>
+    <span style="color:#008000"># PS1=&#39;\h:\w\$ &#39;</span>
+    <span style="color:#00f">if</span> [ -f /etc/bash.bashrc ]; <span style="color:#00f">then</span>
+    . /etc/bash.bashrc
+    <span style="color:#00f">fi</span>
+<span style="color:#00f">else</span>
+    <span style="color:#00f">if</span> [ <span style="color:#a31515">&#34;`id -u`&#34;</span> -eq 0 ]; <span style="color:#00f">then</span>
+    PS1=<span style="color:#a31515">&#39;# &#39;</span>
+    <span style="color:#00f">else</span>
+    PS1=<span style="color:#a31515">&#39;$ &#39;</span>
+    <span style="color:#00f">fi</span>
+<span style="color:#00f">fi</span>
+<span style="color:#00f">fi</span>
+
+<span style="color:#00f">if</span> [ -d /etc/profile.d ]; <span style="color:#00f">then</span>
+<span style="color:#00f">for</span> i in /etc/profile.d/*.sh; <span style="color:#00f">do</span>
+    <span style="color:#00f">if</span> [ -r $i ]; <span style="color:#00f">then</span>
+    . $i
+    <span style="color:#00f">fi</span>
+<span style="color:#00f">done</span>
+unset i
+<span style="color:#00f">fi</span>
+</code></pre></div></li>
+<li>
+<p><code>/etc/profile.d</code> – директория где находятся вызываемые скрипты. В моём случае в это:</p>
+<ul>
+<li>Z97-byobu.sh</li>
+<li>at-dbus-fix.sh</li>
+<li>bash_completion.sh</li>
+<li>gawk.csh</li>
+<li>gawk.sh</li>
+<li>sshpwd.sh</li>
+<li>wifi-check.sh</li>
+</ul>
+<p>В частности, если посмотреть содержание последнего, то мы и обнаружим откуда берется эта ошибка при логине:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">(
+    export TEXTDOMAIN=wifi-check
+
+    . gettext.sh
+
+    <span style="color:#00f">if</span> [ ! -x /usr/sbin/rfkill ] || [ ! -c /dev/rfkill ]; <span style="color:#00f">then</span>
+            exit 0
+    <span style="color:#00f">fi</span>
+
+    <span style="color:#00f">if</span> ! /usr/sbin/rfkill list wifi | grep -q <span style="color:#a31515">&#34;Soft blocked: yes&#34;</span> ; <span style="color:#00f">then</span>
+            exit 0
+    <span style="color:#00f">fi</span>
+
+    echo
+    /usr/bin/gettext -s <span style="color:#a31515">&#34;Wi-Fi is currently blocked by rfkill.&#34;</span>
+    /usr/bin/gettext -s <span style="color:#a31515">&#34;Use raspi-config to set the country before use.&#34;</span>
+    echo
+)
+</code></pre></div></li>
+</ol>
+<h2 id="решение-проблемы-с-выводом">Решение проблемы с выводом</h2>
+<p>На <a href="https://raspberrypi.stackexchange.com/questions/121609/rfkill-cannot-open-dev-rfkill-permission-denied">StackOverflow</a> я нашел решение которое ломает <code>wifi-check.sh</code> скрипт:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo sed -i <span style="color:#a31515">&#39;2i\ \ \ \ \ \ \ \ exit 0&#39;</span> /etc/profile.d/wifi-check.sh
+</code></pre></div><p>Мне не совсем нравится идея менять содержимое чужого файла, поэтому я попробовал отключить сам rf-модуль, добавив следующие строки в <code>/boot/config.txt</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">...
+[all]
+...
+dtoverlay=disable-wifi
+dtoverlay=disable-bt
+</code></pre></div><p>Как сказано здесь:</p>
+<ul>
+<li><a href="https://www.animmouse.com/p/how-to-disable-wifi-and-bluetooth-on-raspberry-pi/">How to Disable WiFi and Bluetooth on Raspberry Pi</a></li>
+<li><a href="https://pimylifeup.com/raspberry-pi-disable-wifi/">How to Disable your Raspberry Pi’s Wi-Fi</a></li>
+</ul>
+<p>Однако мне это не помогло, и я решил просто переименовать расширение файла с <code>.sh</code> на <code>.sh.disabled</code>. Тк <code>/etc/profile</code> выбирает файлы по маске, это исключит выполнение скрипта.</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/bash">bash</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+<br/>
+<script defer src="https://commento.urpylka.com/js/commento.js" data-css-override="/css/commento.css"></script>
+<div id="commento"></div>
+<noscript>Please enable JavaScript to load the comments.</noscript></div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
