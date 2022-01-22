@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Продолжение серии статей про модернизацию Cutmaster CM1500D. В этой статье расскажу о CNCjs и настройке Wi-Fi линка с использованием ESP8266.">
 <meta itemprop="datePublished" content="2021-09-21T16:22:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-09-21T16:22:00&#43;04:00" />
-<meta itemprop="wordCount" content="858">
+<meta itemprop="wordCount" content="954">
 
 
 
@@ -176,7 +176,31 @@ if (!doNotTrack) {
 </ol>
 <p>Я выбрал второй путь, тк он мне представляется как более лёгкий, хоть мб и не такой изящный и правильный.</p>
 <p>Немного погуглив, я нашел утилиту <code>socat</code> которая умеет делать link сокета к файлу. Можно, конечно, заморочиться и использовать напрямую <code>nc</code>, но в данном контексте, думаю, что socat – идеальное решение.</p>
-<p>Изначально я планировал сделать два контейнера CNCjs и socat. Однако несмотря на то, что в linux есть файловая абстракция, мне не удалось прокинуть файл сокета из одного в контейнера в другой средствами Docker. Не найдя ответа, я решил разместить оба процесса в одном контейнере, а для управления их состоянием добавил мастер-процесс – <code>supervisor</code>. Образ также выгрузил на <a href="https://hub.docker.com/repository/docker/urpylka/cncjs/tags?page=1&amp;ordering=last_updated">Docker Hub</a>. Код выложен в отдельной ветке <a href="https://github.com/urpylka/docker-cncjs/tree/feature-esplink">feature-esplink</a>.</p>
+<p>Изначально я планировал сделать два контейнера CNCjs и socat. Однако несмотря на то, что в linux есть файловая абстракция, мне не удалось прокинуть файл сокета из одного в контейнер в другой средствами Docker. Не найдя решения, я решил разместить оба процесса в одном контейнере.</p>
+<p>Для управления их состоянием добавил мастер-процесс – <code>supervisor</code>. Однако это решение работало нестабильно и иногда после отключения станка, приходилось перезагружать весь контейнер. Ну или ставить WebUI для <code>supervisor</code>. А еще весь лог был переполнен, тем как <code>socat</code> пытается подключиться к станку, естественно у меня станок включен далеко не всегда. В итоге я решил вопсользоваться встроенные в <code>cncjs</code> функционалом команд.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    &#34;ports&#34;: [
+        {
+            &#34;comName&#34;: <span style="color:#a31515">&#34;/dev/tty.esplink&#34;</span>,
+            &#34;manufacturer&#34;: <span style="color:#a31515">&#34;ESP LINK&#34;</span>
+        }
+    ],
+    &#34;commands&#34;: [
+        {
+            &#34;title&#34;: <span style="color:#a31515">&#34;Start socat&#34;</span>,
+            &#34;commands&#34;: <span style="color:#a31515">&#34;/usr/bin/socat pty,link=/dev/tty.esplink,raw,echo=0 tcp:${ESPLINK}&#34;</span>
+        },
+        {
+            &#34;title&#34;: <span style="color:#a31515">&#34;Stop socat&#34;</span>,
+            &#34;commands&#34;: <span style="color:#a31515">&#34;pkill -f socat&#34;</span>
+        },
+        {
+            &#34;title&#34;: <span style="color:#a31515">&#34;Restart CNCjs&#34;</span>,
+            &#34;commands&#34;: <span style="color:#a31515">&#34;pkill -f cncjs&#34;</span>
+        }
+    ]
+}
+</code></pre></div><p>Также я собрал Docker образ с <code>cncjs</code> под <code>arm64</code> с предустановленным <code>socat</code> (<a href="https://github.com/urpylka/docker-cncjs">репозиторий</a> / <a href="https://hub.docker.com/r/urpylka/cncjs">докер образ</a>).</p>
 <h2 id="результат">Результат</h2>
 <ul>
 <li>Собственно была проделана работа по созданию своего образа с CNCjs для arm64</li>
