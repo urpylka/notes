@@ -3,32 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://urpylka.com/tags/electronics/</loc>
+    <lastmod>2022-01-22T14:07:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/posts/</loc>
+    <lastmod>2022-01-22T14:07:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/reverse-engineering/</loc>
+    <lastmod>2022-01-22T14:07:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/ru/</loc>
+    <lastmod>2022-01-22T14:07:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/</loc>
+    <lastmod>2022-01-22T14:07:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/</loc>
+    <lastmod>2022-01-22T14:07:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/posts/post-62/</loc>
+    <lastmod>2022-01-22T14:07:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://urpylka.com/tags/bash/</loc>
     <lastmod>2022-01-16T13:11:00+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://urpylka.com/posts/</loc>
-    <lastmod>2022-01-16T13:11:00+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/tags/programming/</loc>
-    <lastmod>2022-01-16T13:11:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/ru/</loc>
-    <lastmod>2022-01-16T13:11:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/</loc>
-    <lastmod>2022-01-16T13:11:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/</loc>
     <lastmod>2022-01-16T13:11:00+02:00</lastmod>
   </url>
   
@@ -400,11 +415,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-23/</loc>
     <lastmod>2020-11-30T21:00:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/electronics/</loc>
-    <lastmod>2020-11-16T22:10:00+04:00</lastmod>
   </url>
   
   <url>

@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sun, 16 Jan 2022 13:11:00 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 22 Jan 2022 14:07:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Диагностика и восстановление сотового модема Huawei E352</title>
+      <link>https://urpylka.com/posts/post-62/</link>
+      <pubDate>Sat, 22 Jan 2022 14:07:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-62/</guid>
+      <description>На моей прошлой работе где мы занимались дронами, как-то раз после перепайки встроенного USB разъёма на удлиненный, перестал работать USB модем. Мой коллега хотел его выкинуть, но я забрал себе, с целью поиграться с ним и попытаться восстановить.
+ Точное название модели написанное на корпусе: Huawei E352s-2 от Мегафон.
+ Прошло 4 года, и я задумав делать свою АТС для ретрансляции звонков. Для чего понадобился обычный 3G модем и я решил посмотреть, что с ним не так.</description>
+    </item>
     
     <item>
       <title>Приветственное сообщение на Raspberry Pi (motd, profile.d)</title>

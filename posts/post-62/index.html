@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Диагностика и восстановление сотового модема Huawei E352 – urpylka՚s blog!</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Диагностика и восстановление сотового модема Huawei E352">
+<meta itemprop="description" content="На моей прошлой работе где мы занимались дронами, как-то раз после перепайки встроенного USB разъёма на удлиненный, перестал работать USB модем. Мой коллега хотел его выкинуть, но я забрал себе, с целью поиграться с ним и попытаться восстановить. Как оказалось дело было не в перепайке, но для того, чтобы понять это пришлось подключиться к UART интерфейсу микроконтроллера.">
+<meta itemprop="datePublished" content="2022-01-22T14:07:00&#43;02:00" />
+<meta itemprop="dateModified" content="2022-01-22T14:07:00&#43;02:00" />
+<meta itemprop="wordCount" content="1556">
+
+
+
+<meta itemprop="keywords" content="ru,electronics,reverse-engineering," /><meta property="og:title" content="Диагностика и восстановление сотового модема Huawei E352" />
+<meta property="og:description" content="На моей прошлой работе где мы занимались дронами, как-то раз после перепайки встроенного USB разъёма на удлиненный, перестал работать USB модем. Мой коллега хотел его выкинуть, но я забрал себе, с целью поиграться с ним и попытаться восстановить. Как оказалось дело было не в перепайке, но для того, чтобы понять это пришлось подключиться к UART интерфейсу микроконтроллера." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-62/" />
+<meta property="article:published_time" content="2022-01-22T14:07:00+02:00" />
+<meta property="article:modified_time" content="2022-01-22T14:07:00+02:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Диагностика и восстановление сотового модема Huawei E352"/>
+<meta name="twitter:description" content="На моей прошлой работе где мы занимались дронами, как-то раз после перепайки встроенного USB разъёма на удлиненный, перестал работать USB модем. Мой коллега хотел его выкинуть, но я забрал себе, с целью поиграться с ним и попытаться восстановить. Как оказалось дело было не в перепайке, но для того, чтобы понять это пришлось подключиться к UART интерфейсу микроконтроллера."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">22</span>
+                        <span class="rest">Jan 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Диагностика и восстановление сотового модема Huawei E352</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>На моей прошлой работе где мы занимались дронами, как-то раз после перепайки встроенного USB разъёма на удлиненный, перестал работать USB модем. Мой коллега хотел его выкинуть, но я забрал себе, с целью поиграться с ним и попытаться восстановить.</p>
+<blockquote>
+<p>Точное название модели написанное на корпусе: Huawei E352s-2 от Мегафон.</p>
+</blockquote>
+<p>Прошло 4 года, и я задумав делать свою АТС для ретрансляции звонков. Для чего понадобился обычный 3G модем и я решил посмотреть, что с ним не так. Для начала я просто взял и воткнул его в Raspberry Pi и он сразу заработал.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; lsusb
+...
+Bus 001 Device 013: ID 12d1:1506 Huawei Technologies Co., Ltd. Modem/Networkcard
+...
+</code></pre></div><p>Я подумал, что мб тогда были не те драйвера или еще какой-то софтверный баг который уже прошел. И занялся изучением того, как этот модем взаимодействует с системой, сделав вывод всех устройств системы, а после чего выключил его, чтобы выявить какие устройства он создает в системе.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&gt; ls -l /dev/
+...
+drwxr-xr-x 2 root root          80 Jan 22 08:40 bsg
+...
+crw------- 1 root root    180, 176 Jan 22 08:40 cdc-wdm0
+lrwxrwxrwx 1 root root           3 Jan 22 08:40 cdrom -&gt; sr0
+...
+brw-rw---- 1 root disk      8,   0 Jan 22 08:40 sda
+drwxr-xr-x 4 root root          80 Jan 22 08:40 serial
+...
+crw-rw---- 1 root disk     21,   0 Jan 22 08:40 sg0
+crw-rw---- 1 root cdrom    21,   1 Jan 22 08:40 sg1
+...
+brw-rw---- 1 root cdrom    11,   0 Jan 22 08:40 sr0
+...
+crw-rw---- 1 root dialout 188,   0 Jan 22 08:40 ttyUSB0
+crw-rw---- 1 root dialout 188,   1 Jan 22 08:40 ttyUSB1
+crw-rw---- 1 root dialout 188,   2 Jan 22 08:40 ttyUSB2
+...
+</code></pre></div><p>После того, как я модем включил он не работал вовсе. Тоесть даже не отображался в как подключенное USB устройство и не мигал индикатором.</p>
+<p>Собственно первое что я сделал:</p>
+<ol>
+<li>пошевелил USB провод,</li>
+<li>прозвонил его</li>
+<li>проверил правильность того, как он припаян</li>
+<li>померил напряжение в точках припайки провода к модему</li>
+</ol>
+<p>Все было хорошо. И я не понимал, как только что работающий модем мог перестать работать за секунду. Я решил отмести все варианты с проводом и припаял проверенный экранированный провод небольшой длины от зарядника iPhone, а затем разъём напрямую проводками длиной 1.5см. Но результаты были теже, и я понял что нужно копать глубже, после чего снял экраны.</p>
+<p><img src="./images/huawei-e352.jpg" alt="image"></p>
+<ol>
+<li><code>Hi6755RBC</code></li>
+<li><code>H8BCS0PE0MBR-46M-C</code> (удалось найти datasheet для похожей версии <a href="./HYSC-S-A0001367250-1.pdf">H8BCS0SI0BAR</a>, на <a href="https://www.datasheets360.com/search/results?query=H8BCS0PE0MBR">datasheets360.com</a> есть еще)</li>
+<li><code>Hi631RBC</code></li>
+<li><code>Hi6481RBC</code></li>
+<li><code>SKY77344-21</code> (<a href="./sky77344-21.pdf">datesheet</a>)</li>
+<li><code>RF1194A</code> (<a href="./rf1194a.pdf">datesheet</a>)</li>
+<li><code>A2001 K1231 F6129</code> (не точно, но кажется <a href="./sx1231.pdf">datesheet</a>)</li>
+<li><code>05 1228 K9UH</code></li>
+<li><code>EPCOS 7697</code></li>
+<li><code>AVAGO  FF1226</code></li>
+</ol>
+<p>И есть еще пару крошечных микросхем, но они находятся под радиатором слева от кварцевого генератора, где я не могу их разглядеть.</p>
+<p>Первым делом я проверил цепи питания на выводах конденсаторах. Короткого замыкания я не обнаружил, при подачи питания везде оно было, а также присутсвовало на некоторых пинах для отладки и флешкарты. Как я понял не загружался сам микроконтроллер. Необходимо было найти отладочный интерфейс и посмотреть на вывод МК. На взгляд сразу бросались несколько аккуратных контактных кружочков. Потыкав в них RX линией моего USB-UART преобразоветеля я обнаружил TX линию микроконтроллера. Подобрав Baudrate, он оказался равен 115200, появился читаемый текст.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">onchip
+MF_boot!
+UnSec_boot!
+bootload..
+
+enter bootload&gt;&gt;&gt; unsafe boot,unsafe bin
+Bootload over 16k,needn&#39;t sec check.
+MemErr!bootload..
+
+enter bootload&gt;&gt;&gt; unsafe boot,unsafe bin
+Bootload over 16k,needn&#39;t sec check.
+MemErr!bootload..
+...
+</code></pre></div><p>Из вывода стало понятно, что прошивка не может загрузится из-за проблем в памяти. После чего я надавил на чип памяти и пошла загрузка операционной системы модема и он включился. После я проделал это операцию еще несколько раз и все получалось. Иногда модем сразу стартовал без всяких проблем.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">onchip
+MF_boot!
+UnSec_boot!
+bootload..
+enter bootload&gt;&gt;&gt; unsafe boot,unsafe bin
+Bootload over 16k,needn&#39;t sec check.
+press space to enter bootrom : NAND ID is:1500A1ADNANDC Ver is 00000002enter vxworks &gt;&gt;&gt;vxworks...
+abGo..cdeefAttaching interface lo0... done
+
+Adding 36640 symbols for standalone.
+ 
+
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+      ]]]]]]]]]]]  ]]]]     ]]]]]]]]]]       ]]              ]]]]         (R)
+ ]     ]]]]]]]]]  ]]]]]]     ]]]]]]]]       ]]               ]]]]            
+ ]]     ]]]]]]]  ]]]]]]]]     ]]]]]] ]     ]]                ]]]]            
+ ]]]     ]]]]] ]    ]]]  ]     ]]]] ]]]   ]]]]]]]]]  ]]]] ]] ]]]]  ]]   ]]]]]
+ ]]]]     ]]]  ]]    ]  ]]]     ]] ]]]]] ]]]]]]   ]] ]]]]]]] ]]]] ]]   ]]]]  
+ ]]]]]     ]  ]]]]     ]]]]]      ]]]]]]]] ]]]]   ]] ]]]]    ]]]]]]]    ]]]] 
+ ]]]]]]      ]]]]]     ]]]]]]    ]  ]]]]]  ]]]]   ]] ]]]]    ]]]]]]]]    ]]]]
+ ]]]]]]]    ]]]]]  ]    ]]]]]]  ]    ]]]   ]]]]   ]] ]]]]    ]]]] ]]]]    ]]]]
+ ]]]]]]]]  ]]]]]  ]]]    ]]]]]]]      ]     ]]]]]]]  ]]]]    ]]]]  ]]]] ]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]       Development System
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]       VxWorks 6.2
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]       KERNEL: WIND version 2.8
+ ]]]]]]]]]]]]]]]]]]]]]]]]]       Copyright Wind River Systems, Inc., 1984-2005
+
+ CPU: ARM Integrator - ARM926ES (ARM).  Processor #0.
+ Memory Size: 0x1b28000.  BSP version V3R1C3B060/0.
+ Created: Apr 18 2012 09:41:32
+ ED&amp;R Policy Mode: deployed
+
+-&gt; 0xa1b27dbc (tRootTask): PMU REG IRQ0 : 0x80
+0xa1b27dbc (tRootTask): PMU REG IRQ1: 0x0
+0xa1b27dbc (tRootTask): PMU REG H_N_STATUS(0x1A)  : 0x0
+0xa1b27dbc (tRootTask): PMU REG H_N_STATUS(0x1B)  : 0x0
+0xa1b27dbc (tRootTask): PMU REG 0x10  : 0xc
+0xa1b27dbc (tRootTask): PMU REG 0x11  : 0xf
+0xa1b27dbc (tRootTask): PMU REG 0x12  : 0x23
+0xa1b27dbc (tRootTask): PMU REG 0x13  : 0x8
+0xa1b27dbc (tRootTask): PMU REGnormal power on, tick: 0, Board time: 0xe1f
+ 0x14  : 0x0
+0xa1b27dbc (tRootTask): PMU REG 0x15  : 0x0
+0xa1b27dbc (tRootTask): PMU REG 0x16  : 0x0
+0xa1b27dbc (tRootTask): PMU REG 0x17  : 0x0
+0xa1b27dbc (tRootTask): PMU REG 0x18  : 0x3f
+0xa1b27dbc (tRootTask): PMU REG 0x19  : 0x0
+0xa14598b8 (pmu_task): 
+PMU EXCEPTION:
+IRQ0: 80
+IRQ1: 0
+0xa1b27dbc (tRootTask): nandc_version is 2!
+0xa1b27dbc (tRootTask): softtimer uninit!
+0xa1b27dbc (tRootTask): softtimer uninit!
+0xa1b27dbc (tRootTask): softtimer uninit!
+0xa1b27dbc (tRootTask): softtimer uninit!
+0xa1b27dbc (tRootTask): softtimer uninit!
+Set clk success!
+Clear 0 ZSP DTCM range:20100000--20144000
+Clear 0 ZSP ITCM range:20000000--20068000
+NO.0 static sector
+src addr is 0xa14b9b4c
+dst addr is 0x20000600
+sector size is 0x00000104
+NO.1 static sector
+src addr is 0xa14b9c50
+dst addr is 0x20000710
+sector size is 0x00000870
+NO.10 static sector
+src addr is 0xa1555218
+dst addr is 0x20001600
+sector size is 0x00019a30
+NO.13 static sector
+src addr is 0xa157aa9c
+dst addr is 0x20106c30
+sector size is 0x00001000
+NO.22 static sector
+src addr is 0xa15b82b8
+dst addr is 0x20107f00
+sector size is 0x00015b80
+NO.23 static sector
+src addr is 0xa15cde38
+dst addr is 0x20143400
+sector size is 0x000007c0
+NO.24 static sector
+src addr is 0xa15ce5f8
+dst addr is 0x20143e00
+sector size is 0x0000011c
+
+zspFileLoad finished!
+ZSP leave reset!
+0xa1b27dbc (tRootTask): ulZSPSize = 1134728!
+Starting USBware stack, Version 3.4.30.13
+onchip
+MF_boot!
+UnSec_boot!
+bootload..
+enter bootload&gt;&gt;&gt; unsafe boot,unsafe bin
+Bootload over 16k,needn&#39;t sec check.
+press space to enter bootrom : NAND ID is:1500A1ADNANDC Ver is 00000002enter vxworks &gt;&gt;&gt;vxworks...
+abGo..cdeefAttaching interface lo0... done
+
+Adding 36640 symbols for standalone.
+ 
+
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+      ]]]]]]]]]]]  ]]]]     ]]]]]]]]]]       ]]              ]]]]         (R)
+ ]     ]]]]]]]]]  ]]]]]]     ]]]]]]]]       ]]               ]]]]            
+ ]]     ]]]]]]]  ]]]]]]]]     ]]]]]] ]     ]]                ]]]]            
+ ]]]     ]]]]] ]    ]]]  ]     ]]]] ]]]   ]]]]]]]]]  ]]]] ]] ]]]]  ]]   ]]]]]
+ ]]]]     ]]]  ]]    ]  ]]]     ]] ]]]]] ]]]]]]   ]] ]]]]]]] ]]]] ]]   ]]]]  
+ ]]]]]     ]  ]]]]     ]]]]]      ]]]]]]]] ]]]]   ]] ]]]]    ]]]]]]]    ]]]] 
+ ]]]]]]      ]]]]]     ]]]]]]    ]  ]]]]]  ]]]]   ]] ]]]]    ]]]]]]]]    ]]]]
+ ]]]]]]]    ]]]]]  ]    ]]]]]]  ]    ]]]   ]]]]   ]] ]]]]    ]]]] ]]]]    ]]]]
+ ]]]]]]]]  ]]]]]  ]]]    ]]]]]]]      ]     ]]]]]]]  ]]]]    ]]]]  ]]]] ]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]       Development System
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]]       VxWorks 6.2
+ ]]]]]]]]]]]]]]]]]]]]]]]]]]       KERNEL: WIND version 2.8
+ ]]]]]]]]]]]]]]]]]]]]]]]]]       Copyright Wind River Systems, Inc., 1984-2005
+
+ CPU: ARM Integrator - ARM926ES (ARM).  Processor #0.
+ Memory Size: 0x1b28000.  BSP version V3R1C3B060/0.
+ Created: Apr 18 2012 09:41:32
+ ED&amp;R Policy Mode: deployed
+
+-&gt; 0xa1b27dbc (tRootTask): PMU REG IRQ0 : 0x0
+0xa1b27dbc (tRootTask): PMU REG IRQ1: 0x1
+0xa1b27dbc (tRootTask): PMU REG H_N_STATUS(0x1A)  : 0x1
+0xa1b27dbc (tRootTask): PMU REG H_N_STATUS(0x1B)  : 0xf0
+0xa1b27dbc (tRootTask): PMU REG 0x10  : 0xc
+0xa1b27dbc (tRootTask): PMU REG 0x11  : 0xf
+0xa1b27dbc (tRootTask): PMU REG 0x12  : 0x23
+0xa1b27dbc (tRootTask): PMU REG 0x13  : 0x8
+0xa1b27dbc (tRootTask): PMU REG 0x14  : 0x0
+reboot reason: ARM, tick: 861, Board time: 0xe1f,systemError para: ModId 0xffffffff, Arg1 16, Arg2 0  
+0xa1b27dbc (tRootTask): PMU REG 0x15  : 0x0
+0xa1b27dbc (tRootTask): PMU REG 0x16  : 0x0
+0xa1b27dbc (tRootTask): PMU REG 0x17  : 0x0
+0xa1b27dbc (tRootTask): PMU REG 0x18  : 0x3f
+0xa1b27dbc (tRootTask): PMU REG 0x19  : 0x0
+0xa14598b8 (pmu_task): 
+PMU EXCEPTION:
+IRQ0: 0
+IRQ1: 1
+0xa1b27dbc (tRootTask): nandc_version is 2!
+0xa1b27dbc (tRootTask): softtimer uninit!
+0xa1b27dbc (tRootTask): softtimer uninit!
+0xa1b27dbc (tRootTask): softtimer uninit!
+0xa1b27dbc (tRootTask): softtimer uninit!
+0xa1b27dbc (tRootTask): softtimer uninit!
+Set clk success!
+Clear 0 ZSP DTCM range:20100000--20144000
+Clear 0 ZSP ITCM range:20000000--20068000
+NO.0 static sector
+src addr is 0xa14b9b4c
+dst addr is 0x20000600
+sector size is 0x00000104
+NO.1 static sector
+src addr is 0xa14b9c50
+dst addr is 0x20000710
+sector size is 0x00000870
+NO.10 static sector
+src addr is 0xa1555218
+dst addr is 0x20001600
+sector size is 0x00019a30
+NO.13 static sector
+src addr is 0xa157aa9c
+dst addr is 0x20106c30
+sector size is 0x00001000
+NO.22 static sector
+src addr is 0xa15b82b8
+dst addr is 0x20107f00
+sector size is 0x00015b80
+NO.23 static sector
+src addr is 0xa15cde38
+dst addr is 0x20143400
+sector size is 0x000007c0
+NO.24 static sector
+src addr is 0xa15ce5f8
+dst addr is 0x20143e00
+sector size is 0x0000011c
+
+zspFileLoad finished!
+ZSP leave reset!
+0xa1b27dbc (tRootTask): ulZSPSize = 1134728!
+Starting USBware stack, Version 3.4.30.13
+
+^SIMST:255,0
+
+^MODE: 5,4
+
+^SRVST: 1
+
+^RSSI: 30
+</code></pre></div><p>Собственно говоря скорее всего на прошлой работе этот модем стоял на дроне и упал с высоты. В связи с чем либо отошел чип от платы, либо расслоение платы.</p>
+<p>Через месяц ко мне придет паяльный фен и собираюсь погреть чип во флюсе, в надежде что это всё таки не проблема с плате.</p>
+<p>Ах, да, соседний пин это RX, после загрузки ОС работает ввод (единственное он не дублируется в вывод), но на команду <code>^AT</code> я получаю <code>OK</code>.</p>
+<p>Как бонус прикладываю распиновку разъёма:</p>
+<p><img src="./images/huawei-e352-2.jpg" alt="image"></p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/electronics">electronics</a></li>
+                    
+                    <li><a href="/tags/reverse-engineering">reverse-engineering</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+<br/>
+<script defer src="https://commento.urpylka.com/js/commento.js" data-css-override="/css/commento.css"></script>
+<div id="commento"></div>
+<noscript>Please enable JavaScript to load the comments.</noscript></div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
