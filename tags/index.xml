@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sat, 22 Jan 2022 14:07:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 24 Jan 2022 11:05:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,16 +15,25 @@
     <item>
       <title>electronics</title>
       <link>https://urpylka.com/tags/electronics/</link>
-      <pubDate>Sat, 22 Jan 2022 14:07:00 +0200</pubDate>
+      <pubDate>Mon, 24 Jan 2022 11:05:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/electronics/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>programming</title>
+      <link>https://urpylka.com/tags/programming/</link>
+      <pubDate>Mon, 24 Jan 2022 11:05:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>reverse-engineering</title>
       <link>https://urpylka.com/tags/reverse-engineering/</link>
-      <pubDate>Sat, 22 Jan 2022 14:07:00 +0200</pubDate>
+      <pubDate>Mon, 24 Jan 2022 11:05:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/reverse-engineering/</guid>
       <description></description>
@@ -33,7 +42,7 @@
     <item>
       <title>ru</title>
       <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Sat, 22 Jan 2022 14:07:00 +0200</pubDate>
+      <pubDate>Mon, 24 Jan 2022 11:05:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
@@ -45,15 +54,6 @@
       <pubDate>Sun, 16 Jan 2022 13:11:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/bash/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://urpylka.com/tags/programming/</link>
-      <pubDate>Sun, 16 Jan 2022 13:11:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/programming/</guid>
       <description></description>
     </item>
     

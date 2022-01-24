@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Опеределение способов подключения Huawei E352 к Linux – urpylka՚s blog!</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Опеределение способов подключения Huawei E352 к Linux">
+<meta itemprop="description" content="Продолжение истории с модемом Huawei E352, распознание его интерфейсов в Linux.">
+<meta itemprop="datePublished" content="2022-01-24T11:05:00&#43;02:00" />
+<meta itemprop="dateModified" content="2022-01-24T11:05:00&#43;02:00" />
+<meta itemprop="wordCount" content="1084">
+
+
+
+<meta itemprop="keywords" content="ru,electronics,reverse-engineering,programming," /><meta property="og:title" content="Опеределение способов подключения Huawei E352 к Linux" />
+<meta property="og:description" content="Продолжение истории с модемом Huawei E352, распознание его интерфейсов в Linux." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-63/" />
+<meta property="article:published_time" content="2022-01-24T11:05:00+02:00" />
+<meta property="article:modified_time" content="2022-01-24T11:05:00+02:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Опеределение способов подключения Huawei E352 к Linux"/>
+<meta name="twitter:description" content="Продолжение истории с модемом Huawei E352, распознание его интерфейсов в Linux."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">24</span>
+                        <span class="rest">Jan 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Опеределение способов подключения Huawei E352 к Linux</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Ранее я писал <a href="/posts/post-62">статью про восстановление модема Huawei E352</a>. В этой я постараюсь разобраться как он отображается в системе и как им можно управлять.</p>
+<p>Рассмотрим ещё раз вывод устройств в папке <code>/dev</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&gt; ls -l /dev/
+...
+drwxr-xr-x 2 root root          80 Jan 22 08:40 bsg
+...
+crw------- 1 root root    180, 176 Jan 22 08:40 cdc-wdm0
+lrwxrwxrwx 1 root root           3 Jan 22 08:40 cdrom -&gt; sr0
+...
+brw-rw---- 1 root disk      8,   0 Jan 22 08:40 sda
+drwxr-xr-x 4 root root          80 Jan 22 08:40 serial
+...
+crw-rw---- 1 root disk     21,   0 Jan 22 08:40 sg0
+crw-rw---- 1 root cdrom    21,   1 Jan 22 08:40 sg1
+...
+brw-rw---- 1 root cdrom    11,   0 Jan 22 08:40 sr0
+...
+crw-rw---- 1 root dialout 188,   0 Jan 22 08:40 ttyUSB0
+crw-rw---- 1 root dialout 188,   1 Jan 22 08:40 ttyUSB1
+crw-rw---- 1 root dialout 188,   2 Jan 22 08:40 ttyUSB2
+...
+</code></pre></div><p>Первое это – <code>bsg</code> или <a href="http://sg.danny.cz/sg/sg_v40.html">Block SCSI Generic</a>, это директория в которой находятся файлы <code>0:0:0:0</code> и <code>1:0:0:0</code>. Для того, чтобы разобраться больше сделаем вывод <code>dmesg</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">[25397.664096] usb 1-1.1.3: new high-speed USB device number 39 using dwc_otg
+[25397.765357] usb 1-1.1.3: New USB device found, idVendor=12d1, idProduct=1506, bcdDevice= 1.02
+[25397.765376] usb 1-1.1.3: New USB device strings: Mfr=3, Product=2, SerialNumber=0
+[25397.765390] usb 1-1.1.3: Product: HUAWEI Mobile
+[25397.765404] usb 1-1.1.3: Manufacturer: HUAWEI
+
+[25397.768018] option 1-1.1.3:1.0: GSM modem (1-port) converter detected
+[25397.769078] usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB0
+
+[25397.789302] huawei_cdc_ncm 1-1.1.3:1.1: MAC-Address: 58:2c:80:13:92:63
+[25397.789325] huawei_cdc_ncm 1-1.1.3:1.1: setting rx_max = 16384
+[25397.789546] huawei_cdc_ncm 1-1.1.3:1.1: setting tx_max = 16384
+[25397.789720] huawei_cdc_ncm 1-1.1.3:1.1: NDP will be placed at end of frame for this device.
+[25397.790070] huawei_cdc_ncm 1-1.1.3:1.1: cdc-wdm0: USB WDM device
+[25397.791988] huawei_cdc_ncm 1-1.1.3:1.1 wwan0: register &#39;huawei_cdc_ncm&#39; at usb-3f980000.usb-1.1.3, Huawei CDC NCM device, 58:2c:80:13:92:63
+
+[25397.792759] option 1-1.1.3:1.2: GSM modem (1-port) converter detected
+[25397.793622] usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB1
+[25397.794413] option 1-1.1.3:1.3: GSM modem (1-port) converter detected
+[25397.794917] usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB2
+
+[25397.795581] usb-storage 1-1.1.3:1.4: USB Mass Storage device detected
+[25397.797369] scsi host0: usb-storage 1-1.1.3:1.4
+[25397.798471] usb-storage 1-1.1.3:1.5: USB Mass Storage device detected
+[25397.799202] scsi host1: usb-storage 1-1.1.3:1.5
+[25398.805145] scsi 0:0:0:0: CD-ROM            HUAWEI   Mass Storage     2.31 PQ: 0 ANSI: 2
+[25398.805505] scsi 1:0:0:0: Direct-Access     HUAWEI   SD Storage       2.31 PQ: 0 ANSI: 2
+[25398.806172] sd 1:0:0:0: Attached scsi generic sg0 type 0
+[25398.806854] sr 0:0:0:0: [sr0] scsi-1 drive
+[25398.825063] sr 0:0:0:0: Attached scsi CD-ROM sr0
+[25398.825565] sr 0:0:0:0: Attached scsi generic sg1 type 5
+[25398.826367] sd 1:0:0:0: [sda] Attached SCSI removable disk
+</code></pre></div><p>Раз уж начали с <code>/dev/bsg</code>, сначала закончим с ним. Как видно из вывода:</p>
+<ul>
+<li>файл <code>/dev/bsg/0:0:0:0</code> (<code>/dev/sg1</code>) – CD-ROM (Mass Storage), смонтировано в блочное устройство: <code>sr0</code> (<code>cdrom</code>)</li>
+<li>файл <code>/dev/bsg/1:0:0:0</code> (<code>/dev/sg0</code>) – Direct-Access (SD Storage), смонтировано в блочное устройство: <code>sda</code></li>
+</ul>
+<p>Тоже самое можно получить через <code>lsscsi</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; sudo lsscsi
+[0:0:0:0]    cd/dvd  HUAWEI   Mass Storage     2.31  /dev/sr0 
+[1:0:0:0]    disk    HUAWEI   SD Storage       2.31  /dev/sda
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&gt; sudo fdisk -l /dev/sr0 
+Disk /dev/sr0: 128 MiB, 134217728 bytes, 65536 sectors
+Disk model: Mass Storage    
+Units: sectors of 1 * 2048 = 2048 bytes
+Sector size (logical/physical): 2048 bytes / 2048 bytes
+I/O size (minimum/optimal): 2048 bytes / 2048 bytes
+
+&gt; sudo fdisk -l /dev/sda
+fdisk: cannot open /dev/sda: No medium found
+</code></pre></div><p>MicroSD карта памяти не вставлена, поэтому ожидаемо получили <code>No medium found</code>.</p>
+<p>Идём дальше, рассмотрим другие USB устройства на этом порту.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; lsusb -t
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc_otg/1p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+        |__ Port 1: Dev 3, If 0, Class=Hub, Driver=hub/3p, 480M
+            |__ Port 1: Dev 4, If 0, Class=Vendor Specific Class, Driver=lan78xx, 480M
+        |__ Port 2: Dev 51, If 3, Class=Vendor Specific Class, Driver=option, 480M
+        |__ Port 2: Dev 51, If 1, Class=Vendor Specific Class, Driver=huawei_cdc_ncm, 480M
+        |__ Port 2: Dev 51, If 4, Class=Mass Storage, Driver=usb-storage, 480M
+        |__ Port 2: Dev 51, If 2, Class=Vendor Specific Class, Driver=option, 480M
+        |__ Port 2: Dev 51, If 0, Class=Vendor Specific Class, Driver=option, 480M
+        |__ Port 2: Dev 51, If 5, Class=Mass Storage, Driver=usb-storage, 480M
+</code></pre></div><p>Как видно из вывода <code>dmesg</code> на USB устройстве <code>1-1.1.3:1.1</code> драйвером <code>huawei_cdc_ncm</code> (<a href="https://code.woboq.org/linux/linux/drivers/net/usb/huawei_cdc_ncm.c.html">source code</a>) создано два устройства <code>/dev/cdc-wdm0</code> и сетевой интерфейс <code>wwan0</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; sudo file /dev/cdc-wdm0
+/dev/cdc-wdm0: character special (180/176)
+
+&gt; sudo cat /dev/cdc-wdm0
+^STIN: 0, 0, 0
+^STIN: 99, 0, 0
+^SIMST:1,0
+^RSSI: 31
+^MODE: 5,4
+^RSSI: 26
+^ERRRPT:3,7
+^SIMST:3,0
+^SRVST: 1
+^ERRRPT:1,2
+^SIMST:4,0
+</code></pre></div><p><code>/dev/cdc-wdm0</code> это часть <code>USB WDM device</code> или <a href="https://www.jungo.com/st/embedded_usb_cdc.html">CDC-WMC Device Management</a>, по идеи это должен быть интерфейс комманд и прерыванию <code>QMI</code> протокола, однако при проверки этого интерфейса утилитами <code>qmicli</code>, <code>mmcli</code> оказалось что это не так, либо он уже перехвачен.</p>
+<p>Очень советую прочитать материал <a href="./Qualcomm_Gobi_devices_on_Linux.pdf">Qualcomm Gobi devices on Linux</a>.</p>
+<p>Как вывод и проделанных тестов и вывода <code>dmesg</code> – это разновидность <code>NCM</code> в протоколе USB. Вообще чтобы лучше понимать по каким протоколам и как может раздаваться интернет советую изучить, следующие два материала:</p>
+<ol>
+<li><a href="https://klink0v.livejournal.com/371655.html">Про протоколы взаимодействия с 3G/LTE-модемом</a></li>
+<li><a href="./FOSDEM2013_-_Mobile_broadband_modem_control_protocols.pdf">FOSDEM2013 - Mobile broadband modem control protocols</a></li>
+</ol>
+<p>Ну и остались несколько сериал устройсв:</p>
+<ul>
+<li><code>/dev/ttyUSB0</code> – выводит буквально пару значений начинающихся со знака <code>^</code>, а также отвечает на команду <code>^AT</code></li>
+<li><code>/dev/ttyUSB1</code> – ничего не выводит и не отвечает</li>
+<li><code>/dev/ttyUSB2</code> – выводит тоже самое что и <code>/dev/cdc-wdm0</code>, а также отвечает на команду <code>^AT</code></li>
+</ul>
+<p>Для того, чтобы разобраться в них я сделал несколько AT комманд, которые показывают в каких режимах работает модем:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">AT^SETPORT?
+^SETPORT:A1,A2;1,16,3,2,A1,A2
+
+OK
+
+AT^SETPORT=?
+^SETPORT:A1: CDROM
+^SETPORT:A2: SD
+^SETPORT:A: BLUE TOOTH
+^SETPORT:B: FINGER PRINT
+^SETPORT:D: MMS
+^SETPORT:E: PC VOICE
+^SETPORT:1: MODEM
+^SETPORT:2: PCUI
+^SETPORT:3: DIAG
+^SETPORT:4: PCSC
+^SETPORT:5: GPS
+^SETPORT:6: GPS CONTROL
+^SETPORT:16: NCM
+
+OK
+
+AT^GETPORTMODE
+^GETPORTMODE: TYPE: WCDMA: huawei,MDM:0,NDIS:1,DIAG:2,PCUI:3,CDROM:4,SD:5
+
+OK
+</code></pre></div><p>Вывод немного странный, однако судя из него у меня на модеме включены <code>MODEM</code>, <code>PCUI</code>, <code>DIAG</code>, <code>NCM</code>. Из которых <code>MODEM</code>, <code>PCUI</code>, <code>DIAG</code> скорее всего и являются tty-устройствами. Собственно, думаю можно попробовать по одному поотключать <code>PCUI</code>, <code>DIAG</code>.</p>
+<p>Другиеи AT команды:</p>
+<ul>
+<li><a href="https://blog.wildhouse.ru/2013/11/huawei.html">Разблокировка модемов Huawei</a></li>
+<li><a href="https://unlockclub.ru/news/kak-razblokirovat-modem-huawei-s-pomoshchyu-at-komand/">Как разблокировать модем Huawei с помощью AT-команд?</a></li>
+<li><a href="https://askubuntu.com/questions/752180/at-commands-in-screen-minicom">AT commands in screen/minicom</a></li>
+<li><a href="https://deepole.ru/3g-i-4g-texnologii/nastrojka-modemov-huawei-s-pomoshhyu-at-komand.html">Настройка модемов Huawei с помощью AT-команд.</a></li>
+<li><a href="https://3ginfo.ru/page53.html">AT команды для модемов Huawei</a></li>
+<li><a href="https://www.it-fm.ru/?p=86">Основные AT-команды модемов</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="http://junyelee.blogspot.com/2021/03/linux-mobile-interface-broadband-model.html">Linux Modem Manager</a></li>
+<li><a href="https://gist.github.com/Juul/e42c5b6ec71ce11923526b36d3f1cb2c">How to use 4G LTE modems like the MC7455 on both Debian/Ubuntu and OpenWRT using MBIM</a></li>
+<li><a href="https://manpages.ubuntu.com/manpages/xenial/man1/qmicli.1.html">qmicli - Control QMI devices</a></li>
+<li><a href="https://soft-setup.ru/instrukcziya-po-ispolzovaniyu-minicom-v-linux/">Инструкция по использованию minicom в linux</a></li>
+<li><a href="http://unixwars.blogspot.com/2011/06/screen-minicom-how-to-get-out-of.html">screen + minicom (how to get out of) </a></li>
+<li><a href="https://wiki.archlinux.org/title/Mobile_broadband_modem">Mobile broadband modem</a></li>
+<li><a href="https://openwrt.org/docs/guide-user/network/wan/wwan/ltedongle">How to use LTE modem in QMI mode for WAN connection</a></li>
+<li><a href="http://trac.gateworks.com/wiki/wireless/modem">Cellular Modems (GSM/GPRS/EDGE/UMTS/HSPA/LTE)</a></li>
+<li><a href="https://www.instructables.com/Connect-the-Raspberry-Pi-to-network-using-UART/">Connect the Raspberry Pi to Network Using UART</a></li>
+<li><a href="https://gist.github.com/ethaniel/d7f9c3192041c64c89d2c5b49527d0e2#step-5---restart-huawei-stick-without-unplugging">HOWTO: Receive SMS via 4G/LTE Huawei stick on Raspberry Pi 4 and forward them via Telegram</a></li>
+<li><a href="https://gist.github.com/jfstenuit/13becfe728046074f5aaa0cb7f899ab9">Using a Huawei WWAN dongle on Linux</a></li>
+<li><a href="https://habr.com/ru/post/275551/">Сторожевой таймер для 4G-модема в CentOS 7</a></li>
+<li><a href="https://johnlewis.ie/mobile-broadband-from-the-command-line-in-ubuntu/">Mobile broadband from the command line in Ubuntu</a></li>
+</ul>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/electronics">electronics</a></li>
+                    
+                    <li><a href="/tags/reverse-engineering">reverse-engineering</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+<br/>
+<script defer src="https://commento.urpylka.com/js/commento.js" data-css-override="/css/commento.css"></script>
+<div id="commento"></div>
+<noscript>Please enable JavaScript to load the comments.</noscript></div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

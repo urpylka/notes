@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sat, 22 Jan 2022 14:07:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 24 Jan 2022 11:05:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Опеределение способов подключения Huawei E352 к Linux</title>
+      <link>https://urpylka.com/posts/post-63/</link>
+      <pubDate>Mon, 24 Jan 2022 11:05:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-63/</guid>
+      <description>Ранее я писал статью про восстановление модема Huawei E352. В этой я постараюсь разобраться как он отображается в системе и как им можно управлять.
+Рассмотрим ещё раз вывод устройств в папке /dev:
+&amp;gt; ls -l /dev/ ... drwxr-xr-x 2 root root 80 Jan 22 08:40 bsg ... crw------- 1 root root 180, 176 Jan 22 08:40 cdc-wdm0 lrwxrwxrwx 1 root root 3 Jan 22 08:40 cdrom -&amp;gt; sr0 ... brw-rw---- 1 root disk 8, 0 Jan 22 08:40 sda drwxr-xr-x 4 root root 80 Jan 22 08:40 serial .</description>
+    </item>
     
     <item>
       <title>Диагностика и восстановление сотового модема Huawei E352</title>
