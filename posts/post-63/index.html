@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Продолжение истории с модемом Huawei E352, распознание его интерфейсов в Linux.">
 <meta itemprop="datePublished" content="2022-01-24T11:05:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-01-24T11:05:00&#43;02:00" />
-<meta itemprop="wordCount" content="1084">
+<meta itemprop="wordCount" content="1082">
 
 
 
@@ -221,9 +221,9 @@ fdisk: cannot open /dev/sda: No medium found
 </ol>
 <p>Ну и остались несколько сериал устройсв:</p>
 <ul>
-<li><code>/dev/ttyUSB0</code> – выводит буквально пару значений начинающихся со знака <code>^</code>, а также отвечает на команду <code>^AT</code></li>
+<li><code>/dev/ttyUSB0</code> – выводит буквально пару значений начинающихся со знака <code>^</code>, а также отвечает на AT-команды</li>
 <li><code>/dev/ttyUSB1</code> – ничего не выводит и не отвечает</li>
-<li><code>/dev/ttyUSB2</code> – выводит тоже самое что и <code>/dev/cdc-wdm0</code>, а также отвечает на команду <code>^AT</code></li>
+<li><code>/dev/ttyUSB2</code> – выводит тоже самое что и <code>/dev/cdc-wdm0</code>, а также отвечает на AT-команды</li>
 </ul>
 <p>Для того, чтобы разобраться в них я сделал несколько AT комманд, которые показывают в каких режимах работает модем:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">AT^SETPORT?
