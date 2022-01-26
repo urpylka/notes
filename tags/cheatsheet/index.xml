@@ -59,12 +59,24 @@ systemd-analyze critical-chain # если включен графический 
     </item>
     
     <item>
-      <title>Blender shortcuts</title>
+      <title>Blender Shortcuts</title>
       <link>https://urpylka.com/posts/post-21/</link>
       <pubDate>Mon, 11 Jan 2021 12:42:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-21/</guid>
       <description> Atl+D зависимая копия Shift+D независимая копия при перемещении можно делать по осям X Y Z, или исключить через shift окна в 3d view T - левое, N - правое ctrl+alt+shift+C - изменить координаты ctrl+P вложить объекты анимировать можно и лучше через emtpy object, вложив в него объекты shift+S курсор в центр (спасательный круг) shift+A создание тела X - удалить объект 3dview G - переместить R - вращать S - scale  </description>
+    </item>
+    
+    <item>
+      <title>Portainer: How to reset password for the Admin user</title>
+      <link>https://urpylka.com/posts/post-18/</link>
+      <pubDate>Sun, 03 Jan 2021 23:30:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-18/</guid>
+      <description>This article is a copy from the Portainer site. Original isn&amp;rsquo;t available anymore for unknown reasons, and I made it copy.
+ Yep, we know, life can be challenging because you forgot or lost your Admin password to access to Portainer. In this help article, you will learn how to do a password reset to the Admin user of Portainer.
+Resetting Admin password in Portainer running as container
+Reset the password for the Admin user can be accomplished using our reset password container helper.</description>
     </item>
     
     <item>
@@ -93,6 +105,17 @@ openssl rsa -text -noout -in &amp;lt;path-to.key&amp;gt;  Также можно 
 git submodule init git submodule update Полезные ссылки  Удаление первого коммита stackoverflow.com Отмена последнего коммита в git evtuhovich.ru Объединение репозиториев eax.me Конфликт при объединении несвязных историй --allow-unrelated-histories stackoverflow.com Продвинутое слияние git-scm.com Работа с удалёнными репозиториями git-scm.com Теория GIT habrahabr.ru Раскрытие тайн reset git-scm.com Объединение репозиториев qaru.site  Первоначальная настройка git Все очень хорошо изложено в этой статье, не вижу смысла копировать
 https://git-scm.com/book/ru/v2/Введение-Первоначальная-настройка-Git
 Базовые команды # Rebase 3х верхних коммитов в интерактивном режиме (через текстовый редактор) git rebase -i HEAD~3 # Перетереть историю в текущем remote git push --force # Снести верхние 3 коммита (без удаления изменений), для полного удаления комитов - флаг `--hard` git reset HEAD~3 # Застейджить все изменения git add .</description>
+    </item>
+    
+    <item>
+      <title>Настройка DNS на клиенте OpenVPN macOS</title>
+      <link>https://urpylka.com/posts/post-24/</link>
+      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-24/</guid>
+      <description>Я использую связку OpenVPN + dnsmasq для выдачи доменов в удаленной виртуальной сети.
+Настройка клиента У меня MacBook: в macOS 10.15 отсуствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
+sudo brew services list sudo brew services start openvpn sudo brew services restart openvpn sudo brew services stop openvpn  brew services для OpenVPN нужно запускать под sudo, тк это необходимо для работы с сетевыми адаптерами.</description>
     </item>
     
     <item>

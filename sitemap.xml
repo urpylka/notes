@@ -83,11 +83,6 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/3d/</loc>
-    <lastmod>2022-01-04T09:39:00+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/tags/3dprint/</loc>
     <lastmod>2022-01-04T09:39:00+02:00</lastmod>
   </url>
@@ -378,13 +373,13 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/posts/post-1/</loc>
+    <loc>https://urpylka.com/tags/old/</loc>
     <lastmod>2014-03-31T20:46:00+04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/gopro/</loc>
-    <lastmod>2013-07-03T21:05:00+04:00</lastmod>
+    <loc>https://urpylka.com/posts/post-1/</loc>
+    <lastmod>2014-03-31T20:46:00+04:00</lastmod>
   </url>
   
   <url>
@@ -413,13 +408,18 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/education/</loc>
+    <loc>https://urpylka.com/tags/university/</loc>
     <lastmod>2013-03-20T23:33:00+04:00</lastmod>
   </url>
   
   <url>
     <loc>https://urpylka.com/posts/post-50/</loc>
     <lastmod>2013-03-20T23:33:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/cheetsheet/</loc>
+    <lastmod>2013-02-22T20:19:00+04:00</lastmod>
   </url>
   
   <url>
