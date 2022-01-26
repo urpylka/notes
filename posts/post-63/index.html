@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Продолжение истории с модемом Huawei E352, распознание его интерфейсов в Linux.">
 <meta itemprop="datePublished" content="2022-01-24T11:05:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-01-24T11:05:00&#43;02:00" />
-<meta itemprop="wordCount" content="1082">
+<meta itemprop="wordCount" content="1106">
 
 
 
@@ -133,38 +133,38 @@ crw-rw---- 1 root dialout 188,   1 Jan 22 08:40 ttyUSB1
 crw-rw---- 1 root dialout 188,   2 Jan 22 08:40 ttyUSB2
 ...
 </code></pre></div><p>Первое это – <code>bsg</code> или <a href="http://sg.danny.cz/sg/sg_v40.html">Block SCSI Generic</a>, это директория в которой находятся файлы <code>0:0:0:0</code> и <code>1:0:0:0</code>. Для того, чтобы разобраться больше сделаем вывод <code>dmesg</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">[25397.664096] usb 1-1.1.3: new high-speed USB device number 39 using dwc_otg
-[25397.765357] usb 1-1.1.3: New USB device found, idVendor=12d1, idProduct=1506, bcdDevice= 1.02
-[25397.765376] usb 1-1.1.3: New USB device strings: Mfr=3, Product=2, SerialNumber=0
-[25397.765390] usb 1-1.1.3: Product: HUAWEI Mobile
-[25397.765404] usb 1-1.1.3: Manufacturer: HUAWEI
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">usb 1-1.1.3: new high-speed USB device number 39 using dwc_otg
+usb 1-1.1.3: New USB device found, idVendor=12d1, idProduct=1506, bcdDevice= 1.02
+usb 1-1.1.3: New USB device strings: Mfr=3, Product=2, SerialNumber=0
+usb 1-1.1.3: Product: HUAWEI Mobile
+usb 1-1.1.3: Manufacturer: HUAWEI
 
-[25397.768018] option 1-1.1.3:1.0: GSM modem (1-port) converter detected
-[25397.769078] usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB0
+option 1-1.1.3:1.0: GSM modem (1-port) converter detected
+usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB0
 
-[25397.789302] huawei_cdc_ncm 1-1.1.3:1.1: MAC-Address: 58:2c:80:13:92:63
-[25397.789325] huawei_cdc_ncm 1-1.1.3:1.1: setting rx_max = 16384
-[25397.789546] huawei_cdc_ncm 1-1.1.3:1.1: setting tx_max = 16384
-[25397.789720] huawei_cdc_ncm 1-1.1.3:1.1: NDP will be placed at end of frame for this device.
-[25397.790070] huawei_cdc_ncm 1-1.1.3:1.1: cdc-wdm0: USB WDM device
-[25397.791988] huawei_cdc_ncm 1-1.1.3:1.1 wwan0: register &#39;huawei_cdc_ncm&#39; at usb-3f980000.usb-1.1.3, Huawei CDC NCM device, 58:2c:80:13:92:63
+huawei_cdc_ncm 1-1.1.3:1.1: MAC-Address: 58:2c:80:13:92:63
+huawei_cdc_ncm 1-1.1.3:1.1: setting rx_max = 16384
+huawei_cdc_ncm 1-1.1.3:1.1: setting tx_max = 16384
+huawei_cdc_ncm 1-1.1.3:1.1: NDP will be placed at end of frame for this device.
+huawei_cdc_ncm 1-1.1.3:1.1: cdc-wdm0: USB WDM device
+huawei_cdc_ncm 1-1.1.3:1.1 wwan0: register &#39;huawei_cdc_ncm&#39; at usb-3f980000.usb-1.1.3, Huawei CDC NCM device, 58:2c:80:13:92:63
 
-[25397.792759] option 1-1.1.3:1.2: GSM modem (1-port) converter detected
-[25397.793622] usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB1
-[25397.794413] option 1-1.1.3:1.3: GSM modem (1-port) converter detected
-[25397.794917] usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB2
+option 1-1.1.3:1.2: GSM modem (1-port) converter detected
+usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB1
+option 1-1.1.3:1.3: GSM modem (1-port) converter detected
+usb 1-1.1.3: GSM modem (1-port) converter now attached to ttyUSB2
 
-[25397.795581] usb-storage 1-1.1.3:1.4: USB Mass Storage device detected
-[25397.797369] scsi host0: usb-storage 1-1.1.3:1.4
-[25397.798471] usb-storage 1-1.1.3:1.5: USB Mass Storage device detected
-[25397.799202] scsi host1: usb-storage 1-1.1.3:1.5
-[25398.805145] scsi 0:0:0:0: CD-ROM            HUAWEI   Mass Storage     2.31 PQ: 0 ANSI: 2
-[25398.805505] scsi 1:0:0:0: Direct-Access     HUAWEI   SD Storage       2.31 PQ: 0 ANSI: 2
-[25398.806172] sd 1:0:0:0: Attached scsi generic sg0 type 0
-[25398.806854] sr 0:0:0:0: [sr0] scsi-1 drive
-[25398.825063] sr 0:0:0:0: Attached scsi CD-ROM sr0
-[25398.825565] sr 0:0:0:0: Attached scsi generic sg1 type 5
-[25398.826367] sd 1:0:0:0: [sda] Attached SCSI removable disk
+usb-storage 1-1.1.3:1.4: USB Mass Storage device detected
+scsi host0: usb-storage 1-1.1.3:1.4
+usb-storage 1-1.1.3:1.5: USB Mass Storage device detected
+scsi host1: usb-storage 1-1.1.3:1.5
+scsi 0:0:0:0: CD-ROM            HUAWEI   Mass Storage     2.31 PQ: 0 ANSI: 2
+scsi 1:0:0:0: Direct-Access     HUAWEI   SD Storage       2.31 PQ: 0 ANSI: 2
+sd 1:0:0:0: Attached scsi generic sg0 type 0
+sr 0:0:0:0: [sr0] scsi-1 drive
+sr 0:0:0:0: Attached scsi CD-ROM sr0
+sr 0:0:0:0: Attached scsi generic sg1 type 5
+sd 1:0:0:0: [sda] Attached SCSI removable disk
 </code></pre></div><p>Раз уж начали с <code>/dev/bsg</code>, сначала закончим с ним. Как видно из вывода:</p>
 <ul>
 <li>файл <code>/dev/bsg/0:0:0:0</code> (<code>/dev/sg1</code>) – CD-ROM (Mass Storage), смонтировано в блочное устройство: <code>sr0</code> (<code>cdrom</code>)</li>
@@ -261,6 +261,16 @@ OK
 <li><a href="https://deepole.ru/3g-i-4g-texnologii/nastrojka-modemov-huawei-s-pomoshhyu-at-komand.html">Настройка модемов Huawei с помощью AT-команд.</a></li>
 <li><a href="https://3ginfo.ru/page53.html">AT команды для модемов Huawei</a></li>
 <li><a href="https://www.it-fm.ru/?p=86">Основные AT-команды модемов</a></li>
+<li><a href="https://xakep.ru/2015/04/07/195-sms/">Принимаем и отправляем СМС при помощи GSM-модема</a></li>
+<li><a href="https://telegra.ph/Otpravka-SMS-01-26">Отправка СМС</a></li>
+</ul>
+<p>Как вариант подключения к модему по serial-порту, можно использовать <code>pppd</code> и обертку над ним <code>wvdial</code>:</p>
+<ul>
+<li><a href="http://jivoi.github.io/2015/06/26/huawei-e392-with-linux/">4G Huawei E392 with Linux</a></li>
+<li><a href="http://web.archive.org/web/20170628231554/http://www.stanovlenie.org.ua/setting-internet-in-console-linux-in-aid-wvdial/">Настройка интернета Ого Мобильный при помощи wvdial в Linux</a></li>
+<li><a href="http://web.archive.org/web/20170820122241/http://alexander-simakov.blogspot.com/2008/08/wvdial-linux.html">Настройка WvDial в Linux</a></li>
+<li><a href="http://mazin.uz/2011/11/30/ustanovka-i-nastrojka-3g-modema-v-ubuntu-server/">Установка и настройка 3G модема в Ubuntu server</a></li>
+<li><a href="http://www.linuxcookbook.ru/articles/nastroyka-wvdial">Настройка WvDial</a></li>
 </ul>
 <h2 id="sources">Sources</h2>
 <ul>
