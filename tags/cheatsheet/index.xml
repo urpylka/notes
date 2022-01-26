@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Wed, 22 Apr 2020 12:35:00 +0400</lastBuildDate>
+    <lastBuildDate>Mon, 11 Jan 2021 12:42:00 +0400</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blender shortcuts</title>
+      <link>https://urpylka.com/posts/post-21/</link>
+      <pubDate>Mon, 11 Jan 2021 12:42:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-21/</guid>
+      <description> Atl+D зависимая копия Shift+D независимая копия при перемещении можно делать по осям X Y Z, или исключить через shift окна в 3d view T - левое, N - правое ctrl+alt+shift+C - изменить координаты ctrl+P вложить объекты анимировать можно и лучше через emtpy object, вложив в него объекты shift+S курсор в центр (спасательный круг) shift+A создание тела X - удалить объект 3dview G - переместить R - вращать S - scale  </description>
+    </item>
     
     <item>
       <title>Cheatsheet: Python</title>
@@ -21,6 +30,20 @@
       <description>Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite that I&amp;rsquo;ve seen it a lot of times, it just can&amp;rsquo;t fit in my head. So I wrote this article to get the information quickly.
 Basically it consist links to russian resources.
  os.path decorators strings regular expression queue, lock web, asyncio, aiohttp cycles, for, while by value / by path list cycle for list remove spaces in a string low register in a string  Serial monitor on Python import serial port = serial.</description>
+    </item>
+    
+    <item>
+      <title>Заметка по работе с Bash</title>
+      <link>https://urpylka.com/posts/post-45/</link>
+      <pubDate>Thu, 16 Apr 2020 02:14:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-45/</guid>
+      <description>У меня накопилось достаточно большое количество переодически гуглящихся вещей, которые хочу структурировать в этой заметке. Заметка будет обновлена.
+Bash Перенаправления и pipe | - передача аргумента
+&amp;gt; – передача вывода команды в новый файл или перезапись существующего файла
+&amp;gt;&amp;gt; - передача вывода команды в новый файл или дозапись с конца
+Стандартный вывод команды происходит с числом 1, вывод ошибок с числом 2. Выводы перенаправлять в разные файлы отдельно.
+2&amp;gt;&amp;amp;1 – перенаправляет вывод ошибки на стандартный вывод, поэтому они появляются вместе и могут быть совместно перенаправлены в файл.</description>
     </item>
     
   </channel>

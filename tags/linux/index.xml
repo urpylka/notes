@@ -35,6 +35,46 @@ But the trick is in using Parameter Expansion for split elements.
     </item>
     
     <item>
+      <title>Ускорение загрузки: systemd-analyze</title>
+      <link>https://urpylka.com/posts/post-26/</link>
+      <pubDate>Tue, 16 Feb 2021 12:40:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-26/</guid>
+      <description>Это краткая заметка по анализу времени загрузки служб ОС.
+В Linux дистрибутивах в которых используется systemd-analyze есть возможность проанализировать сколько какие службы загружались по времени:
+systemd-analyze critical-chain # если включен графический интерфейс, то его можно выключить sudo systemctl disable graphical.target Источники:
+ https://losst.ru/uskorenie-zagruzki-linux https://wiki.archlinux.org/index.php/Improving_performance/Boot_process  </description>
+    </item>
+    
+    <item>
+      <title>Заметка по работе с SSH</title>
+      <link>https://urpylka.com/posts/post-5/</link>
+      <pubDate>Sun, 13 Dec 2020 19:32:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-5/</guid>
+      <description>Выкачить что-то:
+scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop Генерация и аутентификация с помощью SSH ключа:
+ habrahabr.ru help.github.com itman.in  Добавить себя в authorization_keys на удаленном хосте:
+ssh-copy-id &amp;#39;-p 22 pi@172.24.1.1&amp;#39; Обратный и прямой туннели:
+ habr.com rus-linux.net itsecforu.ru  Прокидывание порта:
+ssh -L 5601:10.246.182.189:5601 Смена пароля приватного RSA ключа:
+ssh-keygen -f &amp;lt;path-to.key&amp;gt; -p Просмотр приватного ключа:
+openssl rsa -text -noout -in &amp;lt;path-to.key&amp;gt;  Также можно сменить пароль на приватный RSA или DSA ключ</description>
+    </item>
+    
+    <item>
+      <title>Заметка по работе с GIT</title>
+      <link>https://urpylka.com/posts/post-20/</link>
+      <pubDate>Sun, 13 Dec 2020 13:40:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-20/</guid>
+      <description>Работа с Submodule https://git-scm.com/book/ru/v1/Инструменты-Git-Подмодули
+git submodule init git submodule update Полезные ссылки  Удаление первого коммита stackoverflow.com Отмена последнего коммита в git evtuhovich.ru Объединение репозиториев eax.me Конфликт при объединении несвязных историй --allow-unrelated-histories stackoverflow.com Продвинутое слияние git-scm.com Работа с удалёнными репозиториями git-scm.com Теория GIT habrahabr.ru Раскрытие тайн reset git-scm.com Объединение репозиториев qaru.site  Первоначальная настройка git Все очень хорошо изложено в этой статье, не вижу смысла копировать
+https://git-scm.com/book/ru/v2/Введение-Первоначальная-настройка-Git
+Базовые команды # Rebase 3х верхних коммитов в интерактивном режиме (через текстовый редактор) git rebase -i HEAD~3 # Перетереть историю в текущем remote git push --force # Снести верхние 3 коммита (без удаления изменений), для полного удаления комитов - флаг `--hard` git reset HEAD~3 # Застейджить все изменения git add .</description>
+    </item>
+    
+    <item>
       <title>Заметка по работе с Bash</title>
       <link>https://urpylka.com/posts/post-45/</link>
       <pubDate>Thu, 16 Apr 2020 02:14:00 +0400</pubDate>

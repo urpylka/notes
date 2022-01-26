@@ -133,11 +133,6 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/camera/</loc>
-    <lastmod>2021-11-05T23:36:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/tags/videocapture/</loc>
     <lastmod>2021-11-05T23:36:00+04:00</lastmod>
   </url>
@@ -223,16 +218,6 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/docker/</loc>
-    <lastmod>2021-09-21T16:22:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/esp/</loc>
-    <lastmod>2021-09-21T16:22:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/posts/post-31/</loc>
     <lastmod>2021-05-06T20:15:01+04:00</lastmod>
   </url>
@@ -273,12 +258,12 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/blender/</loc>
+    <loc>https://urpylka.com/posts/post-21/</loc>
     <lastmod>2021-01-11T12:42:00+04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://urpylka.com/posts/post-21/</loc>
+    <loc>https://urpylka.com/tags/cheatsheet/</loc>
     <lastmod>2021-01-11T12:42:00+04:00</lastmod>
   </url>
   
@@ -293,17 +278,7 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/postgres/</loc>
-    <lastmod>2021-01-01T17:10:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/posts/post-15/</loc>
-    <lastmod>2021-01-01T17:10:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/sql/</loc>
     <lastmod>2021-01-01T17:10:00+04:00</lastmod>
   </url>
   
@@ -318,18 +293,8 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/ssh/</loc>
-    <lastmod>2020-12-13T19:32:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/posts/post-5/</loc>
     <lastmod>2020-12-13T19:32:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/git/</loc>
-    <lastmod>2020-12-13T13:40:00+04:00</lastmod>
   </url>
   
   <url>
@@ -413,17 +378,7 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/cheatsheet/</loc>
-    <lastmod>2020-04-22T12:35:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/posts/post-9/</loc>
-    <lastmod>2020-04-22T12:35:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/tools/</loc>
     <lastmod>2020-04-22T12:35:00+04:00</lastmod>
   </url>
   
@@ -490,11 +445,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-46/</loc>
     <lastmod>2013-07-03T16:56:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/backup/</loc>
-    <lastmod>2013-07-02T23:55:00+04:00</lastmod>
   </url>
   
   <url>
@@ -570,11 +520,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-43/</loc>
     <lastmod>2013-02-08T22:41:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/elecronics/</loc>
-    <lastmod>2012-11-12T00:00:00+14:49</lastmod>
   </url>
   
   <url>

@@ -24,16 +24,5 @@ Upload file to remote server and update conf file there:
 import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;user ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(hostname=hostname, username=username) sftp = ssh.open_sftp() # https://docs.paramiko.org/en/stable/api/sftp.html#paramiko.sftp_client.SFTPClient.file with sftp.file(target_file, &amp;#39;w+&amp;#39;) as output, open(local_file, &amp;#39;r&amp;#39;) as input: while True: try: buffer = input.read(5000) # 5KB if buffer == &amp;#39;&amp;#39;: print(&amp;#34;Uploading was finished&amp;#34;) break output.</description>
     </item>
     
-    <item>
-      <title>Cheatsheet: Python</title>
-      <link>https://urpylka.com/posts/post-9/</link>
-      <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-9/</guid>
-      <description>Everytime when I am doing a something by Python (or by something else) I need to use articles about main libraries. Despite that I&amp;rsquo;ve seen it a lot of times, it just can&amp;rsquo;t fit in my head. So I wrote this article to get the information quickly.
-Basically it consist links to russian resources.
- os.path decorators strings regular expression queue, lock web, asyncio, aiohttp cycles, for, while by value / by path list cycle for list remove spaces in a string low register in a string  Serial monitor on Python import serial port = serial.</description>
-    </item>
-    
   </channel>
 </rss>
