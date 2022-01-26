@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>bash on urpylka՚s blog!</title>
-    <link>https://urpylka.com/tags/bash/</link>
-    <description>Recent content in bash on urpylka՚s blog!</description>
+    <title>linux on urpylka՚s blog!</title>
+    <link>https://urpylka.com/tags/linux/</link>
+    <description>Recent content in linux on urpylka՚s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
     <lastBuildDate>Sun, 16 Jan 2022 13:11:00 +0200</lastBuildDate>
     
-	<atom:link href="https://urpylka.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://urpylka.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -46,6 +46,17 @@ Bash Перенаправления и pipe | - передача аргумен�
 &amp;gt;&amp;gt; - передача вывода команды в новый файл или дозапись с конца
 Стандартный вывод команды происходит с числом 1, вывод ошибок с числом 2. Выводы перенаправлять в разные файлы отдельно.
 2&amp;gt;&amp;amp;1 – перенаправляет вывод ошибки на стандартный вывод, поэтому они появляются вместе и могут быть совместно перенаправлены в файл.</description>
+    </item>
+    
+    <item>
+      <title>Управление службами в Linux (systemctl)</title>
+      <link>https://urpylka.com/posts/post-48/</link>
+      <pubDate>Thu, 16 Apr 2020 02:14:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-48/</guid>
+      <description>systemctl start SOME_SERVICE systemctl stop SOME_SERVICE systemctl enable SOME_SERVICE systemctl disable SOME_SERVICE journalctl -f -u SOME_SERVICE journalctl -u SOME_SERVICE --since=&amp;#34;2017-08-14 00:00:00&amp;#34; Чтобы добавить свой сервис, можно либо выполнить команду sudo systemctl enable &amp;lt;path-to-service-file&amp;gt; или, лучше, добавить его в директорию /etc/systemd/system/ с расширением .service. Также есть другие пути, подробнее ниже:
+Источники:
+ habr.ru власть над демонами habr.ru Уровни загрузки системы, как я понял апдейт рси как раз запихивает службы туды сюды habr.</description>
     </item>
     
   </channel>

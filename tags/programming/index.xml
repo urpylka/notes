@@ -137,6 +137,18 @@ systemd-analyze critical-chain # если включен графический 
     </item>
     
     <item>
+      <title>Portainer: How to reset password for the Admin user</title>
+      <link>https://urpylka.com/posts/post-18/</link>
+      <pubDate>Sun, 03 Jan 2021 23:30:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-18/</guid>
+      <description>This article is a copy from the Portainer site. Original isn&amp;rsquo;t available anymore for unknown reasons, and I made it copy.
+ Yep, we know, life can be challenging because you forgot or lost your Admin password to access to Portainer. In this help article, you will learn how to do a password reset to the Admin user of Portainer.
+Resetting Admin password in Portainer running as container
+Reset the password for the Admin user can be accomplished using our reset password container helper.</description>
+    </item>
+    
+    <item>
       <title>Заметка по работе с SSH</title>
       <link>https://urpylka.com/posts/post-5/</link>
       <pubDate>Sun, 13 Dec 2020 19:32:00 +0400</pubDate>
@@ -165,6 +177,17 @@ https://git-scm.com/book/ru/v2/Введение-Первоначальная-н�
     </item>
     
     <item>
+      <title>Заметка по настройке Hugo</title>
+      <link>https://urpylka.com/posts/post-29/</link>
+      <pubDate>Tue, 01 Dec 2020 02:16:51 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-29/</guid>
+      <description>Включение HTML контента &amp;#34;markup&amp;#34;: { &amp;#34;goldmark&amp;#34;: { &amp;#34;renderer&amp;#34;: { &amp;#34;unsafe&amp;#34;:true } } } или, если для конфига используется toml
+[markup] [markup.goldmark] [markup.goldmark.renderer] unsafe = true Источники:
+ https://gohugo.io/news/0.60.0-relnotes/ https://discourse.gohugo.io/t/raw-html-getting-omitted-in-0-60-0/22032  Добавление iframe youtube .thumb-wrap { position: relative; padding-bottom: 56.25%; /* задаёт высоту контейнера для 16:9 (если 4:3 — поставьте 75%) */ height: 0; overflow: hidden; } .thumb-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-width: 0; outline-width: 0; } &amp;lt;div class=&amp;#34;thumb-wrap&amp;#34;&amp;gt; &amp;lt;iframe width=&amp;#34;560&amp;#34; height=&amp;#34;315&amp;#34; src=&amp;#34;https://www.</description>
+    </item>
+    
+    <item>
       <title>Платформа для собственного блога</title>
       <link>https://urpylka.com/posts/post-7/</link>
       <pubDate>Fri, 23 Oct 2020 19:56:00 +0400</pubDate>
@@ -186,7 +209,7 @@ Basically it consist links to russian resources.
     </item>
     
     <item>
-      <title>Nginx reverse proxy</title>
+      <title>Nginx Reverse Proxy</title>
       <link>https://urpylka.com/posts/post-12/</link>
       <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
       
@@ -240,6 +263,18 @@ PARTUUID также не меняется при побайтовом копир
       <description>systemctl start SOME_SERVICE systemctl stop SOME_SERVICE systemctl enable SOME_SERVICE systemctl disable SOME_SERVICE journalctl -f -u SOME_SERVICE journalctl -u SOME_SERVICE --since=&amp;#34;2017-08-14 00:00:00&amp;#34; Чтобы добавить свой сервис, можно либо выполнить команду sudo systemctl enable &amp;lt;path-to-service-file&amp;gt; или, лучше, добавить его в директорию /etc/systemd/system/ с расширением .service. Также есть другие пути, подробнее ниже:
 Источники:
  habr.ru власть над демонами habr.ru Уровни загрузки системы, как я понял апдейт рси как раз запихивает службы туды сюды habr.</description>
+    </item>
+    
+    <item>
+      <title>Бекап сервера на Time Capsule</title>
+      <link>https://urpylka.com/posts/post-16/</link>
+      <pubDate>Tue, 02 Jul 2013 23:55:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-16/</guid>
+      <description>Фото взято из livejournal.com
+ Как видно из названия, эту статью я хочу посвятить опыту настройки моего сервера под хранение бекапов на Time Capsule.
+Проблема: Увеличение объёма жесткого диска сервера стоит денег, а на домашней Time Capsule есть много свободного места, следовательно возникают упущенные возможности.
+Задача: Есть удаленый VPS/VDS сервер с Linux/Unix операционной системой, на котором есть система бекапов. Надо настроить выгрузку бекапов или прямое создание бекапов на домашнюю Time Capsule.</description>
     </item>
     
     <item>

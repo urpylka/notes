@@ -23,5 +23,15 @@
  https://gohugo.io/news/0.60.0-relnotes/ https://discourse.gohugo.io/t/raw-html-getting-omitted-in-0-60-0/22032  Добавление iframe youtube .thumb-wrap { position: relative; padding-bottom: 56.25%; /* задаёт высоту контейнера для 16:9 (если 4:3 — поставьте 75%) */ height: 0; overflow: hidden; } .thumb-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-width: 0; outline-width: 0; } &amp;lt;div class=&amp;#34;thumb-wrap&amp;#34;&amp;gt; &amp;lt;iframe width=&amp;#34;560&amp;#34; height=&amp;#34;315&amp;#34; src=&amp;#34;https://www.</description>
     </item>
     
+    <item>
+      <title>Платформа для собственного блога</title>
+      <link>https://urpylka.com/posts/post-7/</link>
+      <pubDate>Fri, 23 Oct 2020 19:56:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-7/</guid>
+      <description>Статья о про выбор платформы для собственного блога и дальнейшие планы.
+2013: Blogger История началась в феврале 2013 года. Я был студентом Аэрокоса (СГАУ – Самарский университет), и уже 4 года занимался веб-разработкой. Тогда мне пришла идея писать заметки. Делать это на собственной платформе вроде WordPress не хотелось. На фоне Livejournal с его отвратительно перегруженным дизайном и рекламой во всех щелях вполне изящным казалось решение от Google – платформа Blogger. Её я и использовал.</description>
+    </item>
+    
   </channel>
 </rss>

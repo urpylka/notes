@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>drones on urpylka՚s blog!</title>
-    <link>https://urpylka.com/tags/drones/</link>
-    <description>Recent content in drones on urpylka՚s blog!</description>
+    <title>robotics on urpylka՚s blog!</title>
+    <link>https://urpylka.com/tags/robotics/</link>
+    <description>Recent content in robotics on urpylka՚s blog!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
     <lastBuildDate>Sun, 05 Dec 2021 01:10:00 +0200</lastBuildDate>
     
-	<atom:link href="https://urpylka.com/tags/drones/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://urpylka.com/tags/robotics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,6 +19,15 @@
       
       <guid>https://urpylka.com/posts/post-38/</guid>
       <description>Введение Я начал писать эту статью в апреле 2020 года. Однако вместо изложения того, чем я занимался, я начал копать вглубь и пытаться объяснить себе как правильно должна выглядеть разработанная система во всех ньансах. Как итог, потратя кучу усилий, и понял, что обрекаю себя на научно-исследовательскую работу. И это немного не соотвествует моей цели, а именно – закрепить все те знания, что я применял при разработке и внедрении робототехнических комплексов на прошлом месте работы.</description>
+    </item>
+    
+    <item>
+      <title>Автономный робот на базе TurtleBot с self driving, slam, ros, распознанием знаков</title>
+      <link>https://urpylka.com/posts/post-64/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:10 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-64/</guid>
+      <description>Всем привет, с целью передачи опыта, а также для того, чтобы структурировать и закрепить весь тот объем информации, который пришлось перелопатить, я пишу эту статью. Я не ставлю перед собой целью изложить мануал по созданию нашего решения (тк исходный код и так полностью открыт). Подразумеваю, что основной интерес в том, чтобы изложить основые принципы построения подобных систем, изложить используемые источники, рассказать о том от чего мы отказались, и к чему мы пришли.</description>
     </item>
     
   </channel>

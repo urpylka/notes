@@ -35,6 +35,17 @@
     </item>
     
     <item>
+      <title>Grbl &#43; ESC &amp; Brushless motor</title>
+      <link>https://urpylka.com/posts/post-36/</link>
+      <pubDate>Wed, 22 Sep 2021 01:12:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-36/</guid>
+      <description>Навигация по проекту:
+ Покупка и разбор фрезерного станка Cutmaster CM-1500 Модернизация Cutmaster CM-1500 Установка и настройка Grbl CNCjs + ESP-Link Grbl + ESC &amp;amp; Brushless motor   В чём проблема? Прошивка grbl позволяет управлять шпинделем или лазером с помощью ШИМ. При этом сигнал ШИМ имеет:
+ период ≈850мс амплитуду 5В скважность от 0 до 100% процентов дискретность 256 значений, зависимость линейная  Тогда как все сервоприводы или ESC для бессколлекторных двигателей управляются с помощью ШИМ сигнала со следующими параметрами:</description>
+    </item>
+    
+    <item>
       <title>Замена контроллера питания Raspberry Pi 3B&#43;</title>
       <link>https://urpylka.com/posts/post-3/</link>
       <pubDate>Mon, 16 Nov 2020 22:10:00 +0400</pubDate>
