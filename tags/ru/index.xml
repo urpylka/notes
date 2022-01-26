@@ -424,7 +424,7 @@ sudo brew services list sudo brew services start openvpn sudo brew services rest
     </item>
     
     <item>
-      <title>Автономный робот на базе TurtleBot с self driving, slam, ros, распознанием знаков</title>
+      <title>Автономный робот на базе TurtleBot с Self Driving, Slam, ROS, Traffic Sign recognition</title>
       <link>https://urpylka.com/posts/post-64/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:10 +0400</pubDate>
       
