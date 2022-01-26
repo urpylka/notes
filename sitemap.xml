@@ -58,6 +58,11 @@
   </url>
   
   <url>
+    <loc>https://urpylka.com/tags/cheatsheet/</loc>
+    <lastmod>2022-01-16T13:11:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://urpylka.com/tags/linux/</loc>
     <lastmod>2022-01-16T13:11:00+02:00</lastmod>
   </url>
@@ -95,6 +100,11 @@
   <url>
     <loc>https://urpylka.com/posts/post-55/</loc>
     <lastmod>2021-12-10T18:42:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/networks/</loc>
+    <lastmod>2021-12-05T01:10:00+02:00</lastmod>
   </url>
   
   <url>
@@ -145,11 +155,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-57/</loc>
     <lastmod>2021-10-14T12:24:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/networks/</loc>
-    <lastmod>2021-09-23T17:58:00+04:00</lastmod>
   </url>
   
   <url>
@@ -233,11 +238,6 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/cheatsheet/</loc>
-    <lastmod>2021-01-11T12:42:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/posts/post-17/</loc>
     <lastmod>2021-01-04T01:09:00+04:00</lastmod>
   </url>
@@ -275,16 +275,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-6/</loc>
     <lastmod>2020-12-12T18:27:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/dnsmasq/</loc>
-    <lastmod>2020-12-02T20:36:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/openvpn/</loc>
-    <lastmod>2020-12-02T20:36:00+04:00</lastmod>
   </url>
   
   <url>
@@ -360,11 +350,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-13/</loc>
     <lastmod>2020-10-09T01:22:58+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/nginx/</loc>
-    <lastmod>2020-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>

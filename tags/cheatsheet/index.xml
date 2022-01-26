@@ -7,10 +7,56 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Mon, 11 Jan 2021 12:42:00 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 16 Jan 2022 13:11:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Приветственное сообщение на Raspberry Pi (motd, profile.d)</title>
+      <link>https://urpylka.com/posts/post-61/</link>
+      <pubDate>Sun, 16 Jan 2022 13:11:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-61/</guid>
+      <description>Я в принципе уже знал как +/- работает вывод текстовой информации при логине. Однако написать это меня побудил следующий вывод. А точнее две его последние строки.
+artemsmirnov@Artems-MacBook-Pro ~ % ssh pi@theimage-9373.local Linux theimage-9373 5.10.17+ #1403 Mon Feb 22 11:26:13 GMT 2021 armv6l The programs included with the Debian GNU/Linux system are free software; the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright. Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.</description>
+    </item>
+    
+    <item>
+      <title>Bash: Parameter Expansion to do a nested array</title>
+      <link>https://urpylka.com/posts/post-60/</link>
+      <pubDate>Tue, 04 Jan 2022 19:00:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-60/</guid>
+      <description>Main idea how to make nested array in Shell is use a separator for example ::.
+But the trick is in using Parameter Expansion for split elements.
+ Parameter Expansion is the term that refers to any operation that causes a parameter to be expanded (replaced by content). In its most basic appearance, the expansion of a parameter is achieved by prefixing that parameter with a $ sign.
+ #!/bin/sh  HOSTS=( &amp;#39;example-1.</description>
+    </item>
+    
+    <item>
+      <title>Аппаратные интерфейсы Raspberry Pi</title>
+      <link>https://urpylka.com/posts/post-41/</link>
+      <pubDate>Thu, 23 Sep 2021 17:18:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-41/</guid>
+      <description>Это страничка будет обновляться по мере того, как я буду использовать те или иные технологии. Заметка больше является моим справочником.
+Распиновка GPIO разъёма Работа с I2C Хорошая статья про работу с I2C на Raspberry Pi skpang.co.uk/blog/archives/575.
+Работа с сервоприводами pygpiod и spi
+Работа с WS2812B SK6812 Принцип работы адресной светодиодной ленты заключается в последовательной передачи кодированных байт информации через светодиоды с определенным периодом. Соотвественно для управления такой лентой требуется кодирование и модуляция сигнала.</description>
+    </item>
+    
+    <item>
+      <title>Ускорение загрузки: systemd-analyze</title>
+      <link>https://urpylka.com/posts/post-26/</link>
+      <pubDate>Tue, 16 Feb 2021 12:40:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-26/</guid>
+      <description>Это краткая заметка по анализу времени загрузки служб ОС.
+В Linux дистрибутивах в которых используется systemd-analyze есть возможность проанализировать сколько какие службы загружались по времени:
+systemd-analyze critical-chain # если включен графический интерфейс, то его можно выключить sudo systemctl disable graphical.target Источники:
+ https://losst.ru/uskorenie-zagruzki-linux https://wiki.archlinux.org/index.php/Improving_performance/Boot_process  </description>
+    </item>
     
     <item>
       <title>Blender shortcuts</title>
@@ -19,6 +65,34 @@
       
       <guid>https://urpylka.com/posts/post-21/</guid>
       <description> Atl+D зависимая копия Shift+D независимая копия при перемещении можно делать по осям X Y Z, или исключить через shift окна в 3d view T - левое, N - правое ctrl+alt+shift+C - изменить координаты ctrl+P вложить объекты анимировать можно и лучше через emtpy object, вложив в него объекты shift+S курсор в центр (спасательный круг) shift+A создание тела X - удалить объект 3dview G - переместить R - вращать S - scale  </description>
+    </item>
+    
+    <item>
+      <title>Заметка по работе с SSH</title>
+      <link>https://urpylka.com/posts/post-5/</link>
+      <pubDate>Sun, 13 Dec 2020 19:32:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-5/</guid>
+      <description>Выкачить что-то:
+scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop Генерация и аутентификация с помощью SSH ключа:
+ habrahabr.ru help.github.com itman.in  Добавить себя в authorization_keys на удаленном хосте:
+ssh-copy-id &amp;#39;-p 22 pi@172.24.1.1&amp;#39; Обратный и прямой туннели:
+ habr.com rus-linux.net itsecforu.ru  Прокидывание порта:
+ssh -L 5601:10.246.182.189:5601 Смена пароля приватного RSA ключа:
+ssh-keygen -f &amp;lt;path-to.key&amp;gt; -p Просмотр приватного ключа:
+openssl rsa -text -noout -in &amp;lt;path-to.key&amp;gt;  Также можно сменить пароль на приватный RSA или DSA ключ</description>
+    </item>
+    
+    <item>
+      <title>Заметка по работе с GIT</title>
+      <link>https://urpylka.com/posts/post-20/</link>
+      <pubDate>Sun, 13 Dec 2020 13:40:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-20/</guid>
+      <description>Работа с Submodule https://git-scm.com/book/ru/v1/Инструменты-Git-Подмодули
+git submodule init git submodule update Полезные ссылки  Удаление первого коммита stackoverflow.com Отмена последнего коммита в git evtuhovich.ru Объединение репозиториев eax.me Конфликт при объединении несвязных историй --allow-unrelated-histories stackoverflow.com Продвинутое слияние git-scm.com Работа с удалёнными репозиториями git-scm.com Теория GIT habrahabr.ru Раскрытие тайн reset git-scm.com Объединение репозиториев qaru.site  Первоначальная настройка git Все очень хорошо изложено в этой статье, не вижу смысла копировать
+https://git-scm.com/book/ru/v2/Введение-Первоначальная-настройка-Git
+Базовые команды # Rebase 3х верхних коммитов в интерактивном режиме (через текстовый редактор) git rebase -i HEAD~3 # Перетереть историю в текущем remote git push --force # Снести верхние 3 коммита (без удаления изменений), для полного удаления комитов - флаг `--hard` git reset HEAD~3 # Застейджить все изменения git add .</description>
     </item>
     
     <item>
@@ -44,6 +118,48 @@ Bash Перенаправления и pipe | - передача аргумен�
 &amp;gt;&amp;gt; - передача вывода команды в новый файл или дозапись с конца
 Стандартный вывод команды происходит с числом 1, вывод ошибок с числом 2. Выводы перенаправлять в разные файлы отдельно.
 2&amp;gt;&amp;amp;1 – перенаправляет вывод ошибки на стандартный вывод, поэтому они появляются вместе и могут быть совместно перенаправлены в файл.</description>
+    </item>
+    
+    <item>
+      <title>Заметка по работе с SQL</title>
+      <link>https://urpylka.com/posts/post-42/</link>
+      <pubDate>Thu, 16 Apr 2020 02:14:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-42/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Работа с файловой системой Linux</title>
+      <link>https://urpylka.com/posts/post-51/</link>
+      <pubDate>Thu, 16 Apr 2020 02:14:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-51/</guid>
+      <description>Что такое UUID / PARTUUID Как видно из скриншота ниже, в ОС для удобства обращения к блочным устройствам автоматически создаются различные симлинки.
+UUID задается при форматировании файловой системы и хранится в её суперблоке. Поэтому при побайтовом копировании разделов UUID не меняется.
+При подключении нескольких блочных устройств с одинаковыми UUID, в /dev/disk/by-uuid отображается только последнее подключенное устройство. Подробнее rus-linux.net.
+PARTUUID также не меняется при побайтовом копировании. А также не меняется при ручном изменении размера файловой системы.</description>
+    </item>
+    
+    <item>
+      <title>Управление службами в Linux (systemctl)</title>
+      <link>https://urpylka.com/posts/post-48/</link>
+      <pubDate>Thu, 16 Apr 2020 02:14:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-48/</guid>
+      <description>systemctl start SOME_SERVICE systemctl stop SOME_SERVICE systemctl enable SOME_SERVICE systemctl disable SOME_SERVICE journalctl -f -u SOME_SERVICE journalctl -u SOME_SERVICE --since=&amp;#34;2017-08-14 00:00:00&amp;#34; Чтобы добавить свой сервис, можно либо выполнить команду sudo systemctl enable &amp;lt;path-to-service-file&amp;gt; или, лучше, добавить его в директорию /etc/systemd/system/ с расширением .service. Также есть другие пути, подробнее ниже:
+Источники:
+ habr.ru власть над демонами habr.ru Уровни загрузки системы, как я понял апдейт рси как раз запихивает службы туды сюды habr.</description>
+    </item>
+    
+    <item>
+      <title>Отображение скрытых файлов MacOS X</title>
+      <link>https://urpylka.com/posts/post-25/</link>
+      <pubDate>Sun, 19 May 2013 14:43:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-25/</guid>
+      <description>Cкрытые файлы обычно являются файлами системы или файлами сторонних программ, которые, в виду безопасности или других причин показывать пользователю не нужно. По умолчанию Finder не показывает скрытые файлы, для того чтобы ключить отображение необходимо:
+ Откройте программу Терминал (Terminal), она находится в папке /Applications/Utilities Введите команду: defaults write com.apple.Finder AppleShowAllFiles 1 &amp;amp;&amp;amp; killall Finder Перезапустите Finder, зажав кнопку Option (alt) и нажав на значок Finder в доке.   PS Для отключения данного разрешения снова введите команду, изменив значение c &amp;ldquo;1&amp;rdquo; на &amp;ldquo;0&amp;rdquo;.</description>
     </item>
     
   </channel>

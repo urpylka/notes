@@ -199,6 +199,17 @@ https://git-scm.com/book/ru/v2/Введение-Первоначальная-н�
     </item>
     
     <item>
+      <title>Настройка DNS на клиенте OpenVPN macOS</title>
+      <link>https://urpylka.com/posts/post-24/</link>
+      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-24/</guid>
+      <description>Я использую связку OpenVPN + dnsmasq для выдачи доменов в удаленной виртуальной сети.
+Настройка клиента У меня MacBook: в macOS 10.15 отсуствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
+sudo brew services list sudo brew services start openvpn sudo brew services restart openvpn sudo brew services stop openvpn  brew services для OpenVPN нужно запускать под sudo, тк это необходимо для работы с сетевыми адаптерами.</description>
+    </item>
+    
+    <item>
       <title>Заметка по настройке Hugo</title>
       <link>https://urpylka.com/posts/post-29/</link>
       <pubDate>Tue, 01 Dec 2020 02:16:51 +0400</pubDate>

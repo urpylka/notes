@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 23 Sep 2021 17:58:00 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 05 Dec 2021 01:10:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/networks/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Система связи дрона и зарядной станции</title>
+      <link>https://urpylka.com/posts/post-38/</link>
+      <pubDate>Sun, 05 Dec 2021 01:10:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-38/</guid>
+      <description>Введение Я начал писать эту статью в апреле 2020 года. Однако вместо изложения того, чем я занимался, я начал копать вглубь и пытаться объяснить себе как правильно должна выглядеть разработанная система во всех ньансах. Как итог, потратя кучу усилий, и понял, что обрекаю себя на научно-исследовательскую работу. И это немного не соотвествует моей цели, а именно – закрепить все те знания, что я применял при разработке и внедрении робототехнических комплексов на прошлом месте работы.</description>
+    </item>
     
     <item>
       <title>Общая теория IEEE 802.11 и режимы работы Wi‑Fi адаптеров</title>
@@ -22,6 +31,40 @@
 Пользователям более известен по названию Wi-Fi, фактически являющемуся брендом, предложенным и продвигаемым организацией Wi-Fi Alliance.
 В стандарте IEEE 802.11 определены два способа организации сети:
  Инфраструктурный (Infrastructure); Независимый (Independent), часто также называемый одноранговым (Ad-Hoc).  В инфраструктурном режиме функции координации передачи данных выполняет специальный выделенный узел, точка доступа (ТД, Access Point, АР).</description>
+    </item>
+    
+    <item>
+      <title>Эталонная модель OSI</title>
+      <link>https://urpylka.com/posts/post-39/</link>
+      <pubDate>Thu, 23 Sep 2021 17:39:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-39/</guid>
+      <description>Часто в проектах которыми я занимаюсь приходится оперировать и обсуждать уровнями модели OSI. Для унификации знаний на эту тему подготовил эту статью. Основным источником для неё послужила статья с pcradar.ru, а я лишь добавил немного информации и причесал оформление.
+Для согласования работы устройств сети от разных производителей, обеспечения взаимодействия сетей, которые используют различную среду распространения сигнала создана эталонная модель взаимодействия открытых систем (сетевая модель OSI).
+Эталонная модель построена по иерархическому принципу.</description>
+    </item>
+    
+    <item>
+      <title>Устройство сети в Linux</title>
+      <link>https://urpylka.com/posts/post-33/</link>
+      <pubDate>Tue, 30 Mar 2021 17:40:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-33/</guid>
+      <description>В статье две части:
+ Устройство сети Raspberry Pi OS
+в которой описано базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
+в которой содержатся мои заметки о утилитах Linux для работы с сетью.  Устройство сети Raspberry Pi OS Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
+    </item>
+    
+    <item>
+      <title>Настройка DNS на клиенте OpenVPN macOS</title>
+      <link>https://urpylka.com/posts/post-24/</link>
+      <pubDate>Wed, 02 Dec 2020 20:36:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-24/</guid>
+      <description>Я использую связку OpenVPN + dnsmasq для выдачи доменов в удаленной виртуальной сети.
+Настройка клиента У меня MacBook: в macOS 10.15 отсуствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
+sudo brew services list sudo brew services start openvpn sudo brew services restart openvpn sudo brew services stop openvpn  brew services для OpenVPN нужно запускать под sudo, тк это необходимо для работы с сетевыми адаптерами.</description>
     </item>
     
   </channel>
