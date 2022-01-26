@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу структурировать в своей заметке.">
 <meta itemprop="datePublished" content="2020-04-16T02:14:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-04-16T02:14:00&#43;04:00" />
-<meta itemprop="wordCount" content="638">
+<meta itemprop="wordCount" content="711">
 
 
 
@@ -113,7 +113,7 @@ if (!doNotTrack) {
             <div class="markdown">
                 <p>У меня накопилось достаточно большое количество переодически гуглящихся вещей, которые хочу структурировать в этой заметке. Заметка будет обновлена.</p>
 <h2 id="bash">Bash</h2>
-<h3 id="перенаправления-и-pipe">перенаправления и pipe</h3>
+<h3 id="перенаправления-и-pipe">Перенаправления и pipe</h3>
 <p><code>|</code> - передача аргумента<br>
 <code>&gt;</code> – передача вывода команды в новый файл или перезапись существующего файла<br>
 <code>&gt;&gt;</code> - передача вывода команды в новый файл или дозапись с конца</p>
@@ -122,15 +122,16 @@ if (!doNotTrack) {
 <code>2&gt;1</code> – перенаправит вывод ошибки в файл с именем <code>1</code>, а не в стандартный вывод <code>1</code>.</p>
 <p>Источники:</p>
 <ul>
-<li><a href="https://unix.stackexchange.com/questions/89386/what-is-symbol-and-in-unix-linux">unix.stackexchange.com</a></li>
-<li><a href="https://www.linux.org.ru/forum/general/13119156">linux.org.ru</a></li>
-<li><a href="https://habr.com/ru/company/ruvds/blog/326594/">habr.com</a></li>
+<li><a href="https://unix.stackexchange.com/questions/89386/what-is-symbol-and-in-unix-linux">what is &raquo; symbol and &gt;&amp; in unix/Linux? [duplicate]</a></li>
+<li><a href="https://www.linux.org.ru/forum/general/13119156">bash разница между &raquo; и |</a></li>
+<li><a href="https://habr.com/ru/company/ruvds/blog/326594/">Bash-скрипты, часть 4: ввод и вывод</a></li>
 </ul>
 <h3 id="параллельно-исполнение-в-bash">Параллельно исполнение в Bash</h3>
+<p><code>nohup</code> - запускает с игнорирование потери связи с пользователем (при выходе пользователя из системы все будет продолжаться в фоновом режиме)</p>
 <p>Источники:</p>
 <ul>
-<li><a href="http://user.hashcode.ru/questions/4573/bash-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE-%D0%BB%D0%B8-%D0%B2-linux-%D0%BF%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-sh-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B0">user.hashcode.ru</a></li>
-<li><a href="https://mnorin.com/parallelnoe-vypolnenie-v-bash.html">mnorin.com</a></li>
+<li><a href="http://web.archive.org/web/20140226042820/http://user.hashcode.ru/questions/4573/bash-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE-%D0%BB%D0%B8-%D0%B2-linux-%D0%BF%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-sh-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B0">bash - Возможно ли в Linux параллельное выполнение .sh скрипта? </a></li>
+<li><a href="https://mnorin.com/parallelnoe-vypolnenie-v-bash.html">Параллельное выполнение в bash</a></li>
 </ul>
 <h3 id="полезные-ссылки">Полезные ссылки</h3>
 <ul>
@@ -173,23 +174,27 @@ if (!doNotTrack) {
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo apt-get remove $(sudo dpkg --get-selections | grep -v &#34;deinstall&#34; | grep x11 | sed s/install//)
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo apt-get remove $(sudo dpkg --get-selections | grep -v &#34;deinstall&#34; | grep audio | sed s/install//)
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo apt-get autoremove
-</code></pre></div><h3 id="откат-по-apt">Откат ПО APT</h3>
-<p><a href="https://system-admins.ru/kak-otkatit-obnovleniya-na-debian-ubuntu-linux-v-sluchae-problem/">system-admins.ru/kak-otkatit-obnovleniya-na-debian-ubuntu-linux-v-sluchae-problem/</a></p>
-<h3 id="настройка-сети-ubuntu-server">настройка сети ubuntu server</h3>
+</code></pre></div><h3 id="debian-packages">Debian packages</h3>
+<ul>
+<li><a href="https://system-admins.ru/kak-otkatit-obnovleniya-na-debian-ubuntu-linux-v-sluchae-problem/">Как откатить обновления на Debian / Ubuntu Linux в случае проблем</a></li>
+<li><a href="http://web.archive.org/web/20170505152409/http://www.stanovlenie.org.ua/download-the-deb-packages-with-dependencies-for-offline-installation/">Скачиваем deb-пакеты с зависимостями для offline-установки.</a></li>
+</ul>
+<h3 id="настройка-сети-ubuntu-server">Настройка сети ubuntu server</h3>
 <ul>
 <li><a href="https://losst.ru/nastrojka-seti-iz-konsoli-ubuntu">https://losst.ru/nastrojka-seti-iz-konsoli-ubuntu</a></li>
 <li><a href="https://theintobooks.wordpress.com/2016/03/03/installing-qemu-on-mac-os-x-el-capitan/">https://theintobooks.wordpress.com/2016/03/03/installing-qemu-on-mac-os-x-el-capitan/</a></li>
 </ul>
-<h3 id="очистить-history">очистить history</h3>
+<h3 id="очистить-history">Очистить history</h3>
 <ul>
 <li><a href="https://askubuntu.com/questions/191999/how-to-clear-bash-history-completely">https://askubuntu.com/questions/191999/how-to-clear-bash-history-completely</a></li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /dev/null &gt; ~/.bash_history &amp;&amp; history -c &amp;&amp; exit
-</code></pre></div><h3 id="screen-in-chroot-getty-tty">screen in chroot (getty tty)</h3>
+</code></pre></div><h3 id="screen">Screen</h3>
 <ul>
-<li><a href="https://stackoverflow.com/questions/19104894/screen-must-be-connected-to-a-terminal/25646444">https://stackoverflow.com/questions/19104894/screen-must-be-connected-to-a-terminal/25646444</a></li>
+<li><a href="https://stackoverflow.com/questions/19104894/screen-must-be-connected-to-a-terminal/25646444">Screen &ldquo;Must be connected to a Terminal&rdquo;</a></li>
+<li><a href="https://admins.su/kak-polzovatsya-utilitoj-screen-v-linux/">Как пользоваться утилитой Screen в Linux</a></li>
 </ul>
-<h3 id="unconfigure">unconfigure</h3>
+<h3 id="unconfigure">Unconfigure</h3>
 <p>virt-sysprep
 virt-configure</p>
 <h3 id="название-вкладки">Название вкладки</h3>

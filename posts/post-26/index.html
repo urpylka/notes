@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Краткая заметка про анализ времени загрузки служб ОС с помощью systemd-analyze.">
 <meta itemprop="datePublished" content="2021-02-16T12:40:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-02-16T12:40:00&#43;04:00" />
-<meta itemprop="wordCount" content="28">
+<meta itemprop="wordCount" content="43">
 
 
 
@@ -114,7 +114,11 @@ if (!doNotTrack) {
                 <p>Это краткая заметка по анализу времени загрузки служб ОС.</p>
 <p>В Linux дистрибутивах в которых используется <code>systemd-analyze</code> есть возможность проанализировать сколько какие службы загружались по времени:</p>
 <p><img src="./images/screenshot-2017-08-14-v-17.05.16.png" alt="image"></p>
-<p>Источники:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemd-analyze critical-chain
+
+<span style="color:#008000"># если включен графический интерфейс, то его можно выключить</span>
+sudo systemctl disable graphical.target
+</code></pre></div><p>Источники:</p>
 <ul>
 <li><a href="https://losst.ru/uskorenie-zagruzki-linux">https://losst.ru/uskorenie-zagruzki-linux</a></li>
 <li><a href="https://wiki.archlinux.org/index.php/Improving_performance/Boot_process">https://wiki.archlinux.org/index.php/Improving_performance/Boot_process</a></li>

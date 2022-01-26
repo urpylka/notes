@@ -254,7 +254,7 @@ import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;use
       <guid>https://urpylka.com/posts/post-26/</guid>
       <description>Это краткая заметка по анализу времени загрузки служб ОС.
 В Linux дистрибутивах в которых используется systemd-analyze есть возможность проанализировать сколько какие службы загружались по времени:
-Источники:
+systemd-analyze critical-chain # если включен графический интерфейс, то его можно выключить sudo systemctl disable graphical.target Источники:
  https://losst.ru/uskorenie-zagruzki-linux https://wiki.archlinux.org/index.php/Improving_performance/Boot_process  </description>
     </item>
     
@@ -509,7 +509,7 @@ Quickstart   Create webproxy.</description>
       
       <guid>https://urpylka.com/posts/post-45/</guid>
       <description>У меня накопилось достаточно большое количество переодически гуглящихся вещей, которые хочу структурировать в этой заметке. Заметка будет обновлена.
-Bash перенаправления и pipe | - передача аргумента
+Bash Перенаправления и pipe | - передача аргумента
 &amp;gt; – передача вывода команды в новый файл или перезапись существующего файла
 &amp;gt;&amp;gt; - передача вывода команды в новый файл или дозапись с конца
 Стандартный вывод команды происходит с числом 1, вывод ошибок с числом 2. Выводы перенаправлять в разные файлы отдельно.
