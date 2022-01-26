@@ -56,6 +56,15 @@ But the trick is in using Parameter Expansion for split elements.
     </item>
     
     <item>
+      <title>Сбор метрик с Raspberry Pi</title>
+      <link>https://urpylka.com/posts/post-55/</link>
+      <pubDate>Fri, 10 Dec 2021 18:42:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-55/</guid>
+      <description>Достаточно давно у меня появилась необходимость создать своё облако для объединения ресурсов и предоставления доступа ко внутренним сервисам. Такое облако я сделал, а этом году я добавил в эту систему работу с метриками. И буквально пару дней назад сделал так, чтобы Prometheus из Docker контейнера смог собирать метрики с устройств в сети VPN. Однако в случае с Raspberry Pi обычного node-exporter мне стало недостаточно. Тк он не собирает такие важные метрики как напряжение, температура и частота процессора.</description>
+    </item>
+    
+    <item>
       <title>Видеозахват на Raspberry Pi. Часть 2: Software</title>
       <link>https://urpylka.com/posts/post-59/</link>
       <pubDate>Fri, 05 Nov 2021 23:36:00 +0400</pubDate>

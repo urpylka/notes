@@ -88,22 +88,7 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/grafana/</loc>
-    <lastmod>2021-12-10T18:42:00+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/tags/metrics/</loc>
-    <lastmod>2021-12-10T18:42:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/node-exporter/</loc>
-    <lastmod>2021-12-10T18:42:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/prometheus/</loc>
     <lastmod>2021-12-10T18:42:00+02:00</lastmod>
   </url>
   
@@ -153,7 +138,7 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/python/</loc>
+    <loc>https://urpylka.com/tags/prometheus/</loc>
     <lastmod>2021-10-28T19:28:00+04:00</lastmod>
   </url>
   
@@ -168,11 +153,6 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/network/</loc>
-    <lastmod>2021-09-23T17:58:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/tags/networks/</loc>
     <lastmod>2021-09-23T17:58:00+04:00</lastmod>
   </url>
@@ -180,11 +160,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-40/</loc>
     <lastmod>2021-09-23T17:58:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/osi/</loc>
-    <lastmod>2021-09-23T17:39:00+04:00</lastmod>
   </url>
   
   <url>
@@ -478,16 +453,6 @@
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/password/</loc>
-    <lastmod>2013-02-22T20:19:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/security/</loc>
-    <lastmod>2013-02-22T20:19:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://urpylka.com/posts/post-22/</loc>
     <lastmod>2013-02-22T20:19:00+04:00</lastmod>
   </url>
@@ -500,11 +465,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-49/</loc>
     <lastmod>2013-02-16T13:47:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/university/</loc>
-    <lastmod>2013-02-15T14:50:00+04:00</lastmod>
   </url>
   
   <url>

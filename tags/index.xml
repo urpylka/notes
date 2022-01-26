@@ -85,38 +85,11 @@
     </item>
     
     <item>
-      <title>grafana</title>
-      <link>https://urpylka.com/tags/grafana/</link>
-      <pubDate>Fri, 10 Dec 2021 18:42:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/grafana/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>metrics</title>
       <link>https://urpylka.com/tags/metrics/</link>
       <pubDate>Fri, 10 Dec 2021 18:42:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/metrics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>node-exporter</title>
-      <link>https://urpylka.com/tags/node-exporter/</link>
-      <pubDate>Fri, 10 Dec 2021 18:42:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/node-exporter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>prometheus</title>
-      <link>https://urpylka.com/tags/prometheus/</link>
-      <pubDate>Fri, 10 Dec 2021 18:42:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/prometheus/</guid>
       <description></description>
     </item>
     
@@ -166,11 +139,11 @@
     </item>
     
     <item>
-      <title>python</title>
-      <link>https://urpylka.com/tags/python/</link>
+      <title>prometheus</title>
+      <link>https://urpylka.com/tags/prometheus/</link>
       <pubDate>Thu, 28 Oct 2021 19:28:00 +0400</pubDate>
       
-      <guid>https://urpylka.com/tags/python/</guid>
+      <guid>https://urpylka.com/tags/prometheus/</guid>
       <description></description>
     </item>
     
@@ -184,29 +157,11 @@
     </item>
     
     <item>
-      <title>network</title>
-      <link>https://urpylka.com/tags/network/</link>
-      <pubDate>Thu, 23 Sep 2021 17:58:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>networks</title>
       <link>https://urpylka.com/tags/networks/</link>
       <pubDate>Thu, 23 Sep 2021 17:58:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/networks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>osi</title>
-      <link>https://urpylka.com/tags/osi/</link>
-      <pubDate>Thu, 23 Sep 2021 17:39:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/osi/</guid>
       <description></description>
     </item>
     
@@ -328,38 +283,11 @@
     </item>
     
     <item>
-      <title>password</title>
-      <link>https://urpylka.com/tags/password/</link>
-      <pubDate>Fri, 22 Feb 2013 20:19:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/password/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>security</title>
-      <link>https://urpylka.com/tags/security/</link>
-      <pubDate>Fri, 22 Feb 2013 20:19:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>films</title>
       <link>https://urpylka.com/tags/films/</link>
       <pubDate>Sat, 16 Feb 2013 13:47:00 +0400</pubDate>
       
       <guid>https://urpylka.com/tags/films/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>university</title>
-      <link>https://urpylka.com/tags/university/</link>
-      <pubDate>Fri, 15 Feb 2013 14:50:00 +0400</pubDate>
-      
-      <guid>https://urpylka.com/tags/university/</guid>
       <description></description>
     </item>
     
