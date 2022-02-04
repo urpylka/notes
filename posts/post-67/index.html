@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1225">
+<meta itemprop="wordCount" content="1276">
 
 
 
@@ -232,12 +232,40 @@ set_var EASYRSA_DIGEST         &#34;sha512&#34;
 </blockquote>
 <p>Генерируем CRL файл:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa gen-crl
-</code></pre></div><p>Создание клиента:</p>
+</code></pre></div><h3 id="создание-клиента">Создание клиента</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make build
 make
 easyrsa build-client-full &lt;CLIENTNAME&gt; nopass
-</code></pre></div><p>Кстате <code>CLIENTNAME</code> это специальное название клиента для фигурирующее в сертификате. Если вы используете DNS я советую создавать названия клиентов соотвествующие из доменным именам, это позволит избежать путаницы.</p>
-<h2 id="итоги">Итоги</h2>
+</code></pre></div><p>Кстати, <code>CLIENTNAME</code> это специальное название клиента для фигурирующее в сертификате. Если вы используете DNS я советую создавать названия клиентов соотвествующие из доменным именам, это позволит избежать путаницы.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLIENTNAME=<span style="color:#a31515">&#34;CLIENTNAME&#34;</span>
+
+cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a31515">}</span> <span style="color:#a31515">&lt;&lt; EOF
+</span><span style="color:#a31515">client
+</span><span style="color:#a31515">nobind
+</span><span style="color:#a31515">dev tun
+</span><span style="color:#a31515">remote-cert-tls server
+</span><span style="color:#a31515">
+</span><span style="color:#a31515"># Forward all traffic through VPN
+</span><span style="color:#a31515">edirect-gateway def1
+</span><span style="color:#a31515">
+</span><span style="color:#a31515"># Address of the VPN server
+</span><span style="color:#a31515">remote vpn.example.com 1194 udp
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">&lt;key&gt;
+</span><span style="color:#a31515">$(cat $EASYRSA_PKI/private/${CLIENTNAME}.key)
+</span><span style="color:#a31515">&lt;/key&gt;
+</span><span style="color:#a31515">&lt;cert&gt;
+</span><span style="color:#a31515">$(openssl x509 -in $EASYRSA_PKI/issued/${CLIENTNAME}.crt)
+</span><span style="color:#a31515">&lt;/cert&gt;
+</span><span style="color:#a31515">&lt;ca&gt;
+</span><span style="color:#a31515">$(cat $EASYRSA_PKI/ca.crt)
+</span><span style="color:#a31515">&lt;/ca&gt;
+</span><span style="color:#a31515">key-direction 1
+</span><span style="color:#a31515">&lt;tls-auth&gt;
+</span><span style="color:#a31515">$(cat $EASYRSA_PKI/ta.key)
+</span><span style="color:#a31515">&lt;/tls-auth&gt;
+</span><span style="color:#a31515">EOF</span>
+</code></pre></div><h2 id="итоги">Итоги</h2>
 <p>В конце нужно заметить, что я пока не перенес функционал средств подготовки конфигурации сервера в образ <code>easy-rsa</code>. Это нужно прежде всего для удобства.</p>
 <p>Касаемо того, что у нас получилось, теперь на OpenVPN отсуствует приватный ключ, и даже если кто-то получит доступ к OpenVPN серверу, он не сможет создать своих клиентов. Максимум, что у него получится – поднять такой же OpenVPN сервер и сделать так, чтобы текущие клиенты подключились к нему, однако для этого нужно ещё получить доступ к домену, что маловероятно.</p>
 <h2 id="источники">Источники</h2>
