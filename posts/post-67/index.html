@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1276">
+<meta itemprop="wordCount" content="1282">
 
 
 
@@ -182,6 +182,8 @@ iptables -A POSTROUTING -t nat -s 192.168.255.0/24 -o eth0 -j MASQUERADE
 
 iptables -A FORWARD -i tun0 -o tun0 -j ACCEPT
 iptables -A POSTROUTING -o tun0 -t nat -j MASQUERADE
+
+<span style="color:#008000"># Route to the docker-compose network</span>
 iptables -A FORWARD -i tun0 -o eth0 -j ACCEPT
 iptables -A FORWARD -i eth0 -o tun0 -j ACCEPT
 ip addr add 172.19.0.0/24 dev eth0
