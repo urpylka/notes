@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1282">
+<meta itemprop="wordCount" content="1280">
 
 
 
@@ -137,15 +137,15 @@ if (!doNotTrack) {
 <li><code>ta.key</code> – дополнительный симметричный ключ шифрования, который есть и на клиенте и на сервере (<code>HMAC firewall</code>). Создается с помощью OpenVPN, для защиты от. <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack">DoS атак</a> и флуда в UDP порт сервера.</li>
 <li><code>crl.pem</code> – база данных отозванных сертификатов. Тк в общем случае любой сертификат подписанный CA, будет валиден на OpenVPN, для отключения доступа используется <code>база данных отозванных сертификатов</code>. После операции <code>revoke</code> в CA, в этот файл вносятся изменения (зависит от CA). Может быть задан с помощью параметра <code>crl-verify</code>.</li>
 </ol>
-<p>В решении <a href="https://github.com/kylemanna/docker-openvpn">kylemanna</a> в одном образе находится и <code>центр сертификации</code> и сам VPN-сервер. Что подразумевает выпуск клиентских сертификатов на той же машине, что честно говоря убивает всю красоту и главное нарушает безопасность. Тк ключ от сертификата центра сертификации (<code>crt.key</code>) хранится вместе со всеми другуми файлами, собственно как и файлы сертификатов и ключей клиентов.</p>
-<p>Для работы с центром сертификации используется утилита <code>easy-rsa</code> это надстройка над <code>openssl</code>, которая упрощает операции с центром сертификации. Она использует директорию <code>/etc/openvpn/pki</code> для хранения всей информации о по работе с центром сертификации: все сертификаты и их ключи. Как мы уже поняли, быть этого на самом сервере не должно.</p>
+<p>В решении <a href="https://github.com/kylemanna/docker-openvpn">kylemanna</a> в одном образе находится и <code>центр сертификации</code> и сам VPN-сервер. Что подразумевает выпуск клиентских сертификатов на той же машине, что честно говоря убивает всю красоту и главное нарушает безопасность. Тк ключ от сертификата центра сертификации (<code>crt.key</code>) хранится вместе со всеми другими файлами, собственно как и файлы сертификатов и ключей клиентов.</p>
+<p>Для работы с центром сертификации используется утилита <code>easy-rsa</code> это надстройка над <code>openssl</code>, которая упрощает операции с центром сертификации. Она использует директорию <code>/etc/openvpn/pki</code> для хранения всей информации по работе с центром сертификации: все сертификаты и их ключи. Как мы уже поняли, быть этого на самом сервере не должно.</p>
 <blockquote>
 <p>В механизме подписей, есть возможность отделить <strong>создание</strong> клиентов от их <strong>подписи</strong> центром сертификации, делается это с помощью CSR-запросов. Поэтому при необходимости <code>easy-rsa</code> можно оставить в этом образе для создания и управления клиентами. В данном случае я не вижу необходимости в этом в данном решении.</p>
 </blockquote>
 <p>Отдельную путаницу в <code>/etc/openvpn</code> создают директории:</p>
 <ul>
 <li><code>/etc/openvpn/clients</code> – здесь хранятся сертификаты, ключи клиентов и собранные воедино <code>.ovpn</code> файлы необходимые для подключения. Это директория не используются сервером.</li>
-<li><code>/etc/openvpn/ccd</code> – это специальный каталог, в котором хранятся файлы совпадающие по имени с именами клиентов, в каждом и файлов храняться отдельные конфигурации и опции необходимые для работы клиента, например опция <code>ifconfig-push 192.168.1.10 255.255.255.0</code>, которая выдает конкретному клиенту IP адрес <code>192.168.1.10</code>. Эта директория используется сервером. Задается с помощью параметра <code>client-config-dir</code>.</li>
+<li><code>/etc/openvpn/ccd</code> – это специальный каталог, в котором хранятся файлы совпадающие по имени с именами клиентов, в каждом из файлов хранятся отдельные конфигурации и опции необходимые для работы клиента, например опция <code>ifconfig-push 192.168.1.10 255.255.255.0</code>, которая выдает конкретному клиенту IP адрес <code>192.168.1.10</code>. Эта директория используется сервером. Задается с помощью параметра <code>client-config-dir</code>.</li>
 </ul>
 <h2 id="новый-подход">Новый подход</h2>
 <h3 id="openvpn">OpenVPN</h3>
@@ -157,9 +157,15 @@ if (!doNotTrack) {
 </span><span style=""></span><span style="color:#00f">RUN</span> echo <span style="color:#a31515">&#34;http://dl-cdn.alpinelinux.org/alpine/edge/testing/&#34;</span> &gt;&gt; /etc/apk/repositories &amp;&amp; <span style="color:#a31515">\
 </span><span style="color:#a31515"></span>    apk add --update openvpn iptables bash &amp;&amp; <span style="color:#a31515">\
 </span><span style="color:#a31515"></span>    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*<span style="">
-</span></code></pre></div><p>Я убрал все лишнее. И оставил только необходимое. <code>openvpn.sh</code>, директорию <code>ccd</code>, <code>entrypoint.sh</code> и папку сертификатами и кллючами я подключаю на через Docker Volume.</p>
-<p>Отдельно пару слов стоит сказать про файл <code>openvpn.sh</code>. Тк я отказался от <code>ovpn_genconfig</code> я взял за основу базовый файл предлагаемый OpenVPN и внес туда только необхоидмые мне изменения, из плюсов теперь весь файл хорошо комментирован.
-И еще отдельного внимания заслуживает файл <code>entrypoint.sh</code> дело в том, в нём делается пару важных вещей:</p>
+</span></code></pre></div><p>Я убрал все лишнее. И оставил только необходимое:</p>
+<ul>
+<li><code>openvpn.sh</code>;</li>
+<li>директорию <code>ccd</code>;</li>
+<li><code>entrypoint.sh</code>;</li>
+<li>папку с сертификатами и ключами (которую подключаю как Docker volume).</li>
+</ul>
+<p>Отдельно пару слов стоит сказать про файл <code>openvpn.sh</code>. Тк я отказался от <code>ovpn_genconfig</code> я взял за основу базовый файл предлагаемый OpenVPN и внес туда только необходимые мне изменения, из плюсов теперь весь файл хорошо комментирован.
+И еще отдельного внимания заслуживает файл <code>entrypoint.sh</code>. Дело в том, что в нём делается пару важных вещей:</p>
 <ol>
 <li>
 <p>Создается <code>/dev/net/tun</code> устройство.</p>
@@ -211,11 +217,11 @@ build:
 
 clean:
 	docker image rm urpylka/easy-rsa:local
-</code></pre></div><p>Пользоваться просто пишешь <code>make build</code> – собирается образ, пишешь <code>make</code> – включается окружение внутри образа, ну и <code>make clean</code> – удаление образа.</p>
+</code></pre></div><p>По сути три команды: <code>make build</code> – собирает образ, <code>make</code> – включает окружение внутри образа, ну и <code>make clean</code> – удаляет образ.</p>
 <blockquote>
 <p><code>make</code> – монтирует текущую директорию в <code>/mnt</code> контейнера.</p>
 </blockquote>
-<p>Дальнейшие команды испольняются внутри этого окружения.</p>
+<p>Дальнейшие команды исполняются внутри этого окружения.</p>
 <p>Инициализация <code>pki</code> директории для <code>easy-rsa</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa init-pki
 </code></pre></div><p>Далее создаем файл <code>vars</code>, в моём случае со следующим содержанием:</p>
@@ -238,7 +244,7 @@ set_var EASYRSA_DIGEST         &#34;sha512&#34;
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make build
 make
 easyrsa build-client-full &lt;CLIENTNAME&gt; nopass
-</code></pre></div><p>Кстати, <code>CLIENTNAME</code> это специальное название клиента для фигурирующее в сертификате. Если вы используете DNS я советую создавать названия клиентов соотвествующие из доменным именам, это позволит избежать путаницы.</p>
+</code></pre></div><p>Кстати, <code>CLIENTNAME</code> это специальное название клиента используемое в сертификате. Если вы используете DNS, я советую создавать названия клиентов, соответствующие их доменным именам, это позволит избежать путаницы.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLIENTNAME=<span style="color:#a31515">&#34;CLIENTNAME&#34;</span>
 
 cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a31515">}</span> <span style="color:#a31515">&lt;&lt; EOF
@@ -269,7 +275,7 @@ cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a315
 </span><span style="color:#a31515">EOF</span>
 </code></pre></div><h2 id="итоги">Итоги</h2>
 <p>В конце нужно заметить, что я пока не перенес функционал средств подготовки конфигурации сервера в образ <code>easy-rsa</code>. Это нужно прежде всего для удобства.</p>
-<p>Касаемо того, что у нас получилось, теперь на OpenVPN отсуствует приватный ключ, и даже если кто-то получит доступ к OpenVPN серверу, он не сможет создать своих клиентов. Максимум, что у него получится – поднять такой же OpenVPN сервер и сделать так, чтобы текущие клиенты подключились к нему, однако для этого нужно ещё получить доступ к домену, что маловероятно.</p>
+<p>Касаемо того, что у нас получилось, теперь на OpenVPN отсутствует приватный ключ, и даже если кто-то получит доступ к OpenVPN серверу, он не сможет создать своих клиентов. Максимум, что у него получится – поднять такой же OpenVPN сервер и сделать так, чтобы текущие клиенты подключились к нему, однако для этого нужно ещё получить доступ к домену, что маловероятно.</p>
 <h2 id="источники">Источники</h2>
 <ol>
 <li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-20-04">How To Set Up and Configure an OpenVPN Server on Ubuntu 20.04</a></li>
