@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna – urpylka՚s blog!</title><link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna">
+<meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
+<meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
+<meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
+<meta itemprop="wordCount" content="1199">
+
+
+
+<meta itemprop="keywords" content="ru,programming," /><meta property="og:title" content="Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna" />
+<meta property="og:description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-67/" />
+<meta property="article:published_time" content="2022-02-04T21:24:00+02:00" />
+<meta property="article:modified_time" content="2022-02-04T21:24:00+02:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna"/>
+<meta name="twitter:description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации)."/>
+<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">04</span>
+                        <span class="rest">Feb 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <h2 id="старый-подход">Старый подход</h2>
+<p>И так вначале я использовал широко распространенное решение от <a href="https://github.com/kylemanna/docker-openvpn">kylemanna</a>.
+Оно представляет из себя Docker образ на базе Alpine состоящий из:</p>
+<ol>
+<li><code>OpenVPN</code> собственно в качестве VPN сервера</li>
+<li><code>openvpn-auth-pam</code>, <code>google-authenticator</code>, <code>pamtester</code> - дополнительные модули для авторизациии в <code>OpenVPN</code></li>
+<li><code>easy-rsa</code> как инструмент для создания и работы центра сертификации (CA)</li>
+<li>Средства подготовки конфигурации сервера (<code>ovpn_initpki</code>, <code>ovpn_genconfig</code>, <code>ovpn_copy_server_files</code>, <code>ovpn_run</code>, <code>ovpn_status</code>)</li>
+<li>Ряд скриптов-оберток для управления пользователями (<code>ovpn_getclient</code>, <code>ovpn_getclient_all</code>, <code>ovpn_listclients</code>, <code>ovpn_revokeclient</code>, <code>ovpn_otp_user</code>)</li>
+</ol>
+<p>Тут нужно сделать важное замечание, что я вначале не понимал как работает CA, сертификаты пользователей, OpenVPN и easy-rsa вместе. И, наверное, многим это будет полезно.</p>
+<p>Начнем с базового, что такое <code>сертификат</code>, <code>центр сертификации</code> и для чего они нужны.</p>
+<p>Любой сертификат нужен для того, чтобы удостоверить что-то. Например освоенную на курсах дисциплину, факт заключения брака или получения образования.
+Однако ключевой вопрос, в том почему мы доверяем сертификату? И на самом деле мы доверяем не ему, а доверяем органу, который выдает сертификат (конечно учитывая, что сертификат не подделан).</p>
+<p>Давайте разберем на примере ВУЗов, скажем мы знаем топовые университеты с хорошей репутацией. И если на работу приходит выпускник с дипломом такого ВУЗа, то мы понимаем, что это хороший специалист, потому что мы доверяем конкретному университету.</p>
+<p>В этом случае центром сертификации является университет, а сертификатом - диплом выпускника.</p>
+<p>На этом принципе и построен алгоритм работы авторизации в <code>OpenVPN</code>. Тоесть по сути OpenVPN сервер может ничего не знать о клиенте, тк даже не он &ldquo;регистрирует&rdquo; его, а доверяет он потому, что сертификат клиента подписан тем же CA, что и сертификат самого сервера. На мой взгляд это красивое решение.</p>
+<p>OpenVPN использует ряд сертификатов и ключей:</p>
+<ol>
+<li><code>ca.crt</code> – сертификат <code>центра сертификации</code>, которым у нас все подписано.</li>
+<li><code>server.crt</code> – сертификат самого сервера, с помощью него клиенты могут удостовериться, что подключаются именно к тому серверу.</li>
+<li><code>server.key</code> – ключ от сертификата выше, с помощью которого сервер и подписывает сообщения.</li>
+<li><code>dh.pem</code> – специальный ключ для осуществления алгоритма <a href="https://habr.com/ru/post/476106/">Diffie Hellman</a>, для создания нужен файл <code>openssl-easyrsa.cnf</code> генерируемый вместе с CA.</li>
+<li><code>ta.key</code> – дополнительный симметричный ключ шифрования, который есть и на клиенте и на сервере (<code>HMAC firewall</code>). Создается с помощью OpenVPN, для защиты от. <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack">DoS атак</a> и флуда в UDP порт сервера.</li>
+<li><code>crl.pem</code> – база данных отозванных сертификатов. Тк в общем случае любой сертификат подписанный CA, будет валиден на OpenVPN, для отключения доступа используется <code>база данных отозванных сертификатов</code>. После операции <code>revoke</code> в CA, в этот файл вносятся изменения (зависит от CA). Может быть задан с помощью параметра <code>crl-verify</code>.</li>
+</ol>
+<p>В решении <a href="https://github.com/kylemanna/docker-openvpn">kylemanna</a> в одном образе находится и <code>центр сертификации</code> и сам VPN-сервер. Что подразумевает выпуск клиентских сертификатов на той же машине, что честно говоря убивает всю красоту и главное нарушает безопасность. Тк ключ от сертификата центра сертификации (<code>crt.key</code>) хранится вместе со всеми другуми файлами, собственно как и файлы сертификатов и ключей клиентов.</p>
+<p>Для работы с центром сертификации используется утилита <code>easy-rsa</code> это надстройка над <code>openssl</code>, которая упрощает операции с центром сертификации. Она использует директорию <code>/etc/openvpn/pki</code> для хранения всей информации о по работе с центром сертификации: все сертификаты и их ключи. Как мы уже поняли, быть этого на самом сервере не должно.</p>
+<blockquote>
+<p>В механизме подписей, есть возможность отделить <strong>создание</strong> клиентов от их <strong>подписи</strong> центром сертификации, делается это с помощью CSR-запросов. Поэтому при необходимости <code>easy-rsa</code> можно оставить в этом образе для создания и управления клиентами. В данном случае я не вижу необходимости в этом в данном решении.</p>
+</blockquote>
+<p>Отдельную путаницу в <code>/etc/openvpn</code> создают директории:</p>
+<ul>
+<li><code>/etc/openvpn/clients</code> – здесь хранятся сертификаты, ключи клиентов и собранные воедино <code>.ovpn</code> файлы необходимые для подключения. Это директория не используются сервером.</li>
+<li><code>/etc/openvpn/ccd</code> – это специальный каталог, в котором хранятся файлы совпадающие по имени с именами клиентов, в каждом и файлов храняться отдельные конфигурации и опции необходимые для работы клиента, например опция <code>ifconfig-push 192.168.1.10 255.255.255.0</code>, которая выдает конкретному клиенту IP адрес <code>192.168.1.10</code>. Эта директория используется сервером. Задается с помощью параметра <code>client-config-dir</code>.</li>
+</ul>
+<h2 id="новый-подход">Новый подход</h2>
+<h3 id="openvpn">OpenVPN</h3>
+<p>Собственно основная идея заключается в том, чтобы вынести центр сертификации и обвязки для разворачивания и конфигурирования сервера из образа.</p>
+<p>Получился следующий Dockerfile:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> alpine:latest</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#008000"># Unused: openvpn-auth-pam google-authenticator pamtester easy-rsa</span><span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> echo <span style="color:#a31515">&#34;http://dl-cdn.alpinelinux.org/alpine/edge/testing/&#34;</span> &gt;&gt; /etc/apk/repositories &amp;&amp; <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    apk add --update openvpn iptables bash &amp;&amp; <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*<span style="">
+</span></code></pre></div><p>Я убрал все лишнее. И оставил только необходимое. <code>openvpn.sh</code>, директорию <code>ccd</code>, <code>entrypoint.sh</code> и папку сертификатами и кллючами я подключаю на через Docker Volume.</p>
+<p>Отдельно пару слов стоит сказать про файл <code>openvpn.sh</code>. Тк я отказался от <code>ovpn_genconfig</code> я взял за основу базовый файл предлагаемый OpenVPN и внес туда только необхоидмые мне изменения, из плюсов теперь весь файл хорошо комментирован.
+И еще отдельного внимания заслуживает файл <code>entrypoint.sh</code> дело в том, в нём делается пару важных вещей:</p>
+<ol>
+<li>
+<p>Создается <code>/dev/net/tun</code> устройство.</p>
+</li>
+<li>
+<p>Прописываются дополнительные маршруты и настройки <code>iptables</code>. Здесь все достаточно специфично и зависит от конкретного применения OpenVPN. У меня получился следующий файл:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#!/bin/bash
+</span><span style="color:#00f"></span>
+set -e
+
+mkdir -p /dev/net
+<span style="color:#00f">if</span> [ ! -c /dev/net/tun ]; <span style="color:#00f">then</span>
+    mknod /dev/net/tun c 10 200
+<span style="color:#00f">fi</span>
+
+<span style="color:#008000">########################## ROUTES ##########################</span>
+iptables -C POSTROUTING -t nat -s 192.168.255.0/24 -o eth0 -j MASQUERADE || {
+iptables -A POSTROUTING -t nat -s 192.168.255.0/24 -o eth0 -j MASQUERADE
+}
+
+iptables -A FORWARD -i tun0 -o tun0 -j ACCEPT
+iptables -A POSTROUTING -o tun0 -t nat -j MASQUERADE
+iptables -A FORWARD -i tun0 -o eth0 -j ACCEPT
+iptables -A FORWARD -i eth0 -o tun0 -j ACCEPT
+ip addr add 172.19.0.0/24 dev eth0
+<span style="color:#008000">###################### END / ROUTES ########################</span>
+
+echo <span style="color:#a31515">&#34;Running &#39;</span><span style="color:#a31515">${</span>@<span style="color:#a31515">}</span><span style="color:#a31515">&#39;&#34;</span>
+exec <span style="color:#a31515">${</span>@<span style="color:#a31515">}</span>
+</code></pre></div></li>
+</ol>
+<p>Все файлы сертификатов и ключей генерируются и задаются один раз извне, из другого с центром сертификации. О чём – ниже.</p>
+<h3 id="центр-сертификации">Центр сертификации</h3>
+<p>Для этого я создал отдельный Docker образ:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> alpine:latest</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> echo <span style="color:#a31515">&#34;http://dl-cdn.alpinelinux.org/alpine/edge/testing/&#34;</span> &gt;&gt; /etc/apk/repositories &amp;&amp; <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    apk add --update bash easy-rsa &amp;&amp; <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin &amp;&amp; <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*<span style="">
+</span></code></pre></div><p>И Makefile для работы с этим образом:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile">default:
+	docker run --rm -it -v $$(pwd)/mnt:/mnt -w /mnt -e EASYRSA=/mnt -e EASYRSA_PKI=/mnt/pki urpylka/easy-rsa:local
+
+build:
+	docker build ./docker --tag urpylka/easy-rsa:local
+
+clean:
+	docker image rm urpylka/easy-rsa:local
+</code></pre></div><p>Пользоваться просто пишешь <code>make build</code> – собирается образ, пишешь <code>make</code> – включается окружение внутри образа, ну и <code>make clean</code> – удаление образа.</p>
+<blockquote>
+<p><code>make</code> – монтирует текущую директорию в <code>/mnt</code> контейнера.</p>
+</blockquote>
+<p>Дальнейшие команды испольняются внутри этого окружения.</p>
+<p>Инициализация <code>pki</code> директории для <code>easy-rsa</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa init-pki
+</code></pre></div><p>Далее создаем файл <code>vars</code>, в моём случае со следующим содержанием:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">set_var EASYRSA_REQ_COUNTRY    &#34;RU&#34;
+set_var EASYRSA_REQ_PROVINCE   &#34;Samara Region&#34;
+set_var EASYRSA_REQ_CITY       &#34;Samara&#34;
+set_var EASYRSA_REQ_ORG        &#34;urpylka՚s projects!&#34;
+set_var EASYRSA_REQ_EMAIL      &#34;urpylka@gmail.com&#34;
+set_var EASYRSA_REQ_OU         &#34;myworld&#34;
+set_var EASYRSA_REQ_CN         &#34;urpylka՚s projects!&#34;
+set_var EASYRSA_BATCH          &#34;yes&#34;
+set_var EASYRSA_ALGO           &#34;ec&#34;
+set_var EASYRSA_DIGEST         &#34;sha512&#34;
+</code></pre></div><blockquote>
+<p>Я использовал относительно новый алгоритм подписи основанный на эллептических кривых <code>ec</code> вместо <code>rsa</code>.</p>
+</blockquote>
+<p>Генерируем CRL файл:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa gen-crl
+</code></pre></div><p>В конце нужно заметить, что я пока не перенес функционал средств подготовки конфигурации сервера в образ <code>easy-rsa</code>. Это нужно прежде всего для автоматизации и удобства. А мб вообще обновлю эту стать и добавлю сюда функции по добавлению пользователей итд.</p>
+<p>Касаемо того, что у нас получилось, теперь на OpenVPN отсуствует приватный ключ, и даже если кто-то получит доступ к OpenVPN серверу, он не сможет создать своих клиентов. Максимум, что у него получится – поднять такой же OpenVPN сервер и сделать так, чтобы текущие клиенты подключились к нему, однако для этого нужно ещё получить доступ к домену, что маловероятно.</p>
+<h2 id="источники">Источники</h2>
+<ol>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-20-04">How To Set Up and Configure an OpenVPN Server on Ubuntu 20.04</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-ca-on-ubuntu-20-04">How To Set Up and Configure a Certificate Authority (CA) On Ubuntu 20.04</a></li>
+<li><a href="https://community.openvpn.net/openvpn/wiki/HOWTO">openvpn/wiki/HOWTO</a></li>
+<li><a href="https://community.openvpn.net/openvpn/wiki/EasyRSA3-OpenVPN-Howto">openvpn/wiki/EasyRSA3-OpenVPN-Howto</a></li>
+<li><a href="https://habr.com/ru/post/233971/">Руководство по установке и настройке OpenVPN</a></li>
+<li><a href="https://oss-it.ru/233">Простая настройка OpenVPN с фиксированными адресами клиентов</a></li>
+<li><a href="https://github.com/OpenVPN/easy-rsa/blob/master/README.quickstart.md">Easy-RSA 3 Quickstart README</a></li>
+<li><a href="https://www.dmosk.ru/miniinstruktions.php?mini=openvpn-easyrsa3">Генерирование сертификатов для OpenVPN с помощью Easy-RSA 3</a></li>
+</ol>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+<br/>
+<script defer src="https://commento.urpylka.com/js/commento.js" data-css-override="/css/commento.css"></script>
+<div id="commento"></div>
+<noscript>Please enable JavaScript to load the comments.</noscript></div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
