@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1197">
+<meta itemprop="wordCount" content="1222">
 
 
 
@@ -202,7 +202,7 @@ exec <span style="color:#a31515">${</span>@<span style="color:#a31515">}</span>
 </span><span style="color:#a31515"></span>    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*<span style="">
 </span></code></pre></div><p>И Makefile для работы с этим образом:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile">default:
-	docker run --rm -it -v $$(pwd)/mnt:/mnt -w /mnt -e EASYRSA=/mnt -e EASYRSA_PKI=/mnt/pki urpylka/easy-rsa:local
+	docker run --rm -it -v $$(pwd)/mnt:/mnt -w /mnt -e EASYRSA=/mnt -e EASYRSA_PKI=/mnt/pki -e EASYRSA_EXT_DIR=/usr/share/easy-rsa/x509-types urpylka/easy-rsa:local
 
 build:
 	docker build ./docker --tag urpylka/easy-rsa:local
@@ -235,9 +235,9 @@ set_var EASYRSA_DIGEST         &#34;sha512&#34;
 </code></pre></div><p>Создание клиента:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make build
 make
-ln -s /usr/share/easy-rsa/x509-types ./
-easyrsa build-client-full CLIENTNAME nopass
-</code></pre></div><h2 id="итоги">Итоги</h2>
+easyrsa build-client-full &lt;CLIENTNAME&gt; nopass
+</code></pre></div><p>Кстате <code>CLIENTNAME</code> это специальное название клиента для фигурирующее в сертификате. Если вы используете DNS я советую создавать названия клиентов соотвествующие из доменным именам, это позволит избежать путаницы.</p>
+<h2 id="итоги">Итоги</h2>
 <p>В конце нужно заметить, что я пока не перенес функционал средств подготовки конфигурации сервера в образ <code>easy-rsa</code>. Это нужно прежде всего для удобства.</p>
 <p>Касаемо того, что у нас получилось, теперь на OpenVPN отсуствует приватный ключ, и даже если кто-то получит доступ к OpenVPN серверу, он не сможет создать своих клиентов. Максимум, что у него получится – поднять такой же OpenVPN сервер и сделать так, чтобы текущие клиенты подключились к нему, однако для этого нужно ещё получить доступ к домену, что маловероятно.</p>
 <h2 id="источники">Источники</h2>
