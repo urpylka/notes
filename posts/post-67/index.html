@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1199">
+<meta itemprop="wordCount" content="1197">
 
 
 
@@ -232,7 +232,13 @@ set_var EASYRSA_DIGEST         &#34;sha512&#34;
 </blockquote>
 <p>Генерируем CRL файл:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa gen-crl
-</code></pre></div><p>В конце нужно заметить, что я пока не перенес функционал средств подготовки конфигурации сервера в образ <code>easy-rsa</code>. Это нужно прежде всего для автоматизации и удобства. А мб вообще обновлю эту стать и добавлю сюда функции по добавлению пользователей итд.</p>
+</code></pre></div><p>Создание клиента:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make build
+make
+ln -s /usr/share/easy-rsa/x509-types ./
+easyrsa build-client-full CLIENTNAME nopass
+</code></pre></div><h2 id="итоги">Итоги</h2>
+<p>В конце нужно заметить, что я пока не перенес функционал средств подготовки конфигурации сервера в образ <code>easy-rsa</code>. Это нужно прежде всего для удобства.</p>
 <p>Касаемо того, что у нас получилось, теперь на OpenVPN отсуствует приватный ключ, и даже если кто-то получит доступ к OpenVPN серверу, он не сможет создать своих клиентов. Максимум, что у него получится – поднять такой же OpenVPN сервер и сделать так, чтобы текущие клиенты подключились к нему, однако для этого нужно ещё получить доступ к домену, что маловероятно.</p>
 <h2 id="источники">Источники</h2>
 <ol>
