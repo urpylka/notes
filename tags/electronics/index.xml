@@ -35,6 +35,18 @@
     </item>
     
     <item>
+      <title>Аппаратные интерфейсы Raspberry Pi</title>
+      <link>https://urpylka.com/posts/post-41/</link>
+      <pubDate>Thu, 23 Sep 2021 17:18:00 +0400</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-41/</guid>
+      <description>Это страничка будет обновляться по мере того, как я буду использовать те или иные технологии. Заметка больше является моим справочником.
+Распиновка GPIO разъёма Работа с I2C Хорошая статья про работу с I2C на Raspberry Pi skpang.co.uk/blog/archives/575.
+Работа с сервоприводами pygpiod и spi
+Работа с WS2812B SK6812 Принцип работы адресной светодиодной ленты заключается в последовательной передачи кодированных байт информации через светодиоды с определенным периодом. Соотвественно для управления такой лентой требуется кодирование и модуляция сигнала.</description>
+    </item>
+    
+    <item>
       <title>Grbl &#43; ESC &amp; Brushless motor</title>
       <link>https://urpylka.com/posts/post-36/</link>
       <pubDate>Wed, 22 Sep 2021 01:12:00 +0400</pubDate>
