@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В этой статье рассмотрим аппаратные ограничения Raspberry Pi 3B и Raspberry Pi 4B в области видеозахвата, обработки, передачи видеострима и сохранению полученного потока.">
 <meta itemprop="datePublished" content="2021-01-04T01:09:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-01-04T01:09:00&#43;04:00" />
-<meta itemprop="wordCount" content="1176">
+<meta itemprop="wordCount" content="1164">
 
 
 
@@ -160,36 +160,16 @@ if (!doNotTrack) {
 <li><a href="https://ru.wikipedia.org/wiki/Display_Serial_Interface">https://ru.wikipedia.org/wiki/Display_Serial_Interface</a></li>
 <li>Opensource camera stack at Raspberry Pi 4 <a href="https://www.raspberrypi.org/blog/an-open-source-camera-stack-for-raspberry-pi-using-libcamera/">raspberrypi.org/blog</a>, <a href="https://libcamera.org/docs.html#documentation">libcamera.org</a></li>
 </ul>
-<p><strong>HDMI-&gt;CSI convertor</strong></p>
-<p>Большинство решений построено на базе чипа <a href="https://toshiba.semicon-storage.com/us/semiconductor/product/interface-bridge-ics-for-mobile-peripheral-devices/hdmir-interface-bridge-ics/detail.TC358743XBG.html">Toshiba TC358743XBG</a>:</p>
+<p><strong>HDMI-&gt;CSI конвертор</strong></p>
+<p>Большинство таких решений построено на базе чипа <a href="https://toshiba.semicon-storage.com/us/semiconductor/product/interface-bridge-ics-for-mobile-peripheral-devices/hdmir-interface-bridge-ics/detail.TC358743XBG.html">Toshiba TC358743XBG</a> (<a href="./TC358743XBG_datasheet_en_20171026.pdf">Datasheet</a>).</p>
 <ul>
-<li>
-<p><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=101999">CSI-2 / Toshiba TC358743XBG</a></p>
-</li>
-<li>
-<p><a href="./images/screenshot.jpg">Lusya HDMI-совместимая плата адаптера стандартный интерфейс к CSI-2 TC358743XBG для Raspberry Pi</a> (<a href="https://aliexpress.ru/item/4000152180240.html">aliexpress</a>)</p>
-</li>
-<li>
-<p><a href="https://gist.github.com/maditnerd/01195c64a80ff2087ff9541682f1727b">Compile raspberry pi 3 kernel to add drivers (tc358743)</a></p>
-</li>
-<li>
-<p><a href="https://raspberrypi.ru/video_capture_hdmi_csi_bridge_TC358743XBG">Захват видео через HDMI вход HDMI-CSI моста для Raspberry Pi</a></p>
-</li>
-<li>
-<p><a href="https://auvidea.eu/b100-hdmi-to-csi-2-bridge/">B100 HDMI to CSI-2 Bridge</a></p>
-</li>
-<li>
-<p>Некоторая информация о конверторе HDMI-&gt;CSI в статье <a href="https://raspberrypi.ru/forum/d/1552-zahvat-videopotoka-cherez-hdmi-na-raspberry">Захват видеопотока через HDMI на Raspberry</a></p>
-</li>
-<li>
-<p><a href="https://www.geeky-gadgets.com/raspberry-pi-hdmi-input-allows-hd-recording-video-14-03-2014/">Raspberry Pi HDMI input board allows HD recording from almost any device</a></p>
-</li>
-<li>
-<p><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=125792">Захват видео c HDMI</a></p>
-</li>
-<li>
-<p><a href="https://pikabu.ru/story/hdmi_na_paspberry_6265826">HDMI на Paspberry</a></p>
-</li>
+<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=101999">CSI-2 / Toshiba TC358743XBG</a></li>
+<li><a href="./images/screenshot.jpg">Lusya HDMI-совместимая плата адаптера стандартный интерфейс к CSI-2 TC358743XBG для Raspberry Pi</a> (<a href="https://aliexpress.ru/item/4000152180240.html">aliexpress</a>)</li>
+<li><a href="https://gist.github.com/maditnerd/01195c64a80ff2087ff9541682f1727b">Compile raspberry pi 3 kernel to add drivers (tc358743)</a></li>
+<li><a href="https://raspberrypi.ru/video_capture_hdmi_csi_bridge_TC358743XBG">Захват видео через HDMI вход HDMI-CSI моста для Raspberry Pi</a></li>
+<li><a href="https://auvidea.eu/b100-hdmi-to-csi-2-bridge/">B100 HDMI to CSI-2 Bridge</a></li>
+<li><a href="https://raspberrypi.ru/forum/d/1552-zahvat-videopotoka-cherez-hdmi-na-raspberry">Захват видеопотока через HDMI на Raspberry</a></li>
+<li><a href="https://www.geeky-gadgets.com/raspberry-pi-hdmi-input-allows-hd-recording-video-14-03-2014/">Raspberry Pi HDMI input board allows HD recording from almost any device</a></li>
 </ul>
 <p>Кстати по теме, прикольный проект <code>pikvm</code> - позволяет аппаратно подключиться к серверу и предоставить доступ к его монитору, клавиатуре доступ.</p>
 <ul>
