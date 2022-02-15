@@ -23,7 +23,7 @@
 <meta itemprop="description" content="В этой статье рассмотрим аппаратные ограничения Raspberry Pi 3B и Raspberry Pi 4B в области видеозахвата, обработки, передачи видеострима и сохранению полученного потока.">
 <meta itemprop="datePublished" content="2021-01-04T01:09:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-01-04T01:09:00&#43;04:00" />
-<meta itemprop="wordCount" content="984">
+<meta itemprop="wordCount" content="1176">
 
 
 
@@ -164,41 +164,38 @@ if (!doNotTrack) {
 <p>Большинство решений построено на базе чипа <a href="https://toshiba.semicon-storage.com/us/semiconductor/product/interface-bridge-ics-for-mobile-peripheral-devices/hdmir-interface-bridge-ics/detail.TC358743XBG.html">Toshiba TC358743XBG</a>:</p>
 <ul>
 <li>
-<p><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=101999">https://www.raspberrypi.org/forums/viewtopic.php?t=101999</a></p>
+<p><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=101999">CSI-2 / Toshiba TC358743XBG</a></p>
 </li>
 <li>
-<p><a href="https://aliexpress.ru/item/10000084080748.html">https://aliexpress.ru/item/10000084080748.html</a></p>
+<p><a href="./images/screenshot.jpg">Lusya HDMI-совместимая плата адаптера стандартный интерфейс к CSI-2 TC358743XBG для Raspberry Pi</a> (<a href="https://aliexpress.ru/item/4000152180240.html">aliexpress</a>)</p>
 </li>
 <li>
-<p><a href="https://aliexpress.ru/item/4000152180240.html">https://aliexpress.ru/item/4000152180240.html</a></p>
+<p><a href="https://gist.github.com/maditnerd/01195c64a80ff2087ff9541682f1727b">Compile raspberry pi 3 kernel to add drivers (tc358743)</a></p>
 </li>
 <li>
-<p><a href="https://gist.github.com/maditnerd/01195c64a80ff2087ff9541682f1727b">https://gist.github.com/maditnerd/01195c64a80ff2087ff9541682f1727b</a></p>
+<p><a href="https://raspberrypi.ru/video_capture_hdmi_csi_bridge_TC358743XBG">Захват видео через HDMI вход HDMI-CSI моста для Raspberry Pi</a></p>
 </li>
 <li>
-<p><a href="https://raspberrypi.ru/video_capture_hdmi_csi_bridge_TC358743XBG">https://raspberrypi.ru/video_capture_hdmi_csi_bridge_TC358743XBG</a></p>
-</li>
-<li>
-<p><a href="https://auvidea.eu/b100-hdmi-to-csi-2-bridge/">https://auvidea.eu/b100-hdmi-to-csi-2-bridge/</a></p>
+<p><a href="https://auvidea.eu/b100-hdmi-to-csi-2-bridge/">B100 HDMI to CSI-2 Bridge</a></p>
 </li>
 <li>
 <p>Некоторая информация о конверторе HDMI-&gt;CSI в статье <a href="https://raspberrypi.ru/forum/d/1552-zahvat-videopotoka-cherez-hdmi-na-raspberry">Захват видеопотока через HDMI на Raspberry</a></p>
 </li>
 <li>
-<p><a href="https://www.geeky-gadgets.com/raspberry-pi-hdmi-input-allows-hd-recording-video-14-03-2014/">https://www.geeky-gadgets.com/raspberry-pi-hdmi-input-allows-hd-recording-video-14-03-2014/</a></p>
+<p><a href="https://www.geeky-gadgets.com/raspberry-pi-hdmi-input-allows-hd-recording-video-14-03-2014/">Raspberry Pi HDMI input board allows HD recording from almost any device</a></p>
 </li>
 <li>
-<p><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=125792">https://www.raspberrypi.org/forums/viewtopic.php?t=125792</a></p>
+<p><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=125792">Захват видео c HDMI</a></p>
 </li>
 <li>
-<p><a href="https://pikabu.ru/story/hdmi_na_paspberry_6265826">https://pikabu.ru/story/hdmi_na_paspberry_6265826</a></p>
+<p><a href="https://pikabu.ru/story/hdmi_na_paspberry_6265826">HDMI на Paspberry</a></p>
 </li>
 </ul>
 <p>Кстати по теме, прикольный проект <code>pikvm</code> - позволяет аппаратно подключиться к серверу и предоставить доступ к его монитору, клавиатуре доступ.</p>
 <ul>
-<li><a href="https://pikvm.org">https://pikvm.org</a></li>
-<li><a href="https://github.com/pikvm/pikvm">https://github.com/pikvm/pikvm</a></li>
-<li><a href="https://zen.yandex.ru/media/id/5cf29db3e84caf00ae7aae15/pikvm-nedorogoi-i-polnostiu-otkrytyi-ipkvm-na-baze-raspberry-pi-5f1efcaaade0dd5395d7190f">https://zen.yandex.ru/media/id/5cf29db3e84caf00ae7aae15/pikvm-nedorogoi-i-polnostiu-otkrytyi-ipkvm-na-baze-raspberry-pi-5f1efcaaade0dd5395d7190f</a></li>
+<li><a href="https://pikvm.org">pikvm.org</a></li>
+<li><a href="https://github.com/pikvm/pikvm">github.com/pikvm</a></li>
+<li><a href="https://zen.yandex.ru/media/id/5cf29db3e84caf00ae7aae15/pikvm-nedorogoi-i-polnostiu-otkrytyi-ipkvm-na-baze-raspberry-pi-5f1efcaaade0dd5395d7190f">Pi-KVM: недорогой и полностью открытый IP-KVM на базе Raspberry Pi</a></li>
 </ul>
 </li>
 </ol>
@@ -257,14 +254,14 @@ if (!doNotTrack) {
 </ul>
 <p>Тут нужно пояснить, что Video Core и есть GPU co-processor встроенный в Broadcom чип, подробднее на <a href="https://en.wikipedia.org/wiki/VideoCore">wiki</a> и доп. ссылочки:</p>
 <ul>
-<li><a href="https://www.opennet.ru/opennews/art.shtml?num=39219">opennet.ru</a></li>
-<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=244519">raspberrypi.org/forums</a></li>
+<li><a href="https://www.opennet.ru/opennews/art.shtml?num=39219">Broadcom открыл драйвер, прошивку и полную документацию для видеоускорителя VideoCore IV</a></li>
+<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=244519">Pi 4 - full specification of VideoCore 6</a></li>
 <li><a href="https://github.com/hermanhermitage/videocoreiv">github.com/hermanhermitage</a></li>
-<li><a href="https://cnx-software.ru/2019/10/11/py-videocore6-biblioteka-python-dlya-gpgpu-na-raspberry-pi-4-s-graficheskim-protsessorom-videocore-6/">cnx-software.ru</a></li>
+<li><a href="https://cnx-software.ru/2019/10/11/py-videocore6-biblioteka-python-dlya-gpgpu-na-raspberry-pi-4-s-graficheskim-protsessorom-videocore-6/">py-videocore6 — библиотека Python для GPGPU на Raspberry Pi 4 с графическим процессором VideoCore 6</a></li>
 <li><a href="https://github.com/Idein/py-videocore6">github.com/Idein</a></li>
 <li><a href="https://github.com/nineties/py-videocore">github.com/nineties</a></li>
-<li><a href="http://wiki.amperka.ru/_media/rpi:raspberry-pi-zero:bcm2835-videocoreiv_datasheet.pdf">wiki.amperka.ru</a></li>
-<li><a href="https://www.linux.org.ru/forum/multimedia/13451608">linux.org.ru</a></li>
+<li><a href="./bcm2835-videocoreiv_datasheet.pdf">VideoCore® IV 3D Architecture Reference Guide</a></li>
+<li><a href="https://www.linux.org.ru/forum/multimedia/13451608">V4L encoding using Broadcom VideoCore IV</a></li>
 <li><a href="https://gitlab.com/raspivideo/raspiv4l">gitlab.com/raspivideo</a></li>
 </ul>
 <h3 id="отдача-видеопотока">Отдача видеопотока</h3>
@@ -280,7 +277,9 @@ if (!doNotTrack) {
 </blockquote>
 <h2 id="количество-информации">Количество информации</h2>
 <p>Думаю после вводной теории будет правильным поговорить о количестве информации.</p>
-<p>Давайте рассмотрим какое количество информации будет передавать некая камера в несжатом формате (без встроенного кодера; <a href="https://ru.wikipedia.org/wiki/Raw_(%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82_%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F)">не путать с RAW</a>) в FullHD разрешении (1920x1080 пикселей).</p>
+<p>На практике зачастую используют видеокамеры со встроенными кодеками которые обеспечивают сжатие передаваемых данных. Однако наравне с этим для некоторых задач взаимодействие происходит с несжатыми данными.</p>
+<p>Например, при обработке видеопотока на процессоре с применением технологии так называемого &ldquo;техничекого зрения&rdquo;, чтобы не раскодировать на процессоре обратно сжатый видеопоток, можно сразу работать с несжатым.</p>
+<p>Давайте рассмотрим какое количество информации будет передавать некая камера в несжатом формате (<a href="https://ru.wikipedia.org/wiki/Raw_(%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82_%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F)">не путать с RAW</a>) в FullHD разрешении (1920x1080 пикселей).</p>
 <p>Если для примера взять распространненую RGB модель кодирования, состоящую из 3-х основных цветов: красного, зеленого, синего, каждый из которых в свою очередь имеет по 256 оттенков, то можно посчитать: 1 цвет из 256 оттенков = 8 бит = 1 байт.</p>
 <p>Учитывая, что RGB модель имеет 3 цвета (по 256 оттенков каждый), получаем, что для кодирования одного пикселя используется 3 байта.</p>
 <p>Получается – <strong>один FullHD фрейм весит</strong>: 1920[px] x 1080[px] x 3[byte] = 6,220,800[byte] ≈ <strong>6MByte</strong></p>
@@ -293,13 +292,13 @@ if (!doNotTrack) {
 <p><img src="./images/videocapture-Page-3.svg" alt="image"></p>
 <h3 id="mini-вывод">Mini-вывод</h3>
 <p>Думаю после сравнения цифр стало ясно, что <strong>Raspberry Pi 3 не сможет банально принять FullHD картинку 60 кадров / сек в несжатом виде.</strong> Максимальное, что можно выжать из этого SBC – это подключить <code>Raspicam</code> к CSI порту и <strong>снять FullHD, 40 кадров / сек</strong>.</p>
-<p>Ситуация с <strong>Raspberry Pi 4</strong> иная: ввиду наличия USB 3.0 шины, у нас есть дополнительные два канала по 5Gbit/s, что позволяет снимать <strong>вплоть до 2 FullHD потоков по 60 кадров / сек.</strong></p>
+<p>Ситуация с <strong>Raspberry Pi 4B</strong> иная, ввиду наличия PCI Express шины пропускной способностью в 5Gbit/s и подключенного к ней контроллера USB 3.0. Теоретически с Raspbbery Pi 4B можно <strong>снять FullHD, 60 кадров / сек с одного порта, + со второго ещё FullHD, 40 кадров / сек</strong>. Оговорюсь, что это только теоретические цифры, на практике скорости будут несколько меньше.</p>
 <blockquote>
-<p>Вообще возможности BCM2711 больше, однако не все реализованы на плате, подробнее на <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2711/README.md">raspberrypi.org</a>.</p>
+<p>Вообще возможности <code>BCM2711</code> используемого в Rasbperry Pi 4 больше, однако не все реализованы на плате, подробнее на <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2711/README.md">raspberrypi.org</a>.</p>
 </blockquote>
 <p>Думаю теперь подобный расчет вы сможете сделать сами для вашего формата данных, разрешения, частоты и способа подключения камеры к компьютеру.</p>
 <blockquote>
-<p>В этой статье были рассмотрены аппаратные характеристики, в дополнение будет вторая статья про софт.</p>
+<p>В этой статье были рассмотрены аппаратные характеристики и ограничения при работе с несжатым видеопотоком. В дополнение написана <a href="https://urpylka.com/posts/post-59/">вторая статья про софт для видеозахвата на Raspberry Pi</a>.</p>
 </blockquote>
 
             </div>
