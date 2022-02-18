@@ -211,7 +211,7 @@ But the trick is in using Parameter Expansion for split elements.
     </item>
     
     <item>
-      <title>Калибровка экструдера 3D принтера на прошивке Marlin</title>
+      <title>Калибровка экструдера 3D принтера на прошивке Marlin</title>
       <link>https://urpylka.com/posts/post-34/</link>
       <pubDate>Mon, 12 Apr 2021 01:28:00 +0400</pubDate>
       
@@ -414,7 +414,7 @@ sudo brew services list sudo brew services start openvpn sudo brew services rest
     </item>
     
     <item>
-      <title>Восстановление печати 3D принтера</title>
+      <title>Восстановление печати 3D принтера</title>
       <link>https://urpylka.com/posts/post-4/</link>
       <pubDate>Sat, 12 Sep 2020 20:00:00 +0400</pubDate>
       
