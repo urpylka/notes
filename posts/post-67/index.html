@@ -23,7 +23,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1295">
+<meta itemprop="wordCount" content="1320">
 
 
 
@@ -276,7 +276,11 @@ cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a315
 </span><span style="color:#a31515">$(cat $EASYRSA_PKI/ta.key)
 </span><span style="color:#a31515">&lt;/tls-auth&gt;
 </span><span style="color:#a31515">EOF</span>
-</code></pre></div><h2 id="итоги">Итоги</h2>
+</code></pre></div><h3 id="отзыв-сертификата">Отзыв сертификата</h3>
+<p>Для отзыва клиентского сертификата необходимо вызвать <code>revoke</code>. Затем скопировать файл <code>crl.pem</code> с сервера центра сертификации на OpenVPN сервер.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa revoke CLIENTNAME
+</code></pre></div><p>Подробнее <a href="https://openvpn.net/community-resources/revoking-certificates/">openvpn.net</a>.</p>
+<h2 id="итоги">Итоги</h2>
 <p>В конце нужно заметить, что я пока не перенес функционал средств подготовки конфигурации сервера в образ <code>easy-rsa</code>. Это нужно прежде всего для удобства.</p>
 <p>Касаемо того, что у нас получилось, теперь на OpenVPN отсутствует приватный ключ, и даже если кто-то получит доступ к OpenVPN серверу, он не сможет создать своих клиентов. Максимум, что у него получится – поднять такой же OpenVPN сервер и сделать так, чтобы текущие клиенты подключились к нему, однако для этого нужно ещё получить доступ к домену, что маловероятно.</p>
 <h2 id="источники">Источники</h2>
