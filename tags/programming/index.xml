@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 04 Feb 2022 21:24:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 24 Feb 2022 18:40:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Searching lost metrics after upate kube-state-metrics</title>
+      <link>https://urpylka.com/posts/post-68/</link>
+      <pubDate>Thu, 24 Feb 2022 18:40:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-68/</guid>
+      <description>After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when vesrions were used 1.4.0 and 1.7.0, there is no problem because it is back compitable. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!
+For that I wrote 3 scripts:
+Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; WORD_TO_FIND=&amp;#34;prometheus.</description>
+    </item>
     
     <item>
       <title>Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna</title>
