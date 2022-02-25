@@ -23,7 +23,7 @@
 <meta itemprop="description" content="After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when vesrions were used 1.4.0 and 1.7.0, there is no problem because it is back compitable. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!">
 <meta itemprop="datePublished" content="2022-02-24T18:40:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-24T18:40:00&#43;02:00" />
-<meta itemprop="wordCount" content="609">
+<meta itemprop="wordCount" content="659">
 
 
 
@@ -252,7 +252,24 @@ mkdir ./tmp
     curl -H <span style="color:#a31515">&#34;Content-Type: application/json&#34;</span> -s <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>SERVER<span style="color:#a31515">}</span><span style="color:#a31515">/api/dashboards/db/</span><span style="color:#a31515">${</span>i<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span> -u <span style="color:#a31515">${</span>LOGIN<span style="color:#a31515">}</span>:<span style="color:#a31515">${</span>PASS<span style="color:#a31515">}</span> | jq . &gt;&gt; ./tmp/<span style="color:#a31515">${</span>i<span style="color:#a31515">}</span>.json
 <span style="color:#00f">done</span>
 </code></pre></div><p>Based on <a href="https://serveradmin.ru/obnovlenie-grafana/">serveradmin.ru</a>.</p>
+<p>After that can be used <code>grep</code> command that was defined above:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grep -nr ... &gt; ./grafana-missed-metrics.txt
 
+cat ./grafana-missed-metrics.txt | awk -F <span style="color:#a31515">&#34;./&#34;</span> <span style="color:#a31515">&#39;{print $2}&#39;</span> | awk -F <span style="color:#a31515">&#34;.json&#34;</span> <span style="color:#a31515">&#39;{print $1}&#39;</span> | sort -u
+</code></pre></div><h2 id="fix-metrics">Fix metrics</h2>
+<p>For example how to fix some metrics:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kube_pod_container_resource_requests_cpu_cores
+kube_pod_container_resource_requests{resource=&#34;cpu&#34;}
+
+kube_pod_container_resource_limits_cpu_cores
+kube_pod_container_resource_limits{resource=&#34;cpu&#34;}
+
+kube_pod_container_resource_requests_memory_bytes
+kube_pod_container_resource_requests{resource=&#34;memory&#34;}
+
+kube_pod_container_resource_limits_memory_bytes
+kube_pod_container_resource_limits{resource=&#34;memory&#34;}
+</code></pre></div>
             </div>
 
             <div class="tags">
