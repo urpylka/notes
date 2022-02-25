@@ -23,7 +23,7 @@
 <meta itemprop="description" content="After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when vesrions were used 1.4.0 and 1.7.0, there is no problem because it is back compitable. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!">
 <meta itemprop="datePublished" content="2022-02-24T18:40:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-24T18:40:00&#43;02:00" />
-<meta itemprop="wordCount" content="611">
+<meta itemprop="wordCount" content="609">
 
 
 
@@ -236,7 +236,7 @@ WORD_TO_FIND=<span style="color:#a31515">&#34;*generator.NewFamilyGenerator(&#34
 </span><span style="color:#a31515"></span>    -e kube_node_status_capacity_pods <span style="color:#a31515">\
 </span><span style="color:#a31515"></span>    -e kube_node_status_phase
 </code></pre></div><h2 id="download-grafana-dashboards-to-check">Download Grafana Dashboards to check</h2>
-<p>Usually Grafana keeps dashboards in database. Sometimes it loads dashboard from files, but it is just in the start time.</p>
+<p>Usually Grafana keeps dashboards in a database. If dashboard files exist Grafana loads these in the start time.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">SERVER=<span style="color:#a31515">&#34;https://grafana.example.com&#34;</span>
 LOGIN=login
 PASS=password
