@@ -33,7 +33,7 @@
 <meta property="og:url" content="https://urpylka.com/posts/post-69/" />
 <meta property="article:published_time" content="2022-02-26T23:55:00+02:00" />
 <meta property="article:modified_time" content="2022-02-26T23:55:00+02:00" />
-<meta name="twitter:card" content="summary"/>
+<meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор)"/>
 <meta name="twitter:description" content="Эта заметка нацелена на изложение основных действий для перепрошивки Arduino с помощью встроенного бутлодера и программатора."/>
 <link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
@@ -125,7 +125,9 @@ if (!doNotTrack) {
 </ol>
 <p>Для начала разберемся с тем, что нужно постоянно искать – пинами на программаторе.</p>
 <h2 id="прошивка-с-помощью-программатора">Прошивка с помощью программатора</h2>
-<p>Есть множество различных программаторов, я использую <code>USBASP</code> (<a href="https://microkontroller.ru/programmirovanie-mikrokontrollerov-avr/usbasp-usb-avr-programmator/">USBASP: USB AVR программатор для микроконтроллеров ATmega, ATtiny</a>). Также в качестве программатора можно использовать ещё одну плату Arduino со специальной прошивкой.</p>
+<p>Есть множество различных программаторов, я использую <code>USBasp</code> (<a href="https://microkontroller.ru/programmirovanie-mikrokontrollerov-avr/usbasp-usb-avr-programmator/">USBASP: USB AVR программатор для микроконтроллеров ATmega, ATtiny</a>).</p>
+<p><img src="./images/usbasp2_0.jpg" alt="image"></p>
+<p>Также в качестве программатора можно использовать ещё одну плату Arduino со специальной прошивкой.</p>
 <p>Все сложность в прошивки этим способом обеспечить корректное подключение программатора к Arduino. Также обратите внимание, что лучше запитать Arduino непосредственно от программатора.</p>
 <p>Основная проблема в том, что на большинстве программаторов ICSP-разъём содержит 10 пинов, тогда как на всех платах Arduino, и не только, он 6ти пиновый.</p>
 <p><img src="./images/iscp.jpg" alt="image"></p>
@@ -186,7 +188,7 @@ setup:
 </blockquote>
 <p>Библиотеки я предпочитаю лично контролировать включением их в репозиторий, для этого в проекте Platformio необходимо создать папку <code>lib</code>.</p>
 <hr>
-<p>Пожалуй, это основные лайфхаки которые я использую для прошивки Arduino. Я умышленно упросил и недосказал некоторые моменты, возможно я допишу это когда-нибудь.</p>
+<p>Пожалуй, это основные лайфхаки которые я использую для прошивки Arduino. Я умышленно упростил и недосказал некоторые моменты, возможно я допишу это когда-нибудь.</p>
 
             </div>
 
