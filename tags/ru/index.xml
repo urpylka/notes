@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 04 Feb 2022 21:24:00 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 26 Feb 2022 23:55:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор)</title>
+      <link>https://urpylka.com/posts/post-69/</link>
+      <pubDate>Sat, 26 Feb 2022 23:55:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-69/</guid>
+      <description>Эта заметка нацелена на изложение основных действий для перепрошивки Arduino как при помощи встроенного бутлодера, так и с помощью программатора. В первых двух разделах я коротко изложу техническую базу и особенности использования двух методов, а в третьем разделе среду разработки и утилиты необхоидмые для прошивки.
+Прошивка с помощью встроенного bootloader (через последовательный порт) Все платы Arduino (основная линейка) построены на базе чипа Atmega с архитектурой AVR. AVR – это семейство микроконтроллеров, их прошивка, а именно запись постоянной памяти и выставление Fuse битов реализовано через ICSP порт очень похожий на SPI.</description>
+    </item>
     
     <item>
       <title>Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna</title>
