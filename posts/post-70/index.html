@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz) – urpylka՚s blog!</title><meta property="og:title" content="Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz)" />
-<meta property="og:description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Основная проблема в этой задаче – прокинуть оконный интерфейс в хост систему." />
+<meta property="og:description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Задача сводилась к необходимости прокинуть оконный интерфейс в хост систему." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-70/" />
 <meta property="article:published_time" content="2022-03-09T12:07:00+02:00" />
 <meta property="article:modified_time" content="2022-03-09T12:07:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz)"/>
-<meta name="twitter:description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Основная проблема в этой задаче – прокинуть оконный интерфейс в хост систему."/>
+<meta name="twitter:description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Задача сводилась к необходимости прокинуть оконный интерфейс в хост систему."/>
 <link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
@@ -29,10 +29,10 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz)">
-<meta itemprop="description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Основная проблема в этой задаче – прокинуть оконный интерфейс в хост систему.">
+<meta itemprop="description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Задача сводилась к необходимости прокинуть оконный интерфейс в хост систему.">
 <meta itemprop="datePublished" content="2022-03-09T12:07:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-03-09T12:07:00&#43;02:00" />
-<meta itemprop="wordCount" content="436">
+<meta itemprop="wordCount" content="437">
 
 
 
@@ -111,7 +111,7 @@ if (!doNotTrack) {
             </div>
 
             <div class="markdown">
-                <p>Всем привет, у меня возникла необходимость подключиться к KVM машине с целью отладки загрузки виртуальной машины. Для подключения через <code>virsh console</code> требуется, чтобы на виртуалке был запущен соответствущий клиент. Однако во-первых его там нет, а во-вторых операционная система еще не установлена (подробнее про virsh <a href="https://www.cyberciti.biz/faq/howto-linux-delete-a-running-vm-guest-on-kvm/">cyberciti.biz</a>, <a href="https://ostechnix.com/how-to-enable-virsh-console-access-for-kvm-guests/">ostechnix.com</a>). Поэтому у меня возникла необходимость подключиться к KVM машине через <code>virt-manager</code>.</p>
+                <p>Всем привет, у меня возникла необходимость подключиться к KVM машине с целью отладки загрузки виртуальной машины. Для подключения через <code>virsh console</code> требуется, чтобы на виртуалке был запущен соответствующий клиент. Однако во-первых его там нет, а во-вторых операционная система еще не установлена (подробнее про virsh <a href="https://www.cyberciti.biz/faq/howto-linux-delete-a-running-vm-guest-on-kvm/">cyberciti.biz</a>, <a href="https://ostechnix.com/how-to-enable-virsh-console-access-for-kvm-guests/">ostechnix.com</a>). Поэтому у меня возникла необходимость подключиться к KVM машине через <code>virt-manager</code>.</p>
 <p>Я попытался установить <code>virt-manager</code> на macOS используя brew (<a href="https://github.com/jeffreywildman/homebrew-virt-manager">jeffreywildman/homebrew-virt-manager</a>). Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить <code>virt-manager</code> (<a href="https://fabianlee.org/2019/02/16/kvm-virt-manager-to-connect-to-a-remote-console-using-qemussh/">fabianlee.org</a>) на Debian в Docker контейнере. Основная проблема в этой задаче – прокинуть иксы (графический (оконный) интерфейс) в хост систему.</p>
 <p>Первое, что нужно сделать – собрать Docker образ с необходимым программным обеспечением. Для этого создаем Dockerfile:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> debian</span><span style="">
@@ -142,14 +142,14 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">open -a XQuartz
 </code></pre></div></li>
 <li>
-<p>И включить поддержку входящих по сети соедиенений в настройках сервера – <code>Allow connections from network clients</code>.</p>
+<p>И включить поддержку входящих по сети соединений в настройках сервера – <code>Allow connections from network clients</code>.</p>
 <p><img src="./images/Screenshot_2022-03-09_at_14.44.16.png" alt="image"></p>
 </li>
 <li>
 <p>Далее нужно задать переменную <code>DISPLAY</code>. Без этого у меня не получилось запустить <code>xhost</code> на моей машине.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export DISPLAY=&lt;YOUR_IP&gt;:0
 </code></pre></div><blockquote>
-<p><code>&lt;YOUR_IP&gt;</code> должен быть доступен из запускаемоего контейнера, и в идеале не светиться во внешней сети. Например это может быть адрес вашей машины в домашней Wi-Fi сети. На macOS в большинстве случаев можно посмотреть этот адрес следующий образом:</p>
+<p><code>&lt;YOUR_IP&gt;</code> должен быть доступен из запускаемоего контейнера, и в идеале не светиться во внешней сети. Например это может быть адрес вашей машины в домашней Wi-Fi сети. На macOS в большинстве случаев можно посмотреть этот адрес следующим образом:</p>
 </blockquote>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#00f">$(</span>ipconfig getifaddr en0<span style="color:#00f">)</span>
 </code></pre></div></li>
@@ -167,13 +167,13 @@ if (!doNotTrack) {
 <p>Тут можно все команды объединить в одну, но я решил, что будет удобнее сначала зайти в Bash-оболочку контейнера и из неё уже запускать то, что нужно.</p>
 <p>Запуск оболочки:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -it --rm -e DISPLAY=&lt;YOUR_IP&gt;:0 -v ~:/mnt app:local /bin/bash
-</code></pre></div><p>Обратите внимание на, что я делаю mount в домашнюю директорию пользователя хост системы. Это нужно для использования секретного ключа внутри контейнера.</p>
+</code></pre></div><p>Обратите внимание на то, что я делаю mount в домашнюю директорию пользователя хост системы. Это нужно для использования секретного ключа внутри контейнера.</p>
 <p>Далее нам необходимо запустить само приложение, в моём случае это установленный ранее <code>virt-manager</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">virt-manager -c <span style="color:#a31515">&#39;qemu+ssh://&lt;USER&gt;@&lt;KVM_IP&gt;/system?keyfile=/mnt/.ssh/id_rsa&#39;</span>
 </code></pre></div><p><img src="./images/Screenshot_2022-03-09_at_15.07.53.png" alt="image"></p>
 <p><img src="./images/Screenshot_2022-03-09_at_15.08.00.png" alt="image"></p>
 <p><img src="./images/Screenshot_2022-03-09_at_15.08.19.png" alt="image"></p>
-<p>На этом всё. Ниже вы можете ознакомится с источниками, которые я брал в основу.</p>
+<p>На этом всё. Ниже вы можете ознакомиться с источниками, которые я брал в основу.</p>
 <p>Источники:</p>
 <ul>
 <li><a href="https://blog.alexellis.io/linux-desktop-on-mac/">Bring Linux apps to the Mac Desktop with Docker</a></li>
