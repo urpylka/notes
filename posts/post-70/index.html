@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz) – urpylka՚s blog!</title><meta property="og:title" content="Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz)" />
+<meta property="og:description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Основная проблема в этой задаче – прокинуть оконный интерфейс в хост систему." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-70/" />
+<meta property="article:published_time" content="2022-03-09T12:07:00+02:00" />
+<meta property="article:modified_time" content="2022-03-09T12:07:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz)"/>
+<meta name="twitter:description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Основная проблема в этой задаче – прокинуть оконный интерфейс в хост систему."/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz)">
+<meta itemprop="description" content="Я попытался установить virt-manager на macOS используя brew. Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить virt-manager на Debian в Docker контейнере. Основная проблема в этой задаче – прокинуть оконный интерфейс в хост систему.">
+<meta itemprop="datePublished" content="2022-03-09T12:07:00&#43;02:00" />
+<meta itemprop="dateModified" content="2022-03-09T12:07:00&#43;02:00" />
+<meta itemprop="wordCount" content="436">
+
+
+
+<meta itemprop="keywords" content="ru,programming," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">09</span>
+                        <span class="rest">Mar 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Проброс оконного приложения virt-manager из Docker контейнера в macOS (X11, XQuartz)</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Всем привет, у меня возникла необходимость подключиться к KVM машине с целью отладки загрузки виртуальной машины. Для подключения через <code>virsh console</code> требуется, чтобы на виртуалке был запущен соответствущий клиент. Однако во-первых его там нет, а во-вторых операционная система еще не установлена (подробнее про virsh <a href="https://www.cyberciti.biz/faq/howto-linux-delete-a-running-vm-guest-on-kvm/">cyberciti.biz</a>, <a href="https://ostechnix.com/how-to-enable-virsh-console-access-for-kvm-guests/">ostechnix.com</a>). Поэтому у меня возникла необходимость подключиться к KVM машине через <code>virt-manager</code>.</p>
+<p>Я попытался установить <code>virt-manager</code> на macOS используя brew (<a href="https://github.com/jeffreywildman/homebrew-virt-manager">jeffreywildman/homebrew-virt-manager</a>). Но процесс завершился с ошибкой, и я не стал заниматься отладкой. Поэтому я решил попробовать запустить <code>virt-manager</code> (<a href="https://fabianlee.org/2019/02/16/kvm-virt-manager-to-connect-to-a-remote-console-using-qemussh/">fabianlee.org</a>) на Debian в Docker контейнере. Основная проблема в этой задаче – прокинуть иксы (графический (оконный) интерфейс) в хост систему.</p>
+<p>Первое, что нужно сделать – собрать Docker образ с необходимым программным обеспечением. Для этого создаем Dockerfile:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> debian</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">ENV</span> LC_ALL en_US.UTF-8<span style="">
+</span><span style=""></span><span style="color:#00f">ENV</span> LANG en_US.UTF-8<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> apt-get update &amp;&amp; apt-get install -y <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    locales <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    ssh ssh-askpass <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    virt-manager <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    --no-install-recommends<span style="">
+</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#00f">RUN</span> echo <span style="color:#a31515">&#34;en_US.UTF-8 UTF-8&#34;</span> &gt;&gt; /etc/locale.gen <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>	&amp;&amp; locale-gen en_US.utf8 <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>	&amp;&amp; /usr/sbin/update-locale LANG=en_US.UTF-8<span style="">
+</span></code></pre></div><p>И далее собираем образ:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker build . --tag app:local
+</code></pre></div><p>После этого нам необходимо настроить хост систему для отображения оконного интерфейса. Для этого нужно:</p>
+<ol>
+<li>
+<p>Установить сервер X11 – <a href="https://www.xquartz.org/">XQuartz</a>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install Caskroom/cask/xquartz
+</code></pre></div></li>
+<li>
+<p>Далее нужно запустить сервер:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">open -a XQuartz
+</code></pre></div></li>
+<li>
+<p>И включить поддержку входящих по сети соедиенений в настройках сервера – <code>Allow connections from network clients</code>.</p>
+<p><img src="./images/Screenshot_2022-03-09_at_14.44.16.png" alt="image"></p>
+</li>
+<li>
+<p>Далее нужно задать переменную <code>DISPLAY</code>. Без этого у меня не получилось запустить <code>xhost</code> на моей машине.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export DISPLAY=&lt;YOUR_IP&gt;:0
+</code></pre></div><blockquote>
+<p><code>&lt;YOUR_IP&gt;</code> должен быть доступен из запускаемоего контейнера, и в идеале не светиться во внешней сети. Например это может быть адрес вашей машины в домашней Wi-Fi сети. На macOS в большинстве случаев можно посмотреть этот адрес следующий образом:</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#00f">$(</span>ipconfig getifaddr en0<span style="color:#00f">)</span>
+</code></pre></div></li>
+<li>
+<p>После чего с помощью утилиты <code>xhost</code> добавляем наш IP в список разрешенных для обслуживания сервером X11 адресов.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xhost + &lt;YOUR_IP&gt;
+</code></pre></div><p>Подробнее про <code>xhost</code> в следующих источниках:</p>
+<ol>
+<li><a href="https://linux-notes.org/utilita-xhost-v-unix-linux/">Утилита xhost в Unix/Linux</a></li>
+<li><a href="https://www.dba-career.com/2018/05/xhost-unable-to-open-display-check-if.html">xhost: unable to open display &quot;&rdquo; | Check if the DISPLAY variable is set | Oracle Linux</a></li>
+</ol>
+</li>
+</ol>
+<p>После этого все готово для запуска приложения:</p>
+<p>Тут можно все команды объединить в одну, но я решил, что будет удобнее сначала зайти в Bash-оболочку контейнера и из неё уже запускать то, что нужно.</p>
+<p>Запуск оболочки:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -it --rm -e DISPLAY=&lt;YOUR_IP&gt;:0 -v ~:/mnt app:local /bin/bash
+</code></pre></div><p>Обратите внимание на, что я делаю mount в домашнюю директорию пользователя хост системы. Это нужно для использования секретного ключа внутри контейнера.</p>
+<p>Далее нам необходимо запустить само приложение, в моём случае это установленный ранее <code>virt-manager</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">virt-manager -c <span style="color:#a31515">&#39;qemu+ssh://&lt;USER&gt;@&lt;KVM_IP&gt;/system?keyfile=/mnt/.ssh/id_rsa&#39;</span>
+</code></pre></div><p><img src="./images/Screenshot_2022-03-09_at_15.07.53.png" alt="image"></p>
+<p><img src="./images/Screenshot_2022-03-09_at_15.08.00.png" alt="image"></p>
+<p><img src="./images/Screenshot_2022-03-09_at_15.08.19.png" alt="image"></p>
+<p>На этом всё. Ниже вы можете ознакомится с источниками, которые я брал в основу.</p>
+<p>Источники:</p>
+<ul>
+<li><a href="https://blog.alexellis.io/linux-desktop-on-mac/">Bring Linux apps to the Mac Desktop with Docker</a></li>
+<li><a href="https://stackoverflow.com/questions/38686932/how-to-forward-docker-for-mac-to-x11">How to forward Docker for Mac to X11?</a></li>
+<li><a href="https://fredrikaverpil.github.io/2016/07/31/docker-for-mac-and-gui-applications/">Docker for Mac and GUI applications</a></li>
+<li><a href="https://gist.github.com/cschiewek/246a244ba23da8b9f0e7b11a68bf3285">X11 in docker on macOS </a></li>
+</ul>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+<br/>
+<script defer src="https://commento.urpylka.com/js/commento.js" data-css-override="/css/commento.css"></script>
+<div id="commento"></div>
+<noscript>Please enable JavaScript to load the comments.</noscript></div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
