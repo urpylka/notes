@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1320">
+<meta itemprop="wordCount" content="1349">
 
 
 
@@ -241,16 +241,29 @@ set_var EASYRSA_DIGEST         &#34;sha512&#34;
 <p>Генерируем CRL файл:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa gen-crl
 </code></pre></div><h3 id="создание-клиента">Создание клиента</h3>
+<ol>
+<li>
+<p>В начале нам нужно собрать и зайти в образ с <code>easy-rsa</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make build
 make
-easyrsa build-client-full &lt;CLIENTNAME&gt; nopass
-</code></pre></div><p>Кстати, <code>CLIENTNAME</code> это специальное название клиента используемое в сертификате, а также используется OpenVPN для задания отдельных правил через директорию <code>ccd</code>.</p>
-<p><code>/etc/openvpn/ccd/CLIENTNAME</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ifconfig-push 192.168.255.10 255.255.255.0
-</code></pre></div><p>Если вы используете DNS, я советую создавать названия клиентов, соответствующие их доменным именам, это позволит избежать путаницы.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLIENTNAME=<span style="color:#a31515">&#34;CLIENTNAME&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Затем нужно задать <code>CLIENTNAME</code>.</p>
+<p>Если вы используете DNS, я советую создавать названия клиентов, соответствующие их доменным именам, это позволит избежать путаницы.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CLIENTNAME=<span style="color:#a31515">&#34;client.example.com&#34;</span>
+</code></pre></div><p>Это специальное название клиента используемое в сертификате, а также используется OpenVPN для задания отдельных правил через директорию <code>/etc/openvpn/ccd</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># /etc/openvpn/ccd/CLIENTNAME
+ifconfig-push 192.168.255.10 255.255.255.0
+</code></pre></div></li>
+<li>
+<p>Затем генерируем сертификат для клиента:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa build-client-full <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a31515">}</span> nopass
+</code></pre></div></li>
+<li>
+<p>Далее сохраним сгенерированный сертификат в файл с расширением <code>ovpn</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">VPN_SERVER=<span style="color:#a31515">&#34;vpn.example.com 1194&#34;</span>
 
-cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a31515">}</span> <span style="color:#a31515">&lt;&lt; EOF
+cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a31515">}</span>.ovpn <span style="color:#a31515">&lt;&lt; EOF
 </span><span style="color:#a31515">client
 </span><span style="color:#a31515">nobind
 </span><span style="color:#a31515">dev tun
@@ -260,7 +273,7 @@ cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a315
 </span><span style="color:#a31515">redirect-gateway def1
 </span><span style="color:#a31515">
 </span><span style="color:#a31515"># Address of the VPN server
-</span><span style="color:#a31515">remote vpn.example.com 1194 udp
+</span><span style="color:#a31515">remote ${VPN_SERVER} udp
 </span><span style="color:#a31515">
 </span><span style="color:#a31515">&lt;key&gt;
 </span><span style="color:#a31515">$(cat $EASYRSA_PKI/private/${CLIENTNAME}.key)
@@ -276,7 +289,9 @@ cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a315
 </span><span style="color:#a31515">$(cat $EASYRSA_PKI/ta.key)
 </span><span style="color:#a31515">&lt;/tls-auth&gt;
 </span><span style="color:#a31515">EOF</span>
-</code></pre></div><h3 id="отзыв-сертификата">Отзыв сертификата</h3>
+</code></pre></div></li>
+</ol>
+<h3 id="отзыв-сертификата">Отзыв сертификата</h3>
 <p>Для отзыва клиентского сертификата необходимо вызвать <code>revoke</code>. Затем скопировать файл <code>crl.pem</code> с сервера центра сертификации на OpenVPN сервер.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa revoke CLIENTNAME
 </code></pre></div><p>Подробнее <a href="https://openvpn.net/community-resources/revoking-certificates/">openvpn.net</a>.</p>
