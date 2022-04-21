@@ -293,7 +293,7 @@ cat &gt; <span style="color:#a31515">${</span>CLIENTNAME<span style="color:#a315
 </ol>
 <h3 id="отзыв-сертификата">Отзыв сертификата</h3>
 <p>Для отзыва клиентского сертификата необходимо вызвать <code>revoke</code>. Затем скопировать файл <code>crl.pem</code> с сервера центра сертификации на OpenVPN сервер.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa revoke CLIENTNAME
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa revoke &lt;CLIENTNAME&gt;
 </code></pre></div><p>Подробнее <a href="https://openvpn.net/community-resources/revoking-certificates/">openvpn.net</a>.</p>
 <h2 id="итоги">Итоги</h2>
 <p>В конце нужно заметить, что я пока не перенес функционал средств подготовки конфигурации сервера в образ <code>easy-rsa</code>. Это нужно прежде всего для удобства.</p>
