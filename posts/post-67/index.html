@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1349">
+<meta itemprop="wordCount" content="1350">
 
 
 
@@ -111,9 +111,9 @@ if (!doNotTrack) {
             </div>
 
             <div class="markdown">
-                <h2 id="старый-подход">Старый подход</h2>
-<p>И так вначале я использовал широко распространенное решение от <a href="https://github.com/kylemanna/docker-openvpn">kylemanna</a>.
-Оно представляет из себя Docker образ на базе Alpine состоящий из:</p>
+                <h2 id="docker-openvpn-от-kylemanna">docker-openvpn от kylemanna</h2>
+<p>И так вначале я использовал широко распространенное решение от <a href="https://github.com/kylemanna/docker-openvpn">kylemanna</a>.</p>
+<p>Оно представляет из себя Docker образ на базе Alpine состоящий из:</p>
 <ol>
 <li><code>OpenVPN</code> собственно в качестве VPN сервера</li>
 <li><code>openvpn-auth-pam</code>, <code>google-authenticator</code>, <code>pamtester</code> - дополнительные модули для авторизациии в <code>OpenVPN</code></li>
@@ -147,7 +147,7 @@ if (!doNotTrack) {
 <li><code>/etc/openvpn/clients</code> – здесь хранятся сертификаты, ключи клиентов и собранные воедино <code>.ovpn</code> файлы необходимые для подключения. Это директория не используются сервером.</li>
 <li><code>/etc/openvpn/ccd</code> – это специальный каталог, в котором хранятся файлы совпадающие по имени с именами клиентов, в каждом из файлов хранятся отдельные конфигурации и опции необходимые для работы клиента, например опция <code>ifconfig-push 192.168.1.10 255.255.255.0</code>, которая выдает конкретному клиенту IP адрес <code>192.168.1.10</code>. Эта директория используется сервером. Задается с помощью параметра <code>client-config-dir</code>.</li>
 </ul>
-<h2 id="новый-подход">Новый подход</h2>
+<h2 id="моя-реализация">Моя реализация</h2>
 <h3 id="openvpn">OpenVPN</h3>
 <p>Собственно основная идея заключается в том, чтобы вынести центр сертификации и обвязки для разворачивания и конфигурирования сервера из образа.</p>
 <p>Получился следующий Dockerfile:</p>

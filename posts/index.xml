@@ -49,7 +49,8 @@ Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; 
       <pubDate>Fri, 04 Feb 2022 21:24:00 +0200</pubDate>
       
       <guid>https://urpylka.com/posts/post-67/</guid>
-      <description>Старый подход И так вначале я использовал широко распространенное решение от kylemanna. Оно представляет из себя Docker образ на базе Alpine состоящий из:
+      <description>docker-openvpn от kylemanna И так вначале я использовал широко распространенное решение от kylemanna.
+Оно представляет из себя Docker образ на базе Alpine состоящий из:
  OpenVPN собственно в качестве VPN сервера openvpn-auth-pam, google-authenticator, pamtester - дополнительные модули для авторизациии в OpenVPN easy-rsa как инструмент для создания и работы центра сертификации (CA) Средства подготовки конфигурации сервера (ovpn_initpki, ovpn_genconfig, ovpn_copy_server_files, ovpn_run, ovpn_status) Ряд скриптов-оберток для управления пользователями (ovpn_getclient, ovpn_getclient_all, ovpn_listclients, ovpn_revokeclient, ovpn_otp_user)  Тут нужно сделать важное замечание, что я вначале не понимал как работает CA, сертификаты пользователей, OpenVPN и easy-rsa вместе.</description>
     </item>
     
