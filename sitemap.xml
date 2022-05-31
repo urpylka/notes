@@ -3,27 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://urpylka.com/posts/</loc>
-    <lastmod>2022-05-31T09:16:00+03:00</lastmod>
+    <loc>https://urpylka.com/tags/lifestyle/</loc>
+    <lastmod>2022-05-31T19:00:00+03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://urpylka.com/tags/programming/</loc>
-    <lastmod>2022-05-31T09:16:00+03:00</lastmod>
+    <loc>https://urpylka.com/posts/</loc>
+    <lastmod>2022-05-31T19:00:00+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://urpylka.com/tags/ru/</loc>
-    <lastmod>2022-05-31T09:16:00+03:00</lastmod>
+    <lastmod>2022-05-31T19:00:00+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://urpylka.com/tags/</loc>
-    <lastmod>2022-05-31T09:16:00+03:00</lastmod>
+    <lastmod>2022-05-31T19:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/travelling/</loc>
+    <lastmod>2022-05-31T19:00:00+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://urpylka.com/</loc>
+    <lastmod>2022-05-31T19:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/posts/post-73/</loc>
+    <lastmod>2022-05-31T19:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urpylka.com/tags/programming/</loc>
     <lastmod>2022-05-31T09:16:00+03:00</lastmod>
   </url>
   
@@ -80,16 +95,6 @@
   <url>
     <loc>https://urpylka.com/posts/post-67/</loc>
     <lastmod>2022-02-04T21:24:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/lifestyle/</loc>
-    <lastmod>2022-01-24T23:00:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://urpylka.com/tags/travelling/</loc>
-    <lastmod>2022-01-24T23:00:00+02:00</lastmod>
   </url>
   
   <url>

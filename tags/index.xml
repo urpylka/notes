@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 31 May 2022 09:16:00 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 31 May 2022 19:00:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>lifestyle</title>
+      <link>https://urpylka.com/tags/lifestyle/</link>
+      <pubDate>Tue, 31 May 2022 19:00:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/tags/lifestyle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Tue, 31 May 2022 19:00:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>travelling</title>
+      <link>https://urpylka.com/tags/travelling/</link>
+      <pubDate>Tue, 31 May 2022 19:00:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/tags/travelling/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>programming</title>
@@ -18,15 +45,6 @@
       <pubDate>Tue, 31 May 2022 09:16:00 +0300</pubDate>
       
       <guid>https://urpylka.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Tue, 31 May 2022 09:16:00 +0300</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -72,24 +90,6 @@
       <pubDate>Fri, 04 Feb 2022 21:24:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/networks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lifestyle</title>
-      <link>https://urpylka.com/tags/lifestyle/</link>
-      <pubDate>Mon, 24 Jan 2022 23:00:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/lifestyle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>travelling</title>
-      <link>https://urpylka.com/tags/travelling/</link>
-      <pubDate>Mon, 24 Jan 2022 23:00:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/travelling/</guid>
       <description></description>
     </item>
     
