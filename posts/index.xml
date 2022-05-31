@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 26 May 2022 00:15:00 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 31 May 2022 09:16:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Перенос домена COM зоны от регистратора Namecheap к Cloudflare в 2022 году</title>
+      <link>https://urpylka.com/posts/post-72/</link>
+      <pubDate>Tue, 31 May 2022 09:16:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-72/</guid>
+      <description>Я занимаюсь веб-разработкой ещё со школы, и до появления этого блога я покупал домены руководствуясь исключительно экономическими соображениями.
+За всё это время я был клиентом == держал домены у следующих регистраторов:
+ 2DOMAINS (партнер REG.ru) REG.ru Reggi до присоединения к R01 Domain.com в рамках акции с доменом в зоне LOL  Когда пришло время регистрировать домен для этого блога, я чётко понимал, что хочу использовать зону COM. К этому был ряд причин:</description>
+    </item>
     
     <item>
       <title>Утепление стола 3D-принтера UlTi‑Steel</title>
