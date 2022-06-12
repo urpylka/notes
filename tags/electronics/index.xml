@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sat, 26 Feb 2022 23:55:00 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jun 2022 22:47:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/electronics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LC метр на базе Arduino: Часть 1</title>
+      <link>https://urpylka.com/posts/post-74/</link>
+      <pubDate>Sun, 12 Jun 2022 22:47:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-74/</guid>
+      <description>Год назад я приобрел себе мультиметр Aneng Q1. Я сразу влюбился в этот мультиметр. Он удовлетворяет практически всем моим потребностям кроме отсутствия функционала измерения индуктивности. И у меня возникла идея из говна и палок собрать LC метр. В этой статье мы рассмотрим существующие схемы и принцип их работы. А также выберем одну, которую в дальнейшем я буду собирать.
+Обзор существующих схем LC-метров Основная идея построения этого прибора на микроконтроллере (МК) состоит в измеремении частоты колебательного контура на программной стороне МК.</description>
+    </item>
     
     <item>
       <title>Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор)</title>

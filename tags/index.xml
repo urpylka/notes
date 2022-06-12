@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 31 May 2022 19:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jun 2022 22:47:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>electronics</title>
+      <link>https://urpylka.com/tags/electronics/</link>
+      <pubDate>Sun, 12 Jun 2022 22:47:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/tags/electronics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Sun, 12 Jun 2022 22:47:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>lifestyle</title>
@@ -18,15 +36,6 @@
       <pubDate>Tue, 31 May 2022 19:00:00 +0300</pubDate>
       
       <guid>https://urpylka.com/tags/lifestyle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Tue, 31 May 2022 19:00:00 +0300</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -54,15 +63,6 @@
       <pubDate>Thu, 26 May 2022 00:15:00 +0300</pubDate>
       
       <guid>https://urpylka.com/tags/3dprint/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>electronics</title>
-      <link>https://urpylka.com/tags/electronics/</link>
-      <pubDate>Sat, 26 Feb 2022 23:55:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/electronics/</guid>
       <description></description>
     </item>
     
