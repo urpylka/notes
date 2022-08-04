@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 26 May 2022 00:15:00 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 03 Aug 2022 19:22:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/3dprint/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Установка и подключение BTT Relay Module</title>
+      <link>https://urpylka.com/posts/post-76/</link>
+      <pubDate>Wed, 03 Aug 2022 19:22:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-76/</guid>
+      <description>Всем привет, в этой статье речь пойдет о подключении модуля реле BigTreeTech Relay v1.2 к SKR 2.0.
+Основные ссылки:
+ Репозиторий производителя Мануал  Устройство модуля Для начала предлагаю разобраться из каких частей состоит этот прибор и как он работает.
+Первое, что бросается в глаза это крупный оранжевый разъём питания и синее реле. Работает это интуитивно понятно – реле размыкает и замыкает цепь питания LIN и LOT. Средний вход N используется вместе с LIN для питания самого прибора через преобразователь питания в черном корпусе.</description>
+    </item>
     
     <item>
       <title>Утепление стола 3D-принтера UlTi‑Steel</title>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Установка и подключение BTT Relay Module – urpylka՚s blog!</title><meta property="og:title" content="Установка и подключение BTT Relay Module" />
+<meta property="og:description" content="В этой статье речь пойдет о подключении модуля реле `BigTreeTech Relay v1.2` к `SKR 2.0` и настройки этого под Marlin." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-76/" />
+<meta property="article:published_time" content="2022-08-03T19:22:00+03:00" />
+<meta property="article:modified_time" content="2022-08-03T19:22:00+03:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Установка и подключение BTT Relay Module"/>
+<meta name="twitter:description" content="В этой статье речь пойдет о подключении модуля реле `BigTreeTech Relay v1.2` к `SKR 2.0` и настройки этого под Marlin."/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Установка и подключение BTT Relay Module">
+<meta itemprop="description" content="В этой статье речь пойдет о подключении модуля реле `BigTreeTech Relay v1.2` к `SKR 2.0` и настройки этого под Marlin.">
+<meta itemprop="datePublished" content="2022-08-03T19:22:00&#43;03:00" />
+<meta itemprop="dateModified" content="2022-08-03T19:22:00&#43;03:00" />
+<meta itemprop="wordCount" content="315">
+
+
+
+<meta itemprop="keywords" content="ru,3dprint," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">03</span>
+                        <span class="rest">Aug 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Установка и подключение BTT Relay Module</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Всем привет, в этой статье речь пойдет о подключении модуля реле <code>BigTreeTech Relay v1.2</code> к <code>SKR 2.0</code>.</p>
+<p>Основные ссылки:</p>
+<ol>
+<li><a href="https://github.com/bigtreetech/BIGTREETECH-Relay-V1.2">Репозиторий производителя</a></li>
+<li><a href="./Relay_V1.2-Operating_Instruction.pdf">Мануал</a></li>
+</ol>
+<h2 id="устройство-модуля">Устройство модуля</h2>
+<p><img src="./images/relaymodule.png" alt="image"></p>
+<p>Для начала предлагаю разобраться из каких частей состоит этот прибор и как он работает.</p>
+<p>Первое, что бросается в глаза это крупный оранжевый разъём питания и синее реле. Работает это интуитивно понятно – реле размыкает и замыкает цепь питания <code>LIN</code> и <code>LOT</code>. Средний вход <code>N</code> используется вместе с <code>LIN</code> для питания самого прибора через преобразователь питания в черном корпусе.</p>
+<p>Далее идет логическая часть и 6 разъёмов. Пройдемся по ним с левого верхнего угла по направлению против часов стрелки:</p>
+<ol>
+<li><code>SC_EN</code> DuPont 2pin – место для установки перемычки, замкнутые разъёмы включают функцию детекции короткого замыкания в цепи.</li>
+<li><code>SC_DET</code> JST 2pin – разъём для обнаружения короткого замыкания в 5 вольтовой цепи (в случае короткого замыкания прибор немедленно разорвёт цепь питания).</li>
+<li><code>PS_ON_IN</code> JST 2pin – основной интерфейс для подключения к контроллеру принетера и управления прибором.</li>
+<li><code>PS_DET</code> JST 2pin – обнаружение отключения питания.</li>
+<li><code>RESET</code> DuPont 2pin – интерфейс для перезагрузки модуля (полагаю, как для включения принтера, так и для перепрошивки).</li>
+<li><code>UART</code> DuPont 4pin – UART интерфейс (для перепрошивки).</li>
+</ol>
+<h2 id="алгоритм-работы">Алгоритм работы</h2>
+<p>При первичной подаче питания реле у прибора замкнуто в течении 10 секунд, если в этот промежуток на <code>PS_ON_IN</code> не будет дан высокий логический уровень с контроллера принтера. Прибор разорвет цепь питания. Для последующего включения которого, будет нужно либо, замкнуть разъём <code>RESET</code> или переподать питание на модуль.</p>
+<p>Когда включена функция детекции короткого замыкания, и в случае такового на <code>SC_DET</code> модуль отключает питание.</p>
+<blockquote>
+<p>Единственное, что мне не совсем понятно как работает функция обнаружения отключения питания. Я дополню статью как разберусь.</p>
+</blockquote>
+<h2 id="настройка-marlin">Настройка Marlin</h2>
+<p>Чтобы включить работу с модулем в Marlin нужно:</p>
+<ol>
+<li>
+<p>В директории <code>src/pins/&lt;controller_family&gt;/pins_&lt;board&gt;.h</code> нужно определить к какому пину подключен прибор.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define PS_ON_PIN PE8
+</span></code></pre></div></li>
+<li>
+<p>Установить следующие опции в <code>Configuration.h</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define PSU_CONTROL
+</span><span style="color:#00f">#define PSU_NAME &#34;Power Supply&#34;
+</span></code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#define PSU_ACTIVE_STATE HIGH
+</span></code></pre></div></li>
+</ol>
+<h2 id="пример-gcode">Пример Gcode</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">G4 S900 ; подождать 900 сек
+M81 ; выкл питания
+</code></pre></div>
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/3dprint">3dprint</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+<br/>
+<script defer src="https://commento.urpylka.com/js/commento.js" data-css-override="/css/commento.css"></script>
+<div id="commento"></div>
+<noscript>Please enable JavaScript to load the comments.</noscript></div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
