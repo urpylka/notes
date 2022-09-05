@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Датчик качества воздуха на базе IKEA VINDRIKTNING – urpylka՚s blog!</title><meta property="og:title" content="Датчик качества воздуха на базе IKEA VINDRIKTNING" />
+<meta property="og:description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com.
+IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или PM2.5 (подробнее об этом здесь).
+Помимо световой индикации устройство может подключаться к очистителю воздуха IKEA FÖRNUFTIG.
+Устройство выполнено на микроконтроллере ES7P001FGSA:
+Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-77/" />
+<meta property="article:published_time" content="2022-09-04T13:19:00+03:00" />
+<meta property="article:modified_time" content="2022-09-04T13:19:00+03:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Датчик качества воздуха на базе IKEA VINDRIKTNING"/>
+<meta name="twitter:description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com.
+IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или PM2.5 (подробнее об этом здесь).
+Помимо световой индикации устройство может подключаться к очистителю воздуха IKEA FÖRNUFTIG.
+Устройство выполнено на микроконтроллере ES7P001FGSA:
+Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:"/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Датчик качества воздуха на базе IKEA VINDRIKTNING">
+<meta itemprop="description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com.
+IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или PM2.5 (подробнее об этом здесь).
+Помимо световой индикации устройство может подключаться к очистителю воздуха IKEA FÖRNUFTIG.
+Устройство выполнено на микроконтроллере ES7P001FGSA:
+Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:">
+<meta itemprop="datePublished" content="2022-09-04T13:19:00&#43;03:00" />
+<meta itemprop="dateModified" content="2022-09-04T13:19:00&#43;03:00" />
+<meta itemprop="wordCount" content="565">
+
+
+
+<meta itemprop="keywords" content="ru,electronics," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">04</span>
+                        <span class="rest">Sep 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Датчик качества воздуха на базе IKEA VINDRIKTNING</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула <a href="https://blakadder.com/vindriktning-tasmota/">статья на blakadder.com</a>.</p>
+<h2 id="ikea-vindriktning">IKEA VINDRIKTNING</h2>
+<p>Сам датчик <a href="https://www.ikea.lv/en/products/decoration/lighting/air-purifiers-accessories/vindriktning-air-quality-sensor-art-80515910">IKEA VINDRIKTNING</a> представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или <code>PM2.5</code> (подробнее об этом <a href="https://airkaz.org/pm25.php">здесь</a>).</p>
+<p><img src="./images/0977883_PE813916_S4.jpg" alt="image"></p>
+<p>Помимо световой индикации устройство может подключаться к очистителю воздуха <a href="https://www.ikea.lv/en/products/office/air-purifiers-accessories/air-purifiers-accessories/fornuftig-air-purifier-black-art-10488062">IKEA FÖRNUFTIG</a>.</p>
+<p>Устройство выполнено на микроконтроллере <code>ES7P001FGSA</code>:</p>
+<p><img src="./images/chip.jpg" alt="image"></p>
+<p>Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:</p>
+<p><img src="./images/inside.jpg" alt="image"></p>
+<p>Как видно в верхней части много места, чтобы поместить туда дополнительную электронику.</p>
+<h2 id="прошивка-esp8266-esp-12f">Прошивка ESP8266 (ESP-12F)</h2>
+<p>Для перепрошивки я буду использовать USB-UART преобразователь. Изначально я собрал setup на плате для Serial Wifi линка:</p>
+<p><img src="./images/old_plate.jpg" alt="image"></p>
+<p>Данная плата хороша тем, что необходимые пины соединены сразу, а также есть кнопка сброса и режима программирования. Однако плата, занимает достаточна масивна и я решил использовать плату <code>ESP-12F</code>.</p>
+<p>Давайте рассмотрим как нужно подключить плату для её работы и перепрошивки.</p>
+<p><img src="./images/ESP8266-ESP-12E-chip-pinout-gpio-pin.webp" alt="image"></p>
+<p>Для работы модуля необходимо:</p>
+<ol>
+<li><code>ENABLE</code> притянуть к плюсу, во многих мануалах это делается через резистор. Я не совсем понимаю зачем, тк состояние самого пина врядли будет меняться со стороны контроллера, разве чтобы ограничить ток, хотя если проблема будет в неправильном напряжении, плата все равно сгорит по питанию.</li>
+<li><code>RESET</code> крайне странно, но во многих мануалах данный вывод также притягивают к плюсу, во избежание сброса платы. Хотя на мой взгляд разработчики должны были сделать внутреннюю подтяжку данного пина. Однако я сделал подтяжку и этого пина, тк не хочу углубляться в реализацию самой платы и разбираться в этом. Резистор точно не повредит.</li>
+<li><code>GPIO15</code> нужно притянуть к земле, это можно сделать накоротко, если не планируется использование пина в дальнейшем, а можно через подтягивающий резистор, я сделал через резистор, чтобы в дальнейнем можно было использовать пин. Как по мне тоже, странное решение, можно было и сделать внутренний резистор подтяжки.</li>
+<li><code>GPIO0</code> при загрузке, нужно принянуть к земле для перепрошивки модуля.</li>
+</ol>
+<blockquote>
+<p>Для притяжки каких либо пинов я использую резисторы номиналом 10кОм.</p>
+</blockquote>
+<p>Вариант схемы для перепрошивки:</p>
+<p><img src="./images/ESP-12_usb_to_serial.jpg" alt="image"></p>
+<p>Подробнее о пинах ESP8266 на <a href="https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/">randomnerdtutorials.com</a>, ниже краткая выжимка:</p>
+<p><img src="./images/pins.jpg" alt="image"></p>
+<h2 id="подключение-датчиков-к-esp8266">Подключение датчиков к ESP8266</h2>
+<p>Мой будерброд из датчиков и контроллера выглядит следующим образом:</p>
+<p><img src="./images/IMG_4602.jpg" alt="image"></p>
+<p><img src="./images/IMG_4603.jpg" alt="image"></p>
+<p><img src="./images/IMG_4604.jpg" alt="image"></p>
+<p>Приводить схему подключение не вижу особого смысла, разве что перечислю используемые датчики и итогово, пины к которым я их подключил:</p>
+<ol>
+<li><code>IKEA VINDRIKTNING</code> (<a href="https://aliexpress.ru/item/1005001688541054.html">aliexpress</a>) (UART интерфейс, TX линия) – <code>GPIO2</code></li>
+<li><code>BME280</code> (<a href="https://aliexpress.ru/item/1005001688541054.html">aliexpress</a>) (I2C интерфейс) – <code>GPIO12</code> и <code>GPIO13</code> (где SDA, где SCL особо роли не играет, тк задается программно)</li>
+<li><code>SenseAir S8</code> (<a href="https://aliexpress.ru/item/1005001688541054.html">aliexpress</a>) (UART интерфейс) – <code>GPIO4</code> и <code>GPIO5</code> (где RX, где TX особо роли не играет, тк задается программно).</li>
+</ol>
+<blockquote>
+<ul>
+<li>Отдельная платка это линейный преобразователь на 3.3 вольта (<a href="https://aliexpress.ru/item/1005002334818093.html">aliexpress</a>).</li>
+<li>Подробнее про датчик <code>SenseAir S8</code> в статье <a href="https://emariete.com/en/meter-co2-esp8266-nodemcu-sensor-senseair-s8/">emariete.com</a>.</li>
+</ul>
+</blockquote>
+<p>Позже оказалось, что для I2C нельзя использовать GPIO16 и я перепаял подключение датчика <code>BME280</code>.</p>
+<p><img src="./images/IMG_4614.jpg" alt="image"></p>
+<p>После подсоединения к плате VINDRIKTNING:</p>
+<p><img src="./images/IMG_4612.jpg" alt="image"></p>
+<h2 id="сборка-и-настройка-перепрошивки">Сборка и настройка перепрошивки</h2>
+<p>Тут особо нечего писать, я взял также как и автор исходной статьи замечательную модульную прошивку для ESP8266 – <a href="https://tasmota.github.io/docs/">Tasmota</a>.</p>
+<p>Я собирал устаревшую версию (<a href="https://github.com/arendst/Tasmota">репа</a>, коммит <code>964f0bd62d9a490e5d8141c68e27418620015dfe</code>), тк тестировал это все еще в начале, года и не стал пересобирать все на новой.</p>
+<p>Далее я просто отключил неиспользуемые и включил используемуе модули в файле <code>tasmota/my_user_config.h</code>. Мой коммит в виде <a href="./Tasmota-8004d86-Setup_for_AirSensor.patch">patch файла</a>.</p>
+<p>После успешной перепрошивки, <code>ESP8266</code> раздает незащещенную точку доступа. И веб сервер позволяющий настроить устройство. Первое, что нужно сделать - назначить работу выходов контроллера во вкладке COnfiguration.</p>
+<p><img src="./images/tasmota_configuration.png" alt="image"></p>
+<p>После чего, если все прошло успешно, на главной странице отображаются значения с датчиков.</p>
+<p><img src="./images/tasmota_main.png" alt="image"></p>
+<p>Также во вкладке MQTT можно настроить отправку значений с датчиков в MQTT броккер. Однако на сколько я понял, это работает только без SSL.</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/electronics">electronics</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+<br/>
+<script defer src="https://commento.urpylka.com/js/commento.js" data-css-override="/css/commento.css"></script>
+<div id="commento"></div>
+<noscript>Please enable JavaScript to load the comments.</noscript></div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

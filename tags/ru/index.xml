@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Wed, 03 Aug 2022 19:22:00 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 04 Sep 2022 13:19:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Датчик качества воздуха на базе IKEA VINDRIKTNING</title>
+      <link>https://urpylka.com/posts/post-77/</link>
+      <pubDate>Sun, 04 Sep 2022 13:19:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-77/</guid>
+      <description>Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com.
+IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или PM2.5 (подробнее об этом здесь).
+Помимо световой индикации устройство может подключаться к очистителю воздуха IKEA FÖRNUFTIG.
+Устройство выполнено на микроконтроллере ES7P001FGSA:
+Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:</description>
+    </item>
     
     <item>
       <title>Установка и подключение BTT Relay Module</title>
