@@ -3,22 +3,14 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Датчик качества воздуха на базе IKEA VINDRIKTNING – urpylka՚s blog!</title><meta property="og:title" content="Датчик качества воздуха на базе IKEA VINDRIKTNING" />
-<meta property="og:description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com.
-IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или PM2.5 (подробнее об этом здесь).
-Помимо световой индикации устройство может подключаться к очистителю воздуха IKEA FÖRNUFTIG.
-Устройство выполнено на микроконтроллере ES7P001FGSA:
-Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:" />
+<meta property="og:description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com. Как по мне получилось неплохое устройство." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-77/" />
 <meta property="article:published_time" content="2022-09-04T13:19:00+03:00" />
 <meta property="article:modified_time" content="2022-09-04T13:19:00+03:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Датчик качества воздуха на базе IKEA VINDRIKTNING"/>
-<meta name="twitter:description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com.
-IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или PM2.5 (подробнее об этом здесь).
-Помимо световой индикации устройство может подключаться к очистителю воздуха IKEA FÖRNUFTIG.
-Устройство выполнено на микроконтроллере ES7P001FGSA:
-Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:"/>
+<meta name="twitter:description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com. Как по мне получилось неплохое устройство."/>
 <link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
@@ -37,14 +29,10 @@ IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Датчик качества воздуха на базе IKEA VINDRIKTNING">
-<meta itemprop="description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com.
-IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или PM2.5 (подробнее об этом здесь).
-Помимо световой индикации устройство может подключаться к очистителю воздуха IKEA FÖRNUFTIG.
-Устройство выполнено на микроконтроллере ES7P001FGSA:
-Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:">
+<meta itemprop="description" content="Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула статья на blakadder.com. Как по мне получилось неплохое устройство.">
 <meta itemprop="datePublished" content="2022-09-04T13:19:00&#43;03:00" />
 <meta itemprop="dateModified" content="2022-09-04T13:19:00&#43;03:00" />
-<meta itemprop="wordCount" content="565">
+<meta itemprop="wordCount" content="563">
 
 
 
@@ -160,14 +148,14 @@ if (!doNotTrack) {
 <p><img src="./images/IMG_4604.jpg" alt="image"></p>
 <p>Приводить схему подключение не вижу особого смысла, разве что перечислю используемые датчики и итогово, пины к которым я их подключил:</p>
 <ol>
-<li><code>IKEA VINDRIKTNING</code> (<a href="https://aliexpress.ru/item/1005001688541054.html">aliexpress</a>) (UART интерфейс, TX линия) – <code>GPIO2</code></li>
-<li><code>BME280</code> (<a href="https://aliexpress.ru/item/1005001688541054.html">aliexpress</a>) (I2C интерфейс) – <code>GPIO12</code> и <code>GPIO13</code> (где SDA, где SCL особо роли не играет, тк задается программно)</li>
-<li><code>SenseAir S8</code> (<a href="https://aliexpress.ru/item/1005001688541054.html">aliexpress</a>) (UART интерфейс) – <code>GPIO4</code> и <code>GPIO5</code> (где RX, где TX особо роли не играет, тк задается программно).</li>
+<li><code>IKEA VINDRIKTNING</code> (UART интерфейс, TX линия) – <code>GPIO2</code></li>
+<li><code>BME280</code> (I2C интерфейс) – <code>GPIO12</code> и <code>GPIO13</code> (где SDA, где SCL особо роли не играет, тк задается программно)</li>
+<li><code>SenseAir S8</code> (UART интерфейс) – <code>GPIO4</code> и <code>GPIO5</code> (где RX, где TX особо роли не играет, тк задается программно).</li>
 </ol>
 <blockquote>
 <ul>
 <li>Отдельная платка это линейный преобразователь на 3.3 вольта (<a href="https://aliexpress.ru/item/1005002334818093.html">aliexpress</a>).</li>
-<li>Подробнее про датчик <code>SenseAir S8</code> в статье <a href="https://emariete.com/en/meter-co2-esp8266-nodemcu-sensor-senseair-s8/">emariete.com</a>.</li>
+<li>Подробнее про датчик <code>SenseAir S8</code> (<a href="https://aliexpress.ru/item/1005001688541054.html">aliexpress</a>) в статье <a href="https://emariete.com/en/meter-co2-esp8266-nodemcu-sensor-senseair-s8/">emariete.com</a>.</li>
 </ul>
 </blockquote>
 <p>Позже оказалось, что для I2C нельзя использовать GPIO16 и я перепаял подключение датчика <code>BME280</code>.</p>
