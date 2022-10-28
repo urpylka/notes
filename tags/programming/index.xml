@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 31 May 2022 09:16:00 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 28 Oct 2022 16:13:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Upgrade и миграция Grafana с SQLite в PostgreSQL</title>
+      <link>https://urpylka.com/posts/post-78/</link>
+      <pubDate>Fri, 28 Oct 2022 16:13:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-78/</guid>
+      <description>Последний месяц я на работе в основном занимаюсь миграцией Grafana. Одна из задач в связи с этим – перенести данные из Grafana 7.5.9 использующую SQLite в Grafana 9.2.0 с PostgreSQL. Оказалось перенести базу не так просто, как я рассчитывал и читал в статьях других авторов. Что до официальной документации то, она отсуствует, есть разве что о миграции из PostgreSQL в MySQL.
+Решение которое первом попалось:
+ Migrating Grafana’s database from sqlite to postgres Grafana SQLite Migration to PostgreSQL  В кратце оно предлагает следующий подход:</description>
+    </item>
     
     <item>
       <title>Перенос домена COM зоны от регистратора Namecheap к Cloudflare в 2022 году</title>
