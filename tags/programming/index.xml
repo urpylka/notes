@@ -19,8 +19,8 @@
       
       <guid>https://urpylka.com/posts/post-78/</guid>
       <description>Последний месяц я на работе в основном занимаюсь миграцией Grafana. Одна из задач в связи с этим – перенести данные из Grafana 7.5.9 использующую SQLite в Grafana 9.2.0 с PostgreSQL. Оказалось перенести базу не так просто, как я рассчитывал и читал в статьях других авторов. Что до официальной документации то, она отсуствует, есть разве что о миграции из PostgreSQL в MySQL.
-Решение которое первом попалось:
- Migrating Grafana’s database from sqlite to postgres Grafana SQLite Migration to PostgreSQL  В кратце оно предлагает следующий подход:</description>
+Решение которое первым попалось:
+ Migrating Grafana’s database from sqlite to postgres Grafana SQLite Migration to PostgreSQL  Вкратце оно предлагает следующий подход:</description>
     </item>
     
     <item>

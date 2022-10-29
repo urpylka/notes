@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Последний месяц я занимался миграцией Grafana. Оказалось перенести базу не так просто, как я рассчитывал и читал в статьях. Под катом, как я это делал.">
 <meta itemprop="datePublished" content="2022-10-28T16:13:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-10-28T16:13:00&#43;02:00" />
-<meta itemprop="wordCount" content="2539">
+<meta itemprop="wordCount" content="2537">
 
 
 
@@ -112,12 +112,12 @@ if (!doNotTrack) {
 
             <div class="markdown">
                 <p>Последний месяц я на работе в основном занимаюсь миграцией Grafana. Одна из задач в связи с этим – перенести данные из <code>Grafana 7.5.9</code> использующую SQLite в <code>Grafana 9.2.0</code> с PostgreSQL. Оказалось перенести базу не так просто, как я рассчитывал и читал в статьях других авторов. Что до официальной документации то, она отсуствует, есть разве что <a href="https://grafana.com/blog/2020/01/13/how-to-migrate-your-configuration-database/">о миграции из PostgreSQL в MySQL</a>.</p>
-<p>Решение которое первом попалось:</p>
+<p>Решение которое первым попалось:</p>
 <ol>
 <li><a href="https://community.zenduty.com/t/migrating-grafanas-database-from-sqlite-to-postgres/406">Migrating Grafana’s database from sqlite to postgres</a></li>
 <li><a href="https://polyglot.jamie.ly/programming/2019/07/01/grafana-sqlite-to-postgres.html">Grafana SQLite Migration to PostgreSQL</a></li>
 </ol>
-<p>В кратце оно предлагает следующий подход:</p>
+<p>Вкратце оно предлагает следующий подход:</p>
 <ol>
 <li>Создание схемы базы запуском графаны с использованием PostgreSQL.</li>
 <li>Конвертация и загрузка SQLite базы в PosgreSQL с применением <a href="https://pgloader.readthedocs.io/en/latest/">pgloader</a></li>
@@ -140,7 +140,7 @@ if (!doNotTrack) {
 <p>Но опять, скрипт прерывался ошибкой. Я попробовал использовать готовый docker образ, собрать программу из исходников, но безуспешно.</p>
 <p>Однако я решил изучить, что делает программа и исправить. Посмотрев исходный код, я понял что ничего сложного нет, это программа просто выполняет поиск по регуляркам, и что-то правит.</p>
 <p>Я плохо пишу на Golang, и для решения конвертации бд, где возможно постоянно нужно делать правки в код я решил использовать интерпретируемый язык - Python. И действие за действием перенести и исправить программу на Golang.</p>
-<p>Ниже я приеду код программы по блокам и прокомментирую процесс.</p>
+<p>Ниже я приведу код программы по блокам и прокомментирую процесс.</p>
 <p>Сразу оговорюсь, что не считаю свой скрипт и это решение готовым решением для миграции. Поэтому я подаю это как конструктор, который в случае неработоспобсности можно самостоятельно допилить напильником под свои нужды.</p>
 <h2 id="полученное-решение">Полученное решение</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000">#! /usr/bin/env python3</span>
@@ -241,7 +241,7 @@ doings = 23
     match = re.compile(<span style="color:#a31515">&#34;(?m)(?&lt;=^INSERT INTO data_keys VALUES\()(.*)(,X</span><span style="color:#a31515">\&#39;</span><span style="color:#a31515">)([a-fA-F0-9]+</span><span style="color:#a31515">\&#39;</span><span style="color:#a31515">)&#34;</span>, re.IGNORECASE)
     content = match.sub(<span style="color:#a31515">r</span><span style="color:#a31515">&#34;\1,&#39;</span><span style="color:#a31515">\\</span><span style="color:#a31515">x\3&#34;</span>, content)
     <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;✅ Done&#34;</span> + howlong())
-</code></pre></div><p>Некоторые поля, а также байтовые поля, SQLite оборачивает в поля вида <code>X'[a-fA-F0-9]'</code>. Нам же нужно в тех таблицах, в которых нужно записать байтовое значение, необходимо поменять синтаксис на совместимый с PostgreSQL – <code>'\x[a-fA-F0-9]'</code>. Пользуясь составленным списком вверху, а также списком таблиц в которые мы записываем данные у меня получились талблицы – <code>dashboard_snapshot</code> и <code>data_keys</code> в которые у меня записываются данные, а также в которых содержатся байтовые поля.</p>
+</code></pre></div><p>Некоторые поля, а также байтовые поля, SQLite оборачивает в поля вида <code>X'[a-fA-F0-9]'</code>. Нам же нужно в тех таблицах, в которых нужно записать байтовое значение, необходимо поменять синтаксис на совместимый с PostgreSQL – <code>'\x[a-fA-F0-9]'</code>. Пользуясь составленным списком вверху, а также списком таблиц в которые мы записываем данные у меня получились таблицы – <code>dashboard_snapshot</code> и <code>data_keys</code> в которые у меня записываются данные, а также в которых содержатся байтовые поля.</p>
 <p>Далее все остальные батовые поля вида <code>X'[a-fA-F0-9]'</code> нужно было в текстовым виде записать в PosgtreSQL. Я попробовал сделать это в коде</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#008000"># def hexdecode(hexmatch):</span>
     <span style="color:#008000">#     _hexmatch = hexmatch.group(1)</span>
@@ -374,7 +374,7 @@ content = match.sub(hexdecode, content)
         match = re.compile(<span style="color:#a31515">&#34;(?&lt;=INSERT INTO </span><span style="color:#a31515">%s</span><span style="color:#a31515"> VALUES\().*(?=\);)&#34;</span> % (table), re.IGNORECASE)
         content = match.sub(<span style="color:#00f">lambda</span> match: bool_conv(table, match), content)
         <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;✅ Done&#34;</span> + howlong())
-</code></pre></div><p>И собственно перебор всех строк с и приведения в порядок значений булевых полей.</p>
+</code></pre></div><p>И собственно перебор всех строк и приведения в порядок значений булевых полей.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    print(&#34;&gt; 22/%d Setting quotes above tables name&#34; % (doings))
     match = re.compile(&#34;(?&lt;=INSERT INTO )([\w]+)(?= VALUES\(.*\);)&#34;, re.IGNORECASE)
     content = match.sub(r&#39;&#34;\1&#34;&#39;, content)
@@ -421,7 +421,7 @@ sqlite3 grafana.db .dump &gt; grafana.sql
 </blockquote>
 </li>
 <li>
-<p>Подготовливаем файл для сброса последовательностей уникальных ключей:</p>
+<p>Подготавливаем файл для сброса последовательностей уникальных ключей:</p>
 <p>В целом подходов два:</p>
 <ol>
 <li>
@@ -432,7 +432,7 @@ sqlite3 grafana.db .dump &gt; grafana.sql
 <span style="color:#00f">INSERT</span> <span style="color:#00f">INTO</span> sqlite_sequence <span style="color:#00f">VALUES</span>(<span style="color:#a31515">&#39;preferences&#39;</span>,61);
 <span style="color:#00f">INSERT</span> <span style="color:#00f">INTO</span> sqlite_sequence <span style="color:#00f">VALUES</span>(<span style="color:#a31515">&#39;dashboard_tag&#39;</span>,32188);
 ...
-</code></pre></div><p>И увеличив на единицу каждый подготовить соотвествующие инструкции, например:</p>
+</code></pre></div><p>И увеличив на единицу каждый, подготовить соотвествующие инструкции, например:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">...
 <span style="color:#00f">alter</span> sequence migration_log_id_seq <span style="color:#00f">restart</span> <span style="color:#00f">with</span> 458;
 ...
