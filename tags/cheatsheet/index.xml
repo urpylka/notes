@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Sun, 16 Jan 2022 13:11:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 16 Nov 2022 19:20:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Инструментарий которым пользуюсь</title>
+      <link>https://urpylka.com/posts/post-79/</link>
+      <pubDate>Wed, 16 Nov 2022 19:20:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-79/</guid>
+      <description>Привет. Это необычная статья, которые я пишу. Это заметка для меня самого для быстрого доступа к разным онлайн инструментам и программам, что использую повседневно.
+Онлайн инструменты  Генератор Barcode urpylka.com Сравнения кода tools4noobs.com Анализ логов PX4 pixhawk.org Распознание текста (OCR) newocr.com Проверка английской орфографии app.grammarly.com Рисование диаграмм creately.com Онлайн сортировка theithelper.ru Декодер artlebedev.ru Проверка регулярных выражений regex101.com  То, что использую на macOS Программы При переустановки операционной системы возникает необходимость переустановки всего пакета прикладного программного обеспечения.</description>
+    </item>
     
     <item>
       <title>Приветственное сообщение на Raspberry Pi (motd, profile.d)</title>

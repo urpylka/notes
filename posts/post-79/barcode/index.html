@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+  https://stackoverflow.com/questions/10673122/how-to-save-canvas-as-an-image-with-canvas-todataurl
+  https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
+  https://stackoverflow.com/questions/54710336/how-to-get-a-high-quality-canvas-to-png-conversion
+-->
+<html lang="en">
+<head>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script> -->
+  <script src="./JsBarcode_3_11_5.all.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <script>
+
+
+    function validate(flag){
+      if (flag) {
+        document.getElementById("text").style.border = "1.5px solid #00ff00";
+      } else {
+        document.getElementById("text").style.border = "1.5px solid #ff0000";
+        document.getElementById("barcode_svg").style.visibility = "hidden";
+      }
+    };
+
+    function render(){
+      let text = document.getElementById("text").value;
+      let codetype = document.getElementById("codetype").value;
+
+      JsBarcode("#barcode_svg", text, {
+        format: codetype,
+        lineColor: "#000",
+        // width: 10,
+        // height: 10,
+        displayValue: true,
+        valid: validate
+      });
+    };
+
+    function downloadPNG() {
+      renderPNG((dataURL) => {
+        const element = document.createElement("a");
+        element.download = "barcode.png";
+        element.href = dataURL;
+        element.click();
+        element.remove();
+      });
+    };
+
+    function renderPNG(dataURL) {
+      const svgImage = new Image();
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      svgImage.onload = () => {
+        canvas.width = svgImage.width;
+        canvas.height = svgImage.height;
+        ctx.drawImage(svgImage, 0, 0);
+
+        dataURL(canvas.toDataURL("image/png"));
+      };
+
+      const svg = document.getElementById('container').innerHTML;
+      const svgUrl = URL.createObjectURL(new Blob([svg], {type: 'image/svg+xml'}));
+      svgImage.src = svgUrl;
+      URL.revokeObjectURL(svgUrl);
+    };
+
+    function downloadSVG() {
+      const svg = document.getElementById('container').innerHTML;
+      const blob = new Blob([svg.toString()]);
+      const element = document.createElement("a");
+      element.download = "barcode.svg";
+      element.href = window.URL.createObjectURL(blob);
+      element.click();
+      element.remove();
+    };
+  </script>
+</head>
+<body onload="render()">
+  <h1>Barcode Generator</h1>
+  <div class="content">
+    <select id="codetype" onchange="render()">
+      <option>UPC</option>
+      <option>EAN2</option>
+      <option>EAN5</option>
+      <option>EAN8</option>
+      <option>EAN13</option>
+      <option>CODE39</option>
+      <option>CODE128</option>
+      <option>ITF14</option>
+      <option>MSI</option>
+      <option>pharmacode</option>
+      <option>codabar</option>
+    </select>
+
+    <input type="text" id="text" value="123456789012" oninput="render()">
+
+    <div id="container">
+      <svg id="barcode_svg"></svg>
+    </div>
+
+    <button id="download" onclick="downloadSVG()">Download SVG</button>
+    <button onclick="downloadPNG()">Download PNG</button>
+  </div>
+  <p>Based on <a href="https://github.com/lindell/JsBarcode/">JsBarcode</a><br>Made by <a href="https://urpylka.com">Artem Smirnov</a></p>
+</body>
+</html>
