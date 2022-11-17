@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу структурировать в своей заметке.">
 <meta itemprop="datePublished" content="2020-04-16T02:14:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-04-16T02:14:00&#43;04:00" />
-<meta itemprop="wordCount" content="711">
+<meta itemprop="wordCount" content="683">
 
 
 
@@ -249,15 +249,6 @@ virt-configure</p>
 0 12 * * *  rm /Users/smirart/Library/Preferences/com.panic.Coda2.plist
 </code></pre></div><h3 id="смена-ttl-на-macos">Смена TTL на macOS</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sudo sysctl -w net.inet.ip.ttl=65
-</code></pre></div><p>Скрипт для создания скрипта)))</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">echo &#34;#! /bin/bash&#34;
-&gt;
- ch_ttl.sh
-echo &#34;sudo sysctl -w net.inet.ip.ttl=65&#34;
-&gt;
-&gt;
- ch_ttl.sh
-chmod +x ch_ttl.sh
 </code></pre></div><h3 id="resize-volume-on-macos">Resize volume on macos</h3>
 <ul>
 <li><a href="https://apple.stackexchange.com/questions/197640/diskutil-resizevolume-noob">apple.stackexchange.com/questions/197640/diskutil-resizevolume-noob</a></li>
@@ -271,15 +262,13 @@ chmod +x ch_ttl.sh
 <li><a href="https://github.com/alperakcan/fuse-ext2">github.com/alperakcan/fuse-ext2</a></li>
 <li>brew ext <a href="https://github.com/gerard/ext4fuse">github.com/gerard/ext4fuse</a></li>
 </ul>
-<h3 id="cкрин-окна-с-тенью-на-macos">Cкрин окна с тенью на macOS</h3>
-<p><code>cmd+shift+4+space</code></p>
-<h3 id="на-маке-что-исправлено">на маке что исправлено</h3>
-<ol>
-<li>сочетание клавишь для заметок на com+T для создания новой</li>
-<li>Настроить терминал: перемещение словами, перемещение в начало и конец строки</li>
-<li>Ctrl + k удаление строки в nano</li>
-<li>Поиск по истории bck-i-search (типа ctrl+i)</li>
-</ol>
+<h3 id="работа-с-маршрутами">Работа с маршрутами</h3>
+<ul>
+<li><a href="http://did5.ru/apple/macos-apple/kak-posmotret-dobavit-i-udalit-marshrut-v-mac-os-x.html">Как посмотреть, добавить и удалить маршрут в Mac OS X</a></li>
+<li><a href="https://www.tunnelsup.com/how-to-see-the-routing-table-on-mac-osx/">How to See the Routing Table on Mac OSX</a></li>
+<li><a href="https://td.unh.edu/TDClient/60/Portal/KB/ArticleDet?ID=784">How-To: Route Print (Mac OS X) </a></li>
+<li><a href="https://gist.github.com/taldanzig/4628573">Routing tips for VPNs on OS X</a></li>
+</ul>
 <h3 id="использования-мака-в-качестве-монитора">Использования мака в качестве монитора</h3>
 <p><a href="https://support.apple.com/en-us/ht204592">support.apple.com/en-us/ht204592</a></p>
 <h2 id="wireshark">Wireshark</h2>
