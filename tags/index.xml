@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Wed, 16 Nov 2022 19:20:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 06 Dec 2022 14:16:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>en</title>
+      <link>https://urpylka.com/tags/en/</link>
+      <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/en/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://urpylka.com/tags/programming/</link>
+      <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/programming/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>cheatsheet</title>
@@ -18,15 +36,6 @@
       <pubDate>Wed, 16 Nov 2022 19:20:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/cheatsheet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://urpylka.com/tags/programming/</link>
-      <pubDate>Wed, 16 Nov 2022 19:20:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/programming/</guid>
       <description></description>
     </item>
     
@@ -72,15 +81,6 @@
       <pubDate>Tue, 31 May 2022 19:00:00 +0300</pubDate>
       
       <guid>https://urpylka.com/tags/travelling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>en</title>
-      <link>https://urpylka.com/tags/en/</link>
-      <pubDate>Thu, 24 Feb 2022 18:40:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/en/</guid>
       <description></description>
     </item>
     

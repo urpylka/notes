@@ -7,13 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Wed, 16 Nov 2022 19:20:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 06 Dec 2022 14:16:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Инструментарий, которым пользуюсь</title>
+      <title>Python Stack implementaion in text file</title>
+      <link>https://urpylka.com/posts/post-80/</link>
+      <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-80/</guid>
+      <description>Some time ago I realised that there is no a library to keep a stack of strings in a text file efficiently in Python. So I coded own one. I commented the code, and I suppose that any additional words will be redundant.
+#! /usr/bin/env python3 ##################################################################### # The library allows to work with stack of strings in a text file # # To use import this file as library (ex.</description>
+    </item>
+    
+    <item>
+      <title>Мой инструментарий</title>
       <link>https://urpylka.com/posts/post-79/</link>
       <pubDate>Wed, 16 Nov 2022 19:20:00 +0200</pubDate>
       

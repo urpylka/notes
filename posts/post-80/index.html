@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Python Stack implementaion in text file – urpylka՚s blog!</title><meta property="og:title" content="Python Stack implementaion in text file" />
+<meta property="og:description" content="Some time ago I realised that there is no library to keep stack of string in file efficiently in Python. So I coded owned." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-80/" />
+<meta property="article:published_time" content="2022-12-06T14:16:00+02:00" />
+<meta property="article:modified_time" content="2022-12-06T14:16:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python Stack implementaion in text file"/>
+<meta name="twitter:description" content="Some time ago I realised that there is no library to keep stack of string in file efficiently in Python. So I coded owned."/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Python Stack implementaion in text file">
+<meta itemprop="description" content="Some time ago I realised that there is no library to keep stack of string in file efficiently in Python. So I coded owned.">
+<meta itemprop="datePublished" content="2022-12-06T14:16:00&#43;02:00" />
+<meta itemprop="dateModified" content="2022-12-06T14:16:00&#43;02:00" />
+<meta itemprop="wordCount" content="350">
+
+
+
+<meta itemprop="keywords" content="en,programming," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">06</span>
+                        <span class="rest">Dec 2022</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Python Stack implementaion in text file</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Some time ago I realised that there is no a library to keep a stack of strings in a text file efficiently in Python. So I coded own one.
+I commented the code, and I suppose that any additional words will be redundant.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#! /usr/bin/env python3
+
+#####################################################################
+# The library allows to work with stack of strings in a text file   #
+# To use import this file as library (ex. for same dir)             #
+# from stack import Stack                                           #
+# Author: Artem Smirnov &lt;urpylka@gmail.com&gt;                         #
+#####################################################################
+
+import threading
+
+class Stack():
+    &#34;&#34;&#34;
+    The class allows to work with stack of strings in a text file
+    &#34;&#34;&#34;
+
+    def __init__(self, filepath: str):
+        &#34;&#34;&#34;
+        Provide path to file where stack is located.
+        &#34;&#34;&#34;
+
+        self.path = filepath
+        self.lock = threading.Lock()
+
+
+    def is_empty(self):
+        &#34;&#34;&#34;
+        Method allows to get state of the stack
+        &#34;&#34;&#34;
+
+        with self.lock:
+            with open(self.path, &#39;r&#39;) as fd:
+                fd.seek(0, 2)
+                return fd.tell() &lt; 1
+
+
+    def pop(self) -&gt; str:
+        &#34;&#34;&#34;
+        Method allow to pop one string from the stack
+        &#34;&#34;&#34;
+
+        with self.lock:
+            with open(self.path, &#39;r+&#39;) as fd:
+                # go to last character in the file
+                fd.seek(0, 2)
+                end = fd.tell()
+
+                pos = end
+                buf = &#34;&#34;
+                nlpos = -1
+                # for better perfomance it should be a little bit more than medium line size
+                chunk_size = 1
+
+                # while not found
+                while nlpos == -1 and pos != 0:
+                    pos -= chunk_size
+
+                    # if it is a last string in the file
+                    if pos &lt; 0: pos = 0
+
+                    fd.seek(pos)
+                    buf = fd.read(chunk_size) + buf
+
+                    # try to find nl (newline) symbol, except last
+                    nlpos = buf.rfind(&#34;\n&#34;, 0, -1)
+
+                pos = pos + nlpos + 1
+                fd.seek(pos)
+                fd.truncate()
+
+                if buf == &#34;&#34;:
+                    return None
+                else:
+                    buf = buf[nlpos+1:-1]
+                    return buf
+
+
+    def push(self, line: str):
+        &#34;&#34;&#34;
+        Method allow to push one string to the stack
+        &#34;&#34;&#34;
+
+        with self.lock:
+            with open(self.path, &#39;a&#39;) as fd:
+                fd.write(line + &#34;\n&#34;)
+
+
+def main():
+    &#34;&#34;&#34;
+    Example of usage. It will create 10 items in stack,
+    and will pop it
+    &#34;&#34;&#34;
+
+    FILENAME = &#34;./testfile.sql&#34;
+    stack = Stack(FILENAME)
+
+    for i in range(1,10):
+        stack.push(f&#34;push-{i}&#34;)
+
+    while not stack.is_empty():
+        print(stack.pop())
+
+
+if __name__ == &#34;__main__&#34;:
+    main()
+</code></pre></div>
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/en">en</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
