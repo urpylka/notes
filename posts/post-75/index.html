@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Заводской брак в модуле BTT UPS 24V V1.0 или почему не работает UPS для 3д-принетера – urpylka՚s blog!</title><meta property="og:title" content="Заводской брак в модуле BTT UPS 24V V1.0 или почему не работает UPS для 3д-принетера" />
+<meta property="og:description" content="В заголовке уже сказано достаточно много, единственное, что хочу сказать сразу, что я провел много экспериментов и таким путем, на практике, разобрался как работает компаратор или операционный усилитель и пришел к выводу, что в этой детали присуствует заводской брак." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-75/" />
+<meta property="article:published_time" content="2023-01-02T13:15:00+02:00" />
+<meta property="article:modified_time" content="2023-01-02T13:15:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Заводской брак в модуле BTT UPS 24V V1.0 или почему не работает UPS для 3д-принетера"/>
+<meta name="twitter:description" content="В заголовке уже сказано достаточно много, единственное, что хочу сказать сразу, что я провел много экспериментов и таким путем, на практике, разобрался как работает компаратор или операционный усилитель и пришел к выводу, что в этой детали присуствует заводской брак."/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Заводской брак в модуле BTT UPS 24V V1.0 или почему не работает UPS для 3д-принетера">
+<meta itemprop="description" content="В заголовке уже сказано достаточно много, единственное, что хочу сказать сразу, что я провел много экспериментов и таким путем, на практике, разобрался как работает компаратор или операционный усилитель и пришел к выводу, что в этой детали присуствует заводской брак.">
+<meta itemprop="datePublished" content="2023-01-02T13:15:00&#43;02:00" />
+<meta itemprop="dateModified" content="2023-01-02T13:15:00&#43;02:00" />
+<meta itemprop="wordCount" content="1293">
+
+
+
+<meta itemprop="keywords" content="ru,3dprint,electronics," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, robotics, traveling</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">02</span>
+                        <span class="rest">Jan 2023</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Заводской брак в модуле BTT UPS 24V V1.0 или почему не работает UPS для 3д-принетера</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Прежде всего хочу сделать заметку, что я не профессиональный электронщик, а просто любитель. И во многом, что изложено в статье я разбирался впервые.</p>
+<blockquote>
+<p>Проблема: Ожидается срабатывание платы (подача сигнала о потере питания к основному контроллера 3д-принетара) при небольшом падении напряжения в районе 24 вольт. Однако плата срабатывает только при 19 вольтах, что опасно, тк при таком напряжении энергии в ионистрах уже мб не достаточно для совершения pre-recovery процедуры.</p>
+</blockquote>
+<p><a href="./images/orderscreenshot.png">Пруф покупки</a> <a href="https://aliexpress.ru/item/4000346571520.html">модуля</a> у <a href="https://aliexpress.ru/store/1910218">BIGTREETECH Marvellous Store</a> 30 ноября 2021 года.</p>
+<p><img src="./images/btt_ups_v1_0.jpg" alt="image"></p>
+<p><img src="./images/photo_top_view.jpg" alt="image"></p>
+<p>Все началось с того, что после получения товара и разбора моего 3д принтера, я осознал, что ошибся с выбором версии модуля и взял модуль на 24 вольта, вместо 12. Но ничего страшного подумал я, и решил разобраться как устроен модуль и как его можно переделать под 12 вольт.</p>
+<h2 id="схема-устройства">Схема устройства</h2>
+<p>Достаточно быстро я наткнулся на <a href="https://3dtoday.ru/blogs/vasilius-v/reversing-modulya-ibp-bigtreetech-ups-24v-v10">топик на сайте 3dtoday.ru</a>. В котором изложена его схема (нумерация компонентов не совпадает, но в целом всё так).</p>
+<p><img src="./images/scheme.jpg" alt="image"></p>
+<p>Схему можно условно разделить на две отдельные:</p>
+<ol>
+<li>схема с ионистрами позволяющими питать какое-то время принтер, когда напряжение питания пропало;</li>
+<li>схема с компаратором по напряжению, сигнализирующая контроллеру принетра, что напряжение питания пропало.</li>
+</ol>
+<h3 id="часть-с-ионистрами">Часть с ионистрами</h3>
+<p>Что касается первой части, то, каждый последовательный элемент содержит <a href="http://vprl.ru/publ/tekhnologii/nachinajushhim/tl431_chto_ehto_za_quot_zver_quot_takoj/9-1-0-17">управляемый стабилитрон</a> с напряжением открытия 2.5 вольта и делитель напряжения с коэфициентом 13.5, что как раз даёт в средней точке 2.5 вольта при питании 2.7 вольта. Соотсвественно управляемый стабилитрон откроется и не позволит зарядить ионистр больше 2.7 вольт. Соотвественно, эта часть схемы может работать с любым входным напряжением, как меньшим, так и большим. Но она просто не зарядится больше чем 2.7 вольта * 9 ионисторов – итого 24.3 вольта.</p>
+<p><img src="./images/microcap_ionisters.png" alt="image"></p>
+<h3 id="часть-с-компаратором">Часть с компаратором</h3>
+<p>Куда интереснее вторая часть схемы, давайте взглянем на неё более подробно и разберем её принцип работы. Условно можем разбить эту схему на основные составялющие части:</p>
+<ol>
+<li>Линейный стабилизатор напряжения с шунтирующей обвязкой и защитным диодном (от случайной смены полярности)</li>
+<li>Делитель входного напряжения</li>
+<li><a href="./lm393.pdf">Компаратор LM393</a></li>
+<li>Подтягивающий резистор на 10 КОм.</li>
+</ol>
+<p>Про линейный стабилизатор думаю говорить особо нечего. Он понижает входное напряжение до 5 вольт. Разберем как работает компаратор.</p>
+<h4 id="как-работает-компаратор">Как работает компаратор?</h4>
+<p>И так возьмём некоторый компаратор и рассмотрим принцип его действия:</p>
+<p><img src="./images/comparator.png" alt="image"></p>
+<p>На графике видно, что когда напряжение на неинвертирующем входе (<code>IN+</code>) больше, чем на инвертирующем (<code>IN-</code>), на выходе компаратора (<code>OUT</code>) высокий логический уровень, соотвественное в обратном случае – низкий логический уровень. Такую диаграмму работы приводят практически все матириалы, что я находил в интернете, когда пытался разобраться как работает компаратор. Однако, на практике это не соотвествуют действительности в одном не большом, но очень важном моменте.</p>
+<p>А именно, что если <code>IN+</code> &gt; <code>IN-</code>, то <code>OUT</code> висит в воздухе. А если <code>IN-</code> &gt; <code>IN+</code>, то <code>OUT</code> = напряжению земли компаратора (<code>GND</code>).</p>
+<p>Соотвественно возвращаясь к нашей схеме выше, подтягивающий резистор на 10КОм нужен, для того, чтобы, когда напряжение питания принтера падает, и <code>IN-</code> становится меньше <code>IN+</code>, тогда <code>OUT</code> оказывается через подтягивающий резистор замкнут на 5 вольт и контроллер принетра получает сигнал, что, напряжение пропало.</p>
+<h4 id="делитель-напряжения">Делитель напряжения</h4>
+<p>Давайте теперь сделаем акцент на то, когда должен сработать компаратор.</p>
+<p>Сделаем расчет коэфициента делителя напряжения: <code>(19.1KOm + 4.99KOm)/4.99KOm ≈ 4.83</code></p>
+<ul>
+<li>Соотвественно при питании 24 вольта на инвертирующем входе <code>24V / 4.83 ≈ 4.97V</code>.</li>
+<li>А на неинвертирующем входе копаратора – опорное напряжение в 5 вольт от линейного стабилизатора</li>
+</ul>
+<p>Следовательно ожидается, что мы чуть-чуть должны повысить напряжение питания принтера с 24 вольт на 0.5-1 вольт. И тогда на инвертирующем входе в нормальном состоянии будет напряжение немного больше, чем опорное. Таким образом нормальный сигнал от платы будет 0 вольт. А если напряжение падает ниже 24х вольт, на выходе будет 5 вольт.</p>
+<p><img src="./images/voltage_devider.jpg" alt="image"></p>
+<p>Скрины с сайта <a href="https://hiser.guru/calc-divres/">hiser.guru</a>.</p>
+<p>И тут мы подошли к основной проблеме, с которой я столкнулся – это не работает.</p>
+<h2 id="схема-не-работает">Схема не работает</h2>
+<p>Тут происходило самое интерсное, что я только не пробовал, всё указывало на то, что всё верно, но схема ведет себя некорректно. В итоге после сбора около 20 разных схем для проверки гипотез на макетных платах я выяснил в чём проблема, отсюда по порядку.</p>
+<p>Проблему я заметил после смены резисторов в делителе напряжения на номиналы 5.1КОм и 3.6КОм. Таким образом на инвертирующем входе 5 вольт при напряжении питания 12.1 вольта. Однако, компаратор срабатывал в районе 9.5 вольт.</p>
+<p><img src="./images/change_resistors.jpg" alt="image"></p>
+<p>После я подумал, что-то недопонимаю, и вернув, оригинальные резисторы, и протестировав на 24 вольтах, срабатывания тоже не происходило вовремя. Напряжение падало до 19 вольт и только тогда срабатывал компаратор.</p>
+<p>Я измерил напряжение на <code>IN-</code>, в обоих случаях оно было около 3.95 вольта, когда компаратор срабатывал.</p>
+<p>Тут я решил взять другой компартор (взял LM339 из старого блока питания компьютера) и собрал схему уже на макетной плате с подстроечным резистором. Я попробовал разные компараторы, шунтирующие конденсаторы в цепи питания компаратора, и много другого. Тут я пропущу кучу итераций и мыслей в течении года, я брался за эту задачу не раз.</p>
+<p><img src="./images/doing_tests.jpg" alt="image"></p>
+<p>На фото запечатлено напряжение в момент срабатывания компаратора LM339. При повторении схемы как на плате BTT UPS v1.0.</p>
+<p>В конце я решил попробовать запитать компаратор от источника питания применяемого в тесте (напряжением 7 вольт) и все работало как ожидалось, компаратор срабатывал в районе 5 вольт на <code>IN-</code>. Однако, когда я переключал питания компаратора к стабилизатору на 5 вольт (эти же 5 вольт шли на <code>IN+</code>), компаратор продолжал срабатывать при 3.95 вольта, вместо 5 вольт.</p>
+<p>Тут я подумал, что компаратору просто не хватает напряжения питания и полез в даташиты, чтобы убедиться, что я все правильно делаю. 3-36V – гласили все мануалы.</p>
+<p>Для последнего эксперемента я взял регулируемый источник питания, и запитал компаратор отдельно от питания делителя напряжения. И оказалось что с уменьшением напряжения питания компаратора уменьшался и верхний предел сравниваемых напряжений, как раз с разницей в ≈1.1 вольта.</p>
+<p>И так, загадка крылась в устройстве компаратора.</p>
+<p>Дело в том, что внутри компаратора находится дифференциальный каскад и для его работы требуется, чтобы напряжение работы компаратора было больше чем 1.1-2 вольта, чем требуемое напряжение срабатывания.</p>
+<p><img src="./images/lm393-opisanie-datasheet-sxema-vklyucheniya-analog-blok.gif" alt="image"></p>
+<p>Не будь в схеме компаратора защитных диодов - дифференциальный каскад просто сгорел бы при таком питании.</p>
+<p>Далее я выпаял компартор с платы, для того, чтобы воспроизвести тест на нём. Средняя фотография – напряжение в момент срабатывания компаратора при питании от стабилизатора в 5 вольт (как у на плате BTT UPS v1.0). Фотография справа – напряжение в момент срабатывания компаратора от напряжения в 7 вольт.</p>
+<p><img src="./images/test_unsoldered.jpg" alt="image"></p>
+<p>Для успокоения души я выпаял ещё пару операционных усилителей из старого ADSL роутера <code>ST EZ714</code> и мультиметра <code>LM358</code> и проверил на них.</p>
+<p><img src="./images/router_operational_amplifier.jpg" alt="image">
+<img src="./images/multimeter_operational_amplifier.jpg" alt="image"></p>
+<p>Правда один ОУ я случайно сжег, забыв добавить в схему токоограничетельный резистор перед светодиодом. В общем результаты повторились. И я могу смело утверждать, что здесь присутствует ошибка в схеме.</p>
+<h2 id="выводы">Выводы</h2>
+<p>Возникает резонный вопрос, почему никто не жалуется массово на этот модуль?</p>
+<p>Я полагаю дело в том, что виной этом две причины:</p>
+<ol>
+<li>Это сложное технической устройство, которое работает с еще более сложным техническим устройствовом – контроллером принтера. Далеко не все, кто его устанавливает, может разобраться в деталях работы, а скорее просто следует инструкции.</li>
+<li>Второе и самое важное то, что ошибка в схеме не полностью исключает срабатывание модуля (как мы выяснили он срабатывает при 19 вольтах). Что в принципе, учитывая первую причину пользователи могут списать это на плохое исполнение / брак или просто не заметить, если принтеру хватит энергии уже подразряженных ионистров чтобы, чтобы успеть исполнить pre-recovery процедуры.</li>
+</ol>
+<p>Как это починить, я вижу два пути:</p>
+<ol>
+<li>Подбор такого делителя напряжения, чтобы на инвертирующем входе было напряжение в 3.95 вольта. Однако этот вариант мне не особо нравится, потому что тут мы полагаемся на имперически вычисленное напряжение некорректно подключенного компаратора.</li>
+<li>Запитка компаратора от входоного напряжения платы. Чтобы ничего не менять на плате, я предлагаю поднять 8 ногу от платы. Добавить диэлектрик под нее, и сверху поставить перемычку (проводок) к ножке входа LM7805. В идеале можно также добавить шунтирующий конденсатор на 100нФ.</li>
+</ol>
+<p>На днях поиграюсь с платой еще, мб найду какое-то более красивое решение проблемы.</p>
+<p>Я написал продавцу спустя год, конечно, не ожидая возврата, а нормальной реакции – обратной связи и внесения изменений в плату. Сейчас продавец спросил, подходит ли мне возврат. Посмотрим чем это закочинтся. (В течении месяца обновлю статью).</p>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/3dprint">3dprint</a></li>
+                    
+                    <li><a href="/tags/electronics">electronics</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2023  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
