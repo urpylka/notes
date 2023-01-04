@@ -213,11 +213,11 @@ fdisk: cannot open /dev/sda: No medium found
 ^ERRRPT:1,2
 ^SIMST:4,0
 </code></pre></div><p><code>/dev/cdc-wdm0</code> это часть <code>USB WDM device</code> или <a href="https://www.jungo.com/st/embedded_usb_cdc.html">CDC-WMC Device Management</a>, по идеи это должен быть интерфейс команд и прерыванию <code>QMI</code> протокола, однако при проверки этого интерфейса утилитами <code>qmicli</code>, <code>mmcli</code> оказалось что это не так, либо он уже перехвачен.</p>
-<p>Очень советую прочитать материал <a href="./Qualcomm_Gobi_devices_on_Linux.pdf">Qualcomm Gobi devices on Linux</a>.</p>
+<p>Очень советую прочитать материал <a href="./assets/Qualcomm_Gobi_devices_on_Linux.pdf">Qualcomm Gobi devices on Linux</a>.</p>
 <p>Как вывод и проделанных тестов и вывода <code>dmesg</code> – это разновидность <code>NCM</code> в протоколе USB. Вообще чтобы лучше понимать по каким протоколам и как может раздаваться интернет, советую изучить, следующие два материала:</p>
 <ol>
 <li><a href="https://klink0v.livejournal.com/371655.html">Про протоколы взаимодействия с 3G/LTE-модемом</a></li>
-<li><a href="./FOSDEM2013_-_Mobile_broadband_modem_control_protocols.pdf">FOSDEM2013 - Mobile broadband modem control protocols</a></li>
+<li><a href="./assets/FOSDEM2013_-_Mobile_broadband_modem_control_protocols.pdf">FOSDEM2013 - Mobile broadband modem control protocols</a></li>
 </ol>
 <p>Ну и остались несколько сериал устройсв:</p>
 <ul>

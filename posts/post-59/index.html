@@ -241,7 +241,7 @@ ffmpeg -i input.mp4 output.avi
 <h3 id="mjpeg-by-mjpg-streamer">MJPEG by mjpg-streamer</h3>
 <p>Реализацией метода покадрового сжатия является Motion JPEG (MJPEG) (<a href="https://ru.wikipedia.org/wiki/MJPEG">wiki</a>). Основной особенностью которого является сжатие каждого отдельного кадра видеопотока с помощью алгоритма сжатия изображений JPEG. Этот метод широко применяется в некритичных к задержкам задачах, например в видеонаблюдении. Плюсами данного метода являются: небольшие потребности в ресурсах вычислителя при кодировании, поддержка отображения данного стрима с помощью всех браузеров без надстроек. Возможность легко добавить веб-сервер для повышения робастности камеры. Реализацией данного метода является <a href="https://sourceforge.net/projects/mjpg-streamer/"><code>mjpg-streamer</code></a>.</p>
 <p>Надо заметить, что в дистрибутивах <code>Raspbian OS</code> (до <code>RaspiOS</code>) утилита <code>raspistill</code> для кодирования изображений с CSI-камеры использовала возможности аппаратного видео-сопроцессора <code>Video Core</code>. И по сути позволяла не использовать для этого ресурсы CPU. Такая возможность была добавлена в <code>mjpg-streamer</code> за счет добавления плагина <a href="https://github.com/jacksonliam/mjpg-streamer"><code>input_raspicam</code></a>.</p>
-<p><img src="./images/screenshot-2017-09-28-v-20.03.17.png" alt="image"></p>
+<p><img src="./assets/screenshot-2017-09-28-v-20.03.17.png" alt="image"></p>
 <p>Использование <code>mjpg-streamer</code>:</p>
 <ul>
 <li><a href="https://habr.com/ru/post/196598/">Фотонаблюдение или timelapse видео на Raspberry Pi</a></li>

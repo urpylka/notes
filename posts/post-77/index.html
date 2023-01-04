@@ -114,19 +114,19 @@ if (!doNotTrack) {
                 <p>Я давно хотел собрать датчик анализа воздуха, а к конкретной реализации меня подтолкнула <a href="https://blakadder.com/vindriktning-tasmota/">статья на blakadder.com</a>.</p>
 <h2 id="ikea-vindriktning">IKEA VINDRIKTNING</h2>
 <p>Сам датчик <a href="https://www.ikea.lv/en/products/decoration/lighting/air-purifiers-accessories/vindriktning-air-quality-sensor-art-80515910">IKEA VINDRIKTNING</a> представляет из себя небольшое устройство в белом корпусе с разъёмом USB-C. Данное устройство измеряет количество пыли размером 2.5 микрометра или <code>PM2.5</code> (подробнее об этом <a href="https://airkaz.org/pm25.php">здесь</a>).</p>
-<p><img src="./images/0977883_PE813916_S4.jpg" alt="image"></p>
+<p><img src="./assets/0977883_PE813916_S4.jpg" alt="image"></p>
 <p>Помимо световой индикации устройство может подключаться к очистителю воздуха <a href="https://www.ikea.lv/en/products/office/air-purifiers-accessories/air-purifiers-accessories/fornuftig-air-purifier-black-art-10488062">IKEA FÖRNUFTIG</a>.</p>
 <p>Устройство выполнено на микроконтроллере <code>ES7P001FGSA</code>:</p>
-<p><img src="./images/chip.jpg" alt="image"></p>
+<p><img src="./assets/chip.jpg" alt="image"></p>
 <p>Прибор внутри состоит из платы и самого датчика в массивном железном корпусе:</p>
-<p><img src="./images/inside.jpg" alt="image"></p>
+<p><img src="./assets/inside.jpg" alt="image"></p>
 <p>Как видно в верхней части много места, чтобы поместить туда дополнительную электронику.</p>
 <h2 id="прошивка-esp8266-esp-12f">Прошивка ESP8266 (ESP-12F)</h2>
 <p>Для перепрошивки я буду использовать USB-UART преобразователь. Изначально я собрал setup на плате для Serial Wifi линка:</p>
-<p><img src="./images/old_plate.jpg" alt="image"></p>
+<p><img src="./assets/old_plate.jpg" alt="image"></p>
 <p>Данная плата хороша тем, что необходимые пины соединены сразу, а также есть кнопка сброса и режима программирования. Однако плата, занимает достаточна масивна и я решил использовать плату <code>ESP-12F</code>.</p>
 <p>Давайте рассмотрим как нужно подключить плату для её работы и перепрошивки.</p>
-<p><img src="./images/ESP8266-ESP-12E-chip-pinout-gpio-pin.webp" alt="image"></p>
+<p><img src="./assets/ESP8266-ESP-12E-chip-pinout-gpio-pin.webp" alt="image"></p>
 <p>Для работы модуля необходимо:</p>
 <ol>
 <li><code>ENABLE</code> притянуть к плюсу, во многих мануалах это делается через резистор. Я не совсем понимаю зачем, тк состояние самого пина врядли будет меняться со стороны контроллера, разве чтобы ограничить ток, хотя если проблема будет в неправильном напряжении, плата все равно сгорит по питанию.</li>
@@ -138,14 +138,14 @@ if (!doNotTrack) {
 <p>Для притяжки каких либо пинов я использую резисторы номиналом 10кОм.</p>
 </blockquote>
 <p>Вариант схемы для перепрошивки:</p>
-<p><img src="./images/ESP-12_usb_to_serial.jpg" alt="image"></p>
+<p><img src="./assets/ESP-12_usb_to_serial.jpg" alt="image"></p>
 <p>Подробнее о пинах ESP8266 на <a href="https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/">randomnerdtutorials.com</a>, ниже краткая выжимка:</p>
-<p><img src="./images/pins.jpg" alt="image"></p>
+<p><img src="./assets/pins.jpg" alt="image"></p>
 <h2 id="подключение-датчиков-к-esp8266">Подключение датчиков к ESP8266</h2>
 <p>Мой будерброд из датчиков и контроллера выглядит следующим образом:</p>
-<p><img src="./images/IMG_4602.jpg" alt="image"></p>
-<p><img src="./images/IMG_4603.jpg" alt="image"></p>
-<p><img src="./images/IMG_4604.jpg" alt="image"></p>
+<p><img src="./assets/IMG_4602.jpg" alt="image"></p>
+<p><img src="./assets/IMG_4603.jpg" alt="image"></p>
+<p><img src="./assets/IMG_4604.jpg" alt="image"></p>
 <p>Приводить схему подключение не вижу особого смысла, разве что перечислю используемые датчики и итогово, пины к которым я их подключил:</p>
 <ol>
 <li><code>IKEA VINDRIKTNING</code> (UART интерфейс, TX линия) – <code>GPIO2</code></li>
@@ -159,17 +159,17 @@ if (!doNotTrack) {
 </ul>
 </blockquote>
 <p>Позже оказалось, что для I2C нельзя использовать GPIO16 и я перепаял подключение датчика <code>BME280</code>.</p>
-<p><img src="./images/IMG_4614.jpg" alt="image"></p>
+<p><img src="./assets/IMG_4614.jpg" alt="image"></p>
 <p>После подсоединения к плате VINDRIKTNING:</p>
-<p><img src="./images/IMG_4612.jpg" alt="image"></p>
+<p><img src="./assets/IMG_4612.jpg" alt="image"></p>
 <h2 id="сборка-и-настройка-перепрошивки">Сборка и настройка перепрошивки</h2>
 <p>Тут особо нечего писать, я взял также как и автор исходной статьи замечательную модульную прошивку для ESP8266 – <a href="https://tasmota.github.io/docs/">Tasmota</a>.</p>
 <p>Я собирал устаревшую версию (<a href="https://github.com/arendst/Tasmota">репа</a>, коммит <code>964f0bd62d9a490e5d8141c68e27418620015dfe</code>), тк тестировал это все еще в начале, года и не стал пересобирать все на новой.</p>
-<p>Далее я просто отключил неиспользуемые и включил используемуе модули в файле <code>tasmota/my_user_config.h</code>. Мой коммит в виде <a href="./Tasmota-8004d86-Setup_for_AirSensor.patch">patch файла</a>.</p>
+<p>Далее я просто отключил неиспользуемые и включил используемуе модули в файле <code>tasmota/my_user_config.h</code>. Мой коммит в виде <a href="./assets/Tasmota-8004d86-Setup_for_AirSensor.patch">patch файла</a>.</p>
 <p>После успешной перепрошивки, <code>ESP8266</code> раздает незащещенную точку доступа. И веб сервер позволяющий настроить устройство. Первое, что нужно сделать - назначить работу выходов контроллера во вкладке COnfiguration.</p>
-<p><img src="./images/tasmota_configuration.png" alt="image"></p>
+<p><img src="./assets/tasmota_configuration.png" alt="image"></p>
 <p>После чего, если все прошло успешно, на главной странице отображаются значения с датчиков.</p>
-<p><img src="./images/tasmota_main.png" alt="image"></p>
+<p><img src="./assets/tasmota_main.png" alt="image"></p>
 <p>Также во вкладке MQTT можно настроить отправку значений с датчиков в MQTT броккер. Однако на сколько я понял, это работает только без SSL.</p>
 
             </div>

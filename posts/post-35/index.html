@@ -130,7 +130,7 @@ if (!doNotTrack) {
 <li><a href="https://cnc.js.org">CNCjs</a></li>
 </ol>
 <p>И тогда как Octoprint заточен под 3D печать, CNCjs как раз наоборот под milling / cutting machine.</p>
-<p><img src="./images/imagesimage2829.png" alt="image"></p>
+<p><img src="./assets/imagesimage2829.png" alt="image"></p>
 <h2 id="создание-docker-образа-cncjs">Создание Docker образа CNCjs</h2>
 <p>Впервые я узнал о CNCjs из <a href="https://www.balena.io/blog/add-new-functionality-to-affordable-cnc-machines-using-cnc-js-and-balena/">статьи</a> компании <a href="https://www.balena.io">Balena</a>. Данное решение предназначено для использования в среде <a href="https://dashboard.balena-cloud.com/">balenaCloud</a>. В кратце этот сервис предоставялет экосистему состоящую из:</p>
 <ul>
@@ -152,7 +152,7 @@ if (!doNotTrack) {
 </ol>
 <p>Я выбрал 3й вариант.</p>
 <p>С счатью задача передачи UART интерфейса по сети достаточно широко-используется. Поэтому я с легкостью нашел проект – <a href="https://github.com/jeelabs/esp-link">ESP-Link</a>.</p>
-<p><img src="./images/f8128c92-90ad-11e6-804e-9a4796035e9a.png" alt="image"></p>
+<p><img src="./assets/f8128c92-90ad-11e6-804e-9a4796035e9a.png" alt="image"></p>
 <p>У него есть как минусы:</p>
 <ol>
 <li>Передача gcode-команд осуществялется по воздуху и возможна как потеря команд, так и задержки при их передаче. Однако как показали тесты, проблем с этим замечено не было, тк Raspberry Pi находится буквально в метре от антенны ESP8266.</li>
@@ -167,7 +167,7 @@ if (!doNotTrack) {
 <li>Есть возможность использовать Raspberry Pi для подключения камеры или других устройств, например 3D принтера стоящего на столе.</li>
 </ol>
 <p>Описывать прошивку и настройку ESP-Link я не стану, все достаточно легко гуглится. Единственное, покажу очень удобную для этих целей плату:</p>
-<p><img src="./images/IMG_8094.jpg" alt="image"></p>
+<p><img src="./assets/IMG_8094.jpg" alt="image"></p>
 <h2 id="виртуальный-uart-интерфейс">Виртуальный UART интерфейс</h2>
 <p>Собственно единственным реальным затыком было придумать как подключить CNCjs к сокету в который публикует байты ESP-Link. Путей два:</p>
 <ol>

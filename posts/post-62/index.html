@@ -149,16 +149,16 @@ crw-rw---- 1 root dialout 188,   2 Jan 22 08:40 ttyUSB2
 <li>померил напряжение в точках припайки провода к модему</li>
 </ol>
 <p>Все было хорошо. И я не понимал, как только что работающий модем мог перестать работать за секунду. Я решил отмести все варианты с проводом и припаял проверенный экранированный провод небольшой длины от зарядника iPhone, а затем разъём напрямую проводками длиной 1.5см. Но результаты были теже, и я понял что нужно копать глубже, после чего снял экраны.</p>
-<p><img src="./images/huawei-e352.jpg" alt="image"></p>
+<p><img src="./assets/huawei-e352.jpg" alt="image"></p>
 <p>Плата промаркирована <code>CH2E353SM VER. A-RF</code>.</p>
 <ol>
 <li><code>Hi6755RBC</code></li>
-<li><code>H8BCS0PE0MBR-46M-C</code> (на <a href="https://www.datasheets360.com/search/results?query=H8BCS0PE0MBR">datasheets360.com</a> удалось найти для <a href="./HYSC-S-A0001367250-1.pdf">H8BCS0SI0BAR</a>)</li>
+<li><code>H8BCS0PE0MBR-46M-C</code> (на <a href="https://www.datasheets360.com/search/results?query=H8BCS0PE0MBR">datasheets360.com</a> удалось найти для <a href="./assets/HYSC-S-A0001367250-1.pdf">H8BCS0SI0BAR</a>)</li>
 <li><code>Hi6331RBC</code></li>
 <li><code>Hi6481RBC</code></li>
-<li><code>SKY77344-21</code> (<a href="./sky77344-21.pdf">datesheet</a>)</li>
-<li><code>RF1194A</code> (<a href="./rf1194a.pdf">datesheet</a>)</li>
-<li><code>A2001 K1231 F6129</code> (кажется этот <a href="./sx1231.pdf">datesheet</a>)</li>
+<li><code>SKY77344-21</code> (<a href="./assets/sky77344-21.pdf">datesheet</a>)</li>
+<li><code>RF1194A</code> (<a href="./assets/rf1194a.pdf">datesheet</a>)</li>
+<li><code>A2001 K1231 F6129</code> (кажется этот <a href="./assets/sx1231.pdf">datesheet</a>)</li>
 <li><code>05 1228 K9UH</code></li>
 <li><code>EPCOS 7697</code></li>
 <li><code>AVAGO  FF1226</code></li>
@@ -382,12 +382,12 @@ Starting USBware stack, Version 3.4.30.13
 
 ^RSSI: 30
 </code></pre></div><p>На первый взгляд загрузка происходит одинаково два раза, однако, если сравнить строки окажется, что загрузки немного отличаются.</p>
-<p><img src="./images/screenshot.png" alt="image"></p>
+<p><img src="./assets/screenshot.png" alt="image"></p>
 <p>Собственно говоря, скорее всего на прошлой работе этот модем стоял на дроне и упал с высоты. В связи с чем, либо отошел чип от платы, либо расслоение самой платы.</p>
 <p>Через месяц ко мне придет паяльный фен и я собираюсь погреть чип во флюсе, в надежде что это всё-таки не проблема с платой.</p>
 <p>Ах, да, соседний пин это RX, после загрузки ОС работает ввод (единственное он не дублируется в вывод), но на команду <code>^AT</code> я получаю <code>OK</code>.</p>
 <p>Как бонус прикладываю распиновку разъёма:</p>
-<p><img src="./images/huawei-e352-2.jpg" alt="image"></p>
+<p><img src="./assets/huawei-e352-2.jpg" alt="image"></p>
 
             </div>
 

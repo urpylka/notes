@@ -127,15 +127,15 @@ if (!doNotTrack) {
 </ul>
 <h2 id="теория">Теория</h2>
 <p>Для изложения я буду описывать процесс на примере самых распространных SBC на 2020 год. Это одноплатные компьютеры <strong><a href="https://ru.wikipedia.org/wiki/Raspberry_Pi">Raspberry Pi</a> 3го и 4го поколения</strong>. Однако материал изложенный в этой статье применим и для других SBC.</p>
-<p><img src="./images/rpi-3-4.jpg" alt="image"></p>
+<p><img src="./assets/rpi-3-4.jpg" alt="image"></p>
 <p>Еще пару хороших ссылочек на обзор плат от Кравченко Виктора:</p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=5bRg28vjv74">Сравнение плат 3го поколения</a></li>
 <li><a href="https://www.youtube.com/watch?v=AL2l_8odEqU">Обзор платы 4го поколения</a></li>
 </ul>
 <p>Для начала предлагаю рассмотреть устройство плат и задаться вопросами: <strong>«откуда берется видеопоток?»</strong>, <strong>«как он передается?»</strong>, <strong>«где обрабатывается?»</strong> и <strong>«где хранится?»</strong>.</p>
-<p><img src="./images/videocapture-Page-1.svg" alt="image"></p>
-<p><img src="./images/videocapture-Page-2.svg" alt="image"></p>
+<p><img src="./assets/videocapture-Page-1.svg" alt="image"></p>
+<p><img src="./assets/videocapture-Page-2.svg" alt="image"></p>
 <h3 id="источник-видеопотока">Источник видеопотока</h3>
 <ol>
 <li>
@@ -161,10 +161,10 @@ if (!doNotTrack) {
 <li>Opensource camera stack at Raspberry Pi 4 <a href="https://www.raspberrypi.org/blog/an-open-source-camera-stack-for-raspberry-pi-using-libcamera/">raspberrypi.org/blog</a>, <a href="https://libcamera.org/docs.html#documentation">libcamera.org</a></li>
 </ul>
 <p><strong>HDMI-&gt;CSI конвертор</strong></p>
-<p>Большинство таких решений построено на базе чипа <a href="https://toshiba.semicon-storage.com/us/semiconductor/product/interface-bridge-ics-for-mobile-peripheral-devices/hdmir-interface-bridge-ics/detail.TC358743XBG.html">Toshiba TC358743XBG</a> (<a href="./TC358743XBG_datasheet_en_20171026.pdf">Datasheet</a>).</p>
+<p>Большинство таких решений построено на базе чипа <a href="https://toshiba.semicon-storage.com/us/semiconductor/product/interface-bridge-ics-for-mobile-peripheral-devices/hdmir-interface-bridge-ics/detail.TC358743XBG.html">Toshiba TC358743XBG</a> (<a href="./assets/TC358743XBG_datasheet_en_20171026.pdf">Datasheet</a>).</p>
 <ul>
 <li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=101999">CSI-2 / Toshiba TC358743XBG</a></li>
-<li><a href="./images/screenshot.jpg">Lusya HDMI-совместимая плата адаптера стандартный интерфейс к CSI-2 TC358743XBG для Raspberry Pi</a> (<a href="https://aliexpress.ru/item/4000152180240.html">aliexpress</a>)</li>
+<li><a href="./assets/screenshot.jpg">Lusya HDMI-совместимая плата адаптера стандартный интерфейс к CSI-2 TC358743XBG для Raspberry Pi</a> (<a href="https://aliexpress.ru/item/4000152180240.html">aliexpress</a>)</li>
 <li><a href="https://gist.github.com/maditnerd/01195c64a80ff2087ff9541682f1727b">Compile raspberry pi 3 kernel to add drivers (tc358743)</a></li>
 <li><a href="https://raspberrypi.ru/video_capture_hdmi_csi_bridge_TC358743XBG">Захват видео через HDMI вход HDMI-CSI моста для Raspberry Pi</a></li>
 <li><a href="https://auvidea.eu/b100-hdmi-to-csi-2-bridge/">B100 HDMI to CSI-2 Bridge</a></li>
@@ -240,7 +240,7 @@ if (!doNotTrack) {
 <li><a href="https://cnx-software.ru/2019/10/11/py-videocore6-biblioteka-python-dlya-gpgpu-na-raspberry-pi-4-s-graficheskim-protsessorom-videocore-6/">py-videocore6 — библиотека Python для GPGPU на Raspberry Pi 4 с графическим процессором VideoCore 6</a></li>
 <li><a href="https://github.com/Idein/py-videocore6">github.com/Idein</a></li>
 <li><a href="https://github.com/nineties/py-videocore">github.com/nineties</a></li>
-<li><a href="./bcm2835-videocoreiv_datasheet.pdf">VideoCore® IV 3D Architecture Reference Guide</a></li>
+<li><a href="./assets/bcm2835-videocoreiv_datasheet.pdf">VideoCore® IV 3D Architecture Reference Guide</a></li>
 <li><a href="https://www.linux.org.ru/forum/multimedia/13451608">V4L encoding using Broadcom VideoCore IV</a></li>
 <li><a href="https://gitlab.com/raspivideo/raspiv4l">gitlab.com/raspivideo</a></li>
 </ul>
@@ -269,7 +269,7 @@ if (!doNotTrack) {
 Далее я буду оперировать данными для кодирования в <code>RGB</code>. Поделив это напополам, вы получите данные для <code>YUV</code> кодирования.</p>
 </blockquote>
 <p>Для удобства сравнения следующие данные представлю в <strong>bit/s</strong> (это в 8 раз меньше, чем <strong>byte/s</strong>): 6[MByte/s] = 49,7[Mbit/s] ≈ 50[Mbit/s]</p>
-<p><img src="./images/videocapture-Page-3.svg" alt="image"></p>
+<p><img src="./assets/videocapture-Page-3.svg" alt="image"></p>
 <h3 id="mini-вывод">Mini-вывод</h3>
 <p>Думаю после сравнения цифр стало ясно, что <strong>Raspberry Pi 3 не сможет банально принять FullHD картинку 60 кадров / сек в несжатом виде.</strong> Максимальное, что можно выжать из этого SBC – это подключить <code>Raspicam</code> к CSI порту и <strong>снять FullHD, 40 кадров / сек</strong>.</p>
 <p>Ситуация с <strong>Raspberry Pi 4B</strong> иная, ввиду наличия PCI Express шины пропускной способностью в 5Gbit/s и подключенного к ней контроллера USB 3.0. Теоретически с Raspbbery Pi 4B можно <strong>снять FullHD, 60 кадров / сек с одного порта, + со второго ещё FullHD, 40 кадров / сек</strong>. Оговорюсь, что это только теоретические цифры, на практике скорости будут несколько меньше.</p>

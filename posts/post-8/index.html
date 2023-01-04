@@ -114,27 +114,27 @@ if (!doNotTrack) {
                 <p>USB порты Raspberry Pi имеют ограничение по току (в среднем от 1.2 до 2А, точную информацию смотрите в спецификации к конкретной плате). При подключении сотовых модемов, Wi-Fi модулей и других потребителей требущих от 2х и более ампер требуется внешнее питание. Производитель предлагает использовать USB-HUB со внешним питанием. Однако это решение подойдет не для всех, например, при использовании Raspberry Pi на дроне (где масса и размеры критичны). Ниже изложу устройство ограничителя тока и обход ограничения по току.</p>
 <h2 id="устройство">Устройство</h2>
 <p>Рассмотрим платы Raspberry Pi модели B и B+ – платы со встроенным Ethernet и USB портами. Структурно все платы идентичны за исключением наличия Wi-Fi модуля у последних двух.</p>
-<p><img src="./images/rpi-model-b-selected.jpg" alt="image"></p>
+<p><img src="./assets/rpi-model-b-selected.jpg" alt="image"></p>
 <blockquote>
 <p>Raspberry Pi 4B не включена в обзор ввиду отличий по схеме.</p>
 </blockquote>
 <p>На рисунке красным я выделил схему питания USB, а зеленым <a href="https://www.microchip.com/wwwproducts/en/LAN9514">контроллер LAN9514</a> USB-HUB'а со встроенной сетевой картой. По сути все порты подключены к этому контроллеру, а он в свою очередь (по USB 2.0 шине) к основному вычислителю. Рассмотрим схему питания выделенную красным.</p>
 <p>На официальном сайте (на странице продукта Raspberry Pi 3B+ по ссылке «schematic diagrams») представлена следующая схема:</p>
-<p><img src="./images/rpi_SCH_3bplus_1p0_reduced.pdf" alt="image"></p>
+<p><img src="./assets/rpi_SCH_3bplus_1p0_reduced.pdf" alt="image"></p>
 <blockquote>
 <p>Включите светлую тему сайта для корректного отображения схемы в PDF формате.</p>
 </blockquote>
 <p>Но в ней нет части питания USB нагрузки. На схеме даже указано &ldquo;Reduced&rdquo;. Оказывается, что некоторые части схемы находятся под NDA (обсуждение <a href="https://github.com/raspberrypi/documentation/issues/347">здесь</a>).</p>
 <blockquote>
-<p>В <a href="https://electronics.stackexchange.com/questions/164524/why-are-corresponding-usb-datalines-connected-to-each-other-in-this-usb-hub/164526">обсуждении</a>, я нашел ссылку на еще <a href="./images/Raspberry-Pi-R2.0-Schematics-Issue2.2_027.pdf">одну схему</a> Raspberry Pi c чуть более подробной информацией (но такое ощущение, что она от самой первой Raspberry Pi).</p>
+<p>В <a href="https://electronics.stackexchange.com/questions/164524/why-are-corresponding-usb-datalines-connected-to-each-other-in-this-usb-hub/164526">обсуждении</a>, я нашел ссылку на еще <a href="./assets/Raspberry-Pi-R2.0-Schematics-Issue2.2_027.pdf">одну схему</a> Raspberry Pi c чуть более подробной информацией (но такое ощущение, что она от самой первой Raspberry Pi).</p>
 </blockquote>
 <p>Однако в интернете можно найти следующую схему (LAN9514 USB Current Limit):</p>
-<p><img src="./images/photo_2020-11-16_14.16.56.jpeg" alt="image"></p>
-<p>Из схемы можно увидеть название микросхемы отвечающей за ограничение тока – <a href="./images/AP255x-278026.pdf">AP2553W6</a>, ниже представлен фрагмент структурной схемы из её даташита.</p>
-<p><img src="./images/ap2553.png" alt="image"></p>
+<p><img src="./assets/photo_2020-11-16_14.16.56.jpeg" alt="image"></p>
+<p>Из схемы можно увидеть название микросхемы отвечающей за ограничение тока – <a href="./assets/AP255x-278026.pdf">AP2553W6</a>, ниже представлен фрагмент структурной схемы из её даташита.</p>
+<p><img src="./assets/ap2553.png" alt="image"></p>
 <p>Исходя из того, что в случае перегрузки <code>FLG</code> (<code>FAULT</code>) соединяется с землёй, а на пин <code>USB_OVC_N</code> не содержит токоограничевающего резистора, можно сделать вывод, что он используется как сигнальный. Для оповещения о перегрузки по току контроллера <code>LAN9514</code> (для отключения шин данных).</p>
-<p>Соотвествующее подтвержение можно найти во фрагменте из <a href="./images/lan9514.pdf">даташита LAN9514</a>:</p>
-<p><img src="./images/usb_pins.png" alt="image"></p>
+<p>Соотвествующее подтвержение можно найти во фрагменте из <a href="./assets/lan9514.pdf">даташита LAN9514</a>:</p>
+<p><img src="./assets/usb_pins.png" alt="image"></p>
 <blockquote>
 <p>Полагаю аналогичное подключение и с <code>LAN7515</code> на Raspberry Pi 3B+.</p>
 </blockquote>
@@ -144,7 +144,7 @@ if (!doNotTrack) {
 <li>Выпаять <code>AP2553W6</code> и соединить IN - OUT пины перемычкой;</li>
 <li>С вывода 5V (GPIO) кинуть провод на выход 5V в USB порту.</li>
 </ol>
-<p><img src="./images/rpi_jumper.jpg" alt="image"></p>
+<p><img src="./assets/rpi_jumper.jpg" alt="image"></p>
 <p>На сколько я смог понять из изучения плат: Raspberry Pi не содержит встроенных 5V стабилизаторов напряжения, а значит в случе перегрузки по току, выгореть может только дорожка или внешний источник питания. У последних защита обычно встроена, однако позаботиться о не возникновании КЗ, после удалении защиты, всё же стоит.</p>
 
             </div>

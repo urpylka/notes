@@ -175,7 +175,7 @@ sudo dpkg -L ros-kinetic-catkin
 </code></pre></div><h3 id="проверка-версии-debian">Проверка версии Debian</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/os-release
 lsb_release -a
-</code></pre></div><p><img src="./images/screenshot-2017-09-01-v-1.54.17.png" alt="image"></p>
+</code></pre></div><p><img src="./assets/screenshot-2017-09-01-v-1.54.17.png" alt="image"></p>
 <h3 id="копирование-с-exclude">Копирование с exclude</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">rsync -av --progress * --exclude sakis_install.sh
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp -r * -i sakis_install.sh
@@ -205,7 +205,7 @@ lsb_release -a
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">virt-sysprep
 virt-configure
 </code></pre></div><h3 id="название-вкладки">Название вкладки</h3>
-<p><img src="./images/screenshot-2017-11-15-v-13.48.57.png" alt="image"></p>
+<p><img src="./assets/screenshot-2017-11-15-v-13.48.57.png" alt="image"></p>
 <h2 id="работа-с-логами">Работа с логами</h2>
 <ul>
 <li>
@@ -227,11 +227,11 @@ virt-configure
 <h2 id="ros-переполнение-логов">ROS: Переполнение логов</h2>
 <p>Стандартная утилита для мониторинга и чистки <a href="http://wiki.ros.org/rosclean">http://wiki.ros.org/rosclean</a>
 <a href="https://answers.ros.org/question/258978/is-there-an-alternative-way-to-get-rid-of-ros-log-files/">https://answers.ros.org/question/258978/is-there-an-alternative-way-to-get-rid-of-ros-log-files/</a></p>
-<p><img src="./images/screenshot-2017-09-12-v-14.58.30.png" alt="image"></p>
-<p><img src="./images/screenshot-2017-09-12-v-16.13.44.png" alt="image"></p>
+<p><img src="./assets/screenshot-2017-09-12-v-14.58.30.png" alt="image"></p>
+<p><img src="./assets/screenshot-2017-09-12-v-16.13.44.png" alt="image"></p>
 <blockquote>
 <p>Переполнение логов 20 метров (то, что я сохранил)
-<a href="./cecd58fa-972b-11e7-ad41-3974d4b0fb26.zip">.ros/log/cecd58fa-972b-11e7-ad41-3974d4b0fb26</a></p>
+<a href="./assets/cecd58fa-972b-11e7-ad41-3974d4b0fb26.zip">.ros/log/cecd58fa-972b-11e7-ad41-3974d4b0fb26</a></p>
 </blockquote>
 <p>Скрипт очистки логов, если накопилось более 300MB</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">if [[ $(du -s .ros | awk &#39;{ print $1 }&#39;) -ge 300000 ]]; then yes | rosclean purge; echo &#34;urpylka: cleaned ros log&#34;; fi
@@ -262,7 +262,7 @@ virt-configure
 <p><a href="https://support.apple.com/en-us/ht204592">support.apple.com/en-us/ht204592</a></p>
 <h2 id="wireshark">Wireshark</h2>
 <p>мониторинг пакетов с помощью wireshark tcpdump</p>
-<p><img src="./images/screenshot-2017-09-20-v-15.00.27.png" alt="image"></p>
+<p><img src="./assets/screenshot-2017-09-20-v-15.00.27.png" alt="image"></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">ip.addr == 192.168.11.1 and udp and udp.port == 14550
 </code></pre></div><h2 id="vscode">VSCODE</h2>
 <p><code>CMD + /</code> - комментирование</p>

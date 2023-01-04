@@ -116,7 +116,7 @@ if (!doNotTrack) {
 <p>Все платы Arduino (основная линейка) построены на базе чипа Atmega с архитектурой AVR. AVR – это семейство микроконтроллеров, их прошивка, а именно запись постоянной памяти и выставление Fuse битов реализовано через ICSP порт очень похожий на SPI. Однако наиболее распространенным способом прошивки является прошивка через USB. Точнее через UART, тк на самом деле на плате разведён USB-RS232 преобразователь.</p>
 <blockquote>
 <p>RS232 это надстройка над UART. UART содержит только пины <code>RX</code>, <code>TX</code>. Тогда как RS232 содержит ещё и другие линии (подробнее на <a href="https://zen.yandex.ru/media/tehnozet2/uart-comport-rs232-chto-eto-i-kak-oni-sviazany-60093adf9444cb7e98c63dbb">UART, COM-порт, RS-232, что это и как они связаны?</a>):</p>
-<p><img src="./images/db9m-rs232-pinout.jpg" alt="image"></p>
+<p><img src="./assets/db9m-rs232-pinout.jpg" alt="image"></p>
 </blockquote>
 <p>Для перепрошивки через UART требуется выполнение двух условий:</p>
 <ol>
@@ -126,15 +126,15 @@ if (!doNotTrack) {
 <p>Для начала разберемся с тем, что нужно постоянно искать – пинами на программаторе.</p>
 <h2 id="прошивка-с-помощью-программатора">Прошивка с помощью программатора</h2>
 <p>Есть множество различных программаторов, я использую <code>USBasp</code> (<a href="https://microkontroller.ru/programmirovanie-mikrokontrollerov-avr/usbasp-usb-avr-programmator/">USBASP: USB AVR программатор для микроконтроллеров ATmega, ATtiny</a>).</p>
-<p><img src="./images/usbasp2_0.jpg" alt="image"></p>
+<p><img src="./assets/usbasp2_0.jpg" alt="image"></p>
 <p>Также в качестве программатора можно использовать ещё одну плату Arduino со специальной прошивкой.</p>
 <p>Все сложность в прошивки этим способом обеспечить корректное подключение программатора к Arduino. Также обратите внимание, что лучше запитать Arduino непосредственно от программатора.</p>
 <p>Основная проблема в том, что на большинстве программаторов ICSP-разъём содержит 10 пинов, тогда как на всех платах Arduino, и не только, он 6ти пиновый.</p>
-<p><img src="./images/iscp.jpg" alt="image"></p>
+<p><img src="./assets/iscp.jpg" alt="image"></p>
 <p>Для прототипирования небольших проектов, я люблю использовать <code>Arduino Nano</code>, ниже описание выводов:</p>
-<p><img src="./images/arduino-nano-3.2.jpg" alt="image"></p>
+<p><img src="./assets/arduino-nano-3.2.jpg" alt="image"></p>
 <p>На некоторых программаторах, в том числе на USBasp выведены также I2C, UART-линии:</p>
-<p><img src="./images/atb-usbasp.png" alt="image"></p>
+<p><img src="./assets/atb-usbasp.png" alt="image"></p>
 <p>Для облегчения процесса перепрошивки, может быть сделан переходник. Подробнее в статье <a href="http://bigbenmobileblog.blogspot.com/2014/01/avr-isp.html">AVR ISP Разъемы</a> (<a href="http://web.archive.org/web/20200808204440/http://bigbenmobileblog.blogspot.com/2014/01/avr-isp.html">webarchive</a>).</p>
 <blockquote>
 <p>Иногда при прошивке с помощью программатора возникает ошибка <code>avrdude: warning: cannot set sck period, please check for usbasp firmware update</code>, при этом она может вызвана двумя причинами:</p>

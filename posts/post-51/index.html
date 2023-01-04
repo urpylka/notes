@@ -113,7 +113,7 @@ if (!doNotTrack) {
             <div class="markdown">
                 <h2 id="что-такое-uuid--partuuid">Что такое UUID / PARTUUID</h2>
 <p>Как видно из скриншота ниже, в ОС для удобства обращения к блочным устройствам автоматически создаются различные симлинки.</p>
-<p><img src="./images/screenshot-2018-02-02-at-12.37.59.png" alt="image"></p>
+<p><img src="./assets/screenshot-2018-02-02-at-12.37.59.png" alt="image"></p>
 <p><strong>UUID</strong> задается при форматировании файловой системы и хранится в её суперблоке. Поэтому при побайтовом копировании разделов <code>UUID</code> не меняется.</p>
 <p>При подключении нескольких блочных устройств с одинаковыми <code>UUID</code>, в <code>/dev/disk/by-uuid</code> отображается только последнее подключенное устройство. Подробнее <a href="http://rus-linux.net/nlib.php?name=/MyLDP/hard/izmenenie-uuid-i-metki-toma-na-diske.html">rus-linux.net</a>.</p>
 <p><strong>PARTUUID</strong> также не меняется при побайтовом копировании. А также не меняется при ручном изменении размера файловой системы. Однако, как пример, в Raspberry Pi при первом запуске системы вызывается <code>raspi-config</code> для расширения <code>rootfs</code> раздела до максимально возможного. При её исполнении меняется <code>partuuid</code>, а также меняется <code>partuuid</code> указанный в <code>/boot/cmdline.txt</code>).</p>

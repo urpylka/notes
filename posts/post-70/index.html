@@ -143,7 +143,7 @@ if (!doNotTrack) {
 </code></pre></div></li>
 <li>
 <p>И включить поддержку входящих по сети соединений в настройках сервера – <code>Allow connections from network clients</code>.</p>
-<p><img src="./images/Screenshot_2022-03-09_at_14.44.16.png" alt="image"></p>
+<p><img src="./assets/Screenshot_2022-03-09_at_14.44.16.png" alt="image"></p>
 </li>
 <li>
 <p>Далее нужно задать переменную <code>DISPLAY</code>. Без этого у меня не получилось запустить <code>xhost</code> на моей машине.</p>
@@ -170,9 +170,9 @@ if (!doNotTrack) {
 </code></pre></div><p>Обратите внимание на то, что я делаю mount в домашнюю директорию пользователя хост системы. Это нужно для использования секретного ключа внутри контейнера.</p>
 <p>Далее нам необходимо запустить само приложение, в моём случае это установленный ранее <code>virt-manager</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">virt-manager -c <span style="color:#a31515">&#39;qemu+ssh://&lt;USER&gt;@&lt;KVM_IP&gt;/system?keyfile=/mnt/.ssh/id_rsa&#39;</span>
-</code></pre></div><p><img src="./images/Screenshot_2022-03-09_at_15.07.53.png" alt="image"></p>
-<p><img src="./images/Screenshot_2022-03-09_at_15.08.00.png" alt="image"></p>
-<p><img src="./images/Screenshot_2022-03-09_at_15.08.19.png" alt="image"></p>
+</code></pre></div><p><img src="./assets/Screenshot_2022-03-09_at_15.07.53.png" alt="image"></p>
+<p><img src="./assets/Screenshot_2022-03-09_at_15.08.00.png" alt="image"></p>
+<p><img src="./assets/Screenshot_2022-03-09_at_15.08.19.png" alt="image"></p>
 <p>На этом всё. Ниже вы можете ознакомиться с источниками, которые я брал в основу.</p>
 <p>Источники:</p>
 <ul>
