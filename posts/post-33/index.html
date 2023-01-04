@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью. В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов img-builder. Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.">
 <meta itemprop="datePublished" content="2021-03-30T17:40:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-03-30T17:40:00&#43;04:00" />
-<meta itemprop="wordCount" content="2315">
+<meta itemprop="wordCount" content="2320">
 
 
 
@@ -148,7 +148,7 @@ if (!doNotTrack) {
 <li>Запущена как самостоятельная служба, работает с Wi-Fi интерфейсом;
 <img src="./images/screenshot-2017-09-01-v-18.54.55.png" alt="image"></li>
 <li>Если <code>dhcpcd</code> видит поднятый интерфейс от <code>wpa_supplicant</code>, то пытается наладить там адресацию;</li>
-<li>Используется для создания Wi-Fi клиента: реализует обмен ключами и WPA аутентификацию (<a href="http://manpages.ylsoftware.com/ru/wpa_supplicant.8.html">manpages.ylsoftware.com</a>, <a href="https://wiki.archlinux.org/index.php/Wpa_supplicant">wiki.archlinux.org</a>).</li>
+<li>Используется для создания Wi-Fi клиента: реализует обмен ключами и WPA аутентификацию (<a href="http://manpages.ylsoftware.com/ru/wpa_supplicant.8.html">manpages.ylsoftware.com</a>, <a href="https://wiki.archlinux.org/title/Wpa_supplicant">wiki.archlinux.org</a>).</li>
 </ul>
 </li>
 </ol>
@@ -460,7 +460,7 @@ systemctl restart networking
 <li><code>iwspy</code> – получает от конкретного узла статистические данные о беспроводной сети</li>
 <li><code>libiw.so</code> – содержит функции, необходимые программам, работающим с беспроводными сетями, и предоставляет API для других программ.</li>
 </ul>
-<p>Источник <a href="http://rus-linux.net/nlib.php?name=/MyLDP/BOOKS/BLFS-ru/14/blfs-ru-14-12.html">rus-linux.net</a></p>
+<p>Источник <a href="http://rus-linux.net/nlib.php?name=/MyLDP/BOOKS/BLFS-ru/14/blfs-ru-14-12.html">rus-linux.net</a>, дополнительная информация по пакету <a href="https://wiki.archlinux.org/index.php/Wireless_network_configuration_%28%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%29">wiki.archlinux.org</a>.</p>
 <h3 id="dnsmasq">DNSMASQ</h3>
 <p>Команды для просмотра основных файлов:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Основной конфигурационный файл</span>
