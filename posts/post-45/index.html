@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу сохранить в своей заметке.">
 <meta itemprop="datePublished" content="2020-04-16T02:14:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-04-16T02:14:00&#43;04:00" />
-<meta itemprop="wordCount" content="639">
+<meta itemprop="wordCount" content="641">
 
 
 
@@ -146,9 +146,9 @@ if (!doNotTrack) {
 </ul>
 <h3 id="отладка-программ">Отладка программ</h3>
 <ul>
-<li>strace - системные вызовы</li>
-<li>ltrace - трейсить вызовы из SO</li>
-<li>ldd - посмотреть зависимые библиотеки</li>
+<li><code>strace</code> - системные вызовы</li>
+<li><code>ltrace</code> - трейсить вызовы из SO</li>
+<li><code>ldd</code> - посмотреть зависимые библиотеки</li>
 </ul>
 <h3 id="пакетный-менеджер-apt-и-dpkg">Пакетный менеджер apt и dpkg</h3>
 <ul>
@@ -173,7 +173,8 @@ sudo dpkg -S FILE
 <span style="color:#008000"># Посмотреть какие файлы принадлежат пакету</span>
 sudo dpkg -L ros-kinetic-catkin
 </code></pre></div><h3 id="проверка-версии-debian">Проверка версии Debian</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsb_release -a
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/os-release
+lsb_release -a
 </code></pre></div><p><img src="./images/screenshot-2017-09-01-v-1.54.17.png" alt="image"></p>
 <h3 id="копирование-с-exclude">Копирование с exclude</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">rsync -av --progress * --exclude sakis_install.sh
