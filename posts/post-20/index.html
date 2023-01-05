@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В заметке изложены некоторые команды, которые я иногда забываю ввиду редкости их использования.">
 <meta itemprop="datePublished" content="2020-12-13T13:40:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-12-13T13:40:00&#43;04:00" />
-<meta itemprop="wordCount" content="151">
+<meta itemprop="wordCount" content="279">
 
 
 
@@ -145,7 +145,45 @@ git commit --amend
 git pull --rebase
 <span style="color:#008000"># Добавить пустой коммит</span>
 git commit --allow-empty -m <span style="color:#a31515">&#34;Empty commit&#34;</span>
-</code></pre></div>
+</code></pre></div><h2 id="смена-автора-коммита">Смена автора коммита</h2>
+<p>Замена автора в конкретном коммите с помощью переписывания коммита:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git commit --amend --author=<span style="color:#a31515">&#34;John Doe &lt;john@doe.org&gt;&#34;</span>
+</code></pre></div><p>Замена одного автора на другого во всем репозитории:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git filter-branch --env-filter <span style="color:#a31515">&#39;
+</span><span style="color:#a31515">  OLD_EMAIL=&#34;old@email.com&#34;
+</span><span style="color:#a31515">  NEW_EMAIL=&#34;new@email.com&#34;
+</span><span style="color:#a31515">  NEW_NAME=&#34;John Doe&#34;
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">  if test &#34;$GIT_AUTHOR_EMAIL&#34; = &#34;$OLD_EMAIL&#34;
+</span><span style="color:#a31515">  then
+</span><span style="color:#a31515">    GIT_AUTHOR_EMAIL=$NEW_EMAIL
+</span><span style="color:#a31515">    GIT_AUTHOR_NAME=$NEW_NAME
+</span><span style="color:#a31515">  fi
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">  if test &#34;$GIT_COMMITTER_EMAIL&#34; = &#34;$OLD_EMAIL&#34;
+</span><span style="color:#a31515">  then
+</span><span style="color:#a31515">    GIT_COMMITTER_EMAIL=$NEW_EMAIL
+</span><span style="color:#a31515">    GIT_COMMITTER_NAME=$NEW_NAME
+</span><span style="color:#a31515">  fi
+</span><span style="color:#a31515">&#39;</span> -- --all
+</code></pre></div><p>Источник: <a href="https://www.codeconcisely.com/posts/change-author-data-for-all-existing-commits/">codeconcisely.com</a>.</p>
+<p>Настроить пользователя можно как для локального репозитория так и глобально:</p>
+<p>Глобально:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global user.name <span style="color:#a31515">&#34;Your Name&#34;</span>
+git config --global user.email <span style="color:#a31515">&#34;you@example.com&#34;</span>
+</code></pre></div><p>Локально:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># посмотреть текущие настройки локального репозитория</span>
+git config --list
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># изменить настройки пользователя в локальном репо</span>
+git config user.email <span style="color:#a31515">&#34;you@example.com&#34;</span>
+git config user.name <span style="color:#a31515">&#34;Your Name&#34;</span>
+git config user.password <span style="color:#a31515">&#34;your password&#34;</span>
+</code></pre></div><p>также это можно сделать вручную в файле <code>.git/config</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">[user]
+        name = John Doe
+        email = new@email.com
+</code></pre></div><p>Источник: <a href="https://rwsite.ru/git-pomenyat-imya-polzovatelya/">rwsite.ru</a></p>
+
             </div>
 
             <div class="tags">
