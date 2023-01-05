@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Mon, 02 Jan 2023 13:15:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 05 Jan 2023 13:42:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Сокращения и настройки VSCode</title>
+      <link>https://urpylka.com/posts/post-81/</link>
+      <pubDate>Thu, 05 Jan 2023 13:42:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-81/</guid>
+      <description>Сокращения  CMD + / – комментирование секции Option + Shift + F – автоформатирование Option + Z – перенос строк Option + Shift + ↑ – скопировать текущую строку до текущей Option + Shift + ↓ – скопировать текущую строку после текущей  Настройки  Табуляция в 4 пробела  Расширения  Trailing Spaces  </description>
+    </item>
     
     <item>
       <title>Заводской брак в модуле для 3д-принтера BIGTREETECH UPS 24 v1.0</title>
@@ -203,15 +212,6 @@ Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; 
       <guid>https://urpylka.com/posts/post-61/</guid>
       <description>Я в принципе уже знал как +/- работает вывод текстовой информации при логине. Однако написать это меня побудил следующий вывод. А точнее две его последние строки.
 artemsmirnov@Artems-MacBook-Pro ~ % ssh pi@theimage-9373.local Linux theimage-9373 5.10.17+ #1403 Mon Feb 22 11:26:13 GMT 2021 armv6l The programs included with the Debian GNU/Linux system are free software; the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright. Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.</description>
-    </item>
-    
-    <item>
-      <title>Сокращения и настройки VSCode</title>
-      <link>https://urpylka.com/posts/post-81/</link>
-      <pubDate>Wed, 05 Jan 2022 13:42:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-81/</guid>
-      <description>Сокращения  CMD + / – комментирование секции Option + Shift + F – автоформатирование Option + Z – перенос строк Option + Shift + ↑ – скопировать текущую строку до текущей Option + Shift + ↓ – скопировать текущую строку после текущей  Настройки  Табуляция в 4 пробела  Расширения  Trailing Spaces  </description>
     </item>
     
     <item>

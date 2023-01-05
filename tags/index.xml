@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Mon, 02 Jan 2023 13:15:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 05 Jan 2023 13:42:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>cheatsheet</title>
+      <link>https://urpylka.com/tags/cheatsheet/</link>
+      <pubDate>Thu, 05 Jan 2023 13:42:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/cheatsheet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://urpylka.com/tags/programming/</link>
+      <pubDate>Thu, 05 Jan 2023 13:42:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Thu, 05 Jan 2023 13:42:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>3dprint</title>
@@ -31,38 +58,11 @@
     </item>
     
     <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Mon, 02 Jan 2023 13:15:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>en</title>
       <link>https://urpylka.com/tags/en/</link>
       <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/en/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://urpylka.com/tags/programming/</link>
-      <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cheatsheet</title>
-      <link>https://urpylka.com/tags/cheatsheet/</link>
-      <pubDate>Wed, 16 Nov 2022 19:20:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/cheatsheet/</guid>
       <description></description>
     </item>
     
