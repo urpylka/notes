@@ -43,6 +43,15 @@ artemsmirnov@Artems-MacBook-Pro ~ % ssh pi@theimage-9373.local Linux theimage-93
     </item>
     
     <item>
+      <title>Сокращения и настройки VSCode</title>
+      <link>https://urpylka.com/posts/post-81/</link>
+      <pubDate>Wed, 05 Jan 2022 13:42:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-81/</guid>
+      <description>Сокращения  CMD + / – комментирование секции Option + Shift + F – автоформатирование Option + Z – перенос строк Option + Shift + ↑ – скопировать текущую строку до текущей Option + Shift + ↓ – скопировать текущую строку после текущей  Настройки  Табуляция в 4 пробела  Расширения  Trailing Spaces  </description>
+    </item>
+    
+    <item>
       <title>Bash: Parameter Expansion to do a nested array</title>
       <link>https://urpylka.com/posts/post-60/</link>
       <pubDate>Tue, 04 Jan 2022 19:00:00 +0200</pubDate>
