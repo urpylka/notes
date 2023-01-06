@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 06 Jan 2023 14:13:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 06 Jan 2023 15:11:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>lifestyle</title>
+      <link>https://urpylka.com/tags/lifestyle/</link>
+      <pubDate>Fri, 06 Jan 2023 15:11:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/lifestyle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Fri, 06 Jan 2023 15:11:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>programming</title>
@@ -18,15 +36,6 @@
       <pubDate>Fri, 06 Jan 2023 14:13:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Fri, 06 Jan 2023 14:13:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -63,15 +72,6 @@
       <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/en/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lifestyle</title>
-      <link>https://urpylka.com/tags/lifestyle/</link>
-      <pubDate>Tue, 31 May 2022 19:00:00 +0300</pubDate>
-      
-      <guid>https://urpylka.com/tags/lifestyle/</guid>
       <description></description>
     </item>
     
