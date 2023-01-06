@@ -13,6 +13,16 @@
     
     
     <item>
+      <title>Шпаргалка по tar, gzip, zip</title>
+      <link>https://urpylka.com/posts/post-83/</link>
+      <pubDate>Fri, 06 Jan 2023 11:13:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-83/</guid>
+      <description>tar – утилиты для создания архива из директории с файлами (без сжатия) gzip – утилита для сжатия файла zip – утилита для сжатия файла/директории
+tar  -v Enables verbose mode, showing the progress of the command -c Create -x Extract -z Uses gzip, omit this if you just have a .tar -f specifies file input, rather than STDIN  # разархивировать файл tar.gz tar -xzf tarfile.tar.gz # архивировать файл tar.gz tar -czf tarfile.</description>
+    </item>
+    
+    <item>
       <title>Шпаргалка по Wireshark, nmap, tcpdump</title>
       <link>https://urpylka.com/posts/post-82/</link>
       <pubDate>Fri, 06 Jan 2023 11:13:00 +0200</pubDate>

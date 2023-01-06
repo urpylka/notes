@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Шпаргалка по tar, gzip, zip – urpylka՚s blog!</title><meta property="og:title" content="Шпаргалка по tar, gzip, zip" />
+<meta property="og:description" content="В заметке изложены основные часто используемые команды для архивирования и сжатия." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-83/" />
+<meta property="article:published_time" content="2023-01-06T11:13:00+02:00" />
+<meta property="article:modified_time" content="2023-01-06T11:13:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Шпаргалка по tar, gzip, zip"/>
+<meta name="twitter:description" content="В заметке изложены основные часто используемые команды для архивирования и сжатия."/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Шпаргалка по tar, gzip, zip">
+<meta itemprop="description" content="В заметке изложены основные часто используемые команды для архивирования и сжатия.">
+<meta itemprop="datePublished" content="2023-01-06T11:13:00&#43;02:00" />
+<meta itemprop="dateModified" content="2023-01-06T11:13:00&#43;02:00" />
+<meta itemprop="wordCount" content="251">
+
+
+
+<meta itemprop="keywords" content="ru,programming,cheatsheet," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, electronics, lifestyle</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">06</span>
+                        <span class="rest">Jan 2023</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Шпаргалка по tar, gzip, zip</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>tar – утилиты для создания архива из директории с файлами (без сжатия)
+gzip – утилита для сжатия файла
+zip – утилита для сжатия файла/директории</p>
+<h2 id="tar">tar</h2>
+<ul>
+<li><code>-v</code> Enables verbose mode, showing the progress of the command</li>
+<li><code>-c</code> Create</li>
+<li><code>-x</code> Extract</li>
+<li><code>-z</code> Uses gzip, omit this if you just have a .tar</li>
+<li><code>-f</code> specifies file input, rather than STDIN</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># разархивировать файл tar.gz</span>
+tar -xzf tarfile.tar.gz
+
+<span style="color:#008000"># архивировать файл tar.gz</span>
+tar -czf tarfile.tar.gz
+</code></pre></div><h2 id="gzip">gzip</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># create 2 zipped files from sources</span>
+gzip file1.txt file2.txt
+
+<span style="color:#008000"># create one common zipped file from 2 sources</span>
+cat file1.txt file2.txt | gzip &gt; final.gz
+
+<span style="color:#008000"># get inforamtion about compressed ratio &amp; etc</span>
+gzip -l final.gz
+gzip -l final.gz jtp.txt.gz
+</code></pre></div><p>Для работы со сжатыми текстовыми файлами без из рассжатия есть набор утилит <code>zcat</code>, <code>zless</code>, <code>zmore</code>, <code>zdiff</code>, <code>zgrep</code> (подробнее на <a href="https://itsfoss.com/read-compressed-log-files-linux/">itsfoss.com</a>).</p>
+<h2 id="zip">zip</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># -r для указания результирующего архива</span>
+zip -r &lt;output_file&gt; &lt;folder_1&gt; &lt;folder_2&gt; ... &lt;folder_n&gt;
+zip -r myfile.zip filename.txt
+zip -r temp.zip Documents
+
+<span style="color:#008000"># удаление файлов из архива с помощью -d</span>
+zip -d filename.zip file.txt
+zip -d myfile.zip hello7.c
+
+<span style="color:#008000"># добавление файлов в архив с помощью -u</span>
+zip -u filename.zip file.txt
+
+<span style="color:#008000"># удаление оригинальных файлов, после добавления их в архив -m</span>
+zip -m filename.zip file.txt
+
+<span style="color:#008000"># архивирование всех файлов в директории по отдельности, рекурсивно -r</span>
+zip –r filename.zip directory_name
+
+<span style="color:#008000"># exclude файлов при архивировании</span>
+zip –x filename.zip file_to_be_excluded
+
+<span style="color:#008000"># verbose mode -v</span>
+zip –v filename.zip file1.txt
+
+<span style="color:#008000"># разархивирование</span>
+unzip myfile.zip
+
+<span style="color:#008000"># просмотр файлов в архиве</span>
+unzip -l myfile.zip
+
+<span style="color:#008000"># указать директорию в которую нужно разархивировать</span>
+unzip -d /tmp/data/ master.zip
+</code></pre></div>
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/cheatsheet">cheatsheet</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2023  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>
