@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 05 Jan 2023 13:42:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 06 Jan 2023 11:13:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Шпаргалка по Wireshark, nmap, tcpdump</title>
+      <link>https://urpylka.com/posts/post-82/</link>
+      <pubDate>Fri, 06 Jan 2023 11:13:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-82/</guid>
+      <description>Wireshark Пример условия для мониторинга udp пакетов (отправляемых/получаемых на порт 14550) с помощью Wireshark:
+ip.addr == 192.168.11.1 and udp and udp.port == 14550 nmap # сканирование портов nmap -p 80 X.X.X.X nmap -p 1-65535 localhost nmap -p 80,443 8.8.8.8 # обычное сканирование хоста nmap 1.1.1.1 nmap 1.1.1.1 8.8.8.8 nmap 1.1.1.1,2,3,4 nmap 8.8.8.0/28 nmap 8.8.8.* nmap -p 8.8.8.* --exclude 8.8.8.1 nmap -iL list.txt # лист с хостами в файле # сканирование хостов путем пинга nmap -sp 192.</description>
+    </item>
     
     <item>
       <title>Сокращения и настройки VSCode</title>
