@@ -32,7 +32,7 @@
 <meta itemprop="description" content="К сожалению команды в macOS, например для работы с сетью отличаются от тех, что можно встретить в той же Ubuntu / CentOS. В этой заметке, я буду аккумулировать часто используемые.">
 <meta itemprop="datePublished" content="2023-01-06T12:33:00&#43;02:00" />
 <meta itemprop="dateModified" content="2023-01-06T12:33:00&#43;02:00" />
-<meta itemprop="wordCount" content="191">
+<meta itemprop="wordCount" content="195">
 
 
 
@@ -140,7 +140,8 @@ sudo route -n add 192.168.10.0/24 10.0.247.43
 </ul>
 <h2 id="блочные-устройства">Блочные устройства</h2>
 <h3 id="изменение-раздела-с-помощью-diskutil">Изменение раздела с помощью <code>diskutil</code></h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">diskutil list
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># просмотр доступных разделов</span>
+diskutil list
 
 <span style="color:#008000"># изменение размера раздела</span>
 diskutil resizeVolume
