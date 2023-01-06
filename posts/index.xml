@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 06 Jan 2023 11:13:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 06 Jan 2023 12:33:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Шпаргалка по командам на macOS</title>
+      <link>https://urpylka.com/posts/post-84/</link>
+      <pubDate>Fri, 06 Jan 2023 12:33:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-84/</guid>
+      <description>Сеть Смена TTL на macOS sudo sysctl -w net.inet.ip.ttl=65 Работа с маршрутами Для просмотра маршрутов на macOS используется утилита netstat
+ -r to show routes -n to not resolve IPs to hostnames  netstat -rn Для добавления/удаления машрута:
+sudo route -n add x.x.x.x/24 x.x.x.x sudo route -n add 192.168.10.0/24 10.0.247.43 sudo route -n delete x.x.x.x/24 x.x.x.x Источники:
+ Как посмотреть, добавить и удалить маршрут в Mac OS X How to See the Routing Table on Mac OSX  Блочные устройства Изменение раздела с помощью diskutil diskutil list # изменение размера раздела diskutil resizeVolume diskutil resizeVolume disk0s2 350g diskutil resizeVolume disk_identifier partition_size second_partition_format second_partition_name second_partition_size Источники:</description>
+    </item>
     
     <item>
       <title>Шпаргалка по tar, gzip, zip</title>

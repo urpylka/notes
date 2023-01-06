@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Шпаргалка по командам на macOS – urpylka՚s blog!</title><meta property="og:title" content="Шпаргалка по командам на macOS" />
+<meta property="og:description" content="К сожалению команды в macOS, например для работы с сетью отличаются от тех, что можно встретить в той же Ubuntu / CentOS. В этой заметке, я буду аккумулировать часто используемые." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-84/" />
+<meta property="article:published_time" content="2023-01-06T12:33:00+02:00" />
+<meta property="article:modified_time" content="2023-01-06T12:33:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Шпаргалка по командам на macOS"/>
+<meta name="twitter:description" content="К сожалению команды в macOS, например для работы с сетью отличаются от тех, что можно встретить в той же Ubuntu / CentOS. В этой заметке, я буду аккумулировать часто используемые."/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Шпаргалка по командам на macOS">
+<meta itemprop="description" content="К сожалению команды в macOS, например для работы с сетью отличаются от тех, что можно встретить в той же Ubuntu / CentOS. В этой заметке, я буду аккумулировать часто используемые.">
+<meta itemprop="datePublished" content="2023-01-06T12:33:00&#43;02:00" />
+<meta itemprop="dateModified" content="2023-01-06T12:33:00&#43;02:00" />
+<meta itemprop="wordCount" content="169">
+
+
+
+<meta itemprop="keywords" content="ru,programming,cheatsheet," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, electronics, lifestyle</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">06</span>
+                        <span class="rest">Jan 2023</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Шпаргалка по командам на macOS</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <h2 id="сеть">Сеть</h2>
+<h3 id="смена-ttl-на-macos">Смена TTL на macOS</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo sysctl -w net.inet.ip.ttl=65
+</code></pre></div><h3 id="работа-с-маршрутами">Работа с маршрутами</h3>
+<p>Для просмотра маршрутов на macOS используется утилита <code>netstat</code></p>
+<ul>
+<li><code>-r</code> to show routes</li>
+<li><code>-n</code> to not resolve IPs to hostnames</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">netstat -rn
+</code></pre></div><p>Для добавления/удаления машрута:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo route -n add x.x.x.x/24 x.x.x.x
+sudo route -n add 192.168.10.0/24 10.0.247.43
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo route -n delete x.x.x.x/24 x.x.x.x
+</code></pre></div><p>Источники:</p>
+<ul>
+<li><a href="http://web.archive.org/web/20200805194450/http://did5.ru/apple/macos-apple/kak-posmotret-dobavit-i-udalit-marshrut-v-mac-os-x.html">Как посмотреть, добавить и удалить маршрут в Mac OS X</a></li>
+<li><a href="https://www.tunnelsup.com/how-to-see-the-routing-table-on-mac-osx/">How to See the Routing Table on Mac OSX</a></li>
+</ul>
+<h2 id="блочные-устройства">Блочные устройства</h2>
+<h3 id="изменение-раздела-с-помощью-diskutil">Изменение раздела с помощью <code>diskutil</code></h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">diskutil list
+
+<span style="color:#008000"># изменение размера раздела</span>
+diskutil resizeVolume
+diskutil resizeVolume disk0s2 350g
+diskutil resizeVolume disk_identifier partition_size second_partition_format second_partition_name second_partition_size
+</code></pre></div><p>Источники:</p>
+<ul>
+<li><a href="https://apple.stackexchange.com/questions/197640/diskutil-resizevolume-noob">diskutil resizeVolume noob</a></li>
+<li><a href="https://www.macworld.com/article/1055274/software-utilities/marchgeekfactor.html">Resize partitions on-the-fly</a></li>
+</ul>
+<h3 id="аналог-losetup-в-macos">Аналог losetup в macOS</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># подключение образа</span>
+hdiutil attach build_server_backup.img
+
+<span style="color:#008000"># создание образа notes.dmg</span>
+hdiutil create -srcfolder ~/Documents/Notes notes
+
+<span style="color:#008000"># создание зашифрованного, расширяемого образа</span>
+hdiutil create ~/Documents/TopSecret -type SPARSEBUNDLE <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  -size 100m -fs HFS+J -volname TopSecret -encryption
+</code></pre></div><p>Источник:</p>
+<ul>
+<li><a href="http://web.archive.org/web/20150717190919/http://ctrld.me/blog/2009/10/03/rabotaem-s-obrazami-diskov-v-terminal-app-hdiutil/">Работаем с образами дисков в Terminal.app (hdiutil)</a></li>
+</ul>
+<h3 id="монитрование-файловых-систем">Монитрование файловых систем</h3>
+<p>Два фьюза для монтирования ext2, ext3, ext4 файловых систем в macOS</p>
+<ul>
+<li><a href="https://github.com/alperakcan/fuse-ext2">Fuse Ext2</a></li>
+<li><a href="https://github.com/gerard/ext4fuse">ext4fuse</a></li>
+</ul>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/cheatsheet">cheatsheet</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2023  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

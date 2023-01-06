@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В статье две части: Устройство сети Raspberry Pi OS и Инструменты для работы с сетью. В первой части изложено базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов img-builder. Во второй части содержатся мои заметки о утилитах Linux для работы с сетью.">
 <meta itemprop="datePublished" content="2021-03-30T17:40:00&#43;04:00" />
 <meta itemprop="dateModified" content="2021-03-30T17:40:00&#43;04:00" />
-<meta itemprop="wordCount" content="2320">
+<meta itemprop="wordCount" content="2332">
 
 
 
@@ -179,7 +179,9 @@ if (!doNotTrack) {
 <p><code>wpa_supplicant</code> и <code>hostapd</code> – утилиты выполняющие схожий функционал. Их сравнение описано на <a href="https://www.w1.fi/wpa_supplicant/devel/">w1.fi</a>.</p>
 </blockquote>
 <h2 id="инструменты-для-работы-с-сетью">Инструменты для работы с сетью</h2>
-<h3 id="net-tools-и-iproute2">net-tools и iproute2</h3>
+<h3 id="сброс-ttl">Сброс TTL</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo iptables -t mangle -A POSTROUTING -j TTL --ttl-set 65
+</code></pre></div><h3 id="net-tools-и-iproute2">net-tools и iproute2</h3>
 <p>В версиях ядер Linux 2.4 и ниже для непосредственной работы с сетью использовались инструменты из пакета <code>net-tools</code> такие как:</p>
 <ul>
 <li><code>ifconfig</code> – для управления сетевыми интерфейсами;</li>
