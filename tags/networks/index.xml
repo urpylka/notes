@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 04 Feb 2022 21:24:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 06 Jan 2023 17:31:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/networks/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Поиск проблемы с сотовым модемом при использовании на дроне</title>
+      <link>https://urpylka.com/posts/post-88/</link>
+      <pubDate>Fri, 06 Jan 2023 17:31:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-88/</guid>
+      <description>Предисловие Данная статья восстановлена из заметки, которую я делал будучи сотрудником CopterExpress в 2017 году.
+Многое, что следовало бы сделать я не сделал ввиду своей некомпетентности. Я понимаю, что в данном эксперименте нет ни одной числовой характеристики, хотя бы уровня сигнала. И, если бы я проводил данные эксперименты сейчас, то делал бы всё иначе. Однако, такими империческими методами, мне удалось получить полезную информацию и разобраться в сути происходящего.
+Проблема На дроне был установлен сотовый модем, который был управляем с помощью небольшого скрипта на bash.</description>
+    </item>
     
     <item>
       <title>Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna</title>

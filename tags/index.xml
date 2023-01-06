@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 06 Jan 2023 15:11:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 06 Jan 2023 17:31:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>networks</title>
+      <link>https://urpylka.com/tags/networks/</link>
+      <pubDate>Fri, 06 Jan 2023 17:31:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/networks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>robotics</title>
+      <link>https://urpylka.com/tags/robotics/</link>
+      <pubDate>Fri, 06 Jan 2023 17:31:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/robotics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Fri, 06 Jan 2023 17:31:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>lifestyle</title>
@@ -18,15 +45,6 @@
       <pubDate>Fri, 06 Jan 2023 15:11:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/lifestyle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Fri, 06 Jan 2023 15:11:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     
@@ -85,15 +103,6 @@
     </item>
     
     <item>
-      <title>networks</title>
-      <link>https://urpylka.com/tags/networks/</link>
-      <pubDate>Fri, 04 Feb 2022 21:24:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/networks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>travelling</title>
       <link>https://urpylka.com/tags/travelling/</link>
       <pubDate>Mon, 24 Jan 2022 23:00:00 +0200</pubDate>
@@ -126,15 +135,6 @@
       <pubDate>Sun, 05 Dec 2021 01:10:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/raspberrypi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>robotics</title>
-      <link>https://urpylka.com/tags/robotics/</link>
-      <pubDate>Sun, 05 Dec 2021 01:10:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/robotics/</guid>
       <description></description>
     </item>
     
