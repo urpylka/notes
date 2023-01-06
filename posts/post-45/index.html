@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу сохранить в своей заметке.">
 <meta itemprop="datePublished" content="2020-04-16T02:14:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-04-16T02:14:00&#43;04:00" />
-<meta itemprop="wordCount" content="498">
+<meta itemprop="wordCount" content="528">
 
 
 
@@ -112,8 +112,7 @@ if (!doNotTrack) {
 
             <div class="markdown">
                 <p>У меня накопилось достаточно большое количество переодически гуглящихся вещей, которые хочу сохранить в этой заметке. Заметка будет обновляться по мере того, как часто я с ней буду работать.</p>
-<h2 id="bash">Bash</h2>
-<h3 id="перенаправления-и-pipe">Перенаправления и pipe</h3>
+<h2 id="перенаправления-и-pipe">Перенаправления и pipe</h2>
 <p><code>|</code> - передача аргумента<br>
 <code>&gt;</code> – передача вывода команды в новый файл или перезапись существующего файла<br>
 <code>&gt;&gt;</code> - передача вывода команды в новый файл или дозапись с конца</p>
@@ -126,14 +125,14 @@ if (!doNotTrack) {
 <li><a href="https://www.linux.org.ru/forum/general/13119156">bash разница между &raquo; и |</a></li>
 <li><a href="https://habr.com/ru/company/ruvds/blog/326594/">Bash-скрипты, часть 4: ввод и вывод</a></li>
 </ul>
-<h3 id="параллельно-исполнение-в-bash">Параллельно исполнение в Bash</h3>
+<h2 id="параллельно-исполнение-в-bash">Параллельно исполнение в Bash</h2>
 <p><code>nohup</code> - запускает с игнорирование потери связи с пользователем (при выходе пользователя из системы все будет продолжаться в фоновом режиме)</p>
 <p>Источники:</p>
 <ul>
 <li><a href="http://web.archive.org/web/20140226042820/http://user.hashcode.ru/questions/4573/bash-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE-%D0%BB%D0%B8-%D0%B2-linux-%D0%BF%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-sh-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B0">bash - Возможно ли в Linux параллельное выполнение .sh скрипта?</a></li>
 <li><a href="https://mnorin.com/parallelnoe-vypolnenie-v-bash.html">Параллельное выполнение в bash</a></li>
 </ul>
-<h3 id="полезные-ссылки">Полезные ссылки</h3>
+<h2 id="полезные-ссылки">Полезные ссылки</h2>
 <ul>
 <li>Изменение значения окружения указывающей на разделение списка <a href="http://www.f-notes.info/linux:bash_lists">f-notes.info</a></li>
 <li>Хороший справочник по встроенным командам bash <a href="https://losst.ru/osnovnye-komandy-bash">losst.ru</a></li>
@@ -144,13 +143,65 @@ if (!doNotTrack) {
 <li>переменные окружения <code>env</code>, <code>$SHELL</code>, <code>$EDITOR</code> <a href="http://unix1.jinr.ru/~lavr/howtostart.html">unix1.jinr.ru</a></li>
 <li>firewall gui centos – <code>system-config-firewall</code></li>
 </ul>
-<h3 id="отладка-программ">Отладка программ</h3>
+<h2 id="отладка-программ">Отладка программ</h2>
 <ul>
 <li><code>strace</code> - системные вызовы</li>
 <li><code>ltrace</code> - трейсить вызовы из SO</li>
 <li><code>ldd</code> - посмотреть зависимые библиотеки</li>
 </ul>
-<h3 id="пакетный-менеджер-apt-и-dpkg">Пакетный менеджер apt и dpkg</h3>
+<h2 id="поиск">Поиск</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># вывод логов содержащих строку `Aug  8 16:`</span>
+grep <span style="color:#a31515">&#39;Aug  8 16:&#39;</span> aug8_daemon.log  &gt; aug8_16hour_daemon.log
+
+grep user /etc/mysql/my.cnf
+
+<span style="color:#008000"># вывод номера строки</span>
+<span style="color:#008000"># -i – регистронезависимый поиск</span>
+grep -bi <span style="color:#a31515">&#39;user&#39;</span> /etc/mysql/my.cnf
+
+<span style="color:#008000"># вывести строки не содержащие неначинающиеся на #</span>
+grep -v <span style="color:#a31515">&#39;^#&#39;</span> /etc/mysql/my.cnf
+</code></pre></div><p>Источники:</p>
+<ul>
+<li><a href="https://admins.su/grep-nezamenimyj-instrument-linuksoida/">Примеры использования grep в Linux</a></li>
+<li><a href="https://losst.ru/gerp-poisk-vnutri-fajlov-v-linux">Поиск текста в файлах Linux</a></li>
+<li><a href="https://losst.ru/komanda-find-v-linux">Команда find в Linux</a></li>
+</ul>
+<h2 id="проверка-версии-debian">Проверка версии Debian</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/os-release
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; lsb_release -a
+
+No LSB modules are available.
+Distributor ID: Raspbian
+Description:    Raspbian GNU/Linux 9.1 (stretch)
+Release:        9.1
+Codename:       stretch
+</code></pre></div><h2 id="копирование-с-exclude">Копирование с exclude</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rsync -av --progress * --exclude sakis_install.sh
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp -r * -i sakis_install.sh
+</code></pre></div><h2 id="добавление-прав-для-выполнения-sudo">Добавление прав для выполнения sudo</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">usermod -a -G sudo artem
+</code></pre></div><h2 id="очистить-history">Очистить history</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /dev/null &gt; ~/.bash_history &amp;&amp; history -c &amp;&amp; exit
+</code></pre></div><p>Источник:</p>
+<ul>
+<li><a href="https://askubuntu.com/questions/191999/how-to-clear-bash-history-completely">How to clear bash history completely?</a></li>
+</ul>
+<h2 id="screen">Screen</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/19104894/screen-must-be-connected-to-a-terminal/25646444">Screen &ldquo;Must be connected to a Terminal&rdquo;</a></li>
+<li><a href="https://admins.su/kak-polzovatsya-utilitoj-screen-v-linux/">Как пользоваться утилитой Screen в Linux</a></li>
+</ul>
+<h2 id="virt--virsh">virt / virsh</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># virsh commands</span>
+virsh vol-list --pool libvirt_vg
+virsh vol-delete /dev/libvirt_vg/backup-machine --pool libvirt_vg
+virsh blockresize backup-machine --path /dev/libvirt_vg/backup-machine --size 115343360k
+
+<span style="color:#008000"># Resetting Virtual Machine Settings (unconfigure)</span>
+virt-sysprep
+virt-configure
+</code></pre></div><h2 id="пакетный-менеджер-apt-и-dpkg">Пакетный менеджер apt и dpkg</h2>
 <ul>
 <li><a href="https://system-admins.ru/kak-otkatit-obnovleniya-na-debian-ubuntu-linux-v-sluchae-problem/">Как откатить обновления на Debian / Ubuntu Linux в случае проблем</a></li>
 <li><a href="http://web.archive.org/web/20170505152409/http://www.stanovlenie.org.ua/download-the-deb-packages-with-dependencies-for-offline-installation/">Скачиваем deb-пакеты с зависимостями для offline-установки.</a></li>
@@ -172,55 +223,7 @@ sudo dpkg -S FILE
 
 <span style="color:#008000"># Посмотреть какие файлы принадлежат пакету</span>
 sudo dpkg -L ros-kinetic-catkin
-</code></pre></div><h3 id="grep">grep</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># вывод логов содержащих строку `Aug  8 16:`</span>
-grep <span style="color:#a31515">&#39;Aug  8 16:&#39;</span> aug8_daemon.log  &gt; aug8_16hour_daemon.log
-
-grep user /etc/mysql/my.cnf
-
-<span style="color:#008000"># вывод номера строки</span>
-<span style="color:#008000"># -i – регистронезависимый поиск</span>
-grep -bi <span style="color:#a31515">&#39;user&#39;</span> /etc/mysql/my.cnf
-
-<span style="color:#008000"># вывести строки не содержащие неначинающиеся на #</span>
-grep -v <span style="color:#a31515">&#39;^#&#39;</span> /etc/mysql/my.cnf
-</code></pre></div><p>Источники:</p>
-<ul>
-<li><a href="https://admins.su/grep-nezamenimyj-instrument-linuksoida/">Примеры использования grep в Linux</a></li>
-</ul>
-<h3 id="проверка-версии-debian">Проверка версии Debian</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/os-release
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; lsb_release -a
-
-No LSB modules are available.
-Distributor ID: Raspbian
-Description:    Raspbian GNU/Linux 9.1 (stretch)
-Release:        9.1
-Codename:       stretch
-</code></pre></div><h3 id="копирование-с-exclude">Копирование с exclude</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rsync -av --progress * --exclude sakis_install.sh
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp -r * -i sakis_install.sh
-</code></pre></div><h3 id="поиск">Поиск</h3>
-<ul>
-<li>Поиск по содержимому grep <a href="https://losst.ru/gerp-poisk-vnutri-fajlov-v-linux">losst.ru/gerp-poisk-vnutri-fajlov-v-linux</a></li>
-<li>Поиск по файлам find <a href="https://losst.ru/komanda-find-v-linux">losst.ru/komanda-find-v-linux</a></li>
-</ul>
-<h3 id="добавление-прав-для-выполнения-sudo">Добавление прав для выполнения sudo</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">usermod -a -G sudo artem
-</code></pre></div><h3 id="очистить-history">Очистить history</h3>
-<ul>
-<li><a href="https://askubuntu.com/questions/191999/how-to-clear-bash-history-completely">https://askubuntu.com/questions/191999/how-to-clear-bash-history-completely</a></li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /dev/null &gt; ~/.bash_history &amp;&amp; history -c &amp;&amp; exit
-</code></pre></div><h3 id="screen">Screen</h3>
-<ul>
-<li><a href="https://stackoverflow.com/questions/19104894/screen-must-be-connected-to-a-terminal/25646444">Screen &ldquo;Must be connected to a Terminal&rdquo;</a></li>
-<li><a href="https://admins.su/kak-polzovatsya-utilitoj-screen-v-linux/">Как пользоваться утилитой Screen в Linux</a></li>
-</ul>
-<h3 id="unconfigure">Unconfigure</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">virt-sysprep
-virt-configure
-</code></pre></div><h3 id="название-вкладки">Название вкладки</h3>
+</code></pre></div><h2 id="название-вкладки">Название вкладки</h2>
 <p><img src="./assets/screenshot-2017-11-15-v-13.48.57.png" alt="image"></p>
 
             </div>
