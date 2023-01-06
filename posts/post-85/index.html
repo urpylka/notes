@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Ротация логов в ROS – urpylka՚s blog!</title><meta property="og:title" content="Ротация логов в ROS" />
+<meta property="og:description" content="Коротко о пробелеме связанной с отсутствием встроенной ротации логов в ROS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-85/" />
+<meta property="article:published_time" content="2018-04-04T04:04:00+02:00" />
+<meta property="article:modified_time" content="2018-04-04T04:04:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ротация логов в ROS"/>
+<meta name="twitter:description" content="Коротко о пробелеме связанной с отсутствием встроенной ротации логов в ROS."/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Ротация логов в ROS">
+<meta itemprop="description" content="Коротко о пробелеме связанной с отсутствием встроенной ротации логов в ROS.">
+<meta itemprop="datePublished" content="2018-04-04T04:04:00&#43;02:00" />
+<meta itemprop="dateModified" content="2018-04-04T04:04:00&#43;02:00" />
+<meta itemprop="wordCount" content="115">
+
+
+
+<meta itemprop="keywords" content="ru,programming,old," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, electronics, lifestyle</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">04</span>
+                        <span class="rest">Apr 2018</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Ротация логов в ROS</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>Пробелема связана с отсутствием встроенной ротации логов в ROS. Очевидно из этого следует то, что периодически будет возникать переполнение диска:</p>
+<p><img src="./assets/screenshot-2017-09-12-v-14.58.30.png" alt="image"></p>
+<p>В ROS есть стандартная утилита для мониторинга и чистки логов – <a href="http://wiki.ros.org/rosclean">rosclean</a>. Однако она удаляет абсолютно всё (<a href="https://answers.ros.org/question/258978/is-there-an-alternative-way-to-get-rid-of-ros-log-files/">обсуждение здесь</a>).</p>
+<p>Осложняется проблема тем, что ROS сам бьёт все по папкам, что затрдуняет сделать ротацию по некоторому файлу.</p>
+<p><img src="./assets/screenshot-2017-09-12-v-16.13.44.png" alt="image"></p>
+<p>Пример одной из директорий с файлами логов <a href="./assets/cecd58fa-972b-11e7-ad41-3974d4b0fb26.zip">cecd58fa-972b-11e7-ad41-3974d4b0fb26</a>.</p>
+<p>Простой и достаточно топорный скрипт для удаления всех логов, если их размер превышает 300 МБ</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#! /usr/bin/env bash
+</span><span style="color:#00f"></span><span style="color:#00f">if</span> [[ <span style="color:#00f">$(</span>du -s .ros | awk <span style="color:#a31515">&#39;{ print $1 }&#39;</span><span style="color:#00f">)</span> -ge 300000 ]]; <span style="color:#00f">then</span>
+    yes | rosclean purge;
+    echo <span style="color:#a31515">&#34;ros logs were cleaned up&#34;</span>;
+<span style="color:#00f">fi</span>
+</code></pre></div><p>Другие источники:</p>
+<ul>
+<li><a href="https://answers.ros.org/question/267503/log-rotation-in-ros/">answers.ros.org/question/267503/log-rotation-in-ros/</a></li>
+<li><a href="https://github.com/mikepurvis/ros-system-daemon/blob/master/debian/ros-system-daemon.ros.logrotate">github.com/mikepurvis/ros-system-daemon/blob/master/debian/ros-system-daemon.ros.logrotate</a></li>
+<li><a href="https://askubuntu.com/questions/847790/why-is-logrotate-not-running-automatically">askubuntu.com/questions/847790/why-is-logrotate-not-running-automatically</a></li>
+<li><a href="https://www.opennet.ru/base/sys/logrotate_howto.txt.html">opennet.ru/base/sys/logrotate_howto.txt.html</a></li>
+<li><a href="https://stackoverflow.com/questions/25485047/hourly-rotation-of-files-using-logrotate">stackoverflow.com/questions/25485047/hourly-rotation-of-files-using-logrotate</a></li>
+</ul>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/old">old</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+</div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2018  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

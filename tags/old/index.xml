@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Mon, 31 Mar 2014 20:46:00 +0400</lastBuildDate>
+    <lastBuildDate>Wed, 04 Apr 2018 04:04:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/old/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ротация логов в ROS</title>
+      <link>https://urpylka.com/posts/post-85/</link>
+      <pubDate>Wed, 04 Apr 2018 04:04:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-85/</guid>
+      <description>Пробелема связана с отсутствием встроенной ротации логов в ROS. Очевидно из этого следует то, что периодически будет возникать переполнение диска:
+В ROS есть стандартная утилита для мониторинга и чистки логов – rosclean. Однако она удаляет абсолютно всё (обсуждение здесь).
+Осложняется проблема тем, что ROS сам бьёт все по папкам, что затрдуняет сделать ротацию по некоторому файлу.
+Пример одной из директорий с файлами логов cecd58fa-972b-11e7-ad41-3974d4b0fb26.
+Простой и достаточно топорный скрипт для удаления всех логов, если их размер превышает 300 МБ</description>
+    </item>
     
     <item>
       <title>Починка бампера на Mitsubishi Lancer X</title>
