@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 06 Jan 2023 12:33:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 06 Jan 2023 14:13:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unicode: Неразрывные символы</title>
+      <link>https://urpylka.com/posts/post-86/</link>
+      <pubDate>Fri, 06 Jan 2023 14:13:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-86/</guid>
+      <description>Зачастую при написании статей в блог нужны какие-то юникод символы, в тч неразрывные. Для справки это такие символы, которые при вставке в текст не будут разовраны. Это нужно, например при составных названиях в заголовке или для фиксации предлогов вместе с существительными.
+ «‑» - неразрыный дефис «‑» « » – неразрывный пробел стандартной длины. Неразрывные пробелы есть разной длины, другие можно найти по ссылке.  </description>
+    </item>
     
     <item>
       <title>Шпаргалка по командам на macOS</title>
