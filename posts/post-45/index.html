@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В общем накопилось достаточно большое количество периодически гуглящихся вещей, которые хочу сохранить в своей заметке.">
 <meta itemprop="datePublished" content="2020-04-16T02:14:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-04-16T02:14:00&#43;04:00" />
-<meta itemprop="wordCount" content="528">
+<meta itemprop="wordCount" content="562">
 
 
 
@@ -194,9 +194,19 @@ Codename:       stretch
 </ul>
 <h2 id="virt--virsh">virt / virsh</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># virsh commands</span>
+virsh list --all
+<span style="color:#00f">for</span> i in <span style="color:#00f">$(</span>virsh list --name<span style="color:#00f">)</span>; <span style="color:#00f">do</span> virsh shutdown $i; <span style="color:#00f">done</span>
+virsh start &lt;servername&gt;
 virsh vol-list --pool libvirt_vg
-virsh vol-delete /dev/libvirt_vg/backup-machine --pool libvirt_vg
-virsh blockresize backup-machine --path /dev/libvirt_vg/backup-machine --size 115343360k
+virsh vol-delete /dev/libvirt_vg/&lt;backup-machine&gt; --pool libvirt_vg
+virsh blockresize &lt;backup-machine&gt; --path /dev/libvirt_vg/&lt;backup-machine&gt; --size 115343360k
+
+lsblk -p
+lvresize -L+50G /dev/libvirt_vg/&lt;servername&gt;
+lvs
+lvs --units k
+pvs
+virsh blockresize &lt;servername&gt; --path /dev/libvirt_vg/&lt;servername&gt; --size 167772160k
 
 <span style="color:#008000"># Resetting Virtual Machine Settings (unconfigure)</span>
 virt-sysprep
