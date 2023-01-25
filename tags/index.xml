@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 06 Jan 2023 17:31:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jan 2023 13:39:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>en</title>
+      <link>https://urpylka.com/tags/en/</link>
+      <pubDate>Wed, 25 Jan 2023 13:39:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/en/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://urpylka.com/tags/programming/</link>
+      <pubDate>Wed, 25 Jan 2023 13:39:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/tags/programming/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>networks</title>
@@ -49,15 +67,6 @@
     </item>
     
     <item>
-      <title>programming</title>
-      <link>https://urpylka.com/tags/programming/</link>
-      <pubDate>Fri, 06 Jan 2023 14:13:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>cheatsheet</title>
       <link>https://urpylka.com/tags/cheatsheet/</link>
       <pubDate>Fri, 06 Jan 2023 12:33:00 +0200</pubDate>
@@ -81,15 +90,6 @@
       <pubDate>Mon, 02 Jan 2023 13:15:00 +0200</pubDate>
       
       <guid>https://urpylka.com/tags/electronics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>en</title>
-      <link>https://urpylka.com/tags/en/</link>
-      <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/tags/en/</guid>
       <description></description>
     </item>
     

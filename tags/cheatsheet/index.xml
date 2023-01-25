@@ -191,7 +191,7 @@ sudo brew services list sudo brew services start openvpn sudo brew services rest
     </item>
     
     <item>
-      <title>Cheatsheet: Python</title>
+      <title>Python: Cheatsheet</title>
       <link>https://urpylka.com/posts/post-9/</link>
       <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
       

@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 06 Jan 2023 14:13:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jan 2023 13:39:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python: Merge two dicts by key</title>
+      <link>https://urpylka.com/posts/post-89/</link>
+      <pubDate>Wed, 25 Jan 2023 13:39:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-89/</guid>
+      <description>The python function to merge 2 dicts by key:
+#! /usr/bin/env python3 def merge_dicts_by_key(d1: dict, d2: dict) -&amp;gt; dict: d = {} for key in set(list(d1.keys()) + list(d2.keys())): d[key] = {} if d1.get(key): for subkey in set(list(d1[key].keys())): d[key][subkey] = d1[key][subkey] if d2.get(key): for subkey in set(list(d2[key].keys())): d[key][subkey] = d2[key][subkey] return d </description>
+    </item>
     
     <item>
       <title>Unicode: Неразрывные символы</title>
@@ -63,7 +73,7 @@ ip.addr == 192.168.11.1 and udp and udp.port == 14550 nmap # сканирова�
     </item>
     
     <item>
-      <title>Python Stack implementaion by text file</title>
+      <title>Python: Stack implementaion by text file</title>
       <link>https://urpylka.com/posts/post-80/</link>
       <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
       
@@ -384,7 +394,7 @@ sudo brew services list sudo brew services start openvpn sudo brew services rest
     </item>
     
     <item>
-      <title>Cheatsheet: Python</title>
+      <title>Python: Cheatsheet</title>
       <link>https://urpylka.com/posts/post-9/</link>
       <pubDate>Wed, 22 Apr 2020 12:35:00 +0400</pubDate>
       
