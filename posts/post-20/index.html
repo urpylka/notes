@@ -149,11 +149,11 @@ git commit --allow-empty -m <span style="color:#a31515">&#34;Empty commit&#34;</
 <p>Замена автора в конкретном коммите с помощью переписывания коммита:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git commit --amend --author=<span style="color:#a31515">&#34;John Doe &lt;john@doe.org&gt;&#34;</span>
 </code></pre></div><p>Замена одного автора на другого во всем репозитории:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git filter-branch --env-filter <span style="color:#a31515">&#39;
-</span><span style="color:#a31515">  OLD_EMAIL=&#34;old@email.com&#34;
-</span><span style="color:#a31515">  NEW_EMAIL=&#34;new@email.com&#34;
-</span><span style="color:#a31515">  NEW_NAME=&#34;John Doe&#34;
-</span><span style="color:#a31515">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">OLD_EMAIL=<span style="color:#a31515">&#34;old@email.com&#34;</span>
+NEW_EMAIL=<span style="color:#a31515">&#34;new@email.com&#34;</span>
+NEW_NAME=<span style="color:#a31515">&#34;John Doe&#34;</span>
+
+git filter-branch --env-filter <span style="color:#a31515">&#39;
 </span><span style="color:#a31515">  if test &#34;$GIT_AUTHOR_EMAIL&#34; = &#34;$OLD_EMAIL&#34;
 </span><span style="color:#a31515">  then
 </span><span style="color:#a31515">    GIT_AUTHOR_EMAIL=$NEW_EMAIL
