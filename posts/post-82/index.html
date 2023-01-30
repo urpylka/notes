@@ -167,7 +167,6 @@ nmap -p 1433 --script ms-sql-brute --script-args userdb=customuser.txt,passdb=cu
 nmap --script ftp-brute -p 21 192.168.1.105
 
 <span style="color:#008000"># Поиск backdoor/malware infections</span>
-
 nmap -sV --script=http-malware-host 192.168.1.105 <span style="color:#008000"># common</span>
 nmap -p80 --script http-google-malware infectedsite.com <span style="color:#008000"># google clock malware</span>
 </code></pre></div><h2 id="tcpdump">tcpdump</h2>
