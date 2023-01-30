@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В заметке изложены основные часто используемые команды для проведения сетевого сканирования.">
 <meta itemprop="datePublished" content="2023-01-06T11:13:00&#43;02:00" />
 <meta itemprop="dateModified" content="2023-01-06T11:13:00&#43;02:00" />
-<meta itemprop="wordCount" content="360">
+<meta itemprop="wordCount" content="358">
 
 
 
@@ -169,7 +169,7 @@ nmap --script ftp-brute -p 21 192.168.1.105
 <span style="color:#008000"># Поиск backdoor/malware infections</span>
 nmap -sV --script=http-malware-host 192.168.1.105 <span style="color:#008000"># common</span>
 nmap -p80 --script http-google-malware infectedsite.com <span style="color:#008000"># google clock malware</span>
-</code></pre></div><p>Ещё одна сторонняя шпаргалка по nmap – <a href="https://github.com/Ignitetechnologies/Mindmap/blob/main/Nmap/nmap.pdf">Ignitetechnologies/Mindmap</a>.</p>
+</code></pre></div><p>Сторонняя шпаргалка по nmap – <a href="https://github.com/Ignitetechnologies/Mindmap/blob/main/Nmap/nmap.pdf">Ignitetechnologies/Mindmap</a>.</p>
 <h2 id="tcpdump">tcpdump</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># указать интерфейс</span>
 tcpdump -i eth0
