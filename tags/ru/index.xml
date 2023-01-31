@@ -61,7 +61,7 @@ sudo route -n add x.x.x.x/24 x.x.x.x sudo route -n add 192.168.10.0/24 10.0.247.
       
       <guid>https://urpylka.com/posts/post-83/</guid>
       <description>tar – утилиты для создания архива из директории с файлами (без сжатия) gzip – утилита для сжатия файла zip – утилита для сжатия файла/директории
-tar  -v Enables verbose mode, showing the progress of the command -c Create -x Extract -z Uses gzip, omit this if you just have a .tar -f specifies file input, rather than STDIN  # разархивировать файл tar.gz tar -xzf tarfile.tar.gz # архивировать файл tar.gz tar -czf tarfile.</description>
+tar  -c Create -x Extract -z Uses gzip, omit this if you just have a .tar -f specifies file input, rather than STDIN -v Enables verbose mode, showing the progress of the command  # архивировать файл tar.gz tar -czf tarfile.tar.gz file files # разархивировать файл tar.</description>
     </item>
     
     <item>

@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В заметке изложены основные часто используемые команды для архивирования и сжатия.">
 <meta itemprop="datePublished" content="2023-01-06T11:13:00&#43;02:00" />
 <meta itemprop="dateModified" content="2023-01-06T11:13:00&#43;02:00" />
-<meta itemprop="wordCount" content="251">
+<meta itemprop="wordCount" content="253">
 
 
 
@@ -116,17 +116,17 @@ gzip – утилита для сжатия файла
 zip – утилита для сжатия файла/директории</p>
 <h2 id="tar">tar</h2>
 <ul>
-<li><code>-v</code> Enables verbose mode, showing the progress of the command</li>
 <li><code>-c</code> Create</li>
 <li><code>-x</code> Extract</li>
 <li><code>-z</code> Uses gzip, omit this if you just have a .tar</li>
 <li><code>-f</code> specifies file input, rather than STDIN</li>
+<li><code>-v</code> Enables verbose mode, showing the progress of the command</li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># разархивировать файл tar.gz</span>
-tar -xzf tarfile.tar.gz
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># архивировать файл tar.gz</span>
+tar -czf tarfile.tar.gz file files
 
-<span style="color:#008000"># архивировать файл tar.gz</span>
-tar -czf tarfile.tar.gz
+<span style="color:#008000"># разархивировать файл tar.gz</span>
+tar -xzf tarfile.tar.gz
 </code></pre></div><h2 id="gzip">gzip</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># create 2 zipped files from sources</span>
 gzip file1.txt file2.txt
