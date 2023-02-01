@@ -54,7 +54,7 @@ tar  -c Create -x Extract -z Uses gzip, omit this if you just have a .tar -f spe
     </item>
     
     <item>
-      <title>Шпаргалка по Wireshark, nmap, tcpdump</title>
+      <title>Шпаргалка по Wireshark, nmap, tcpdump, netstat</title>
       <link>https://urpylka.com/posts/post-82/</link>
       <pubDate>Fri, 06 Jan 2023 11:13:00 +0200</pubDate>
       

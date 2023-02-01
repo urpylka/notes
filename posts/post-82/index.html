@@ -2,14 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Шпаргалка по Wireshark, nmap, tcpdump – urpylka՚s blog!</title><meta property="og:title" content="Шпаргалка по Wireshark, nmap, tcpdump" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Шпаргалка по Wireshark, nmap, tcpdump, netstat – urpylka՚s blog!</title><meta property="og:title" content="Шпаргалка по Wireshark, nmap, tcpdump, netstat" />
 <meta property="og:description" content="В заметке изложены основные часто используемые команды для проведения сетевого сканирования." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-82/" />
 <meta property="article:published_time" content="2023-01-06T11:13:00+02:00" />
 <meta property="article:modified_time" content="2023-01-06T11:13:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Шпаргалка по Wireshark, nmap, tcpdump"/>
+<meta name="twitter:title" content="Шпаргалка по Wireshark, nmap, tcpdump, netstat"/>
 <meta name="twitter:description" content="В заметке изложены основные часто используемые команды для проведения сетевого сканирования."/>
 <link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
@@ -28,11 +28,11 @@
 	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Шпаргалка по Wireshark, nmap, tcpdump">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Шпаргалка по Wireshark, nmap, tcpdump, netstat">
 <meta itemprop="description" content="В заметке изложены основные часто используемые команды для проведения сетевого сканирования.">
 <meta itemprop="datePublished" content="2023-01-06T11:13:00&#43;02:00" />
 <meta itemprop="dateModified" content="2023-01-06T11:13:00&#43;02:00" />
-<meta itemprop="wordCount" content="358">
+<meta itemprop="wordCount" content="607">
 
 
 
@@ -106,7 +106,7 @@ if (!doNotTrack) {
                 </div>
                 
                 <div class="matter">
-                    <h1 class="title">Шпаргалка по Wireshark, nmap, tcpdump</h1>
+                    <h1 class="title">Шпаргалка по Wireshark, nmap, tcpdump, netstat</h1>
                 </div>
             </div>
 
@@ -206,7 +206,58 @@ tcpdump -i eth0 src 192.168.0.2
 
 <span style="color:#008000"># захватывать только пакеты которые идут на конкретный IP</span>
 tcpdump -i eth0 dest 192.168.0.4
-</code></pre></div>
+</code></pre></div><h2 id="проверка-прослушиваемых-портов">Проверка прослушиваемых портов</h2>
+<blockquote>
+<p>Помимо <code>netstat</code> для проверки какая программа использует какой порт могут применяться также следующие утилиты <code>ss</code>, <code>lsof</code>. А также с помощью <code>nmap</code>, однако тут мы сканируем с сетевой стороны, а не со стороны ОС, как в предыдущих случаях.</p>
+</blockquote>
+<p>Источник: <a href="https://blog.sedicomm.com/2019/02/27/4-sposoba-uznat-kakie-porty-proslushivayutsya-v-linux/">4 способа узнать, какие порты прослушиваются в Linux (открыты)</a>.</p>
+<p>Немного теории порт – логический объект, который используется для связи в сетевых соединениях. Порт может находиться в одном из 4х состояний:</p>
+<ol>
+<li>открытый         (open)</li>
+<li>закрытый         (closed)</li>
+<li>отфильтрованный  (filtered)</li>
+<li>нефильтрованный  (unfiltered)</li>
+</ol>
+<p>Если порт открыт, програмное обеспечение прослушивает соединения и пакеты.</p>
+<h3 id="netstat">netstat</h3>
+<blockquote>
+<p>от англ. Network Statistics</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo netstat -ltupan
+</code></pre></div><ul>
+<li><code>l</code> – выводит на экран все прослушивающиеся сокеты (сочетания IP-адреса и номера порта)</li>
+<li><code>t</code> – указывает, что нужно показать все TCP-соединения сетевой подсистемы</li>
+<li><code>u</code> – указывает, что нужно показать UDP-соединения сетевой подсистемы</li>
+<li><code>p</code> –</li>
+<li><code>a</code> – показывает только активные соединения</li>
+<li><code>n</code> – вместо названий служб показывает номера портов</li>
+</ul>
+<h3 id="ss">ss</h3>
+<blockquote>
+<p>от англ. Socket Statistics</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo ss -lntup
+</code></pre></div><ul>
+<li><code>l</code> – выводит на экран все прослушивающиеся сокеты</li>
+<li><code>n</code> – вместо названий служб показывает номера портов</li>
+<li><code>t</code> – указывает, что нужно показать все TCP-соединения сетевой подсистемы</li>
+<li><code>u</code> – указывает, что нужно показать UDP-соединения сетевой подсистемы</li>
+<li><code>p</code> – показать PID процессов</li>
+</ul>
+<h3 id="lsof">lsof</h3>
+<blockquote>
+<p>от англ. LiSt of Open Files</p>
+</blockquote>
+<p>Утилита для отображения файлов, использующихся процессами.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo lsof -i
+</code></pre></div><ul>
+<li><code>-i</code> – для листинга network файлов</li>
+<li>для сокращения поиска, можно в качестве аргумента передать порт с двоеточием в начале <code>:80</code></li>
+</ul>
+<blockquote>
+<p>Кстати много в выводе у меня вместо порта встречается <code>http-alt</code>, a также <code>bootpc</code>, <code>ssh</code>. Найти соотвествие вы можете в файле <code>/etc/services</code>.</p>
+</blockquote>
+
             </div>
 
             <div class="tags">
