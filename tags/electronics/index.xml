@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Mon, 02 Jan 2023 13:15:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 24 Mar 2023 17:47:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/electronics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Выбор портативного осциллографа в 2023 году</title>
+      <link>https://urpylka.com/posts/post-90/</link>
+      <pubDate>Fri, 24 Mar 2023 17:47:00 +0200</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-90/</guid>
+      <description>У меня уже есть осцилограф, смотрите в статье – Мой первый осцилограф. Но после переезда в Латвию, я решил не перевозить его, тк он громоздкий и его перевозка будет стоить соразмерно со стоимостью нового с лучшими характеристиками. И я решил купить себе портативный.
+Вначале я определил следующие критерии:
+ портативный формат цена до 15тр частота под вопросом, но хотелось бы реально видеть фигуры в районе 20МГц немаловажно удобство интерфейса в идеале два канала также хотелось бы получить прибор без китайской &amp;ldquo;смекалки&amp;rdquo; вроде повышения частоты семплирования путем смешения двух каналов одного АЦП  Далее за пару дней я проштудировал много видеообзоров и статей с характеристиками.</description>
+    </item>
     
     <item>
       <title>Заводской брак в модуле для 3д-принтера BIGTREETECH UPS 24 v1.0</title>
