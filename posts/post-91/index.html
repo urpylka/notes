@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ. Хотя данная информация может также быть использована и для других серверов, где есть неоходимость в TLS протоколе.">
 <meta itemprop="datePublished" content="2023-04-26T14:18:00&#43;03:00" />
 <meta itemprop="dateModified" content="2023-04-26T14:18:00&#43;03:00" />
-<meta itemprop="wordCount" content="1479">
+<meta itemprop="wordCount" content="1580">
 
 
 
@@ -111,13 +111,18 @@ if (!doNotTrack) {
             </div>
 
             <div class="markdown">
-                <p>В целом большая часть информации касаемо критериев к сертификатам содержится в официальной документации RabbitMQ. Однако там нет практических примеров.</p>
+                <p>Коротко зачем это все? Протокол TLS решает две проблемы, первая – то что клиент и сервер уверены что они никто из них не подменен, второе – все передаваемые данные - зашифрованы. При использовании MQTT данные могут быть перехвачены и подменены. А главное могут быть перехвачены учетные данные броккера сообщений (RabbitMQ) и в случае широких прав, злоумышленник может получить доступ к данным других клиентов броккера.</p>
+<blockquote>
+<p>Для тех кто мало знаком с терминами SSL и TLS - это одно и тоже, в прошлом был только SSL, затем его переименовали в TLS. На практике люди до сих называют TLS как SSL и наоборот.</p>
+</blockquote>
+<p>Также можно включить не только шифрование и проверку подписи через TLS, но и аутентификацию пользователя <a href="https://www.rabbitmq.com/access-control.html#certificate-authentication">Authentication using Client TLS (x.509) Certificate Data</a> (я это не использую, далее речь пойдет только о шифровании). Другими словами пользователю не нужно будет вводить логин и пароль, а достаточно просто использовать сертификат. Для этого требуется прописать пару настроек в основном конфигурационном файле броккера, а также в соотвествии с именами пользователей задать соотвествующие поля (<code>Subject Alternative Name</code> / <code>Common Name</code> ) в сертификате клиента, подробнее в <a href="https://github.com/rabbitmq/rabbitmq-server/tree/main/deps/rabbitmq_auth_mechanism_ssl#username-extraction-from-certificate">README модуля SSL аутентификации</a>.</p>
+<h2 id="требования-к-сертификатам">Требования к сертификатам</h2>
+<p>В целом большая часть информации касаемо критериев к сертификатам содержится в официальной документации RabbitMQ. Однако там нет практических примеров.</p>
 <ul>
 <li><a href="https://www.rabbitmq.com/ssl.html">TLS Support</a></li>
 <li><a href="https://www.rabbitmq.com/troubleshooting-ssl.html">Troubleshooting TLS-enabled Connections</a></li>
 </ul>
-<p>Также, я это не использую, но можно включить не только шифрование и проверку подписи через TLS, но и аутентификацию пользователя <a href="https://www.rabbitmq.com/access-control.html#certificate-authentication">Authentication using Client TLS (x.509) Certificate Data</a>. Для этого требуется прописать пару настроек в основном конфигурационном файле броккера а также в соотвествии с именами пользователей задать соотвествующие поля (<code>Subject Alternative Name</code> / <code>Common Name</code> )в сертификате клиента, подробнее в <a href="https://github.com/rabbitmq/rabbitmq-server/tree/main/deps/rabbitmq_auth_mechanism_ssl#username-extraction-from-certificate">README модуля SSL аутентификации</a>.</p>
-<p>Для тех кто мало знаком с терминами SSL и TLS - это одно и тоже, в прошлом был только SSL, затем его переименовали в TLS. На практике люди до сих называют TLS как SSL и наоборот.</p>
+<p>В кратце:</p>
 <p>От сертификата сервера требуется совпадение <code>CN (Common Name)</code> (имя сертификата) с именем хоста сервера, иначе при TSL соединении будет ошибка, что сертификат выписан не на тот хост. Также можно в сертификате сервера определить алиасы (<a href="https://en.wikipedia.org/wiki/Subject_Alternative_Name">SAN (Subject Alternative Name)</a>) или допольнительные доменные имена и тогда будет проверять не только имя сертификата, но еще и этот список алиасов. Подробнее здесь <a href="https://www.rabbitmq.com/ssl.html#peer-verification-configuration">Enabling Peer Verification</a>.</p>
 <p>Теперь пройдемся по X509v3 Extensions - это что-то вроде определенных функций (из перечня) для которых может использоваться сертификат.</p>
 <p>Требованием <code>X509v3 Key Usage</code> к сертификату CA - собственно иметь разрешение на выписку других сертификтов, а также я добавил возможность создавать Certificate Revocation List (CRL). В конфигурационном файле это выглядит вот так:</p>
@@ -134,7 +139,9 @@ extendedKeyUsage        = <span style="color:#a31515">1.3.6.1.5.5.7.3.1</span>
 basicConstraints        = <span style="color:#a31515">CA:false</span>
 keyUsage                = <span style="color:#a31515">digitalSignature</span>
 extendedKeyUsage        = <span style="color:#a31515">1.3.6.1.5.5.7.3.2</span>
-</code></pre></div><p>Для удобства работы и сокращения кода я определю ряд переменных для использования в качестве путей к файлам:</p>
+</code></pre></div><h2 id="создание-сертификатов-и-ключей-шифрования">Создание сертификатов и ключей шифрования</h2>
+<h3 id="создание-конфигурационного-файла-и-директорий-ca">Создание конфигурационного файла и директорий CA</h3>
+<p>Для удобства работы и сокращения кода я определю ряд переменных для использования в качестве путей к файлам:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CA_NAME=urpylka.com
 CL_NAME=mqttclient_1
 SR_NAME=mqtt.urpylka.com
@@ -248,7 +255,7 @@ CL_CRT=<span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}<
 </code></pre></div><p>Без использования <code>digitalSignature</code> на стороне сервера, многие MQTT клиенты откажутся работать выдав ошибку вида:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Error: write EPROTO 140372507405416:error:10000090:SSL routines:OPENSSL_internal:ECC_CERT_NOT_FOR_SIGNING:../../third_party/boringssl/src/ssl/ssl_cert.cc:596:
 </code></pre></div><p>Подробнее про возможные параметры <a href="https://github.com/openssl/openssl/blob/master/apps/openssl.cnf">openssl.cnf</a>.</p>
-<h2 id="создание-ключей">Создание ключей:</h2>
+<h3 id="создание-ключей">Создание ключей:</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># генерация пары ключей алгоритмом ec длиной 521 bits</span>
 openssl ecparam -genkey -name secp521r1 -noout -outform PEM -out $CA_KEY
 </code></pre></div><p>Пару ключей для сервера и клиента я создам с помощью более простого алгоритма. Тут нужно исходить из того, с каими алгоритмами может работать реализации TLS на стороне сервера и клиента.</p>
@@ -261,7 +268,7 @@ openssl genrsa -out $CL_KEY 4096
 openssl ecparam -genkey -name secp521r1 -noout -outform PEM -out $SR_KEY
 openssl ecparam -genkey -name secp384r1 -noout -outform PEM -out $CL_KEY
 </code></pre></div><p>Разные параметры ключей <a href="https://connect2id.com/products/nimbus-jose-jwt/openssl-key-generation">How to generate RSA and EC keys with OpenSSL</a>.</p>
-<h2 id="генерация-и-подписание-ключом-сертификата-центра-сертицикации">Генерация и подписание ключом сертификата центра сертицикации</h2>
+<h3 id="генерация-и-подписание-ключом-сертификата-центра-сертицикации">Генерация и подписание ключом сертификата центра сертицикации</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># генерация сертификата, параметры вы должны ввести в процессе создания</span>
 openssl req -new -key $CA_KEY -out $CA_CRT -x509 -days 100
 
@@ -278,9 +285,9 @@ openssl req -x509 -config $CA_CFG -days 3650 -outform PEM -out $CA_CRT -subj /CN
 <li><code>-days n</code> – when the -x509 option is being used this specifies the number of days to certify the certificate for. The default is 30 days.</li>
 </ul>
 <p>Полное описание параметров <a href="https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html">openssl.org</a>.</p>
-<h2 id="просмотр-сгенированного-сертификата">Просмотр сгенированного сертификата</h2>
+<h3 id="просмотр-сгенированного-сертификата">Просмотр сгенированного сертификата</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl x509 -in $CA_CRT -text -noout
-</code></pre></div><h2 id="создание-сертификатов-сервера-и-клиента">Создание сертификатов сервера и клиента</h2>
+</code></pre></div><h3 id="создание-сертификатов-сервера-и-клиента">Создание сертификатов сервера и клиента</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Создание CSR (Certificate Signing Request)</span>
 openssl req -new -key $SR_KEY -outform PEM -subj /CN=$SR_NAME/O=$ORG/ -out $SR_CSR
 openssl req -new -key $CL_KEY -outform PEM -subj /CN=$CL_NAME/O=$ORG/ -out $CL_CSR
@@ -294,10 +301,10 @@ openssl ca -config $CA_CFG -in $CL_CSR -keyform PEM -notext -out $CL_CRT -batch 
 <p>Подробнее о <a href="https://www.openssl.org/docs/man1.0.2/man1/ca.html">openssl ca</a>.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl x509 -in $SR_CRT -text -noout
 openssl x509 -in $CL_CRT -text -noout
-</code></pre></div><h2 id="проверка">Проверка</h2>
+</code></pre></div><h3 id="проверка">Проверка</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl s_server -accept 8883 -CAfile <span style="color:#a31515">${</span>CA_CRT<span style="color:#a31515">}</span> -cert <span style="color:#a31515">${</span>SR_CRT<span style="color:#a31515">}</span> -key <span style="color:#a31515">${</span>SR_KEY<span style="color:#a31515">}</span>
 openssl s_client -connect localhost:8883 -CAfile <span style="color:#a31515">${</span>CA_CRT<span style="color:#a31515">}</span> -cert <span style="color:#a31515">${</span>CL_CRT<span style="color:#a31515">}</span> -key <span style="color:#a31515">${</span>CL_KEY<span style="color:#a31515">}</span>
-</code></pre></div><h2 id="конвертация-из-pem-в-der-формат">Конвертация из PEM в DER формат</h2>
+</code></pre></div><h3 id="конвертация-из-pem-в-der-формат">Конвертация из PEM в DER формат</h3>
 <p>Для конвертации сертификата:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl x509 -inform pem -in ca_crt.pem -outform der -out ca_crt.der
 openssl x509 -inform pem -in s_crt.pem -outform der -out s_crt.der
