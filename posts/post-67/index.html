@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
-<meta itemprop="wordCount" content="1353">
+<meta itemprop="wordCount" content="1454">
 
 
 
@@ -125,9 +125,9 @@ if (!doNotTrack) {
 <p>Начнем с базового, что такое <code>сертификат</code>, <code>центр сертификации</code> и для чего они нужны.</p>
 <p>Любой сертификат нужен для того, чтобы удостоверить что-то. Например, освоенную на курсах дисциплину, факт заключения брака или факт получения образования.
 Однако ключевой вопрос, в том почему мы доверяем сертификату? И на самом деле мы доверяем не ему, а доверяем органу, который выдает сертификат (конечно учитывая, что сертификат не подделан).</p>
-<p>Давайте разберем на примере ВУЗов, скажем мы знаем топовые университеты с хорошей репутацией. И если на работу приходит выпускник с дипломом такого ВУЗа, то мы понимаем, что это хороший специалист, потому что мы доверяем конкретному университету.</p>
+<p>Давайте разберем на примере ВУЗов. Скажем мы знаем топовые университеты с хорошей репутацией. И если на работу приходит выпускник с дипломом такого ВУЗа, то мы понимаем, что это хороший специалист, потому что мы доверяем конкретному университету.</p>
 <p>В этом случае центром сертификации является университет, а сертификатом - диплом выпускника.</p>
-<p>На этом принципе и построен алгоритм работы авторизации в <code>OpenVPN</code>. Тоесть по сути OpenVPN сервер может ничего не знать о клиенте, тк даже не он &ldquo;регистрирует&rdquo; его, а доверяет он потому, что сертификат клиента подписан тем же CA, что и сертификат самого сервера. На мой взгляд это красивое решение.</p>
+<p>На этом принципе и построен алгоритм работы авторизации в <code>OpenVPN</code>. Тоесть по сути OpenVPN сервер может ничего не знать о клиенте, тк даже не он &ldquo;регистрирует&rdquo; его, а доверяет он потому, что сертификат клиента подписан тем же CA (Certificate Authority), что и сертификат самого сервера. На мой взгляд это красивое решение.</p>
 <p>OpenVPN использует ряд сертификатов и ключей:</p>
 <ol>
 <li><code>ca.crt</code> – сертификат <code>центра сертификации</code>, которым у нас все подписано.</li>
@@ -148,7 +148,7 @@ if (!doNotTrack) {
 <li><code>/etc/openvpn/ccd</code> – это специальный каталог, в котором хранятся файлы совпадающие по имени с именами клиентов, в каждом из файлов хранятся отдельные конфигурации и опции необходимые для работы клиента, например опция <code>ifconfig-push 192.168.1.10 255.255.255.0</code>, которая выдает конкретному клиенту IP адрес <code>192.168.1.10</code>. Эта директория используется сервером. Задается с помощью параметра <code>client-config-dir</code>.</li>
 </ul>
 <h2 id="моя-реализация">Моя реализация</h2>
-<h3 id="openvpn">OpenVPN</h3>
+<h3 id="образ-openvpn">Образ OpenVPN</h3>
 <p>Собственно основная идея заключается в том, чтобы вынести центр сертификации и обвязки для разворачивания и конфигурирования сервера из образа.</p>
 <p>Получился следующий Dockerfile:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> alpine:latest</span><span style="">
@@ -159,13 +159,13 @@ if (!doNotTrack) {
 </span><span style="color:#a31515"></span>    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*<span style="">
 </span></code></pre></div><p>Я убрал все лишнее. И оставил только необходимое:</p>
 <ul>
-<li><code>openvpn.sh</code>;</li>
+<li><code>openvpn.conf</code>;</li>
 <li>директорию <code>ccd</code>;</li>
 <li><code>entrypoint.sh</code>;</li>
-<li>папку с сертификатами и ключами (которую подключаю как Docker volume).</li>
+<li><code>certs</code> - папка с сертификатом и ключом сервера, сертификатом CA, ta.key, dh.key и листом отозванных сертификатов.</li>
 </ul>
-<p>Отдельно пару слов стоит сказать про файл <code>openvpn.sh</code>. Тк я отказался от <code>ovpn_genconfig</code> я взял за основу базовый файл предлагаемый OpenVPN и внес туда только необходимые мне изменения, из плюсов теперь весь файл хорошо комментирован.
-И еще отдельного внимания заслуживает файл <code>entrypoint.sh</code>. Дело в том, что в нём делается пару важных вещей:</p>
+<p>Отдельно пару слов стоит сказать про файл <a href="./assets/openvpn.conf">openvpn.conf</a>. Тк я отказался от <code>ovpn_genconfig</code> я взял за основу базовый файл предлагаемый OpenVPN и внес туда только необходимые мне изменения, из плюсов теперь весь файл хорошо комментирован.</p>
+<p>И еще отдельного внимания заслуживает файл <code>entrypoint.sh</code>. Дело в том, что в нём делается пару важных вещей:</p>
 <ol>
 <li>
 <p>Создается <code>/dev/net/tun</code> устройство.</p>
@@ -199,7 +199,43 @@ echo <span style="color:#a31515">&#34;Running &#39;</span><span style="color:#a3
 exec <span style="color:#a31515">${</span>@<span style="color:#a31515">}</span>
 </code></pre></div></li>
 </ol>
-<p>Все файлы сертификатов и ключей генерируются и задаются один раз извне, из другого с центром сертификации. О чём – ниже.</p>
+<p>Все вышеперечисленный файлы я храню в отдельной директории которую монтирую в контейнер. Для деплоя я использую Docker Compose, так я могу определить ряд сервисов помимо Openvpn и задать адресацию локальной сети через функционал Docker Compose.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">version: &#34;2.4&#34;
+services:
+    openvpn:
+        build:
+            dockerfile: Dockerfile
+            context: ./openvpn/docker
+        restart: unless-stopped
+        entrypoint: /etc/openvpn/entrypoint.sh
+        command: openvpn --config /etc/openvpn/openvpn.conf
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - ./openvpn/bin:/usr/lib/openvpn/bin:ro
+            - ./openvpn/etc:/etc/openvpn:ro
+            - openvpn-logs:/tmp:rw
+        ports:
+            - 33896:33896/udp
+        logging:
+            driver: &#34;json-file&#34;
+            options:
+                max-size: &#34;100m&#34;
+        networks:
+            intranet:
+                ipv4_address: 192.168.250.4
+        cpus: 0.5
+        mem_limit: 100m
+        memswap_limit: 100m
+volumes:
+    openvpn-logs:
+networks:
+    intranet:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 192.168.250.0/24
+</code></pre></div><p>Все файлы сертификатов и ключей генерируются и задаются один раз извне, из другого с центром сертификации. О чём – ниже.</p>
 <h3 id="центр-сертификации">Центр сертификации</h3>
 <p>Для этого я создал отдельный Docker образ:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#00f">FROM</span><span style="color:#a31515"> alpine:latest</span><span style="">
