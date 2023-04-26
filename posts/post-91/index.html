@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Заметка по созданию CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ – urpylka՚s blog!</title><meta property="og:title" content="Заметка по созданию CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ" />
+<meta property="og:description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ, хотя данная информация может также использовать и для других серверов, где неоходимо использовать свои сертификаты." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urpylka.com/posts/post-91/" />
+<meta property="article:published_time" content="2023-04-26T14:18:00+03:00" />
+<meta property="article:modified_time" content="2023-04-26T14:18:00+03:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Заметка по созданию CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ"/>
+<meta name="twitter:description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ, хотя данная информация может также использовать и для других серверов, где неоходимо использовать свои сертификаты."/>
+<link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://urpylka.com/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://urpylka.com/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://urpylka.com/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://urpylka.com/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://urpylka.com/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://urpylka.com/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://urpylka.com/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://urpylka.com/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://urpylka.com/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://urpylka.com/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://urpylka.com/favicon/favicon-16x16.png">
+	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Заметка по созданию CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ">
+<meta itemprop="description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ, хотя данная информация может также использовать и для других серверов, где неоходимо использовать свои сертификаты.">
+<meta itemprop="datePublished" content="2023-04-26T14:18:00&#43;03:00" />
+<meta itemprop="dateModified" content="2023-04-26T14:18:00&#43;03:00" />
+<meta itemprop="wordCount" content="1479">
+
+
+
+<meta itemprop="keywords" content="ru,programming,cheatsheet," /><link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urpylka.com/css/main.css" />
+	<link rel="stylesheet" type="text/css" id="dark-scheme" href="https://urpylka.com/css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="https://urpylka.com/css/medium-font.css" />
+<script type="text/javascript" >
+	(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ym("62022457", "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62022457" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163829261-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	<script src="https://urpylka.com/js/feather.min.js"></script><script src="https://urpylka.com/js/main.js"></script></head>
+
+
+<body>
+    <div class="container wrapper">
+        <div class="header"><div class="flex-block">
+		<div class="site-title"><a href="https://urpylka.com/">urpylka՚s blog!</a></div>
+		<nav class="nav ico">
+			<ul class="flat"><li><a href="https://github.com/urpylka" title="Github"><i data-feather="github"></i></a></li><li><a href="https://instagram.com/urpylka" title="Instagram"><i data-feather="instagram"></i></a></li><li class="edge-left"><span class="scheme-toggle"><a href="#" id="scheme-toggle"></a></span></li>
+			</ul>
+		</nav>
+	</div><p id="subtitle">Programming, electronics, lifestyle</p><nav class="nav menu">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+        <div class="post one">
+            <div class="post-header">
+                
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">26</span>
+                        <span class="rest">Apr 2023</span>
+                    </div>
+                </div>
+                
+                <div class="matter">
+                    <h1 class="title">Заметка по созданию CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ</h1>
+                </div>
+            </div>
+
+            <div class="markdown">
+                <p>В целом большая часть информации касаемо критериев к сертификатам содержится в официальной документации RabbitMQ. Однако там нет практических примеров.</p>
+<ul>
+<li><a href="https://www.rabbitmq.com/ssl.html">TLS Support</a></li>
+<li><a href="https://www.rabbitmq.com/troubleshooting-ssl.html">Troubleshooting TLS-enabled Connections</a></li>
+</ul>
+<p>Также, я это не использую, но можно включить не только шифрование и проверку подписи через TLS, но и аутентификацию пользователя <a href="https://www.rabbitmq.com/access-control.html#certificate-authentication">Authentication using Client TLS (x.509) Certificate Data</a>. Для этого требуется прописать пару настроек в основном конфигурационном файле броккера а также в соотвествии с именами пользователей задать соотвествующие поля (<code>Subject Alternative Name</code> / <code>Common Name</code> )в сертификате клиента, подробнее в <a href="https://github.com/rabbitmq/rabbitmq-server/tree/main/deps/rabbitmq_auth_mechanism_ssl#username-extraction-from-certificate">README модуля SSL аутентификации</a>.</p>
+<p>Для тех кто мало знаком с терминами SSL и TLS - это одно и тоже, в прошлом был только SSL, затем его переименовали в TLS. На практике люди до сих называют TLS как SSL и наоборот.</p>
+<p>От сертификата сервера требуется совпадение <code>CN (Common Name)</code> (имя сертификата) с именем хоста сервера, иначе при TSL соединении будет ошибка, что сертификат выписан не на тот хост. Также можно в сертификате сервера определить алиасы (<a href="https://en.wikipedia.org/wiki/Subject_Alternative_Name">SAN (Subject Alternative Name)</a>) или допольнительные доменные имена и тогда будет проверять не только имя сертификата, но еще и этот список алиасов. Подробнее здесь <a href="https://www.rabbitmq.com/ssl.html#peer-verification-configuration">Enabling Peer Verification</a>.</p>
+<p>Теперь пройдемся по X509v3 Extensions - это что-то вроде определенных функций (из перечня) для которых может использоваться сертификат.</p>
+<p>Требованием <code>X509v3 Key Usage</code> к сертификату CA - собственно иметь разрешение на выписку других сертификтов, а также я добавил возможность создавать Certificate Revocation List (CRL). В конфигурационном файле это выглядит вот так:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#00f">[ root_ca_extensions ]</span>
+basicConstraints        = <span style="color:#a31515">CA:true</span>
+keyUsage                = <span style="color:#a31515">keyCertSign, cRLSign</span>
+</code></pre></div><p>Требованием <code>X509v3 Key Usage</code> к сертификату сервера это право пользоваться им для цифровой подписи, а также для участия в шифрованни симметричного ключа (<a href="https://security.stackexchange.com/questions/185366/difference-between-key-encipherment-and-data-encipherment">Difference between key encipherment and data encipherment?</a>). Хотя вот тут <a href="https://www.rabbitmq.com/ssl.html#key-usage-effects-on-cipher-suites">Extensions and Their Effect on Accepted Cipher Suites (Cipher Suite Filtering)</a> немного другая логика, поправьте если я не прав:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#00f">[ ${SR_NAME}_ca_extensions ]</span>
+basicConstraints        = <span style="color:#a31515">CA:false</span>
+keyUsage                = <span style="color:#a31515">digitalSignature, keyEncipherment</span>
+extendedKeyUsage        = <span style="color:#a31515">1.3.6.1.5.5.7.3.1</span>
+</code></pre></div><p>Требованием Extensions к сертификату клиента это только право пользоваться им для цифровой подписи:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#00f">[ ${CL_NAME}_ca_extensions ]</span>
+basicConstraints        = <span style="color:#a31515">CA:false</span>
+keyUsage                = <span style="color:#a31515">digitalSignature</span>
+extendedKeyUsage        = <span style="color:#a31515">1.3.6.1.5.5.7.3.2</span>
+</code></pre></div><p>Для удобства работы и сокращения кода я определю ряд переменных для использования в качестве путей к файлам:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CA_NAME=urpylka.com
+CL_NAME=mqttclient_1
+SR_NAME=mqtt.urpylka.com
+ORG=mqtt
+
+DIR_CA=./ca
+DIR_EX=./export
+D_PRI=<span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span>/private
+D_CRT=<span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span>/certs
+D_CRL=<span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span>/crls
+D_CSR=<span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}</span>/csrs
+
+rm -r <span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span> 2&gt; /dev/null
+rm -r <span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}</span> 2&gt; /dev/null
+mkdir <span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span> <span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}</span> <span style="color:#a31515">${</span>D_PRI<span style="color:#a31515">}</span> <span style="color:#a31515">${</span>D_CRT<span style="color:#a31515">}</span> <span style="color:#a31515">${</span>D_CRL<span style="color:#a31515">}</span> <span style="color:#a31515">${</span>D_CSR<span style="color:#a31515">}</span>
+
+chmod 0750 <span style="color:#a31515">${</span>D_PRI<span style="color:#a31515">}</span>
+echo 01 &gt; <span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span>/serial
+touch <span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span>/index.txt
+
+CA_CFG=<span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span>/openssl.cnf
+
+CA_KEY=<span style="color:#a31515">${</span>D_PRI<span style="color:#a31515">}</span>/ca_key.pem
+CA_CRT=<span style="color:#a31515">${</span>DIR_CA<span style="color:#a31515">}</span>/ca_crt.pem
+
+SR_KEY=<span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}</span>/<span style="color:#a31515">${</span>SR_NAME<span style="color:#a31515">}</span>_key.pem
+SR_CSR=<span style="color:#a31515">${</span>D_CSR<span style="color:#a31515">}</span>/<span style="color:#a31515">${</span>SR_NAME<span style="color:#a31515">}</span>_csr.pem
+SR_CRT=<span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}</span>/<span style="color:#a31515">${</span>SR_NAME<span style="color:#a31515">}</span>_crt.pem
+
+CL_KEY=<span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}</span>/<span style="color:#a31515">${</span>CL_NAME<span style="color:#a31515">}</span>_key.pem
+CL_CSR=<span style="color:#a31515">${</span>D_CSR<span style="color:#a31515">}</span>/<span style="color:#a31515">${</span>CL_NAME<span style="color:#a31515">}</span>_csr.pem
+CL_CRT=<span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}</span>/<span style="color:#a31515">${</span>CL_NAME<span style="color:#a31515">}</span>_crt.pem
+</code></pre></div><p>Далее определим конфигурационный файл.</p>
+<ul>
+<li>Секция <code>[ req ]</code> отвечает как раз за генерацию CA сертификата.</li>
+<li><code>[ ca ]</code> – используется для CSR запроса.</li>
+<li><code>[ ${CA_NAME} ]</code> отвечает за создание файловой структуры CA.</li>
+<li>Секции <code>${SR_NAME}_ca_extensions</code> и <code>${CL_NAME}_ca_extensions</code> отвечают за выбор расширений для сертифакта сервера и клиента соотвественно.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#a31515">&lt;&lt; EOF &gt; $CA_CFG
+</span><span style="color:#a31515">[ ca ]
+</span><span style="color:#a31515">default_ca              = ${CA_NAME}
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">[ ${CA_NAME} ]
+</span><span style="color:#a31515">dir                     = ${DIR_CA}
+</span><span style="color:#a31515">certificate             = \$dir/ca_crt.pem
+</span><span style="color:#a31515">private_key             = \$dir/private/ca_key.pem
+</span><span style="color:#a31515">database                = \$dir/index.txt
+</span><span style="color:#a31515">serial                  = \$dir/serial
+</span><span style="color:#a31515">new_certs_dir           = \$dir/certs
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">default_days            = 30
+</span><span style="color:#a31515">default_md              = sha256
+</span><span style="color:#a31515">default_crl_days        = 7
+</span><span style="color:#a31515">
+</span><span style="color:#a31515"># Set to &#39;no&#39; to allow creation of several certs with same subject.
+</span><span style="color:#a31515">unique_subject          = yes
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">policy                  = ca_policy
+</span><span style="color:#a31515">x509_extensions         = certificate_extensions
+</span><span style="color:#a31515">
+</span><span style="color:#a31515"># A few difference way of specifying how similar the request should look
+</span><span style="color:#a31515"># For type CA, the listed attributes must be the same, and the optional
+</span><span style="color:#a31515"># and supplied fields are just that :-)
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">[ ca_policy ]
+</span><span style="color:#a31515">commonName              = supplied
+</span><span style="color:#a31515">stateOrProvinceName     = optional
+</span><span style="color:#a31515">countryName             = optional
+</span><span style="color:#a31515">emailAddress            = optional
+</span><span style="color:#a31515">organizationName        = optional
+</span><span style="color:#a31515">organizationalUnitName  = optional
+</span><span style="color:#a31515">domainComponent         = optional
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">[ certificate_extensions ]
+</span><span style="color:#a31515">basicConstraints        = CA:false
+</span><span style="color:#a31515">subjectKeyIdentifier    = hash
+</span><span style="color:#a31515">authorityKeyIdentifier  = keyid,issuer
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">[ req ]
+</span><span style="color:#a31515"># default_bits          = 2048
+</span><span style="color:#a31515">default_keyfile         = ${D_PRI}/ca_key.pem
+</span><span style="color:#a31515"># default_md              = sha512
+</span><span style="color:#a31515">default_md              = sha256
+</span><span style="color:#a31515"># encrypt_key           = no
+</span><span style="color:#a31515">
+</span><span style="color:#a31515"># accept information from &#39;-subj&#39; arg &#39;openssl req&#39;
+</span><span style="color:#a31515"># if prompt = no -&gt; will use &#39;root_ca_distinguished_name&#39;
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">prompt                  = yes
+</span><span style="color:#a31515">distinguished_name      = root_ca_distinguished_name
+</span><span style="color:#a31515">x509_extensions         = root_ca_extensions
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">[ root_ca_distinguished_name ]
+</span><span style="color:#a31515">commonName              = ${CA_NAME}
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">[ root_ca_extensions ]
+</span><span style="color:#a31515">basicConstraints        = CA:true
+</span><span style="color:#a31515">keyUsage                = keyCertSign, cRLSign
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">[ ${SR_NAME}_ca_extensions ]
+</span><span style="color:#a31515">basicConstraints        = CA:false
+</span><span style="color:#a31515">keyUsage                = digitalSignature, keyEncipherment
+</span><span style="color:#a31515">extendedKeyUsage        = 1.3.6.1.5.5.7.3.1
+</span><span style="color:#a31515">
+</span><span style="color:#a31515">[ ${CL_NAME}_ca_extensions ]
+</span><span style="color:#a31515">basicConstraints        = CA:false
+</span><span style="color:#a31515">keyUsage                = digitalSignature
+</span><span style="color:#a31515">extendedKeyUsage        = 1.3.6.1.5.5.7.3.2
+</span><span style="color:#a31515">EOF</span>
+</code></pre></div><p>Без использования <code>digitalSignature</code> на стороне сервера, многие MQTT клиенты откажутся работать выдав ошибку вида:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Error: write EPROTO 140372507405416:error:10000090:SSL routines:OPENSSL_internal:ECC_CERT_NOT_FOR_SIGNING:../../third_party/boringssl/src/ssl/ssl_cert.cc:596:
+</code></pre></div><p>Подробнее про возможные параметры <a href="https://github.com/openssl/openssl/blob/master/apps/openssl.cnf">openssl.cnf</a>.</p>
+<h2 id="создание-ключей">Создание ключей:</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># генерация пары ключей алгоритмом ec длиной 521 bits</span>
+openssl ecparam -genkey -name secp521r1 -noout -outform PEM -out $CA_KEY
+</code></pre></div><p>Пару ключей для сервера и клиента я создам с помощью более простого алгоритма. Тут нужно исходить из того, с каими алгоритмами может работать реализации TLS на стороне сервера и клиента.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># генерация пары ключей алгоритмом rsa</span>
+<span style="color:#008000"># openssl genrsa -out $CA_KEY 2048</span>
+openssl genrsa -out $SR_KEY 4096
+openssl genrsa -out $CL_KEY 4096
+
+<span style="color:#008000"># или с помощью алгоритма основанного на эллептических кривых</span>
+openssl ecparam -genkey -name secp521r1 -noout -outform PEM -out $SR_KEY
+openssl ecparam -genkey -name secp384r1 -noout -outform PEM -out $CL_KEY
+</code></pre></div><p>Разные параметры ключей <a href="https://connect2id.com/products/nimbus-jose-jwt/openssl-key-generation">How to generate RSA and EC keys with OpenSSL</a>.</p>
+<h2 id="генерация-и-подписание-ключом-сертификата-центра-сертицикации">Генерация и подписание ключом сертификата центра сертицикации</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># генерация сертификата, параметры вы должны ввести в процессе создания</span>
+openssl req -new -key $CA_KEY -out $CA_CRT -x509 -days 100
+
+<span style="color:#008000"># генерацию ключа (rsa:2048, без пароля) и сертификата в один файл</span>
+openssl req -x509 -config $CA_CFG -days 3650 -outform PEM -out $CA_KEY -subj /CN=$CA_NAME/ -newkey rsa:2048 -nodes
+
+<span style="color:#008000"># генерация сертификата на основе конфига, файла ключей и аргумента &#39;-subj&#39;</span>
+openssl req -x509 -config $CA_CFG -days 3650 -outform PEM -out $CA_CRT -subj /CN=$CA_NAME/ -new -key $CA_KEY
+</code></pre></div><ul>
+<li><code>-noout</code> – this option prevents output of the encoded version of the request.</li>
+<li><code>-inform DER|PEM</code> - This specifies the input format. The DER option uses an ASN1 DER encoded form compatible with the PKCS#10. The PEM form is the default format: it consists of the DER format base64 encoded with additional header and footer lines.</li>
+<li><code>-outform DER|PEM</code> - This specifies the output format, the options have the same meaning as the -inform option.</li>
+<li><code>-nodes</code> – if this option is specified then if a private key is created it will not be encrypted.</li>
+<li><code>-days n</code> – when the -x509 option is being used this specifies the number of days to certify the certificate for. The default is 30 days.</li>
+</ul>
+<p>Полное описание параметров <a href="https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html">openssl.org</a>.</p>
+<h2 id="просмотр-сгенированного-сертификата">Просмотр сгенированного сертификата</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl x509 -in $CA_CRT -text -noout
+</code></pre></div><h2 id="создание-сертификатов-сервера-и-клиента">Создание сертификатов сервера и клиента</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Создание CSR (Certificate Signing Request)</span>
+openssl req -new -key $SR_KEY -outform PEM -subj /CN=$SR_NAME/O=$ORG/ -out $SR_CSR
+openssl req -new -key $CL_KEY -outform PEM -subj /CN=$CL_NAME/O=$ORG/ -out $CL_CSR
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Генерация сертификата по CSR запроса</span>
+openssl ca -config $CA_CFG -in $SR_CSR -keyform PEM -notext -out $SR_CRT -batch -extensions <span style="color:#a31515">${</span>SR_NAME<span style="color:#a31515">}</span>_ca_extensions
+openssl ca -config $CA_CFG -in $CL_CSR -keyform PEM -notext -out $CL_CRT -batch -extensions <span style="color:#a31515">${</span>CL_NAME<span style="color:#a31515">}</span>_ca_extensions
+</code></pre></div><ul>
+<li><code>-notext</code> – don&rsquo;t output the text form of a certificate to the output file.</li>
+<li><code>-batch</code> – this sets the batch mode. In this mode no questions will be asked and all certificates will be certified automatically.</li>
+</ul>
+<p>Подробнее о <a href="https://www.openssl.org/docs/man1.0.2/man1/ca.html">openssl ca</a>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl x509 -in $SR_CRT -text -noout
+openssl x509 -in $CL_CRT -text -noout
+</code></pre></div><h2 id="проверка">Проверка</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl s_server -accept 8883 -CAfile <span style="color:#a31515">${</span>CA_CRT<span style="color:#a31515">}</span> -cert <span style="color:#a31515">${</span>SR_CRT<span style="color:#a31515">}</span> -key <span style="color:#a31515">${</span>SR_KEY<span style="color:#a31515">}</span>
+openssl s_client -connect localhost:8883 -CAfile <span style="color:#a31515">${</span>CA_CRT<span style="color:#a31515">}</span> -cert <span style="color:#a31515">${</span>CL_CRT<span style="color:#a31515">}</span> -key <span style="color:#a31515">${</span>CL_KEY<span style="color:#a31515">}</span>
+</code></pre></div><h2 id="конвертация-из-pem-в-der-формат">Конвертация из PEM в DER формат</h2>
+<p>Для конвертации сертификата:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl x509 -inform pem -in ca_crt.pem -outform der -out ca_crt.der
+openssl x509 -inform pem -in s_crt.pem -outform der -out s_crt.der
+openssl x509 -inform pem -in c_crt.pem -outform der -out c_crt.der
+</code></pre></div><p>Для конвертации ключа:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl rsa -inform pem -in s_key.pem -outform der -out s_key.der
+openssl rsa -inform pem -in c_key.pem -outform der -out c_key.der
+</code></pre></div><p>Источник: <a href="https://wiki.segger.com/HOWTO_convert_PEM_certificates_and_keys_to_DER_format_for_emSSL">HOWTO convert PEM certificates and keys to DER format for emSSL</a>.</p>
+<h2 id="иcточники-информации">Иcточники информации</h2>
+<ul>
+<li><a href="https://medium.com/dlt-labs-publication/how-to-set-up-an-ssl-tls-enabled-rabbitmq-server-3e4e47315e8b">How to set up an SSL/TLS enabled RabbitMQ server?</a></li>
+<li><a href="https://security.stackexchange.com/questions/200295/the-difference-between-subject-key-identifier-and-sha1fingerprint-in-x509-certif">The difference between Subject Key Identifier and sha1Fingerprint in X509 Certificates</a> (X509v3 Subject Key Identifier)</li>
+<li><a href="habr.com/ru/post/346798">Шпоры по сертификатам X.509</a></li>
+<li><a href="https://habr.com/ru/post/194664/">Разбираем x.509 сертификат</a></li>
+<li><a href="https://youtu.be/ZxMu0Yv0QyU">AZ 204 — X509 Certificate Format</a></li>
+<li><a href="https://pleasantpasswords.com/info/pleasant-password-server/b-server-configuration/3-installing-a-3rd-party-certificate/openssl-commands">OpenSSL Commands</a></li>
+<li><a href="https://pro-ldap.ru/tr/zytrax/tech/ssl.html">Руководство по выживанию – TLS/SSL и сертификаты SSL (X.509)</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc5280">Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></li>
+<li><a href="https://www.opennet.ru/docs/RUS/ldap_apacheds/tech/ssl.html">Руководство по выживанию — TLS/SSL и сертификаты SSL (X.509)</a></li>
+<li><a href="https://binnes.github.io/esp8266Workshop/part2/CERT2.html#step-1-information-only-generating-the-key-and-certificate-for-a-device">Step 1 - INFORMATION ONLY - Generating the key and certificate for a device</a></li>
+<li><a href="https://www.theamplituhedron.com/articles/How-to-connect-to-an-SSL-protected-server-with-ESP8266(WiFiClient)/">How to connect to an SSL protected server with ESP8266 (WiFiClient)</a></li>
+</ul>
+<h2 id="далее-я-попробую-запустить-поддержку-шифрования-esp8266-и-на-esp32">Далее я попробую запустить поддержку шифрования ESP8266 и на ESP32</h2>
+<p>На эту темы я аккумулировал информацию и, пока, у меня не удалось завести это. Как будет какой-то прогресс – напишу в отдельной статье.</p>
+<ul>
+<li><a href="https://blog.thewalr.us/2019/03/27/using-esp8266-as-an-iot-endpoint-with-encrypted-mqtt-transport/">Using Esp8266 As An IoT Endpoint With Encrypted MQTT Transport</a></li>
+<li><a href="https://medium.com/@flespi/how-to-connect-esp8266-to-secure-mqtt-broker-know-it-all-and-get-it-done-approach-c33b94f37d88">How to connect ESP8266 to secure MQTT broker: know-it-all and get-it-done approach</a></li>
+<li><a href="https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFiClientSecure/examples/WiFiClientSecure/WiFiClientSecure.ino">WiFiClientSecure.ino</a></li>
+<li><a href="https://arduino.stackexchange.com/questions/72684/how-to-connect-to-mqtt-broker-with-tls">How to connect to MQTT broker with TLS?</a></li>
+<li><a href="https://gist.github.com/eLement87/133cddc5bd0472daf5cb35a20bfd811e">ESP8266 Secure MQTT Connection with Client Certificate Authentication</a></li>
+<li><a href="https://myles.eftos.id.au/blog/2016/09/15/connecting-the-esp8266-with-tls/">Garage Door Opener – Connecting the ESP8266 with TLS</a></li>
+<li><a href="https://stackoverflow.com/questions/67962746/class-bearsslwificlientsecure-has-no-member-named-loadcertificate">&lsquo;class BearSSL::WiFiClientSecure&rsquo; has no member named &lsquo;loadCertificate&rsquo;</a></li>
+<li><a href="https://github.com/knolleary/pubsubclient/issues/786">MQTT with TLS example</a></li>
+<li><a href="https://github.com/knolleary/pubsubclient/pull/833/files">esp8266 TLS example</a></li>
+<li><a href="https://gist.github.com/luisgcu/2de95b1933392d113677dcf7118be712">ESP8266 Secure MQTT Connection with Client Certificate Authentication</a></li>
+<li><a href="https://github.com/knolleary/pubsubclient/issues/806">Problems with ESP8266 and username/password Secured MQTT Connection to Mosquitto</a></li>
+<li><a href="https://pubsubclient.knolleary.net/api">pubsubclient API Documentation</a></li>
+<li><a href="https://github.com/knolleary/pubsubclient/blob/master/src/PubSubClient.cpp">pubsubclient implementation</a></li>
+<li><a href="https://randomnerdtutorials.com/esp32-https-requests/">ESP32 HTTPS Requests (Arduino IDE)</a></li>
+<li><a href="https://github.com/tzapu/WiFiManager/issues/698">WifiClientSecure, PubSubClient and WifiManager dont work together #698</a></li>
+<li><a href="https://github.com/esp8266/Arduino/issues/7801">Error in BearSSL when attempting to connect to secure MQTT broker #7801</a></li>
+<li><a href="https://tasmota.github.io/docs/TLS/#compiling-tls-for-esp8266">TLS Secured MQTT</a></li>
+<li><a href="https://arduino-esp8266.readthedocs.io/en/3.1.1/esp8266wifi/bearssl-client-secure-class.html">BearSSL WiFi Classes</a></li>
+<li><a href="https://alejandromori.files.wordpress.com/2017/08/esp8266wifi-library.pdf">esp8266wifi-library.pdf</a> (<a href="./assets/esp8266wifi-library.pdf">local copy</a>)</li>
+<li><a href="./assets/arduino-esp8266-readthedocs-io-en-latest.pdf">arduino-esp8266-readthedocs-io-en-latest</a> (<a href="https://readthedocs.org/projects/arduino-esp8266/downloads/pdf/latest/">local cpoy</a>)</li>
+</ul>
+
+            </div>
+
+            <div class="tags">
+                 
+                <ul class="flat">
+                    
+                    <li><a href="/tags/ru">ru</a></li>
+                    
+                    <li><a href="/tags/programming">programming</a></li>
+                    
+                    <li><a href="/tags/cheatsheet">cheatsheet</a></li>
+                    
+                </ul>
+                 
+            </div>
+
+<br/>
+<script defer src="https://commento.urpylka.com/js/commento.js" data-css-override="/css/commento.css"></script>
+<div id="commento"></div>
+<noscript>Please enable JavaScript to load the comments.</noscript></div>
+    </div>
+    <div class="footer wrapper">
+	<nav class="nav">
+		<div>2023  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+
+</html>

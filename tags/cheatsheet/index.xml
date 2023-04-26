@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Fri, 06 Jan 2023 12:33:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 26 Apr 2023 14:18:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Заметка по созданию CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ</title>
+      <link>https://urpylka.com/posts/post-91/</link>
+      <pubDate>Wed, 26 Apr 2023 14:18:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-91/</guid>
+      <description>В целом большая часть информации касаемо критериев к сертификатам содержится в официальной документации RabbitMQ. Однако там нет практических примеров.
+ TLS Support Troubleshooting TLS-enabled Connections  Также, я это не использую, но можно включить не только шифрование и проверку подписи через TLS, но и аутентификацию пользователя Authentication using Client TLS (x.509) Certificate Data. Для этого требуется прописать пару настроек в основном конфигурационном файле броккера а также в соотвествии с именами пользователей задать соотвествующие поля (Subject Alternative Name / Common Name )в сертификате клиента, подробнее в README модуля SSL аутентификации.</description>
+    </item>
     
     <item>
       <title>Шпаргалка по командам на macOS</title>
