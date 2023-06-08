@@ -291,7 +291,7 @@ openssl req -x509 -config $CA_CFG -days 3650 -outform PEM -out $CA_CRT -subj /CN
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Создание CSR (Certificate Signing Request)</span>
 openssl req -new -key $SR_KEY -outform PEM -subj /CN=$SR_NAME/O=$ORG/ -out $SR_CSR
 openssl req -new -key $CL_KEY -outform PEM -subj /CN=$CL_NAME/O=$ORG/ -out $CL_CSR
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Генерация сертификата по CSR запроса</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Генерация сертификата по CSR запросу</span>
 openssl ca -config $CA_CFG -in $SR_CSR -keyform PEM -notext -out $SR_CRT -batch -extensions <span style="color:#a31515">${</span>SR_NAME<span style="color:#a31515">}</span>_ca_extensions
 openssl ca -config $CA_CFG -in $CL_CSR -keyform PEM -notext -out $CL_CRT -batch -extensions <span style="color:#a31515">${</span>CL_NAME<span style="color:#a31515">}</span>_ca_extensions
 </code></pre></div><ul>
