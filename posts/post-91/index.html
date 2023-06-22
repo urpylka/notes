@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ. Хотя данная информация может также быть использована и для других серверов, где есть неоходимость в TLS протоколе.">
 <meta itemprop="datePublished" content="2023-04-26T14:18:00&#43;03:00" />
 <meta itemprop="dateModified" content="2023-04-26T14:18:00&#43;03:00" />
-<meta itemprop="wordCount" content="1577">
+<meta itemprop="wordCount" content="1590">
 
 
 
@@ -256,7 +256,7 @@ CL_CRT=<span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}<
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Error: write EPROTO 140372507405416:error:10000090:SSL routines:OPENSSL_internal:ECC_CERT_NOT_FOR_SIGNING:../../third_party/boringssl/src/ssl/ssl_cert.cc:596:
 </code></pre></div><p>Подробнее про возможные параметры <a href="https://github.com/openssl/openssl/blob/master/apps/openssl.cnf">openssl.cnf</a>.</p>
 <h3 id="создание-ключей">Создание ключей:</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># генерация пары ключей алгоритмом ec длиной 521 bits</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># генерация пары ключей алгоритмом ec длиной 521 bits для CA</span>
 openssl ecparam -genkey -name secp521r1 -noout -outform PEM -out $CA_KEY
 </code></pre></div><p>Пару ключей для сервера и клиента я создам с помощью более простого алгоритма. Тут нужно исходить из того, с каими алгоритмами может работать реализации TLS на стороне сервера и клиента.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># генерация пары ключей алгоритмом rsa</span>
@@ -292,9 +292,10 @@ openssl req -x509 -config $CA_CFG -days 3650 -outform PEM -out $CA_CRT -subj /CN
 openssl req -new -key $SR_KEY -outform PEM -subj /CN=$SR_NAME/O=$ORG/ -out $SR_CSR
 openssl req -new -key $CL_KEY -outform PEM -subj /CN=$CL_NAME/O=$ORG/ -out $CL_CSR
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Генерация сертификата по CSR запросу</span>
-openssl ca -config $CA_CFG -in $SR_CSR -keyform PEM -notext -out $SR_CRT -batch -extensions <span style="color:#a31515">${</span>SR_NAME<span style="color:#a31515">}</span>_ca_extensions
+openssl ca -config $CA_CFG -in $SR_CSR -keyform PEM -notext -out $SR_CRT -batch -extensions <span style="color:#a31515">${</span>SR_NAME<span style="color:#a31515">}</span>_ca_extensions -days 1000
 openssl ca -config $CA_CFG -in $CL_CSR -keyform PEM -notext -out $CL_CRT -batch -extensions <span style="color:#a31515">${</span>CL_NAME<span style="color:#a31515">}</span>_ca_extensions
 </code></pre></div><ul>
+<li><code>-days</code> – you can skip it (by default 30).</li>
 <li><code>-notext</code> – don&rsquo;t output the text form of a certificate to the output file.</li>
 <li><code>-batch</code> – this sets the batch mode. In this mode no questions will be asked and all certificates will be certified automatically.</li>
 </ul>
