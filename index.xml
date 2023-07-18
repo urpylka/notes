@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Wed, 26 Apr 2023 14:18:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 04 May 2023 23:09:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Сборка паяльного стола своими руками из старого утюга</title>
+      <link>https://urpylka.com/posts/post-92/</link>
+      <pubDate>Thu, 04 May 2023 23:09:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-92/</guid>
+      <description>Привет, я всё больше начинаю паять SMD компоненты и многослойные платы с большой массой. Для пайки первых может использоваться паяльный стол, это когда печатная плата с нанесенной паяльной пастой и компонентами ставиться на нагреваемую поверхность и нагревается для плавки пасты. А второе это нижний подогрев для пайки плат с массивной массой (например, видеокарты).
+Собственно купить готовое решение не особо интересно, и хочется собрать что-то из того барахла, что уже есть, не плодя новое.</description>
+    </item>
     
     <item>
       <title>Создание CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ</title>
