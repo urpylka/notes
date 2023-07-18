@@ -7,20 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Thu, 04 May 2023 23:09:00 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 24 Mar 2023 17:47:00 +0200</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/electronics/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Сборка паяльного стола своими руками из старого утюга</title>
-      <link>https://urpylka.com/posts/post-92/</link>
-      <pubDate>Thu, 04 May 2023 23:09:00 +0300</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-92/</guid>
-      <description>Привет, я всё больше начинаю паять SMD компоненты и многослойные платы с большой массой. Для пайки первых может использоваться паяльный стол, это когда печатная плата с нанесенной паяльной пастой и компонентами ставиться на нагреваемую поверхность и нагревается для плавки пасты. А второе это нижний подогрев для пайки плат с массивной массой (например, видеокарты).
-Собственно купить готовое решение не особо интересно, и хочется собрать что-то из того барахла, что уже есть, не плодя новое.</description>
-    </item>
     
     <item>
       <title>Выбор портативного осциллографа в 2023 году</title>
