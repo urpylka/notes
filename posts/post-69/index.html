@@ -2,15 +2,15 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор) – urpylka՚s blog!</title><meta property="og:title" content="Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор)" />
-<meta property="og:description" content="Эта заметка нацелена на изложение основных действий для перепрошивки Arduino с помощью встроенного бутлодера и программатора." />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Прошивка и работа с Fuse Bits на примере микроконтроллера ATmega168P (Arduino) – urpylka՚s blog!</title><meta property="og:title" content="Прошивка и работа с Fuse Bits на примере микроконтроллера ATmega168P (Arduino)" />
+<meta property="og:description" content="В данной статье описаны фьюзы ATmega168P. Рассказано о разницы двух методов прошивки: через UART и ISP. Приведены примеры использования утилиты avrdude. Произведены тесты частоты с разными настройками делителя и параметра компилятора." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-69/" />
-<meta property="article:published_time" content="2022-02-26T23:55:00+02:00" />
-<meta property="article:modified_time" content="2022-02-26T23:55:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
+<meta property="article:published_time" content="2024-01-10T15:06:00+03:00" />
+<meta property="article:modified_time" content="2024-01-10T15:06:00+03:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор)"/>
-<meta name="twitter:description" content="Эта заметка нацелена на изложение основных действий для перепрошивки Arduino с помощью встроенного бутлодера и программатора."/>
+<meta name="twitter:title" content="Прошивка и работа с Fuse Bits на примере микроконтроллера ATmega168P (Arduino)"/>
+<meta name="twitter:description" content="В данной статье описаны фьюзы ATmega168P. Рассказано о разницы двух методов прошивки: через UART и ISP. Приведены примеры использования утилиты avrdude. Произведены тесты частоты с разными настройками делителя и параметра компилятора."/>
 <link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
@@ -28,11 +28,11 @@
 	<link rel="manifest" href="https://urpylka.com/favicon/manifest.json">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор)">
-<meta itemprop="description" content="Эта заметка нацелена на изложение основных действий для перепрошивки Arduino с помощью встроенного бутлодера и программатора.">
-<meta itemprop="datePublished" content="2022-02-26T23:55:00&#43;02:00" />
-<meta itemprop="dateModified" content="2022-02-26T23:55:00&#43;02:00" />
-<meta itemprop="wordCount" content="658">
+	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Прошивка и работа с Fuse Bits на примере микроконтроллера ATmega168P (Arduino)">
+<meta itemprop="description" content="В данной статье описаны фьюзы ATmega168P. Рассказано о разницы двух методов прошивки: через UART и ISP. Приведены примеры использования утилиты avrdude. Произведены тесты частоты с разными настройками делителя и параметра компилятора.">
+<meta itemprop="datePublished" content="2024-01-10T15:06:00&#43;03:00" />
+<meta itemprop="dateModified" content="2024-01-10T15:06:00&#43;03:00" />
+<meta itemprop="wordCount" content="5353">
 
 
 
@@ -100,96 +100,879 @@ if (!doNotTrack) {
                 
                 <div class="meta">
                     <div class="date">
-                        <span class="day">26</span>
-                        <span class="rest">Feb 2022</span>
+                        <span class="day">10</span>
+                        <span class="rest">Jan 2024</span>
                     </div>
                 </div>
                 
                 <div class="matter">
-                    <h1 class="title">Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор)</h1>
+                    <h1 class="title">Прошивка и работа с Fuse Bits на примере микроконтроллера ATmega168P (Arduino)</h1>
                 </div>
             </div>
 
             <div class="markdown">
-                <p>Эта заметка нацелена на изложение основных действий для перепрошивки Arduino как при помощи встроенного бутлодера, так и с помощью программатора. В первых двух разделах я коротко изложу техническую базу и особенности использования двух методов, а в третьем разделе среду разработки и утилиты необходимые для прошивки.</p>
-<h2 id="прошивка-с-помощью-встроенного-bootloader-через-последовательный-порт">Прошивка с помощью встроенного bootloader (через последовательный порт)</h2>
-<p>Все платы Arduino (основная линейка) построены на базе чипа Atmega с архитектурой AVR. AVR – это семейство микроконтроллеров, их прошивка, а именно запись постоянной памяти и выставление Fuse битов реализовано через ICSP порт очень похожий на SPI. Однако наиболее распространенным способом прошивки является прошивка через USB. Точнее через UART, тк на самом деле на плате разведён USB-RS232 преобразователь.</p>
+                <h2 id="о-чём-эта-статья">О чём эта статья</h2>
+<p><code>Fuse Bits</code> – это конфигурационные биты AVR микроконтроллеров. Помимо <code>Fuse Bits</code> есть и другие типы конфигурационных битов. Однако многие всех их называют просто <code>Fuse Bits</code> или фьюзами. В этой статье я тоже буду использовать обобщенное понятие фьюзов (подразумевая разные типы конфигурационных битов). С помощью них можно отключить аппаратный интерфейс для прошивки, поменять источник тактовой частоты, отключить ногу RESET, запретить чтение прошивки из памяти, чтобы программу мк нельзя было скопировать итд.</p>
 <blockquote>
-<p>RS232 это надстройка над UART. UART содержит только пины <code>RX</code>, <code>TX</code>. Тогда как RS232 содержит ещё и другие линии (подробнее на <a href="https://zen.yandex.ru/media/tehnozet2/uart-comport-rs232-chto-eto-i-kak-oni-sviazany-60093adf9444cb7e98c63dbb">UART, COM-порт, RS-232, что это и как они связаны?</a>):</p>
-<p><img src="./assets/db9m-rs232-pinout.jpg" alt="image"></p>
+<p>Аналогичные биты есть и в семействе микроконтроллеров STM – <code>Option bytes</code>.</p>
 </blockquote>
-<p>Для перепрошивки через UART требуется выполнение двух условий:</p>
+<p>В данной статье мы рассмотрим фьюзы в AVR микроконтроллерах (которые используются в основной линейке плат Arduino), на примере <code>ATmega168P</code>. Несмотря на схожесть с <code>ATmega328P</code> и тем более с <code>ATmega48P</code> и <code>ATmega88P</code>, мы не будем описывать полную информацию о фьюзах для всех этих микроконтроллеров. Это обосновано следующими причинами:</p>
 <ol>
-<li>Наличие загрузчика в МК (его вполне может и не быть там, тогда остается только вариант с прошивкой через программатор)</li>
-<li>Для начала загрузки прошивки необходимо перезагрузить МК в очень узкое временное окно и затем начать передавать прошивку через UART. На некоторых платах отсуствует встроенный USB-RS232 преобразователь, например <code>Arduino Pro Mini</code>. В этом случае вы можете попробовать перезагрузить МК с кнопки на плате Arduino (у меня это получилось раза 20го). Как альтернатива, если вы используете внешний USB-RS232 преобразователь с линией <code>DTR</code>. Вы можете подключить этот вывод на пин <code>RESET</code> Arduino. Аналогичным способом подключен встроенный преобразователь на Arduino.</li>
+<li>Фьюзы различаются. Например, биты <code>BOOTSZ1</code>, <code>BOOTSZ0</code>, <code>BOOTRST</code> и биты <code>BODLEVEL2</code>, <code>BODLEVEL1</code>, <code>BODLEVEL0</code> для <code>ATmega168P</code> и <code>ATmega328P</code> находятся в разных байтах (<code>High</code> и <code>Extended</code>). Повторение информации из даташитов для каждого микроконтроллера кажется избыточным, учитывая их ясное описание в официальной документации.</li>
+<li>Цель статьи - предоставить инструкцию по работе с фьюзами в AVR микроконтроллерах.</li>
 </ol>
-<p>Для начала разберемся с тем, что нужно постоянно искать – пинами на программаторе.</p>
-<h2 id="прошивка-с-помощью-программатора">Прошивка с помощью программатора</h2>
-<p>Есть множество различных программаторов, я использую <code>USBasp</code> (<a href="https://microkontroller.ru/programmirovanie-mikrokontrollerov-avr/usbasp-usb-avr-programmator/">USBASP: USB AVR программатор для микроконтроллеров ATmega, ATtiny</a>).</p>
-<p><img src="./assets/usbasp2_0.jpg" alt="image"></p>
-<p>Также в качестве программатора можно использовать ещё одну плату Arduino со специальной прошивкой.</p>
-<p>Все сложность в прошивки этим способом обеспечить корректное подключение программатора к Arduino. Также обратите внимание, что лучше запитать Arduino непосредственно от программатора.</p>
-<p>Основная проблема в том, что на большинстве программаторов ICSP-разъём содержит 10 пинов, тогда как на всех платах Arduino, и не только, он 6ти пиновый.</p>
-<p><img src="./assets/iscp.jpg" alt="image"></p>
-<p>Для прототипирования небольших проектов, я люблю использовать <code>Arduino Nano</code>, ниже описание выводов:</p>
+<p>В этом контексте не важно какой именно набор битов есть у того или иного микроконтроллера. Также, так как работа со фьюзами требует работы с аппаратным программатором, я затрону тему прошивки микроконтроллеров, аппаратных интерфейсов и работу с утилитой <code>avrdude</code>.</p>
+<p>Наконец, выбор мк для меня обусловлен практической задачей использовать микроконтроллер <code>ATmega168P</code> с морально устаревшего полетного контроллера.</p>
+<h2 id="источники">Источники</h2>
+<p>Прежде всего источником истины являются datasheets на микроконтроллеры. Обратите внимаение, что AVR микроконтроллеры производят две компании <code>Atmel Corporation</code> и <code>Microchip Technology Inc</code>. Ниже ссылки на самый распространенный <code>ATmega328P</code> и рассматриваемый мк:</p>
+<ol>
+<li><code>ATmega48P</code> / <code>ATmega88P</code> / <code>ATmega168P</code> – <a href="./assets/ATMEGA48P.pdf">Atmel</a>, <a href="./assets/ATmega48P_88P_168P-DS40002065A.pdf">Microchips</a></li>
+<li><code>ATmega328P</code> – <a href="./assets/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf">Atmel</a>, <a href="./assets/ATMEGA48A.pdf">Microchips</a></li>
+</ol>
+<blockquote>
+<p>На всякий случай, не поленитесь удостовериться в правильности данных представленных в статье, поискав по ключевым словам или соответствующим главам, к которым я буду далее ссылаться.</p>
+</blockquote>
+<p>Также я взял много информации со следующих сайтов, в целом считаю полезным их к прочтению:</p>
+<ul>
+<li><a href="https://easyelectronics.ru/avr-uchebnyj-kurs-konfiguraciya-fuse-bit.html">AVR. Учебный Курс. Конфигурация FUSE бит</a></li>
+<li><a href="https://microkontroller.ru/arduino-projects/chto-takoe-fyuzy-fuse-bits-v-atmega328p-i-kak-ih-ispolzovat-v-arduino/">Что такое фьюзы (Fuse Bits) в ATmega328P и как их использовать в Arduino</a></li>
+<li><a href="https://xakep.ru/2020/12/12/fuse-bits/">Биты защиты. Разбираем способы защиты микроконтроллеров</a></li>
+<li><a href="https://tsibrov.blogspot.com/2018/08/fuse-bits.html">Что такое Фьюзы. Чтение и запись фьюзов Ардуино</a></li>
+<li><a href="https://www.rlocman.ru/review/article.html?di=148456">Все что нужно знать о Fuse- и Lock-битах AVR микроконтроллеров</a></li>
+<li><a href="https://ph0en1x.net/100-what-is-fuse-and-lock-bits-in-avr-microcontroller-howto.html">Что такое Fuse и Lock биты в AVR микроконтроллере, как с ними работать</a></li>
+<li><a href="https://ericdraken.com/hvsp/">High-Voltage Serial Programmer – Rescue AVR Chips</a></li>
+<li><a href="https://prominimicros.com/how-to-make-an-avr-programmer-out-of-a-pro-mini-part-2-hvsp-hvpp/">How to make an AVR Programmer out of a Pro Mini – Part 2: HVSP/HVPP</a></li>
+</ul>
+<h2 id="какие-типы-конфигурационных-битов-есть-в-avr">Какие типы конфигурационных битов есть в AVR?</h2>
+<p>Почему <code>Fuse Bits</code> так называются? На данный момент конфигурационные биты записываются во флеш-память и их можно менять большое количество раз. Однако, раньше, когда флеш-памяти ещё не было, для хранения конфигурации микроконтроллера использовались специальные пережигаемые перемычки, похожие на предохранители, что на английском – fuse. Их можно было разово физически сжечь, включая какую-то функцию. Кстати, по этой причине, если перемычка цела – значит функция не задействована и наоборот: перемычку сожгли – значит она задействована.</p>
+<p>Вся информация по программированию (записи каких либо данных в память микроконтроллера) описана в <a href="./assets/ATMEGA48P.pdf">27 главе, стр. 291</a>. Конфигурационные биты делятся по группам состоящих из одного или нескольких байт.</p>
+<ul>
+<li><code>Program And Data Memory Lock Bits</code> или <code>Lock Bits</code> относятся к OTP (One-Time Programmable). После установки, сброс может быть сделан только с помощью <code>HVSP</code> (<a href="https://ericdraken.com/hvsp/">High Voltage Serial Programming</a>) или <code>HVPP</code> (<a href="https://prominimicros.com/how-to-make-an-avr-programmer-out-of-a-pro-mini-part-2-hvsp-hvpp/">High Voltage Parallel Programming</a>) программаторов.</li>
+<li><code>Fuse Bits</code> в свою очередь делятся на 3 байта:
+<ul>
+<li><code>Fuse Low Byte</code></li>
+<li><code>Fuse High Byte</code></li>
+<li><code>Extended Fuse Byte</code></li>
+</ul>
+</li>
+<li><code>Signature Bytes</code> – содержит три байта.</li>
+<li><code>Calibration Byte</code> – содержит калибровочные значения для встроенного RC осцилятора. Описаны в <a href="./assets/ATMEGA48P.pdf">главе 8.12.1, стр. 38 (OSCCAL – Oscillator Calibration Register)</a>. Подробнее о калибровке в самом конце статьи.</li>
+</ul>
+<p>Зачастую пользователь меняет <code>Fuse Bits</code>, и только в случае использования микроконтроллеров в продакшене – <code>Lock Bits</code>.</p>
+<p>Чтобы поменять значение одного фьюза, нужно записать всю комбинацию фьюз битов байта в котором они состоят. Например, <code>11011001</code> представляет собой комбинацию fuse-битов для одного из байтов. Далее значение конвертируется в шестнадцатиричное представление и записывается с помощью программно-аппаратных средств в мк. О чем мы поговорим ниже.</p>
+<p>Чтобы перейти к чтению <code>Fuse Bits</code>, вначале нужно аппаратно подключить мк к программатору. Поэтому далее я опишу способы прошивки, как более крупной темы и вторым пунктом расскажу про программаторы.</p>
+<h2 id="способы-прошивки-avr-микроконтроллеров">Способы прошивки AVR микроконтроллеров</h2>
+<p>Прошивка – процесс при котором скомпилированный бинарный файл мы загружаем в определенное место во флеш-памяти микроконтроллера. <code>ATmega168P</code> как и другие AVR микроконтроллеры имеют два подхода к прошивки с использованием:</p>
+<ol>
+<li>Загрузчика (bootloader) через UART</li>
+<li>Аппаратного интерфейса для прошивки</li>
+</ol>
+<p>Использование загрузчика более распространено особенно, если речь идет про Arduino. Загрузчик – это такая же программа мк как и ваша, которая запускается первой, и находится в отведенном для него месте. Цель загрузчика – при перезагрузки мк перехватить управление в случае передачи бинарного файла прошивки через UART интерфейс и записать данный файл во флеш-память.</p>
+<p>Обычно, те кто только начинает свой путь в программировании микроконтроллеров на Arduino не совсем отдают себе отчет в том, как тогда устроена прошивка по USB. Дело в том что на большинстве плат Arduino находится USB - UART преобразователь. Помимо двух линий передачи данных (<code>RX</code>, <code>TX</code>) в преобразователе используется управляющая линия <code>DTR</code> (Data Terminal Ready), она подключается к ноге <code>RESET</code> микроконтроллера и отвечает за его сброс, собственно после которого и запускается загрузчик. Вот, как пример, <a href="https://www.arduino.cc/en/uploads/Main/arduino-uno-schematic.pdf">схема платы Arduino Uno</a>.</p>
+<blockquote>
+<p>Зачастую даже те кто давно в электронике путают <code>UART</code> (Universal Asynchronous Receiver/Transmitter) и <code>RS-232</code> (Recommended Standard 232). Иногда к этому ещё подмешиваю СOM-порт выполненного в разъёме <code>DB9</code>:
+<img src="./assets/db9m-rs232-pinout.png" alt="image">
+Стандарты <code>UART</code> и <code>RS-232</code> действительно очень похожи. Основное различие между <code>UART</code> и <code>RS-232 </code>заключается в уровнях напряжения. <code>UART</code> часто используется внутри устройств и работает на низких уровнях напряжения (<code>TTL</code> (Transistor-Transistor Logic)), таких как 0 и 5 вольт, в то время как <code>RS-232</code> определяет более высокие уровни напряжения (обычно от -15 до +15 вольт) для внешнего обмена данными между устройствами. Подробнее разнице данных стандартов на <a href="https://zen.yandex.ru/media/tehnozet2/uart-comport-rs232-chto-eto-i-kak-oni-sviazany-60093adf9444cb7e98c63dbb">UART, COM-порт, RS-232, что это и как они связаны?</a>.</p>
+</blockquote>
+<p>В случае наличия загрузчика в плате в которой нет встроенного USB - UART преобразователя, например, <code>Arduino Pro Mini</code> есть возможность прошить её по UART используя внешний преобразователь. Сложность заключается в нажать на кнопку перезагрузки мк в момент начала передачи прошивки (у меня это получилось с 20го раза). Ну и как вариант, просто подключить <code>DTR</code> линию внешнего преобразователя к ноге <code>RESET</code>.</p>
+<p>Однако, если загрузчика нет или мы хотим поменять фьюзы нам необходимо подключение к специальном аппаратному интерфейсу. В AVR микроконтроллерах реализован <code>ISP</code> (In-System Programming) метод для прошивки, означающий программирование микроконтроллера, находящегося в цепи или в системе (имеется ввиду без выпаивания мк из платы). Одновременно с этим, я думаю, могие ещё встречали упоминание или обозначение <code>ICSP</code> (In-Circuit Serial Programming).</p>
+<p>Оба термина <code>ISP</code> (In-System Programming) и <code>ICSP</code> (In-Circuit Serial Programming) используются в контексте программирования микроконтроллеров. Они оба означают программирование микроконтроллера, находящегося в цепи или в системе.</p>
+<p>Однако, существует разница в использовании терминов в различных контекстах:</p>
+<ul>
+<li><code>ISP</code> (In-System Programming) – означает программирование микроконтроллера внутри системы, но может использоваться более широко, включая использование как последовательного, так и параллельного интерфейса.</li>
+<li><code>ICSP</code> (In-Circuit Serial Programming) – представляет собой метод программирования микроконтроллеров, который позволяет записывать программный код напрямую в память устройства через последовательный интерфейс.</li>
+</ul>
+<p>Термин <code>ISP</code> может быть более универсальным. Если важен именно способ программирования (например, последовательное программирование), то <code>ICSP</code> может быть более точным термином.</p>
+<p>Программирование по принципу <code>ICSP</code> в большинстве AVR мк происходит с использованием аппаратного интерфейса <code>SPI</code> (Serial Peripheral Interface) в котором используются линии:</p>
+<ul>
+<li><code>SCK</code> (Serial Clock)</li>
+<li><code>MOSI</code> (Master Out Slave In)</li>
+<li><code>MISO</code> (Master In Slave Out)</li>
+<li><code>RESET</code> (не является линией <code>SPI</code> интерфейса, к нему подключается <code>SPI</code> линия <code>SS</code> программатора)</li>
+</ul>
+<p>Из-за чего разъём содержащей линии <code>SPI</code> на Arduino часто называют <code>ICSP</code> или <code>ISP</code>, подразумевая функцию данного разъёма.</p>
 <p><img src="./assets/arduino-nano-3.2.jpg" alt="image"></p>
-<p>На некоторых программаторах, в том числе на USBasp выведены также I2C, UART-линии:</p>
+<p>В некоторых моделях мк AVR32 используют JTAG-интерфейс (Joint Test Action Group) который включает следующие линии:</p>
+<ul>
+<li><code>TCK</code> (Test Clock)</li>
+<li><code>TMS</code> (Test Mode Select)</li>
+<li><code>TDI</code> (Test Data Input)</li>
+<li><code>TDO</code> (Test Data Output)</li>
+</ul>
+<p>Для унификации я тоже буду пользоваться термином <code>ICSP</code> как стандартом включающего в себя аппаратный интерфейс и метод для прошивки в мк <code>ATmega168P</code>.</p>
+<p>Для прошивки через <code>ICSP</code> требуется программатор. Их достаточно много разных. Например, в качестве программатора можно использовать и другую плату Arduino загрузив туда специальную прошивку подробнее об этом в <a href="https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP">официальной документации от Arduino</a>. Но я использую <code>USBasp 2.0</code>:</p>
+<p><img src="./assets/original.jpg" alt="image"></p>
+<p>Подробнее о моём программаторе можно почитать в <a href="https://microkontroller.ru/programmirovanie-mikrokontrollerov-avr/usbasp-usb-avr-programmator/">USBASP: USB AVR программатор для микроконтроллеров ATmega, ATtiny</a>.</p>
+<p>На большинстве программаторов разъём содержит 10 пинов, тогда как на всех платах Arduino (и не только на них), он 6ти пиновый.</p>
+<p><img src="./assets/iscp.jpg" alt="image"></p>
+<p>Это сделано с заделом на будущее, чтобы залолжить другие функции например в новой версии USBasp появилась поддержка <code>I2C</code> и <code>UART</code> линий.</p>
 <p><img src="./assets/atb-usbasp.png" alt="image"></p>
-<p>Для облегчения процесса перепрошивки, может быть сделан переходник. Подробнее в статье <a href="http://bigbenmobileblog.blogspot.com/2014/01/avr-isp.html">AVR ISP Разъемы</a> (<a href="http://web.archive.org/web/20200808204440/http://bigbenmobileblog.blogspot.com/2014/01/avr-isp.html">webarchive</a>).</p>
+<p>Для всех дальнейших действий с мк используется программа <code>avrdude</code>. Это командная строковая утилита, предназначенная для программирования микроконтроллеров AVR. Она является мощным инструментом для загрузки и выгрузки программного кода, управления фьюзами, а также выполнения других операций с микроконтроллерами AVR. Вы можете найти более подробную информацию о том, как можно её использовать в <a href="./assets/avrdude.pdf">этой инструкции</a>.</p>
+<p>Её под капотом использует те же Arduino IDE или Platformio.</p>
+<p>Теперь мы можем перейти к следующей теме.</p>
+<h2 id="чтение-fuse-bits">Чтение Fuse Bits</h2>
+<p>Давайте для начала запросим общую информацию о мк с помощью аргумента <code>-v</code>:</p>
+<p>Используйте соответствующий тип своего микроконтроллера (<code>m168p</code>, <code>m328p</code>), программатора и тип подключения.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; avrdude -c usbasp -P usb -p m168p -v
+
+avrdude: Version 7.0
+         Copyright (c) Brian Dean, http://www.bdmicro.com/
+         Copyright (c) Joerg Wunsch
+
+         System wide configuration file is <span style="color:#a31515">&#34;/opt/homebrew/etc/avrdude.conf&#34;</span>
+         User configuration file is <span style="color:#a31515">&#34;/Users/urpylka/.avrduderc&#34;</span>
+         User configuration file does not exist or is not a regular file, skipping
+
+         Using Port                    : usb
+         Using Programmer              : usbasp
+         AVR Part                      : ATmega168P
+         Chip Erase delay              : 9000 us
+         PAGEL                         : PD7
+         BS2                           : PC2
+         RESET disposition             : dedicated
+         RETRY pulse                   : SCK
+         Serial program mode           : yes
+         Parallel program mode         : yes
+         Timeout                       : 200
+         StabDelay                     : 100
+         CmdexeDelay                   : 25
+         SyncLoops                     : 32
+         PollIndex                     : 3
+         PollValue                     : 0x53
+         Memory Detail                 :
+
+                                           Block Poll               Page                       Polled
+           Memory Type Alias    Mode Delay Size  Indx Paged  Size   Size <span style="color:#008000">#Pages MinW  MaxW   ReadBack</span>
+           ----------- -------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           eeprom                 65    20     4    0 no        512    4      0  3600  3600 0xff 0xff
+           flash                  65     6   128    0 yes     16384  128    128  4500  4500 0xff 0xff
+           lfuse                   0     0     0    0 no          1    1      0  4500  4500 0x00 0x00
+           hfuse                   0     0     0    0 no          1    1      0  4500  4500 0x00 0x00
+           efuse                   0     0     0    0 no          1    1      0  4500  4500 0x00 0x00
+           lock                    0     0     0    0 no          1    1      0  4500  4500 0x00 0x00
+           calibration             0     0     0    0 no          1    1      0     0     0 0x00 0x00
+           signature               0     0     0    0 no          3    1      0     0     0 0x00 0x00
+
+         Programmer Type : usbasp
+         Description     : USBasp, http://www.fischl.de/usbasp/
+
+avrdude: auto set sck period (because given equals null)
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | <span style="color:#008000">################################################## | 100% 0.01s</span>
+
+avrdude: Device signature = 0x1e940b (probably m168p)
+
+avrdude <span style="color:#00f">done</span>.  Thank you.
+</code></pre></div><p>Ниже представлен пример чтения фьюзов рассматриваемого мк.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c usbasp -p m168p -U lfuse:r:-:h
+avrdude -c usbasp -p m168p -U hfuse:r:-:h
+avrdude -c usbasp -p m168p -U efuse:r:-:h
+avrdude -c usbasp -p m168p -U lock:r:-:h
+avrdude -c usbasp -p m168p -U calibration:r:-:h
+avrdude -c usbasp -p m168p -U signature:r:-:h
+</code></pre></div><blockquote>
+<p>Также в одну команду поместить несколько опций -U последовательно.</p>
+</blockquote>
+<p>Давайте на примере полученных данных о фьюзах разберемся как настроен данный мк.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Byte</th>
+<th align="left">HEX</th>
+<th align="left">BIN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">lfuse</td>
+<td align="left">0xe2</td>
+<td align="left">11100001</td>
+</tr>
+<tr>
+<td align="left">hfuse</td>
+<td align="left">0xdd</td>
+<td align="left">11011101</td>
+</tr>
+<tr>
+<td align="left">efuse</td>
+<td align="left">0xf9</td>
+<td align="left">11111001</td>
+</tr>
+<tr>
+<td align="left">lock</td>
+<td align="left">0x80</td>
+<td align="left">10000000</td>
+</tr>
+<tr>
+<td align="left">calibration</td>
+<td align="left">0xff</td>
+<td align="left">11111111</td>
+</tr>
+<tr>
+<td align="left">signature</td>
+<td align="left">0x1e,0x94,0xb (0x1e940b)</td>
+<td align="left">-</td>
+</tr>
+</tbody>
+</table>
+<p>Все значения байтов читаются в шестнадцатеричном представлении, для дальнешей работы я перевел их в двоичное представление. В signature содержится три байта, и переводить их в двоичное значение ни к чему, тк нет деления функций привязанных к отдельным битам.</p>
+<p>Начнем по порядку, рассмотрим <code>Fuse Bits</code>. Для упрощения работы с фьюзами я советую использовать AVR Fuse Calculator, например от <a href="https://www.engbedded.com/fusecalc/">engbedded.com</a>.</p>
+<p>Также я не буду рассматривать Lock Bits.</p>
+<h3 id="fuse-low-byte">Fuse Low Byte</h3>
+<p>Данный байт отвечает за установку источника опорного тактового сигнала и его частоты. По умолчанию все контроллеры AVR (кроме старых серий <code>AT90S2313</code>, <code>AT90S8535</code> итд.) сконфигурированы так, чтобы работать от внутреннего источника тактов. Т.е. стоить подать на них питание и они начинают работать.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Номер бита</th>
+<th align="left">Название</th>
+<th align="left">Описание</th>
+<th align="left">Значение по умолчанию</th>
+<th align="left">Текущее значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">7</td>
+<td align="left">CKDIV8</td>
+<td align="left">Divide clock by 8</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">CKOUT</td>
+<td align="left">Clock output</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">SUT1</td>
+<td align="left">Select start-up time</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">SUT0</td>
+<td align="left">Select start-up time</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">CKSEL3</td>
+<td align="left">Select Clock source</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">CKSEL2</td>
+<td align="left">Select Clock source</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">CKSEL1</td>
+<td align="left">Select Clock source</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">CKSEL0</td>
+<td align="left">Select Clock source</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>Бит <code>CKDIV8</code> (Clock Divider Control Register) отвечает за деление тактовой частоты на 8. Установка этого бита приводит к уменьшению тактовой частоты системы в 8 раз.</p>
+<p>Делитель частоты CKDIV8 влияет на скорость работы микроконтроллера и может использоваться для уменьшения энергопотребления, например, при работе от батареи. Однако, при включенной опции <code>CKDIV8</code>, частота работы микроконтроллера снижается, что также влияет на производительность.</p>
+<blockquote>
+<p>Важно отметить, что независимо от значения бита <code>CKDIV8</code>, можно программно изменять значение делителя в любой момент из программы. Для работы с этими функциями подразумевается использование <a href="https://github.com/arduino/ArduinoCore-avr">фреймворка Arduino</a>.</p>
+<p><code>CLKPR = _BV(CLKPCE);</code> – эта строка кода разрешает изменение делителя системной частоты. Она открывает доступ к записи в регистр <code>CLKPR</code> (Clock Prescaler Register). <code>_BV(CLKPCE)</code> – макрос, который создает значение с единичным битом  <code>CLKPCE</code> (Clock Prescaler Change Enable). Установка этого бита разрешает изменение делителя системной частоты.</p>
+<p>Если делитель системной частоты был установлен через фьюз-бит <code>CKDIV8</code>, то работа с <code>CLKPR</code> не сбросит его, однако отключит его работу.</p>
+<p>Регистр <code>CLKPR</code> может принимать следующие значения:</p>
+<ul>
+<li><code>0x00</code>: Это означает, что все биты <code>CLKPSn</code> (где n = 0, 1, 2, 3) установлены в 0. Что устанавливает делитель в 1 и означает, что системная частота не делится (или делится на 1). Следовательно микроконтроллер работает на максимальной частоте равной частоте источника тактового сигнала. Для установки используйте следующую команду <code>CLKPR = 0;</code>.</li>
+<li><code>0x01</code>: Если установлен только бит <code>CLKPS0</code>, то это устанавливает делитель в 2. Это означает, что системная частота уменьшается в 2 раза.</li>
+<li><code>0x02</code>: Если установлен только бит <code>CLKPS1</code>, то это устанавливает делитель в 4.</li>
+<li><code>0x03</code>: Комбинация битов <code>CLKPS0</code> и <code>CLKPS1</code> устанавливает делитель в 8.</li>
+<li><code>0x04</code>: Если установлен только бит <code>CLKPS2</code>, то это устанавливает делитель в 16.</li>
+<li><code>0x05</code>: Комбинация битов <code>CLKPS0</code> и <code>CLKPS2</code> устанавливает делитель в 32.</li>
+<li><code>0x06</code>: Комбинация битов <code>CLKPS1</code> и <code>CLKPS2</code> устанавливает делитель в 64.</li>
+<li><code>0x07</code>: Комбинация битов <code>CLKPS0</code>, <code>CLKPS1</code> и <code>CLKPS2</code> устанавливает делитель в 128.</li>
+<li><code>0x08</code>: Если установлен только бит <code>CLKPS3</code>, то это соответствует делителю 256.</li>
+</ul>
+<p>Подробнее в <a href="./assets/ATMEGA48P.pdf">главе 8.12.2</a>.</p>
+<p>Чтобы установить только один бит используйте подобную команду:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">CLKPR = _BV(CLKPS0);
+</code></pre></div><p>Если необходимо установить комбинацию битов используйте подобную команду:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"> CLKPR = _BV(CLKPS1) | _BV(CLKPS0);
+</code></pre></div><p>Значения в <code>CLKPR</code> нужно устанавливать с осторожностью, учитывая требования к рабочей частоте вашего приложения и ограничения работы периферийных устройств на различных частотах. Так как фактически вы понизите частоту работы мк и такой частоты мб недостаточно для работы некоторых аппаратных интерфейсов. Кстати это относится и к прошивке мк через <code>ICSP</code>.</p>
+</blockquote>
+<p>Бит <code>CKOUT</code> отвечает за вывод тактовой частоты на контакт <code>CLK0</code> (<code>D8</code> на плате Arduino Uno). Если бит запрограммирован (установлен в 0), то сигнал тактовой частоты выводится наружу, что полезно, например, для использования тактового сигнала другими периферийными устройствами. При использовании делителя тактовой частоты (задается битом <code>CKDIV8</code>) происходит вывод пониженной частоты.</p>
+<p>Биты <code>SUT1</code> и <code>SUT0</code>, совместно с битами <code>CKSEL[3:0]</code>, устанавливают длительность задержки при включении микроконтроллера и выбор типа осциллятора (керамический или встроенный в кристалл). Задержка обеспечивает стабилизацию источника тактовой частоты после подачи питания. Величина задержки может быть от 0 до 65 мс. Возможные значения этих битов и соответствующие устанавливаемые ими параметры приведены в следующей таблице.</p>
+<table>
+<thead>
+<tr>
+<th>Power Conditions</th>
+<th>Start-up Time from Power-down and Power-save</th>
+<th>Additional Delay from Reset (VCC = 5.0V)</th>
+<th>SUT[1:0]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOD enabled</td>
+<td>6CK</td>
+<td>14CK(1)</td>
+<td>00</td>
+</tr>
+<tr>
+<td>Fast rising power</td>
+<td>6CK</td>
+<td>14CK + 4.1ms</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Slowly rising power</td>
+<td>6CK</td>
+<td>14CK + 65ms</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Reserved</td>
+<td>-</td>
+<td>-</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+<p>По умолчанию <code>Slowly rising power</code>.</p>
+<blockquote>
+<p>Если фьюз <code>RSTDISBL</code> (описание бита ниже) запрограммирован, то время старта будет увеличено до <code>14CK + 4.1ms</code> для удостоверения, что режим программирования может быть включен.</p>
+</blockquote>
+<p>Биты <code>CKSEL[3:0]</code> определяют источник тактового сигнала. В таблице ниже приведены возможные значения битов и соответствующие источники тактового сигнала, поддерживаемые микроконтроллером <code>ATmega328P</code>.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Источник тактового сигнала</th>
+<th align="left">Значение CKSEL[3:0]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Low power crystal oscillator. It gives the lowest power consumption, but is not capable of driving other clock inputs, and may be more susceptible to noise in noisy environments. In these cases, refer to <code>Full Swing Crystal Oscillator</code></td>
+<td align="left">1111-1000</td>
+</tr>
+<tr>
+<td align="left">Full swing crystal oscillator</td>
+<td align="left">0111-0110</td>
+</tr>
+<tr>
+<td align="left">Внешний низкочастотный кварцевый генератор (32.768 кГц)</td>
+<td align="left">0101-0100</td>
+</tr>
+<tr>
+<td align="left">Внутренний RC-генератор на 128кГц</td>
+<td align="left">0011</td>
+</tr>
+<tr>
+<td align="left">Внутренний калиброванный RC-генератор на 8 MHz</td>
+<td align="left">0010</td>
+</tr>
+<tr>
+<td align="left">Внешний сигнал синхронизации. На <code>XTAL1</code> подаются прямоугольные импульсы. Такое иногда делают в синхронных системах, когда несколько контроллеров работают от одного генератора</td>
+<td align="left">0000</td>
+</tr>
+<tr>
+<td align="left">Зарезервировано</td>
+<td align="left">0001</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Неправильная конфигурация битов для выбора источника тактового сигнала может привести к блокировке кристалла. Однако полностью заблокировать кристалл путем установки битов <code>CKSEL</code> невозможно. Данную проблему можно решить подключением внешнего кварца или внешнего генератора тактового сигнала. Внешний генератор может быть собран, например, на <code>К155ЛА3</code>, чьи схемы легко доступны в интернете. Также возможны варианты с использованием <code>таймера 555</code> или написания программы для второго микроконтроллера, генерирующей сигнал тактового сигнала. При наличии осциллографа можно также использовать его для получения контрольного сигнала генератора, подключив его к <code>XTAL1</code> микроконтроллера.</p>
+</blockquote>
+<p>В рассматриваемом мк изменено три значения lfuse, тем самым:</p>
+<ol>
+<li>Отключено деление тактовой частоты на 8.</li>
+<li>Выбрано в качестве источника тактового сигнала непонятно что (зарезервированное состояние).</li>
+</ol>
+<p>Идем далее:</p>
+<h3 id="fuse-high-byte">Fuse High Byte</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Номер бита</th>
+<th align="left">Название</th>
+<th align="left">Описание</th>
+<th align="left">Значение по умолчанию</th>
+<th align="left">Текущее значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">7</td>
+<td align="left">RSTDISBL</td>
+<td align="left">External Reset Disable</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">DWEN</td>
+<td align="left">debugWIRE Enable</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">SPIEN</td>
+<td align="left">Enable Serial Program and Data Downloading</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">WDTON</td>
+<td align="left">Watchdog Timer Always On</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">EESAVE</td>
+<td align="left">EEPROM memory is preserved through the Chip Erase</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">BODLEVEL2</td>
+<td align="left">Brown-out Detector trigger level</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">BODLEVEL1</td>
+<td align="left">Brown-out Detector trigger level</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">BODLEVEL0</td>
+<td align="left">Brown-out Detector trigger level</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>Бит <code>RSTDISBL</code> (RESET DISABLE) запрещает/разрешает внешний сброс микроконтроллера. Другими словами нога <code>RESET</code> превращается в порт ввода-вывода, но за это теряется возможность перешить контроллер через <code>IСSP</code>. Рекомендуется оставить его в значении по умолчанию, за исключением случаев, когда внешний сброс не требуется из-за ограниченного числа выводов.</p>
+<p>Бит <code>DWEN</code> используется для включения специального отладочного интерфейса <code>DebugWire</code> микроконтроллеров AVR. Для работы по данному интерфейсу требуется специальный аппаратный программатор.</p>
+<p>Бит <code>SPIEN</code> предназначен для отключения программирования микроконтроллера через <code>SPI</code> интерфейс.</p>
+<p>Бит <code>WDTON</code> отвечает за работу сторожевого таймера (Watchdog Timer). Сторожевой таймер независим от других таймеров AVR. Если бит установлен (не запрограммирован), сторожевой таймер требует периодический сброс, иначе он сбросит микроконтроллер. Если бит установлен в 0, то программное управление сторожевым таймером невозможно, и он автоматически сбросит микроконтроллер при переполнении.</p>
+<p>Бит <code>EESAVE</code> определяет режим стирания энергонезависимой памяти EEPROM. Когда он установлен в 0 (запрограммирован), при выполнении команды &ldquo;стирание кристалла&rdquo; данные в EEPROM сохраняются. При установке в 1, содержимое EEPROM стирается при выполнении этой команды.</p>
+<p>Конфигурационные биты <code>BODLEVEL</code> определяют уровень срабатывания схемы <code>BOD</code> (Brownout Detection), которая следит за напряжением источника питания. Схема <code>BOD</code> сбрасывает микроконтроллер, когда напряжение питания опускается ниже определенного уровня. После того как напряжение питания восстанавливается до установленного порога (определенного битами <code>BODLEVEL</code>), сигнал сброса снимается, и микроконтроллер восстанавливает свою работу.</p>
+<p>В таблице ниже приведены значения порога срабатывания схемы <code>BOD</code> в зависимости от установленных битов <code>BODLEVEL</code> для <code>ATmega48P</code>, <code>ATmega88P</code>, <code>ATmega168P</code>:</p>
+<table>
+<thead>
+<tr>
+<th align="left">BODLEVEL 2:0 Fuses</th>
+<th align="left">Min VBOT</th>
+<th align="left">Typ VBOT</th>
+<th align="left">Max VBOT</th>
+<th align="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">111</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">BOD Disabled</td>
+</tr>
+<tr>
+<td align="left">110</td>
+<td align="left">1.7 V</td>
+<td align="left">1.8 V</td>
+<td align="left">2.0 V</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">101</td>
+<td align="left">2.5 V</td>
+<td align="left">2.7 V</td>
+<td align="left">2.9 V</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">100</td>
+<td align="left">4.1 V</td>
+<td align="left">4.3 V</td>
+<td align="left">4.5 V</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">011</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">Reserved</td>
+</tr>
+<tr>
+<td align="left">010</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">Reserved</td>
+</tr>
+<tr>
+<td align="left">001</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">Reserved</td>
+</tr>
+<tr>
+<td align="left">000</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">Reserved</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Изменить повторно состояние битов <code>SPIEN</code>, <code>RSTDSBL</code> через <code>SPI</code> невозможно, для этого потребуется параллельный программатор с поддержкой высоковольтного режима программирования или подключение по интерфейсу <code>DebugWire</code> (если <code>DWEN</code> включен).</p>
+</blockquote>
+<p>Соответственно в рассматриваемом мк изменен один бит – что включает BOD на 2.7 вольта. Ничего особо существенного это не меняет.</p>
+<p>Рассмотрим третий конфигурационный фьюз байт:</p>
+<h3 id="extended-fuse-byte">Extended Fuse Byte</h3>
+<p>В данном байте используются всего первые 3 бита, остальные зарезервированы.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Номер бита</th>
+<th align="left">Название</th>
+<th align="left">Описание</th>
+<th align="left">Значение по умолчанию</th>
+<th align="left">Текущее состояние</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">7</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">BOOTSZ1</td>
+<td align="left">Select Boot Size</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">BOOTSZ0</td>
+<td align="left">Select Boot Size</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">0</td>
+<td align="left">BOOTRST</td>
+<td align="left">Select Reset Vector</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>Биты <code>BOOTRST</code>, <code>BOOTSZ0</code> и <code>BOOTSZ1</code> в данном байте определяют размер flash-памяти, выделенной для загрузчика, и местоположение вектора сброса (точки откуда начинается исполнение программы мк).</p>
+<table>
+<thead>
+<tr>
+<th align="left">Начало секции загрузчика</th>
+<th align="left">Размер секции (слов)</th>
+<th align="left">Значение BOOTSZ [1:0]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0x3F00</td>
+<td align="left">256</td>
+<td align="left">11</td>
+</tr>
+<tr>
+<td align="left">0x3E00</td>
+<td align="left">512</td>
+<td align="left">10</td>
+</tr>
+<tr>
+<td align="left">0x3C00</td>
+<td align="left">1024</td>
+<td align="left">01</td>
+</tr>
+<tr>
+<td align="left">0x3800</td>
+<td align="left">2048</td>
+<td align="left">00</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Загрузчик представляет собой специальную программу, запускаемую в самом начале работы микроконтроллера, и выполняющую различные задачи. На платах Arduino этот загрузчик отвечает за запуск основной программы (скетча). По умолчанию для загрузчика выделяется максимальный размер – 2048 слов (байт). Однако, загрузчик мб и кастомным, зная его размер можно выделить минимально подходящее количество памяти. Оставив больше памяти под полезную программу.</p>
+</blockquote>
+<p>Бит <code>BOOTRST</code> определяет адрес вектора сброса микроконтроллера – место в памяти откуда начнется исполнение программы при сбросе мк. По умолчанию адрес вектора сброса - <code>0х0000</code>. Если же бит установить, то после подачи питания на микроконтроллер или после сброса микроконтроллер начнет выполнение программы из загрузочного сектора. Выбранного битами <code>BOOTSZ0</code> и <code>BOOTSZ1</code>. Проще говоря, если вы хотите использовать загрузчик, например для прошивки мк через UART, то нужно включить данный бит. А если вы не хотите это использовать – вы можете начать запускать программу без использования загрузчика, однако в этом случае прошивка возможна только через ICSP программатор.</p>
+<p>Как видно состояние этого байта - стандартное.</p>
+<h2 id="тестирование-работы-текущей-конфигурации">Тестирование работы текущей конфигурации</h2>
+<p>Для того, чтобы понять правильно ли настроен источник опорного тактового сигнала, давайте произведем замер времени функции <code>delay()</code>. Плата на которой находится мк имеет встроенный светодиод подсоединенный к контакту <code>PB6</code>. Я написал скетч, где светодиод светится 10 секунд, затем 10 секунд не светится.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;Arduino.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+<span style="color:#2b91af">void</span> setup()
+{
+    <span style="color:#008000">// set PB6 as OUTPUT
+</span><span style="color:#008000"></span>    DDRB |= (1 &lt;&lt; DDB6);
+}
+
+<span style="color:#2b91af">void</span> loop()
+{
+    <span style="color:#008000">// set PB6 to HIGH
+</span><span style="color:#008000"></span>    PORTB |= (1 &lt;&lt; PORTB6);
+    delay(10000);
+
+    <span style="color:#008000">// set PB6 to LOW
+</span><span style="color:#008000"></span>    PORTB &amp;= ~(1 &lt;&lt; PORTB6);
+    delay(10000);
+}
+</code></pre></div><p>Я веду разработку в <code>VScode</code> с помощью фреймворка <code>Platformio</code>. Данный фреймворк делает удобно две вещи:</p>
+<ol>
+<li>Собирает прошивку</li>
+<li>Автоматизирует работу с <code>avrdude</code></li>
+</ol>
+<p>По функциям это практически тоже самое, что и <code>Arduino IDE</code>. Но мне много, что в ней не нравится в целом AlexGyver хорошо изложил <a href="https://alexgyver.ru/platformio-%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-arduino-ide">почему стоит использовать Platformio</a>. Хотя для некоторых функций, вроде <code>Serial Plotter</code>, функции загрузки загрузчика я держу и <code>Arduino IDE</code>.</p>
+<p>Поэтому давайте создадим файл <code>platformio.ini</code> в котором опишем, под какой мк нам нужно скомпилировать прошивку, а также по какому протоколу её загружать и с какими параметрами.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#00f">[env:ATmega168P]</span>
+platform = <span style="color:#a31515">atmelavr</span>
+framework = <span style="color:#a31515">arduino</span>
+board = <span style="color:#a31515">ATmega168P</span>
+<span style="color:#008000">; board_build.f_cpu = 8000000L</span>
+
+upload_protocol = <span style="color:#a31515">usbasp</span>
+<span style="color:#008000">; upload_flags = -F</span>
+<span style="color:#008000">; upload_speed = 9600</span>
+
+<span style="color:#008000">; upload_protocol = arduino</span>
+<span style="color:#008000">; upload_port = /dev/tty.usbserial-10</span>
+</code></pre></div><blockquote>
+<p>Я предумышленно оставил закомментированные строки, тк зачастую они бывают полезными. Например, если вы изменили частоту работы мк, вам может потребоваться указать другую частоту загрузки программы (через опцию <code>-B</code>), чтобы раскирпичить мк. Другие параметры вы можете найти в <a href="https://docs.platformio.org/en/latest/projectconf/sections/env/index.html#options">данной инструкции</a>.</p>
+</blockquote>
+<blockquote>
+<p>Функции Platformio доступны в нижнем меню баре VScode (<code>Build</code>, <code>Upload</code>, <code>Clean</code>, <code>Monitor</code> итд).</p>
+</blockquote>
+<p>При попытки загрузить прошивку в мк, мы получим следующее сообщение:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">avrdude: AVR device initialized and ready to accept instructions
+avrdude: device signature = 0x1e940b (probably m168p)
+avrdude: reading input file .pio/build/ATmega168P/firmware.hex for flash
+         with 586 bytes in 1 section within [0, 0x249]
+         using 5 pages and 54 pad bytes
+avrdude: writing 586 bytes flash ...
+
+Writing | ################################################## | 100% 0.63s
+
+avrdude: 586 bytes of flash written
+avrdude: verifying flash memory against .pio/build/ATmega168P/firmware.hex
+
+Reading | ################################################## | 100% 0.40s
+
+avrdude warning: verification mismatch
+        device 0xe0 != input 0xe1 at addr 0x00f3 (error)
+avrdude error: verification mismatch
+
+avrdude done.  Thank you.
+</code></pre></div><p>На самом деле прошивка НЕ прошла успешно. Скорее всего дело в параметрах куда записывается прошивка, например у меня продолжила исполнение предыдущая прошивка, хотя какая-то иинформация была записана в память. Полагаю прошивка записывается с отступом для загрузчика.</p>
+<p>Для того, чтобы решить это, давайте выполним очистку памяти контроллера:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c usbasp -p m168p -P usb -e
+</code></pre></div><p>После чего можем успешно записать прошивку.</p>
+<blockquote>
+<p>Можно прошить мк без Platformio, используя следующую команду (в этом случае производить стирание не обязательно):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c usbasp -p m168p -P usb -U flash:w:.pio/build/ATmega168P/firmware.hex:i
+</code></pre></div><p>Данная команда, если не указывать параметр <code>-D</code> cотрет flash-память перед прошивкой.</p>
+</blockquote>
+<p>После прошивки можно произвести тест. Замер времени показал вместо 10 секунд исполнение в течении 20ти. Что свидетельствует, о неправильно сконфигурированной частоте микроконтроллера, либо указания данной частоты в прошивке мк.</p>
+<p>Теперь давайте раскомментируем в файле <code>platformio.ini</code> параметр <code>board_build.f_cpu = 8000000L</code>. Данный параметр передается в компилятор и указывает реальную частоту работы мк (с помощью данного параметра рассчитывается значение времени внутри программы). После чего произведенный тест уже показывает, что частота тактирования на мк задана корректно. Следовательно по умолчанию данный параметр установлен в значение <code>16000000L</code>. Подробнее о параметре <code>board_build.f_cpu</code> <a href="https://docs.platformio.org/en/latest/projectconf/sections/env/options/platform/board_build.f_cpu.html">здесь</a>.</p>
+<p>Также я бы подметил, что с использованием обычного секундомера на телефоне, каждый раз при измерении времени, мк выдает чуть меньшее времени чем нужно. Полагаю, что это связано с неточностью внутреннего источника тактового сигнала. Что можно настроить его с помощью калибровочных фьюзов. Информация по калибровке данных значений содержится в <a href="./assets/AVR053.pdf">этом документе</a>.</p>
 <blockquote>
 <p>Иногда при прошивке с помощью программатора возникает ошибка <code>avrdude: warning: cannot set sck period, please check for usbasp firmware update</code>, при этом она может вызвана двумя причинами:</p>
 <ol>
-<li>Плохой контакт тактирующего сигнала <code>SCK</code>.</li>
-<li>Устаревшая прошивка на программаторе, подробнее как её обновить тут <a href="https://tsibrov.blogspot.com/2018/10/usbasp-firmware-update.html">Прошивка USBasp</a>.</li>
+<li>Плохим соединением <code>ISCP</code> разъёма.</li>
+<li>Устаревшей прошивкой на программаторе, подробнее как её обновить тут <a href="https://tsibrov.blogspot.com/2018/10/usbasp-firmware-update.html">Прошивка USBasp</a>.</li>
 </ol>
 </blockquote>
-<h2 id="среда-разработки-и-прошивка">Среда разработки и прошивка</h2>
-<p>Стандартная среда разработки Arduino IDE включает в себя:</p>
-<ol>
-<li>Магазин библиотек</li>
-<li>Текстовый редактор</li>
-<li>Набор драйвером для сериал портов (последовательных портов)</li>
-<li>Монитор последовательного порта</li>
-<li>Обертку над <code>avrdude</code></li>
-<li>Компилятор</li>
-</ol>
-<p>По сути весь процесс прошивки заключается в запуске <code>avrdude</code> с разными аргументами. Мне не нравится среда <code>Arduino IDE</code> ввиду крайне неудобного редактора при открытии нескольких файлов.</p>
-<p>Я использую в качество основного редактора кода VSCode, для него есть замечательный плагин <code>Platformio</code>, который позволяет производить сборку, а также прошивку устройств через встроенный загрузчик. Однако для перепрошивки, а также для работы с последовательным интерфейсом я предпочитаю использовать напрямую утилиты <code>avrdude</code> и <code>screen</code>. Для этого я добавляю в репозиторий примерно следующий <code>Makefile</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Makefile" data-lang="Makefile">all: upload
+<h2 id="изменение-fuse-bits">Изменение Fuse Bits</h2>
+<p>Теперь запишем стандартные настройки в данный мк. Кстати <a href="https://www.engbedded.com/fusecalc/">приведенный выше AVR Fuse Calculator</a> после выбора мк предлагает готовый аргумент для avrdude со стандартными фьюзами.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c usbasp -p m168p -U lfuse:w:0x62:m -U hfuse:w:0xdf:m -U efuse:w:0xf9:m
+</code></pre></div><p>Лог выполнения операции:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">avrdude: AVR device initialized and ready to accept instructions
+avrdude: device signature = 0x1e940b (probably m168p)
 
-upload:
-	platformio run --target upload
+avrdude: processing -U lfuse:w:0x62:m
+avrdude: reading input file 0x62 for lfuse
+         with 1 byte in 1 section within [0, 0]
+avrdude: writing 1 byte lfuse ...
+avrdude: 1 byte of lfuse written
+avrdude: verifying lfuse memory against 0x62
+avrdude: 1 byte of lfuse verified
 
-clean:
-	platformio run --target clean
+avrdude: processing -U hfuse:w:0xdf:m
+avrdude: reading input file 0xdf for hfuse
+         with 1 byte in 1 section within [0, 0]
+avrdude: writing 1 byte hfuse ...
+avrdude: 1 byte of hfuse written
+avrdude: verifying hfuse memory against 0xdf
+avrdude: 1 byte of hfuse verified
 
-build:
-	platformio run
+avrdude: processing -U efuse:w:0xf9:m
+avrdude: reading input file 0xf9 for efuse
+         with 1 byte in 1 section within [0, 0]
+avrdude: writing 1 byte efuse ...
+avrdude: 1 byte of efuse written
+avrdude: verifying efuse memory against 0xf9
+avrdude: 1 byte of efuse verified
 
-list:
-	ls -l /dev/tty.*
+avrdude done.  Thank you.
+</code></pre></div><p>Попробуем запросить информацию о мк:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">avrdude -c usbasp -p m168p -v
+...
+avrdude: AVR device initialized and ready to accept instructions
+avrdude: device signature = 0x000104
+avrdude error: expected signature for ATmega168P is 1E 94 0B
+        double check chip or use -F to override this check
 
-monitor:
-	screen /dev/tty.usbserial-AH05WAKX 115200
-
-usbasp:
-	avrdude -c usbasp -p m328p -P usb -U flash:w:.pio/build/ATmega328P/firmware.hex:i -FD
-
-direct:
-	avrdude -c arduino -p m328p -U flash:w:.pio/build/ATmega328P/firmware.hex:i -P /dev/tty.usbserial-AH05WAKX
-
-info:
-	avrdude -c usbasp -p m328p -P usb -v
-
-setup:
-	brew install avrdude screen
-</code></pre></div><blockquote>
-<p>Адрес последовательного интерфейса может отличаться, также цель <code>setup</code> использует пакетный менеджер <code>brew</code> для установки зависимостей на macOS.</p>
+avrdude done.  Thank you.
+</code></pre></div><p>Как видно данные возвращаются некорректно, попробуем отдельно запросить сигнатуру мк:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c usbasp -p m168p -U signature:r:-:h
+</code></pre></div><p>Выдаются разные значения:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">...
+0x010107
+0x000304
+0x010101
+0x010304
+0x010307
+0x010106
+...
+</code></pre></div><p>Проблема в том, что сменилась частота мк потому что был выбран другой источник опорного сигнала и включено деление. Теперь я поставлю рандомную частоту программатора c помощью параметра <code>-B</code>.</p>
+<blockquote>
+<p>Разница параметров <code>-b</code> и <code>-B</code>:</p>
+<ul>
+<li>Параметр <code>-b</code> используется для установки частоты прошивки при использовании <code>RS-232</code> в baudrate.</li>
+<li>Параметр <code>-B</code> используется для указания периода тактового сигнала (bit clock) для интерфейсов <code>JTAG</code>, <code>PDI</code>, <code>TPI</code>, <code>UPDI</code> или <code>ISP</code>. Значение представляет собой число с плавающей запятой в микросекундах. Также можно указывать <code>Hz</code>, <code>kHz</code> или <code>MHz</code> для задания частоты, а не периода. Программаторы могут использовать разные значения по умолчанию (например, у меня – 2.5 мкс, кстати поменять значение по умолчанию можно в конфигурационном файле avrdude (на macos при установленном avrdude через brew по адресу: <code>/opt/homebrew/etc/avrdude.conf</code> или в <code>~/.config/avrdude/avrdude.rc</code>)). Но рекомендуется всегда явно указывать значение bit clock, особенно если скорость чтения/записи важна.</li>
+</ul>
 </blockquote>
-<p>Библиотеки я предпочитаю лично контролировать включением их в репозиторий, для этого в проекте Platformio необходимо создать папку <code>lib</code>.</p>
-<p>Небольшое обновление: я сделал <a href="https://github.com/urpylka/atmega-vscode">репозиторий-шаблон</a> на Github, который можно взять за основу при написании кода под МК Atmega.</p>
-<hr>
-<p>Пожалуй, это основные лайфхаки которые я использую для прошивки Arduino. Я умышленно упростил и недосказал некоторые моменты, возможно я допишу это когда-нибудь.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c usbasp -p m168p -B 125kHz -v
+</code></pre></div><p>Работает. Методом тестирования я выяснил диапазон значений от 2.67 мкс до 2005 мкс (или если выразить в частоте от 187500 Гц до 500 Гц).</p>
+<p>Давайте прочитаем фьюзы:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; avrdude -c usbasp -p m168p -B 125kHz -U lfuse:r:-:h -U hfuse:r:-:h -U efuse:r:-:h
+avrdude: set SCK frequency to 93750 Hz
+avrdude: AVR device initialized and ready to accept instructions
+avrdude: device signature = 0x1e940b (probably m168p)
+
+avrdude: processing -U lfuse:r:-:h
+avrdude: reading lfuse memory ...
+avrdude: writing output file &lt;stdout&gt;
+0x62
+
+avrdude: processing -U hfuse:r:-:h
+avrdude: reading hfuse memory ...
+avrdude: writing output file &lt;stdout&gt;
+0xdf
+
+avrdude: processing -U efuse:r:-:h
+avrdude: reading efuse memory ...
+avrdude: writing output file &lt;stdout&gt;
+0xf9
+
+avrdude <span style="color:#00f">done</span>.  Thank you.
+</code></pre></div><p>После закомментируем параметр <code>board_build.f_cpu</code>, а также снизим длительность в программе до 1 секунды. Замер показывает время около 16 секунд.</p>
+<p>Соответственно, это получилось потому что, по умолчанию параметр <code>board_build.f_cpu</code> равен <code>16000000L</code>, а физическая частота 1 МГц (8 МГц от внутреннего опорного источника делится на 8), следовательно программа считала один импульс за 1/16, соответственно установка параметра <code>board_build.f_cpu</code> в <code>1000000L</code> даст программе корректное понимание о частоте мк.</p>
+<p>Теперь давайте уберем деление частоты на 8:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c usbasp -p m168p -U lfuse:w:0xe2:m
+</code></pre></div><p>Также поменяем <code>board_build.f_cpu</code> на <code>8000000L</code>, теперь частота микроконтроллера 8 МГц. И длительность импульса в программе корректна.</p>
+<h2 id="калибровка-внутреннего-источника-тактового-сигнала">Калибровка внутреннего источника тактового сигнала</h2>
+<blockquote>
+<p>Операжая читателя скажу, что калибровка с использованием моего программатора невозможна. И успешного примера далее не будет. Далее я лишь приведу небольшую выдержку из мануала по калибровке.</p>
+</blockquote>
+<p>Как я уже подмечал выше, при проведении тестовов маргания светодиодом с использованием секундомера, каждый раз при измерении времени, мк выдавал мне чуть меньшее значение времени чем указано в программе. И это с учетом, что я включал секундомер, когда светодиод ещё не горел (одновременно с подачей питания), и выключал секундомер когда он погас.</p>
+<p>Полагаю, что данная ошибка связана с погрешностью внутреннего источника тактового сигнала. Как я приводил выше основным источником информации по калиброке является мануал <a href="./assets/AVR053.pdf">AVR053</a>. Вот его Introduction я хочу процитировать как описание возможностей по калибровке:</p>
+<blockquote>
+<p>This application note describes a fast and accurate method to calibrate the internal RC oscillator. It offers an easily adaptable calibration firmware source code, which can be used with any AVR with internal tunable RC oscillator. This firmware allows device calibration using the AVR tools STK500, AVRISP or JTAGICE, but can also be used for 3rd party calibration systems, e.g. based on production programmers.</p>
+<p>The majority of the present AVR microcontrollers offer the possibility to run from an internal RC oscillator. The internal RC oscillator frequency can in most AVRs be calibrated to within +/-1% of the frequency specified in the datasheet for the device. This feature offers great flexibility and significant cost savings compared to using an external oscillator.</p>
+<p>The calibration performed in the Atmel factory is made at a fixed operating voltage and temperature (25°C, typically 5V). As the frequency of the internal RC oscillator is affected by both operating voltage and temperature, it may be desired to perform a secondary calibration, which matches the specific application environment. This secondary calibration can be performed to gain higher accuracy than the standard calibration offers, to match a specific operating voltage or temperature, or even to tune the oscillator to a different frequency.</p>
+<p>The calibration method described in this application note only takes a fraction of a second longer than reading the factory calibration byte from the signature row and writing it back to the to the device memory. Thus, the overall programming time is almost unaffected when performing calibration in the programming step in production.</p>
+<p>Note that in some systems it may be more beneficial to perform run-time calibration of the oscillator. That may de desirable in applications that needs an accurate system clock over the entire temperature range and independent of operating voltage. In that case a watch crystal may offer a reliable and cost efficient solution. Runtime calibration is however not covered by the scope of this application note.</p>
+</blockquote>
+<p>Кстати данная инструкция переведена на сайте <a href="http://www.gaw.ru/html.cgi/txt/app/micros/avr/AVR053.htm">gaw.ru</a>.</p>
+<p>Единственное, что мы можем сделать – прочитать текущее значение калибровки:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; avrdude -c usbasp -p m168p -U calibration:r:-:h
+avrdude: AVR device initialized and ready to accept instructions
+avrdude: device signature = 0x1e940b (probably m168p)
+
+avrdude: processing -U calibration:r:-:h
+avrdude: reading calibration memory ...
+avrdude: writing output file &lt;stdout&gt;
+0x80
+
+avrdude <span style="color:#00f">done</span>.  Thank you.
+</code></pre></div><p>Несмотря на то, что в инструкции <a href="./assets/AVR053.pdf">AVR053</a> сказано, что могут использовать сторонние программаторы в <a href="./assets/avrdude.pdf">документации на avrdude</a> сказано следующее:</p>
+<blockquote>
+<p><code>-O</code> – Perform a RC oscillator run-time calibration according to Atmel application note AVR053. This is only supported on the STK500v2, AVRISP mkII, and JTAG ICE mkII hardware. Note that the result will be stored in the EEPROM cell at address 0.</p>
+</blockquote>
+<p>При попытке калибровки мы получаем ожидаемую ошибку:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">avrdude -c usbasp -p m168p -O
+avrdude error: programmer does not support RC oscillator calibration
+
+avrdude <span style="color:#00f">done</span>.  Thank you.
+</code></pre></div><hr>
+<p>Если я в дальнейшем произведу калиброку встроенного источника тактового сигнала, изменю подпись мк или поменяю <code>Lock Bits</code>, то дополню эту статью.</p>
 
             </div>
 
@@ -216,7 +999,7 @@ setup:
     </div>
     <div class="footer wrapper">
 	<nav class="nav">
-		<div>2022  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+		<div>2024  © Artem Smirnov |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
 	</nav>
 </div><script>feather.replace()</script>
 </body>

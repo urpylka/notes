@@ -7,44 +7,44 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 18 Jul 2023 13:40:00 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jan 2024 15:06:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>electronics</title>
-      <link>https://urpylka.com/tags/electronics/</link>
-      <pubDate>Tue, 18 Jul 2023 13:40:00 +0300</pubDate>
-      
-      <guid>https://urpylka.com/tags/electronics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ru</title>
-      <link>https://urpylka.com/tags/ru/</link>
-      <pubDate>Tue, 18 Jul 2023 13:40:00 +0300</pubDate>
-      
-      <guid>https://urpylka.com/tags/ru/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>cheatsheet</title>
       <link>https://urpylka.com/tags/cheatsheet/</link>
-      <pubDate>Wed, 26 Apr 2023 14:18:00 +0300</pubDate>
+      <pubDate>Wed, 10 Jan 2024 15:06:00 +0300</pubDate>
       
       <guid>https://urpylka.com/tags/cheatsheet/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>electronics</title>
+      <link>https://urpylka.com/tags/electronics/</link>
+      <pubDate>Wed, 10 Jan 2024 15:06:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/tags/electronics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>programming</title>
       <link>https://urpylka.com/tags/programming/</link>
-      <pubDate>Wed, 26 Apr 2023 14:18:00 +0300</pubDate>
+      <pubDate>Wed, 10 Jan 2024 15:06:00 +0300</pubDate>
       
       <guid>https://urpylka.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ru</title>
+      <link>https://urpylka.com/tags/ru/</link>
+      <pubDate>Wed, 10 Jan 2024 15:06:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/tags/ru/</guid>
       <description></description>
     </item>
     

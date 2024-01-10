@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Artem Smirnov</copyright>
-    <lastBuildDate>Tue, 18 Jul 2023 13:40:00 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jan 2024 15:06:00 +0300</lastBuildDate>
     
 	<atom:link href="https://urpylka.com/tags/ru/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Прошивка и работа с Fuse Bits на примере микроконтроллера ATmega168P (Arduino)</title>
+      <link>https://urpylka.com/posts/post-69/</link>
+      <pubDate>Wed, 10 Jan 2024 15:06:00 +0300</pubDate>
+      
+      <guid>https://urpylka.com/posts/post-69/</guid>
+      <description>О чём эта статья Fuse Bits – это конфигурационные биты AVR микроконтроллеров. Помимо Fuse Bits есть и другие типы конфигурационных битов. Однако многие всех их называют просто Fuse Bits или фьюзами. В этой статье я тоже буду использовать обобщенное понятие фьюзов (подразумевая разные типы конфигурационных битов). С помощью них можно отключить аппаратный интерфейс для прошивки, поменять источник тактовой частоты, отключить ногу RESET, запретить чтение прошивки из памяти, чтобы программу мк нельзя было скопировать итд.</description>
+    </item>
     
     <item>
       <title>Сборка паяльного стола своими руками из старого утюга</title>
@@ -221,16 +230,6 @@ IKEA VINDRIKTNING Сам датчик IKEA VINDRIKTNING представляет
       <guid>https://urpylka.com/posts/post-70/</guid>
       <description>Всем привет, у меня возникла необходимость подключиться к KVM машине с целью отладки загрузки виртуальной машины. Для подключения через virsh console требуется, чтобы на виртуалке был запущен соответствующий клиент. Однако во-первых его там нет, а во-вторых операционная система еще не установлена (подробнее про virsh cyberciti.biz, ostechnix.com). Поэтому у меня возникла необходимость подключиться к KVM машине через virt-manager.
 Я попытался установить virt-manager на macOS используя brew (jeffreywildman/homebrew-virt-manager). Но процесс завершился с ошибкой, и я не стал заниматься отладкой.</description>
-    </item>
-    
-    <item>
-      <title>Прошивка Arduino через USB (UART) / AVR ISP разъём (USBasp программатор)</title>
-      <link>https://urpylka.com/posts/post-69/</link>
-      <pubDate>Sat, 26 Feb 2022 23:55:00 +0200</pubDate>
-      
-      <guid>https://urpylka.com/posts/post-69/</guid>
-      <description>Эта заметка нацелена на изложение основных действий для перепрошивки Arduino как при помощи встроенного бутлодера, так и с помощью программатора. В первых двух разделах я коротко изложу техническую базу и особенности использования двух методов, а в третьем разделе среду разработки и утилиты необходимые для прошивки.
-Прошивка с помощью встроенного bootloader (через последовательный порт) Все платы Arduino (основная линейка) построены на базе чипа Atmega с архитектурой AVR. AVR – это семейство микроконтроллеров, их прошивка, а именно запись постоянной памяти и выставление Fuse битов реализовано через ICSP порт очень похожий на SPI.</description>
     </item>
     
     <item>
