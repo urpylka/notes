@@ -32,7 +32,7 @@
 <meta itemprop="description" content="В заметке изложены некоторые команды, которые я иногда забываю ввиду редкости их использования.">
 <meta itemprop="datePublished" content="2020-12-13T13:40:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-12-13T13:40:00&#43;04:00" />
-<meta itemprop="wordCount" content="279">
+<meta itemprop="wordCount" content="317">
 
 
 
@@ -183,7 +183,15 @@ git config user.password <span style="color:#a31515">&#34;your password&#34;</sp
         name = John Doe
         email = new@email.com
 </code></pre></div><p>Источник: <a href="https://rwsite.ru/git-pomenyat-imya-polzovatelya/">rwsite.ru</a></p>
+<h2 id="удаление-файла-из-истории">Удаление файла из истории</h2>
+<p>Найти в каких комитах менялся файл:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git log -- example.txt
+</code></pre></div><p>Переписать историю и удалить файл:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git filter-branch --tree-filter <span style="color:#a31515">&#39;rm -f путь/к/удаляемому/файлу&#39;</span> -- --all
 
+</code></pre></div><p>Также если версия git cтарше 2.22:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git filter-repo --path путь/к/удаляемому/файлу --invert-paths
+</code></pre></div>
             </div>
 
             <div class="tags">
