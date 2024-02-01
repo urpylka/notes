@@ -99,7 +99,8 @@
       
       <guid>https://urpylka.com/posts/post-84/</guid>
       <description>Сеть Смена TTL на macOS sudo sysctl -w net.inet.ip.ttl=65 ifconfig В целом ifconfig похож на тот, что используется в linux
-ifconfig ifconfig en1 down ifconfig en1 up ### Работа с маршрутами Для просмотра маршрутов на macOS используется утилита `netstat` * `-r` to show routes * `-n` to not resolve IPs to hostnames ```bash netstat -rn Для добавления/удаления машрута:
+ifconfig ifconfig en1 down ifconfig en1 up Работа с маршрутами Для просмотра маршрутов на macOS используется утилита netstat
+ -r to show routes -n to not resolve IPs to hostnames  netstat -rn Для добавления/удаления машрута:
 sudo route -n add x.x.x.x/24 x.x.x.x sudo route -n add 192.168.10.0/24 10.0.247.43 sudo route -n delete x.</description>
     </item>
     

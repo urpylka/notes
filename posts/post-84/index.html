@@ -32,7 +32,7 @@
 <meta itemprop="description" content="К сожалению, команды в macOS, например, для работы с сетью, отличаются от тех, что можно встретить в той же Ubuntu / CentOS. В этой заметке, я буду аккумулировать часто используемые.">
 <meta itemprop="datePublished" content="2023-01-06T12:33:00&#43;02:00" />
 <meta itemprop="dateModified" content="2023-01-06T12:33:00&#43;02:00" />
-<meta itemprop="wordCount" content="195">
+<meta itemprop="wordCount" content="191">
 
 
 
@@ -119,16 +119,13 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ifconfig
 ifconfig en1 down
 ifconfig en1 up
-
-<span style="color:#008000">### Работа с маршрутами</span>
-
-Для просмотра маршрутов на macOS используется утилита <span style="color:#a31515">`</span>netstat<span style="color:#a31515">`</span>
-
-* <span style="color:#a31515">`</span>-r<span style="color:#a31515">`</span> to show routes
-* <span style="color:#a31515">`</span>-n<span style="color:#a31515">`</span> to not resolve IPs to hostnames
-
-<span style="color:#a31515">```</span>bash
-netstat -rn
+</code></pre></div><h3 id="работа-с-маршрутами">Работа с маршрутами</h3>
+<p>Для просмотра маршрутов на macOS используется утилита <code>netstat</code></p>
+<ul>
+<li><code>-r</code> to show routes</li>
+<li><code>-n</code> to not resolve IPs to hostnames</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">netstat -rn
 </code></pre></div><p>Для добавления/удаления машрута:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo route -n add x.x.x.x/24 x.x.x.x
 sudo route -n add 192.168.10.0/24 10.0.247.43
