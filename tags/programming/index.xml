@@ -48,7 +48,7 @@
       
       <guid>https://urpylka.com/posts/post-86/</guid>
       <description>Зачастую при написании статей в блог нужны какие-то юникод символы, в тч неразрывные. Для справки это такие символы, которые при вставке в текст не будут разовраны. Это нужно, например при составных названиях в заголовке или для фиксации предлогов вместе с существительными.
- «‑» – неразрыный дефис « » – неразрывный пробел стандартной длины. Неразрывные пробелы есть разной длины, другие можно найти по ссылке.   PS к сожалению скопировать неразрывный пробел стандартной длины не получается.</description>
+ «‑» – неразрывный дефис « » – неразрывный пробел стандартной длины. Неразрывные пробелы есть разной длины, другие можно найти по ссылке.   PS к сожалению скопировать неразрывный пробел стандартной длины не получается.</description>
     </item>
     
     <item>
@@ -59,7 +59,7 @@
       <guid>https://urpylka.com/posts/post-84/</guid>
       <description>Сеть Смена TTL на macOS sudo sysctl -w net.inet.ip.ttl=65 ifconfig В целом ifconfig похож на тот, что используется в linux
 ifconfig ifconfig en1 down ifconfig en1 up Работа с маршрутами Для просмотра маршрутов на macOS используется утилита netstat
- -r to show routes -n to not resolve IPs to hostnames  netstat -rn Для добавления/удаления машрута:
+ -r to show routes -n to not resolve IPs to hostnames  netstat -rn Для добавления/удаления маршрута:
 sudo route -n add x.x.x.x/24 x.x.x.x sudo route -n add 192.168.10.0/24 10.0.247.43 sudo route -n delete x.</description>
     </item>
     
@@ -95,12 +95,12 @@ ip.addr == 192.168.11.1 and udp and udp.port == 14550 nmap # сканирова�
     </item>
     
     <item>
-      <title>Python: Stack implementaion by text file</title>
+      <title>Python: Stack implementation by text file</title>
       <link>https://urpylka.com/posts/post-80/</link>
       <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
       
       <guid>https://urpylka.com/posts/post-80/</guid>
-      <description>Some time ago I realised that there is no a library to keep a stack of strings in a text file efficiently in Python. So I coded own one. I commented the code, and I suppose that any additional words will be redundant.
+      <description>Some time ago I realized that there is no a library to keep a stack of strings in a text file efficiently in Python. So I coded own one. I commented the code, and I suppose that any additional words will be redundant.
 #! /usr/bin/env python3 ##################################################################### # The library allows to work with stack of strings in a text file # # To use import this file as library (ex.</description>
     </item>
     
@@ -120,7 +120,7 @@ ip.addr == 192.168.11.1 and udp and udp.port == 14550 nmap # сканирова�
       <pubDate>Fri, 28 Oct 2022 16:13:00 +0200</pubDate>
       
       <guid>https://urpylka.com/posts/post-78/</guid>
-      <description>Последний месяц я на работе в основном занимаюсь миграцией Grafana. Одна из задач в связи с этим – перенести данные из Grafana 7.5.9 использующую SQLite в Grafana 9.2.0 с PostgreSQL. Оказалось перенести базу не так просто, как я рассчитывал и читал в статьях других авторов. Что до официальной документации то, она отсуствует, есть разве что о миграции из PostgreSQL в MySQL.
+      <description>Последний месяц я на работе в основном занимаюсь миграцией Grafana. Одна из задач в связи с этим – перенести данные из Grafana 7.5.9 использующую SQLite в Grafana 9.2.0 с PostgreSQL. Оказалось перенести базу не так просто, как я рассчитывал и читал в статьях других авторов. Что до официальной документации то, она отсутствует, есть разве что о миграции из PostgreSQL в MySQL.
 Решение которое первым попалось:
  Migrating Grafana’s database from sqlite to postgres Grafana SQLite Migration to PostgreSQL  Вкратце оно предлагает следующий подход:</description>
     </item>
@@ -152,7 +152,7 @@ ip.addr == 192.168.11.1 and udp and udp.port == 14550 nmap # сканирова�
       <pubDate>Thu, 24 Feb 2022 18:40:00 +0200</pubDate>
       
       <guid>https://urpylka.com/posts/post-68/</guid>
-      <description>After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when vesrions were used 1.4.0 and 1.7.0, there is no problem because it is back compitable. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!
+      <description>After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when versions were used 1.4.0 and 1.7.0, there is no problem because it is back compatible. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!
 For that I wrote 3 scripts:
 Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; WORD_TO_FIND=&amp;#34;prometheus.</description>
     </item>
@@ -165,11 +165,11 @@ Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; 
       <guid>https://urpylka.com/posts/post-67/</guid>
       <description>docker-openvpn от kylemanna И так вначале я использовал широко распространенное решение от kylemanna.
 Оно представляет из себя Docker образ на базе Alpine состоящий из:
- OpenVPN собственно в качестве VPN сервера openvpn-auth-pam, google-authenticator, pamtester - дополнительные модули для авторизациии в OpenVPN easy-rsa как инструмент для создания и работы центра сертификации (CA) Средства подготовки конфигурации сервера (ovpn_initpki, ovpn_genconfig, ovpn_copy_server_files, ovpn_run, ovpn_status) Ряд скриптов-оберток для управления пользователями (ovpn_getclient, ovpn_getclient_all, ovpn_listclients, ovpn_revokeclient, ovpn_otp_user)  Тут нужно сделать важное замечание, что я вначале не понимал как работает CA, сертификаты пользователей, OpenVPN и easy-rsa вместе.</description>
+ OpenVPN собственно в качестве VPN сервера openvpn-auth-pam, google-authenticator, pamtester - дополнительные модули для авторизации в OpenVPN easy-rsa как инструмент для создания и работы центра сертификации (CA) Средства подготовки конфигурации сервера (ovpn_initpki, ovpn_genconfig, ovpn_copy_server_files, ovpn_run, ovpn_status) Ряд скриптов-оберток для управления пользователями (ovpn_getclient, ovpn_getclient_all, ovpn_listclients, ovpn_revokeclient, ovpn_otp_user)  Тут нужно сделать важное замечание, что я вначале не понимал как работает CA, сертификаты пользователей, OpenVPN и easy-rsa вместе.</description>
     </item>
     
     <item>
-      <title>Опеределение способов подключения Huawei E352 к Linux</title>
+      <title>Определение способов подключения Huawei E352 к Linux</title>
       <link>https://urpylka.com/posts/post-63/</link>
       <pubDate>Mon, 24 Jan 2022 11:05:00 +0200</pubDate>
       
@@ -237,7 +237,7 @@ But the trick is in using Parameter Expansion for split elements.
       
       <guid>https://urpylka.com/posts/post-58/</guid>
       <description>Hi! So, about prometheus configuration updating on the fly.
-Update configution file The one problem is the deleting configuration file and changing inode file data.
+Update configuration file The one problem is the deleting configuration file and changing inode file data.
 Upload file to remote server and update conf file there:
 import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;user ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(hostname=hostname, username=username) sftp = ssh.open_sftp() # https://docs.paramiko.org/en/stable/api/sftp.html#paramiko.sftp_client.SFTPClient.file with sftp.file(target_file, &amp;#39;w+&amp;#39;) as output, open(local_file, &amp;#39;r&amp;#39;) as input: while True: try: buffer = input.read(5000) # 5KB if buffer == &amp;#39;&amp;#39;: print(&amp;#34;Uploading was finished&amp;#34;) break output.</description>
     </item>
@@ -273,7 +273,7 @@ import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;use
       <guid>https://urpylka.com/posts/post-33/</guid>
       <description>В статье две части:
  Устройство сети Raspberry Pi OS
-в которой описано базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
+в которой описано базовое устройство сети в преднастоенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
 в которой содержатся мои заметки о утилитах Linux для работы с сетью.  Устройство сети Raspberry Pi OS Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
     </item>
     
@@ -332,11 +332,11 @@ Solving First what may be found is the next command:</description>
       <pubDate>Sun, 13 Dec 2020 19:32:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-5/</guid>
-      <description>Выкачить что-то:
+      <description>Выкачать что-то:
 scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop Генерация и аутентификация с помощью SSH ключа:
  habrahabr.ru help.github.com itman.in  Добавить себя в authorization_keys на удаленном хосте:
 ssh-copy-id &amp;#39;-p 22 pi@172.24.1.1&amp;#39; Обратный и прямой туннели:
- habr.com rus-linux.net itsecforu.ru  Прокидывание порта:
+ habr.com rus-linux.net itsecforu.ru  Проброс порта:
 ssh -L 443:10.246.182.189:8443 &amp;lt;login&amp;gt;@&amp;lt;remote_host&amp;gt; -p &amp;lt;port&amp;gt; где 443 – локальный порт вашей машины куда будет мапиться порт 8443 машины доступной по адресу 10.246.182.189 с удаленной машины &amp;lt;remote_host&amp;gt;.
 Смена пароля приватного RSA ключа:</description>
     </item>
@@ -350,7 +350,7 @@ ssh -L 443:10.246.182.189:8443 &amp;lt;login&amp;gt;@&amp;lt;remote_host&amp;gt;
       <description>Работа с Submodule https://git-scm.com/book/ru/v1/Инструменты-Git-Подмодули
 git submodule init git submodule update Полезные ссылки  Удаление первого коммита stackoverflow.com Отмена последнего коммита в git evtuhovich.ru Объединение репозиториев eax.me Конфликт при объединении несвязных историй --allow-unrelated-histories stackoverflow.com Продвинутое слияние git-scm.com Работа с удалёнными репозиториями git-scm.com Теория GIT habrahabr.ru Раскрытие тайн reset git-scm.com Объединение репозиториев qaru.site  Первоначальная настройка git Все очень хорошо изложено в этой статье, не вижу смысла копировать
 https://git-scm.com/book/ru/v2/Введение-Первоначальная-настройка-Git
-Базовые команды # Rebase 3х верхних коммитов в интерактивном режиме (через текстовый редактор) git rebase -i HEAD~3 # Перетереть историю в текущем remote git push --force # Снести верхние 3 коммита (без удаления изменений), для полного удаления комитов - флаг `--hard` git reset HEAD~3 # Застейджить все изменения git add .</description>
+Базовые команды # Rebase 3х верхних коммитов в интерактивном режиме (через текстовый редактор) git rebase -i HEAD~3 # Перетереть историю в текущем remote git push --force # Снести верхние 3 коммита (без удаления изменений), для полного удаления коммитов - флаг `--hard` git reset HEAD~3 # Застейджить все изменения git add .</description>
     </item>
     
     <item>
@@ -360,7 +360,7 @@ https://git-scm.com/book/ru/v2/Введение-Первоначальная-н�
       
       <guid>https://urpylka.com/posts/post-24/</guid>
       <description>Я использую связку OpenVPN + dnsmasq для выдачи доменов в удаленной виртуальной сети.
-Настройка клиента У меня MacBook: в macOS 10.15 отсуствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
+Настройка клиента У меня MacBook: в macOS 10.15 отсутствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
 sudo brew services list sudo brew services start openvpn sudo brew services restart openvpn sudo brew services stop openvpn  brew services для OpenVPN нужно запускать под sudo, тк это необходимо для работы с сетевыми адаптерами.</description>
     </item>
     
@@ -422,7 +422,7 @@ Basically it consist links to russian resources.
       
       <guid>https://urpylka.com/posts/post-12/</guid>
       <description>Nginx reverse proxy needs where we want to get access to few resources by one external IP address and port.
-I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing server_name and proxy_pass as target location. Pleese look at last section with default_server atribute. It needs to set default site (in this case page with 501 Internal Error).
+I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing server_name and proxy_pass as target location. Please look at last section with default_server attribute. It needs to set default site (in this case page with 501 Internal Error).
 Quickstart   Create webproxy.</description>
     </item>
     
@@ -477,9 +477,9 @@ PARTUUID также не меняется при побайтовом копир
       <pubDate>Wed, 04 Apr 2018 04:04:00 +0200</pubDate>
       
       <guid>https://urpylka.com/posts/post-85/</guid>
-      <description>Пробелема связана с отсутствием встроенной ротации логов в ROS. Очевидно из этого следует то, что периодически будет возникать переполнение диска:
+      <description>Проблема связана с отсутствием встроенной ротации логов в ROS. Очевидно из этого следует то, что периодически будет возникать переполнение диска:
 В ROS есть стандартная утилита для мониторинга и чистки логов – rosclean. Однако она удаляет абсолютно всё (обсуждение здесь).
-Осложняется проблема тем, что ROS сам бьёт все по папкам, что затрдуняет сделать ротацию по некоторому файлу.
+Осложняется проблема тем, что ROS сам бьёт все по папкам, что затрудняет сделать ротацию по некоторому файлу.
 Пример одной из директорий с файлами логов cecd58fa-972b-11e7-ad41-3974d4b0fb26.
 Простой и достаточно топорный скрипт для удаления всех логов, если их размер превышает 300 МБ</description>
     </item>
@@ -493,7 +493,7 @@ PARTUUID также не меняется при побайтовом копир
       <description>Фото взято из livejournal.com
  Как видно из названия, эту статью я хочу посвятить опыту настройки моего сервера под хранение бекапов на Time Capsule.
 Проблема: Увеличение объёма жесткого диска сервера стоит денег, а на домашней Time Capsule есть много свободного места, следовательно возникают упущенные возможности.
-Задача: Есть удаленый VPS/VDS сервер с Linux/Unix операционной системой, на котором есть система бекапов. Надо настроить выгрузку бекапов или прямое создание бекапов на домашнюю Time Capsule.</description>
+Задача: Есть удаленный VPS/VDS сервер с Linux/Unix операционной системой, на котором есть система бекапов. Надо настроить выгрузку бекапов или прямое создание бекапов на домашнюю Time Capsule.</description>
     </item>
     
     <item>
@@ -502,7 +502,7 @@ PARTUUID также не меняется при побайтовом копир
       <pubDate>Sun, 19 May 2013 14:43:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-25/</guid>
-      <description>Cкрытые файлы обычно являются файлами системы или файлами сторонних программ, которые, в виду безопасности или других причин показывать пользователю не нужно. По умолчанию Finder не показывает скрытые файлы, для того чтобы ключить отображение необходимо:
+      <description>Скрытые файлы обычно являются файлами системы или файлами сторонних программ, которые, в виду безопасности или других причин показывать пользователю не нужно. По умолчанию Finder не показывает скрытые файлы, для того чтобы включить отображение необходимо:
  Откройте программу Терминал (Terminal), она находится в папке /Applications/Utilities Введите команду: defaults write com.apple.Finder AppleShowAllFiles 1 &amp;amp;&amp;amp; killall Finder Перезапустите Finder, зажав кнопку Option (alt) и нажав на значок Finder в доке.   PS Для отключения данного разрешения снова введите команду, изменив значение c &amp;ldquo;1&amp;rdquo; на &amp;ldquo;0&amp;rdquo;.</description>
     </item>
     

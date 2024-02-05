@@ -31,7 +31,7 @@
       <guid>https://urpylka.com/posts/post-67/</guid>
       <description>docker-openvpn от kylemanna И так вначале я использовал широко распространенное решение от kylemanna.
 Оно представляет из себя Docker образ на базе Alpine состоящий из:
- OpenVPN собственно в качестве VPN сервера openvpn-auth-pam, google-authenticator, pamtester - дополнительные модули для авторизациии в OpenVPN easy-rsa как инструмент для создания и работы центра сертификации (CA) Средства подготовки конфигурации сервера (ovpn_initpki, ovpn_genconfig, ovpn_copy_server_files, ovpn_run, ovpn_status) Ряд скриптов-оберток для управления пользователями (ovpn_getclient, ovpn_getclient_all, ovpn_listclients, ovpn_revokeclient, ovpn_otp_user)  Тут нужно сделать важное замечание, что я вначале не понимал как работает CA, сертификаты пользователей, OpenVPN и easy-rsa вместе.</description>
+ OpenVPN собственно в качестве VPN сервера openvpn-auth-pam, google-authenticator, pamtester - дополнительные модули для авторизации в OpenVPN easy-rsa как инструмент для создания и работы центра сертификации (CA) Средства подготовки конфигурации сервера (ovpn_initpki, ovpn_genconfig, ovpn_copy_server_files, ovpn_run, ovpn_status) Ряд скриптов-оберток для управления пользователями (ovpn_getclient, ovpn_getclient_all, ovpn_listclients, ovpn_revokeclient, ovpn_otp_user)  Тут нужно сделать важное замечание, что я вначале не понимал как работает CA, сертификаты пользователей, OpenVPN и easy-rsa вместе.</description>
     </item>
     
     <item>
@@ -74,7 +74,7 @@
       <guid>https://urpylka.com/posts/post-33/</guid>
       <description>В статье две части:
  Устройство сети Raspberry Pi OS
-в которой описано базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
+в которой описано базовое устройство сети в преднастоенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
 в которой содержатся мои заметки о утилитах Linux для работы с сетью.  Устройство сети Raspberry Pi OS Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
     </item>
     
@@ -85,7 +85,7 @@
       
       <guid>https://urpylka.com/posts/post-24/</guid>
       <description>Я использую связку OpenVPN + dnsmasq для выдачи доменов в удаленной виртуальной сети.
-Настройка клиента У меня MacBook: в macOS 10.15 отсуствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
+Настройка клиента У меня MacBook: в macOS 10.15 отсутствует реализация OpenVPN. Я не любитель всяких графических клиентов вроде TunnelBlick, поэтому я установил OpenVPN через brew. В brew есть прослойка для служб macOS – brew services.
 sudo brew services list sudo brew services start openvpn sudo brew services restart openvpn sudo brew services stop openvpn  brew services для OpenVPN нужно запускать под sudo, тк это необходимо для работы с сетевыми адаптерами.</description>
     </item>
     

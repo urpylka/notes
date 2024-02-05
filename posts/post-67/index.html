@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna – urpylka՚s blog!</title><meta property="og:title" content="Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna" />
-<meta property="og:description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации)." />
+<meta property="og:description" content="Статья о том, почему я отказался от распространенного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-67/" />
 <meta property="article:published_time" content="2022-02-04T21:24:00+02:00" />
 <meta property="article:modified_time" content="2022-02-04T21:24:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna"/>
-<meta name="twitter:description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации)."/>
+<meta name="twitter:description" content="Статья о том, почему я отказался от распространенного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации)."/>
 <link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
@@ -29,7 +29,7 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Настройка OpenVPN и CA (центра сертификации) и отказ от docker-openvpn от kylemanna">
-<meta itemprop="description" content="Статья о том, почему я отказался от распространненного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
+<meta itemprop="description" content="Статья о том, почему я отказался от распространенного решения от kylemanna в пользу использования двух отдельных образов для OpenVPN и CA (центра сертификации).">
 <meta itemprop="datePublished" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="dateModified" content="2022-02-04T21:24:00&#43;02:00" />
 <meta itemprop="wordCount" content="1454">
@@ -116,7 +116,7 @@ if (!doNotTrack) {
 <p>Оно представляет из себя Docker образ на базе Alpine состоящий из:</p>
 <ol>
 <li><code>OpenVPN</code> собственно в качестве VPN сервера</li>
-<li><code>openvpn-auth-pam</code>, <code>google-authenticator</code>, <code>pamtester</code> - дополнительные модули для авторизациии в <code>OpenVPN</code></li>
+<li><code>openvpn-auth-pam</code>, <code>google-authenticator</code>, <code>pamtester</code> - дополнительные модули для авторизации в <code>OpenVPN</code></li>
 <li><code>easy-rsa</code> как инструмент для создания и работы центра сертификации (CA)</li>
 <li>Средства подготовки конфигурации сервера (<code>ovpn_initpki</code>, <code>ovpn_genconfig</code>, <code>ovpn_copy_server_files</code>, <code>ovpn_run</code>, <code>ovpn_status</code>)</li>
 <li>Ряд скриптов-оберток для управления пользователями (<code>ovpn_getclient</code>, <code>ovpn_getclient_all</code>, <code>ovpn_listclients</code>, <code>ovpn_revokeclient</code>, <code>ovpn_otp_user</code>)</li>
@@ -127,7 +127,7 @@ if (!doNotTrack) {
 Однако ключевой вопрос, в том почему мы доверяем сертификату? И на самом деле мы доверяем не ему, а доверяем органу, который выдает сертификат (конечно учитывая, что сертификат не подделан).</p>
 <p>Давайте разберем на примере ВУЗов. Скажем мы знаем топовые университеты с хорошей репутацией. И если на работу приходит выпускник с дипломом такого ВУЗа, то мы понимаем, что это хороший специалист, потому что мы доверяем конкретному университету.</p>
 <p>В этом случае центром сертификации является университет, а сертификатом - диплом выпускника.</p>
-<p>На этом принципе и построен алгоритм работы авторизации в <code>OpenVPN</code>. Тоесть по сути OpenVPN сервер может ничего не знать о клиенте, тк даже не он &ldquo;регистрирует&rdquo; его, а доверяет он потому, что сертификат клиента подписан тем же CA (Certificate Authority), что и сертификат самого сервера. На мой взгляд это красивое решение.</p>
+<p>На этом принципе и построен алгоритм работы авторизации в <code>OpenVPN</code>. То-есть по сути OpenVPN сервер может ничего не знать о клиенте, тк даже не он &ldquo;регистрирует&rdquo; его, а доверяет он потому, что сертификат клиента подписан тем же CA (Certificate Authority), что и сертификат самого сервера. На мой взгляд это красивое решение.</p>
 <p>OpenVPN использует ряд сертификатов и ключей:</p>
 <ol>
 <li><code>ca.crt</code> – сертификат <code>центра сертификации</code>, которым у нас все подписано.</li>
@@ -272,7 +272,7 @@ set_var EASYRSA_BATCH          &#34;yes&#34;
 set_var EASYRSA_ALGO           &#34;ec&#34;
 set_var EASYRSA_DIGEST         &#34;sha512&#34;
 </code></pre></div><blockquote>
-<p>Я использовал относительно новый алгоритм подписи основанный на эллептических кривых <code>ec</code> вместо <code>rsa</code>.</p>
+<p>Я использовал относительно новый алгоритм подписи основанный на эллиптических кривых <code>ec</code> вместо <code>rsa</code>.</p>
 </blockquote>
 <p>Генерируем CRL файл:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">easyrsa gen-crl

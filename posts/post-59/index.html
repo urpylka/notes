@@ -134,7 +134,7 @@ v4l2-ctl --list-formats-ext
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsmod
 lsusb
 cat /sys/kernel/debug/usb/devices
-</code></pre></div><p>Для проверки как в системе опрделилось устройство можно воспользоваться утилитой <code>udevadm</code>. Пример вывода <code>Raspicam V1.2</code>:</p>
+</code></pre></div><p>Для проверки как в системе определилось устройство можно воспользоваться утилитой <code>udevadm</code>. Пример вывода <code>Raspicam V1.2</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pi@theimage-6786:~ $ udevadm info /dev/video0
 P: /devices/virtual/video4linux/video0
 N: video0
@@ -153,7 +153,7 @@ E: TAGS=:uaccess:seat:
 <p>При перезагрузке и подключении камер той же версии меняется только параметр <code>USEC_INITIALIZED</code>.</p>
 </blockquote>
 <h2 id="raspistill-raspivid-and-libcamera">raspistill, raspivid and libcamera</h2>
-<p>Образы <code>Raspberry Pi OS</code> начиная с версии <code>Bullseye</code> содержат в себе <code>libcamera</code> стэк. Образа до и включительно <code>Buster</code> содержут в себе <code>Raspicam</code> стэк. Причиной отказа от стэка <code>Raspicam</code> стали проприетарные исходники Broadcom GPU, которые не позволяли в полной мере поддерживать его работу (подробнее об этом <a href="https://www.raspberrypi.com/documentation/accessories/camera.html#libcamera-and-the-legacy-raspicam-camera-stack">здесь</a>).</p>
+<p>Образы <code>Raspberry Pi OS</code> начиная с версии <code>Bullseye</code> содержат в себе <code>libcamera</code> стэк. Образа до и включительно <code>Buster</code> содержат в себе <code>Raspicam</code> стэк. Причиной отказа от стэка <code>Raspicam</code> стали проприетарные исходники Broadcom GPU, которые не позволяли в полной мере поддерживать его работу (подробнее об этом <a href="https://www.raspberrypi.com/documentation/accessories/camera.html#libcamera-and-the-legacy-raspicam-camera-stack">здесь</a>).</p>
 <blockquote>
 <p>Для старых версий можно собрать <code>libcamera</code> стэк согласно <a href="https://www.raspberrypi.com/documentation/accessories/camera.html#building-libcamera-and-libcamera-apps">этой инструкции</a>.</p>
 </blockquote>
@@ -173,7 +173,7 @@ E: TAGS=:uaccess:seat:
 <p>Помимо использования <code>Raspicam</code> для аппаратного кодирования с помощью <code>GPU</code> у меня опыта нет. Но в целом для работы с графическим сопроцессором есть два API: <code>MMAL</code> и <code>OpenMAX</code>. Тут нужно сделать пометку что <code>MMAL</code> построено на более низкоуровневом <code>OpenMAX</code> (<a href="http://wikihandbk.com/wiki/Raspberry_Pi:%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/Raspbian_OS/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%8B/%D0%9A%D0%B0%D0%BC%D0%B5%D1%80%D0%B0">wikihandbk.com</a>). Собственного опыта работы с этими API у меня нет, поэтому ниже будет просто много ссылок на эту тему:</p>
 <ul>
 <li><a href="https://habrahabr.ru/company/intel/blog/207314/">Raspberry Pi: Кодируем H.264 видео в реальном времени</a></li>
-<li><a href="https://github.com/gagle/raspberrypi-openmax-h264">github.com/gagle/raspberrypi-openmax-h264)</a>: (<a href="https://github.com/gagle/raspberrypi-openmax-h264/network">network graph</a>, <a href="https://github.com/whdlgp/raspberrypi-openmax-h264">форк c диаграммами</a>]</li>
+<li><a href="https://github.com/gagle/raspberrypi-openmax-h264">github.com/gagle/raspberrypi-openmax-h264)</a>: (<a href="https://github.com/gagle/raspberrypi-openmax-h264/network">network graph</a>, <a href="https://github.com/whdlgp/raspberrypi-openmax-h264">форк c диаграммами</a>)</li>
 <li><a href="https://www.linuxquestions.org/questions/showthread.php?p=5729051">Raspberry Pi: How to compile OpenMAX and FFMPEG on RPi</a></li>
 <li><a href="https://ubuntu-mate.community/t/hardware-h264-video-encoding-with-libav-openmax-il/4997">Hardware h264 video encoding with libav (openmax IL)</a>
 *<a href="http://solitudo.net/software/raspberrypi/rpi-openmax-demos/">OpenMAX IL demos for Raspberry Pi</a></li>
@@ -226,7 +226,7 @@ ffmpeg -i input.mp4 output.avi
 <li><a href="https://askubuntu.com/questions/881305/is-there-any-way-ffmpeg-send-video-to-dev-video0-on-ubuntu">askubuntu.com</a>: loopback camera device</li>
 </ul>
 <h2 id="стриминг-видео">Стриминг видео</h2>
-<p>Для начала думаю важно описать что такое стрим видео. Я представляю себе этот процесс как конвеер, пройдёмся по нему:</p>
+<p>Для начала думаю важно описать что такое стрим видео. Я представляю себе этот процесс как конвейер, пройдёмся по нему:</p>
 <ol>
 <li>Видеопоток нужно захватить некоторой программой, обычно той, которая может его перекодировать в нужный нам формат из того, который предлагает драйвер операционной системы.</li>
 <li>Если необходимо помимо перекодирования видео-потока, произвести его изменение. Например, изменить его частоту, разрешение, наложить текст, добавить аудио.</li>

@@ -42,7 +42,7 @@ But the trick is in using Parameter Expansion for split elements.
       <guid>https://urpylka.com/posts/post-33/</guid>
       <description>В статье две части:
  Устройство сети Raspberry Pi OS
-в которой описано базовое устройство сети в преднастроенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
+в которой описано базовое устройство сети в преднастоенной операционной системе Raspberry Pi OS. А затем описана структура, которую я использую в своём сборщике образов. Инструменты для работы с сетью
 в которой содержатся мои заметки о утилитах Linux для работы с сетью.  Устройство сети Raspberry Pi OS Штатная конфигурация сети В официально предоставляемой ОС запущены следующие службы связанные с настройкой сети:</description>
     </item>
     
@@ -64,11 +64,11 @@ systemd-analyze critical-chain # если включен графический 
       <pubDate>Sun, 13 Dec 2020 19:32:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-5/</guid>
-      <description>Выкачить что-то:
+      <description>Выкачать что-то:
 scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop Генерация и аутентификация с помощью SSH ключа:
  habrahabr.ru help.github.com itman.in  Добавить себя в authorization_keys на удаленном хосте:
 ssh-copy-id &amp;#39;-p 22 pi@172.24.1.1&amp;#39; Обратный и прямой туннели:
- habr.com rus-linux.net itsecforu.ru  Прокидывание порта:
+ habr.com rus-linux.net itsecforu.ru  Проброс порта:
 ssh -L 443:10.246.182.189:8443 &amp;lt;login&amp;gt;@&amp;lt;remote_host&amp;gt; -p &amp;lt;port&amp;gt; где 443 – локальный порт вашей машины куда будет мапиться порт 8443 машины доступной по адресу 10.246.182.189 с удаленной машины &amp;lt;remote_host&amp;gt;.
 Смена пароля приватного RSA ключа:</description>
     </item>
@@ -82,7 +82,7 @@ ssh -L 443:10.246.182.189:8443 &amp;lt;login&amp;gt;@&amp;lt;remote_host&amp;gt;
       <description>Работа с Submodule https://git-scm.com/book/ru/v1/Инструменты-Git-Подмодули
 git submodule init git submodule update Полезные ссылки  Удаление первого коммита stackoverflow.com Отмена последнего коммита в git evtuhovich.ru Объединение репозиториев eax.me Конфликт при объединении несвязных историй --allow-unrelated-histories stackoverflow.com Продвинутое слияние git-scm.com Работа с удалёнными репозиториями git-scm.com Теория GIT habrahabr.ru Раскрытие тайн reset git-scm.com Объединение репозиториев qaru.site  Первоначальная настройка git Все очень хорошо изложено в этой статье, не вижу смысла копировать
 https://git-scm.com/book/ru/v2/Введение-Первоначальная-настройка-Git
-Базовые команды # Rebase 3х верхних коммитов в интерактивном режиме (через текстовый редактор) git rebase -i HEAD~3 # Перетереть историю в текущем remote git push --force # Снести верхние 3 коммита (без удаления изменений), для полного удаления комитов - флаг `--hard` git reset HEAD~3 # Застейджить все изменения git add .</description>
+Базовые команды # Rebase 3х верхних коммитов в интерактивном режиме (через текстовый редактор) git rebase -i HEAD~3 # Перетереть историю в текущем remote git push --force # Снести верхние 3 коммита (без удаления изменений), для полного удаления коммитов - флаг `--hard` git reset HEAD~3 # Застейджить все изменения git add .</description>
     </item>
     
     <item>

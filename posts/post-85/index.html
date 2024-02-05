@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Ротация логов в ROS – urpylka՚s blog!</title><meta property="og:title" content="Ротация логов в ROS" />
-<meta property="og:description" content="Коротко о пробелеме связанной с отсутствием встроенной ротации логов в ROS." />
+<meta property="og:description" content="Коротко о проблеме связанной с отсутствием встроенной ротации логов в ROS." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-85/" />
 <meta property="article:published_time" content="2018-04-04T04:04:00+02:00" />
 <meta property="article:modified_time" content="2018-04-04T04:04:00+02:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ротация логов в ROS"/>
-<meta name="twitter:description" content="Коротко о пробелеме связанной с отсутствием встроенной ротации логов в ROS."/>
+<meta name="twitter:description" content="Коротко о проблеме связанной с отсутствием встроенной ротации логов в ROS."/>
 <link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
@@ -29,7 +29,7 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Ротация логов в ROS">
-<meta itemprop="description" content="Коротко о пробелеме связанной с отсутствием встроенной ротации логов в ROS.">
+<meta itemprop="description" content="Коротко о проблеме связанной с отсутствием встроенной ротации логов в ROS.">
 <meta itemprop="datePublished" content="2018-04-04T04:04:00&#43;02:00" />
 <meta itemprop="dateModified" content="2018-04-04T04:04:00&#43;02:00" />
 <meta itemprop="wordCount" content="115">
@@ -111,10 +111,10 @@ if (!doNotTrack) {
             </div>
 
             <div class="markdown">
-                <p>Пробелема связана с отсутствием встроенной ротации логов в ROS. Очевидно из этого следует то, что периодически будет возникать переполнение диска:</p>
+                <p>Проблема связана с отсутствием встроенной ротации логов в ROS. Очевидно из этого следует то, что периодически будет возникать переполнение диска:</p>
 <p><img src="./assets/screenshot-2017-09-12-v-14.58.30.png" alt="image"></p>
 <p>В ROS есть стандартная утилита для мониторинга и чистки логов – <a href="http://wiki.ros.org/rosclean">rosclean</a>. Однако она удаляет абсолютно всё (<a href="https://answers.ros.org/question/258978/is-there-an-alternative-way-to-get-rid-of-ros-log-files/">обсуждение здесь</a>).</p>
-<p>Осложняется проблема тем, что ROS сам бьёт все по папкам, что затрдуняет сделать ротацию по некоторому файлу.</p>
+<p>Осложняется проблема тем, что ROS сам бьёт все по папкам, что затрудняет сделать ротацию по некоторому файлу.</p>
 <p><img src="./assets/screenshot-2017-09-12-v-16.13.44.png" alt="image"></p>
 <p>Пример одной из директорий с файлами логов <a href="./assets/cecd58fa-972b-11e7-ad41-3974d4b0fb26.zip">cecd58fa-972b-11e7-ad41-3974d4b0fb26</a>.</p>
 <p>Простой и достаточно топорный скрипт для удаления всех логов, если их размер превышает 300 МБ</p>

@@ -111,7 +111,7 @@ if (!doNotTrack) {
             </div>
 
             <div class="markdown">
-                <p>Последний месяц я на работе в основном занимаюсь миграцией Grafana. Одна из задач в связи с этим – перенести данные из <code>Grafana 7.5.9</code> использующую SQLite в <code>Grafana 9.2.0</code> с PostgreSQL. Оказалось перенести базу не так просто, как я рассчитывал и читал в статьях других авторов. Что до официальной документации то, она отсуствует, есть разве что <a href="https://grafana.com/blog/2020/01/13/how-to-migrate-your-configuration-database/">о миграции из PostgreSQL в MySQL</a>.</p>
+                <p>Последний месяц я на работе в основном занимаюсь миграцией Grafana. Одна из задач в связи с этим – перенести данные из <code>Grafana 7.5.9</code> использующую SQLite в <code>Grafana 9.2.0</code> с PostgreSQL. Оказалось перенести базу не так просто, как я рассчитывал и читал в статьях других авторов. Что до официальной документации то, она отсутствует, есть разве что <a href="https://grafana.com/blog/2020/01/13/how-to-migrate-your-configuration-database/">о миграции из PostgreSQL в MySQL</a>.</p>
 <p>Решение которое первым попалось:</p>
 <ol>
 <li><a href="https://community.zenduty.com/t/migrating-grafanas-database-from-sqlite-to-postgres/406">Migrating Grafana’s database from sqlite to postgres</a></li>
@@ -122,14 +122,14 @@ if (!doNotTrack) {
 <li>Создание схемы базы запуском графаны с использованием PostgreSQL.</li>
 <li>Конвертация и загрузка SQLite базы в PosgreSQL с применением <a href="https://pgloader.readthedocs.io/en/latest/">pgloader</a></li>
 </ol>
-<p>Однако как я не пытался это сделать, у меня <code>pgloader</code> падал со всевозможными ошибками в середине процесса рандомно и частично мигрировав какую-то часть данных. Полагаю это связано с тем, что находится в базе SQLite (есть ли незаэкранированные последовательности итд), если ничего сверхестественного нет, то все может пройти успешно.</p>
+<p>Однако как я не пытался это сделать, у меня <code>pgloader</code> падал со всевозможными ошибками в середине процесса рандомно и частично мигрировав какую-то часть данных. Полагаю это связано с тем, что находится в базе SQLite (есть ли неэкранированные последовательности итд), если ничего сверхъестественного нет, то все может пройти успешно.</p>
 <p>Я попробовал разные настройки <code>pgloader</code> лучший результат у меня был при использовании следующей конструкции (так pgloader не вылетал по памяти):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">load database
   from sqlite://&lt;ABSOLUTE_PATH&gt;/grafana.db
   into postgresql://&lt;DBUSER&gt;:&lt;DBPASS&gt;@&lt;DBURL&gt;:&lt;DBPORT&gt;/&lt;DBNAME&gt;
   with data only, reset sequences
   set work_mem to &#39;16MB&#39;, maintenance_work_mem to &#39;512 MB&#39;;
-</code></pre></div><p>Однако запустить так, чтобы корректно отработал <code>pgloader</code> у меня так и не получилось, и я понял, что нужен другой подход. Первой идеей, которая приходила на ум было - копировать дашборды и источники данных из интерфейса. К сожалению, это было нереально. Во-первых, по причине того, что только дашбордов ≈1300 штук, а во-вторых имелось большое количество других сущностей вроде бекапов дашбордов, папок с правами и пользотелями, аннотаций, алертов итд.</p>
+</code></pre></div><p>Однако запустить так, чтобы корректно отработал <code>pgloader</code> у меня так и не получилось, и я понял, что нужен другой подход. Первой идеей, которая приходила на ум было - копировать дашборды и источники данных из интерфейса. К сожалению, это было нереально. Во-первых, по причине того, что только дашбордов ≈1300 штук, а во-вторых имелось большое количество других сущностей вроде бекапов дашбордов, папок с правами и пользователями, аннотаций, алертов итд.</p>
 <p>Далее я попробовал мигрировать данные через конвертацию в csv файлы, однако было много неэкранированных последовательностей, которые не давали нормально отделять поля друг от друга.</p>
 <p>Источники:</p>
 <ul>
@@ -141,7 +141,7 @@ if (!doNotTrack) {
 <p>Однако я решил изучить, что делает программа и исправить. Посмотрев исходный код, я понял что ничего сложного нет, это программа просто выполняет поиск по регуляркам, и что-то правит.</p>
 <p>Я плохо пишу на Golang, и для решения конвертации бд, где возможно постоянно нужно делать правки в код я решил использовать интерпретируемый язык - Python. И действие за действием перенести и исправить программу на Golang.</p>
 <p>Ниже я приведу код программы по блокам и прокомментирую процесс.</p>
-<p>Сразу оговорюсь, что не считаю свой скрипт и это решение готовым решением для миграции. Поэтому я подаю это как конструктор, который в случае неработоспобсности можно самостоятельно допилить напильником под свои нужды.</p>
+<p>Сразу оговорюсь, что не считаю свой скрипт и это решение готовым решением для миграции. Поэтому я подаю это как конструктор, который в случае неработоспособности можно самостоятельно допилить напильником под свои нужды.</p>
 <h2 id="полученное-решение">Полученное решение</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000">#! /usr/bin/env python3</span>
 <span style="color:#00f">import</span> re, time
@@ -163,14 +163,14 @@ last_time = int(time.time())
     <span style="color:#00f">return</span> <span style="color:#a31515">&#34; (</span><span style="color:#a31515">%s</span><span style="color:#a31515">s)</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span> % (_dif)
 
 doings = 23
-</code></pre></div><p>Это заголовочная часть скрипта. В ней вы можете видеть определение двух стандартных библиотек необходимых для обработки данных. Привественный вывод, а также опрелеление функции которая позволит нам подсчитать время выполнения действий.</p>
+</code></pre></div><p>Это заголовочная часть скрипта. В ней вы можете видеть определение двух стандартных библиотек необходимых для обработки данных. Приветственный вывод, а также определение функции которая позволит нам подсчитать время выполнения действий.</p>
 <p>Переменная <code>doings</code> – общее количество операций, для того, чтобы понимать сколько еще действий осталось.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">with</span> open(srcfile, <span style="color:#a31515">&#39;r&#39;</span>) <span style="color:#00f">as</span> f:
     <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;&gt; 1/</span><span style="color:#a31515">%d</span><span style="color:#a31515"> Uploading the source file to the memory&#34;</span> % (doings))
     content = f.read()
     <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;✅ Done&#34;</span> + howlong())
-</code></pre></div><p>Я писал программу не супер-эффективно с построчным чтением файла, а целиком читал файл в память, и затем уже работал. Думаю что для больниство кейсов с Grafana это подойдет. Тк даже при достаточно забитой данными Grafana SQL-дамп весит 1.3GB.</p>
-<p>В случае необходимости переписать программу, не вижу необходимости обрабатывать многострочные sql-инструкции, тк все, с чем работает программа - это инструкции <code>INSERT</code>. Которые сохраняются с помощью sqlite3 всега построчно.</p>
+</code></pre></div><p>Я писал программу не супер-эффективно с построчным чтением файла, а целиком читал файл в память, и затем уже работал. Думаю что для большинство кейсов с Grafana это подойдет. Тк даже при достаточно забитой данными Grafana SQL-дамп весит 1.3GB.</p>
+<p>В случае необходимости переписать программу, не вижу необходимости обрабатывать многострочные sql-инструкции, тк все, с чем работает программа - это инструкции <code>INSERT</code>. Которые сохраняются с помощью sqlite3 всегда построчно.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;&gt; 2/</span><span style="color:#a31515">%d</span><span style="color:#a31515"> Deleting all statements except &#39;INSERT INTO&#39; &#34;</span> % (doings))
     match = re.compile(<span style="color:#a31515">&#34;(?m)[</span><span style="color:#a31515">\r\n</span><span style="color:#a31515">]*^(?!INSERT INTO.*)(.*)$&#34;</span>, re.IGNORECASE)
     content = match.sub(<span style="color:#a31515">&#39;&#39;</span>, content)
@@ -185,7 +185,7 @@ doings = 23
     match = re.compile(<span style="color:#a31515">&#34;char\(10\)\)&#34;</span>, re.IGNORECASE)
     content = match.sub(<span style="color:#a31515">&#39;chr(10))&#39;</span>, content)
     <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;✅ Done&#34;</span> + howlong())
-</code></pre></div><p>Заменяем конструкцию <code>char(10)</code> на <code>chr(10)</code> в sql-функция <code>replace</code> в соотвествии с совместимостью с Postgres.</p>
+</code></pre></div><p>Заменяем конструкцию <code>char(10)</code> на <code>chr(10)</code> в sql-функция <code>replace</code> в соответствии с совместимостью с Postgres.</p>
 <p>Далее я предлагаю составить список таблиц, содержащих байтовые или булевы поля. Для этого посмотреть второй пункт по миграции БД ниже в статье. Для Grafana 9.2.0 у меня получился следующий список:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">bool  byte  tablename
 [+]   [-]   alert
@@ -345,7 +345,7 @@ content = match.sub(hexdecode, content)
                     word += _match[i]
         l.append(word)
         <span style="color:#00f">return</span> l
-</code></pre></div><p>А также функцию для конвертации булевых полей в соотвествующий для PostgreSQL формат.</p>
+</code></pre></div><p>А также функцию для конвертации булевых полей в соответствующий для PostgreSQL формат.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#00f">def</span> bool_conv(_table, _match):
         splited = list_conv(_match.group(0))
         <span style="color:#00f">global</span> bool_pos
@@ -392,11 +392,11 @@ content = match.sub(hexdecode, content)
 <p>Обновляем текущую Grafana до необходимой версии, не меняя используемой базы данных SQLite. Перезагружаем Grafana, ждём чтобы она запустилась, смотрим логи, проверяем работу через WebUI.</p>
 </li>
 <li>
-<p>Переключаем базу на PostgreSQL, запускаем Grafana, ждем пока создасться вся схема БД. Используя графический интерфейс БД или другой копируем схему в файл с набором SQL инструкций (если необходимо удаляем INESERTs, CHANGE и другие инструкций отвечающие за наполнение БД).</p>
+<p>Переключаем базу на PostgreSQL, запускаем Grafana, ждем пока создастся вся схема БД. Используя графический интерфейс БД или другой копируем схему в файл с набором SQL инструкций (если необходимо удаляем INESERTs, CHANGE и другие инструкций отвечающие за наполнение БД).</p>
 </li>
 <li>
 <p>Выключаем Grafana и конвертируем SQLite БД в набор SQL инструкций.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># если отсуствует, установите `sqlite3`</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># если отсутствует, установите `sqlite3`</span>
 sqlite3 grafana.db .dump &gt; grafana.sql
 </code></pre></div><blockquote>
 <p>Наверное, многие задались вопросом зачем мы сделали файл со схемой БД, когда полученный sql-файл содержит инструкции по созданию схемы. Дело в том, что схема в частности тип полей между SQLite и PostgreSQL немного отличается.</p>
@@ -432,7 +432,7 @@ sqlite3 grafana.db .dump &gt; grafana.sql
 <span style="color:#00f">INSERT</span> <span style="color:#00f">INTO</span> sqlite_sequence <span style="color:#00f">VALUES</span>(<span style="color:#a31515">&#39;preferences&#39;</span>,61);
 <span style="color:#00f">INSERT</span> <span style="color:#00f">INTO</span> sqlite_sequence <span style="color:#00f">VALUES</span>(<span style="color:#a31515">&#39;dashboard_tag&#39;</span>,32188);
 ...
-</code></pre></div><p>И увеличив на единицу каждый, подготовить соотвествующие инструкции, например:</p>
+</code></pre></div><p>И увеличив на единицу каждый, подготовить соответствующие инструкции, например:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">...
 <span style="color:#00f">alter</span> sequence migration_log_id_seq <span style="color:#00f">restart</span> <span style="color:#00f">with</span> 458;
 ...
@@ -442,7 +442,7 @@ sqlite3 grafana.db .dump &gt; grafana.sql
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">select</span> <span style="color:#00f">max</span>(id) <span style="color:#00f">from</span> dashboard;
 </code></pre></div><p>А затем также подготовить набор инструкций для назначения последовательностей.</p>
 <blockquote>
-<p>Посмотреть название последовательностей, полей для primary key предлагаю в файле со схемой подговленной в пункте 2.</p>
+<p>Посмотреть название последовательностей, полей для primary key предлагаю в файле со схемой подготовленной в пункте 2.</p>
 </blockquote>
 </li>
 </ol>
@@ -514,7 +514,7 @@ cat ./resfile.sql | tr <span style="color:#a31515">\\</span>n <span style="color
 <li><a href="https://www.anycodings.com/1questions/4818800/postgresql-parallel-bulk-insert-with-worker-dont-parallelize">Postgresql parallel bulk INSERT with worker dont parallelize</a></li>
 <li><a href="https://gist.github.com/podhy/4bd37e38022fc6ad534a85b8d3e6743e">gist podhy/parallel.sh</a></li>
 </ul>
-<h3 id="мигрирование-данных-с-grafana-разных-версий">Мигрирование данных с Grafana разных версий</h3>
+<h3 id="миграция-данных-с-grafana-разных-версий">Миграция данных с Grafana разных версий</h3>
 <p>Сначала я пытался мигрировать данные из Grafana версии 7.5.9 в 9.2.0. Несмотря на то, что схемы отличались немного (в новой версии имелись дополнительные поля в таблицах, что не вызывало проблем при INSERT). Проблема крылась в том, что в Grafana предусмотрен внутренний механизм обновления схемы через таблицу <code>migration_log</code>. И если версия схемы БД отличается от данных в этой таблице, скорее всего будет ошибка при запуске, например:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">lvl=eror msg=“Executing migration failed” logger=migrator id=“copy data_source v1 to v2” error=“pq: column “account_id” does not exist”
 </code></pre></div><p>Источник: <a href="https://github.com/grafana/grafana/issues/16720"> bug with upgrade from 6.0.2 to 6.1.3 or 6.1.4 : column account_id does not exist #16720 </a></p>

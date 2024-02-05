@@ -126,7 +126,7 @@ ifconfig en1 up
 <li><code>-n</code> to not resolve IPs to hostnames</li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">netstat -rn
-</code></pre></div><p>Для добавления/удаления машрута:</p>
+</code></pre></div><p>Для добавления/удаления маршрута:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo route -n add x.x.x.x/24 x.x.x.x
 sudo route -n add 192.168.10.0/24 10.0.247.43
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo route -n delete x.x.x.x/24 x.x.x.x
@@ -163,7 +163,7 @@ hdiutil create ~/Documents/TopSecret -type SPARSEBUNDLE <span style="color:#a315
 <ul>
 <li><a href="http://web.archive.org/web/20150717190919/http://ctrld.me/blog/2009/10/03/rabotaem-s-obrazami-diskov-v-terminal-app-hdiutil/">Работаем с образами дисков в Terminal.app (hdiutil)</a></li>
 </ul>
-<h3 id="монитрование-файловых-систем">Монитрование файловых систем</h3>
+<h3 id="монтирование-файловых-систем">Монтирование файловых систем</h3>
 <p>Два фьюза для монтирования ext2, ext3, ext4 файловых систем в macOS</p>
 <ul>
 <li><a href="https://github.com/alperakcan/fuse-ext2">Fuse Ext2</a></li>

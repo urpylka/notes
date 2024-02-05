@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Настройка DNS на клиенте OpenVPN macOS – urpylka՚s blog!</title><meta property="og:title" content="Настройка DNS на клиенте OpenVPN macOS" />
-<meta property="og:description" content="Я использую связку OpenVPN вместе с dnsmasq для выдачи доменов в удаленной виртуальной сети. В статье рассказыватся как настроить клиент для правильной работы DNS." />
+<meta property="og:description" content="Я использую связку OpenVPN вместе с dnsmasq для выдачи доменов в удаленной виртуальной сети. В статье рассказывается как настроить клиент для правильной работы DNS." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-24/" />
 <meta property="article:published_time" content="2020-12-02T20:36:00+04:00" />
 <meta property="article:modified_time" content="2020-12-02T20:36:00+04:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Настройка DNS на клиенте OpenVPN macOS"/>
-<meta name="twitter:description" content="Я использую связку OpenVPN вместе с dnsmasq для выдачи доменов в удаленной виртуальной сети. В статье рассказыватся как настроить клиент для правильной работы DNS."/>
+<meta name="twitter:description" content="Я использую связку OpenVPN вместе с dnsmasq для выдачи доменов в удаленной виртуальной сети. В статье рассказывается как настроить клиент для правильной работы DNS."/>
 <link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
@@ -29,7 +29,7 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Настройка DNS на клиенте OpenVPN macOS">
-<meta itemprop="description" content="Я использую связку OpenVPN вместе с dnsmasq для выдачи доменов в удаленной виртуальной сети. В статье рассказыватся как настроить клиент для правильной работы DNS.">
+<meta itemprop="description" content="Я использую связку OpenVPN вместе с dnsmasq для выдачи доменов в удаленной виртуальной сети. В статье рассказывается как настроить клиент для правильной работы DNS.">
 <meta itemprop="datePublished" content="2020-12-02T20:36:00&#43;04:00" />
 <meta itemprop="dateModified" content="2020-12-02T20:36:00&#43;04:00" />
 <meta itemprop="wordCount" content="203">
@@ -113,7 +113,7 @@ if (!doNotTrack) {
             <div class="markdown">
                 <p>Я использую связку <code>OpenVPN</code> + <code>dnsmasq</code> для выдачи доменов в удаленной виртуальной сети.</p>
 <h2 id="настройка-клиента">Настройка клиента</h2>
-<p>У меня MacBook: в <code>macOS 10.15</code> отсуствует реализация <code>OpenVPN</code>. Я не любитель всяких графических клиентов вроде <a href="https://tunnelblick.net">TunnelBlick</a>, поэтому я установил <code>OpenVPN</code> через <code>brew</code>. В <code>brew</code> есть прослойка для служб macOS – <code>brew services</code>.</p>
+<p>У меня MacBook: в <code>macOS 10.15</code> отсутствует реализация <code>OpenVPN</code>. Я не любитель всяких графических клиентов вроде <a href="https://tunnelblick.net">TunnelBlick</a>, поэтому я установил <code>OpenVPN</code> через <code>brew</code>. В <code>brew</code> есть прослойка для служб macOS – <code>brew services</code>.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo brew services list
 sudo brew services start openvpn
 sudo brew services restart openvpn
@@ -136,7 +136,7 @@ sudo brew services stop openvpn
 </blockquote>
 <p>Источник: <a href="https://interface31.ru/forum/index.php?topic=251.35">https://interface31.ru/forum/index.php?topic=251.35</a></p>
 <h2 id="решение">Решение</h2>
-<p>Попробовав данные решения я понял, что это не работает просто так. После небольшого поиска нашел следующий материал <a href="https://community.openvpn.net/openvpn/wiki/Pushing-DNS-to-clients">OpenVPN - Pushing-DNS-to-clients</a>. В материале я нашел ссылку на следующее решение <a href="https://github.com/alfredopalhares/openvpn-update-resolv-conf">openvpn-update-resolv-conf</a> заточненное по работе с Linux посредством взаимодействия с <a href="https://roy.marples.name/projects/openresolv/">openresolv</a>.</p>
+<p>Попробовав данные решения я понял, что это не работает просто так. После небольшого поиска нашел следующий материал <a href="https://community.openvpn.net/openvpn/wiki/Pushing-DNS-to-clients">OpenVPN - Pushing-DNS-to-clients</a>. В материале я нашел ссылку на следующее решение <a href="https://github.com/alfredopalhares/openvpn-update-resolv-conf">openvpn-update-resolv-conf</a> заточенное по работе с Linux посредством взаимодействия с <a href="https://roy.marples.name/projects/openresolv/">openresolv</a>.</p>
 <p>После дополнительного поиска нашел следующее решение для macOS – <a href="https://github.com/andrewgdotcom/openvpn-mac-dns">openvpn-mac-dns</a>.</p>
 <h2 id="другое">Другое</h2>
 <ul>

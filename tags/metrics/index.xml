@@ -18,7 +18,7 @@
       <pubDate>Thu, 24 Feb 2022 18:40:00 +0200</pubDate>
       
       <guid>https://urpylka.com/posts/post-68/</guid>
-      <description>After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when vesrions were used 1.4.0 and 1.7.0, there is no problem because it is back compitable. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!
+      <description>After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when versions were used 1.4.0 and 1.7.0, there is no problem because it is back compatible. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!
 For that I wrote 3 scripts:
 Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; WORD_TO_FIND=&amp;#34;prometheus.</description>
     </item>
@@ -39,7 +39,7 @@ Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; 
       
       <guid>https://urpylka.com/posts/post-58/</guid>
       <description>Hi! So, about prometheus configuration updating on the fly.
-Update configution file The one problem is the deleting configuration file and changing inode file data.
+Update configuration file The one problem is the deleting configuration file and changing inode file data.
 Upload file to remote server and update conf file there:
 import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;user ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(hostname=hostname, username=username) sftp = ssh.open_sftp() # https://docs.paramiko.org/en/stable/api/sftp.html#paramiko.sftp_client.SFTPClient.file with sftp.file(target_file, &amp;#39;w+&amp;#39;) as output, open(local_file, &amp;#39;r&amp;#39;) as input: while True: try: buffer = input.read(5000) # 5KB if buffer == &amp;#39;&amp;#39;: print(&amp;#34;Uploading was finished&amp;#34;) break output.</description>
     </item>

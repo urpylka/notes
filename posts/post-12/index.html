@@ -112,7 +112,7 @@ if (!doNotTrack) {
 
             <div class="markdown">
                 <p>Nginx reverse proxy needs where we want to get access to few resources by one external IP address and port.</p>
-<p>I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing <code>server_name</code> and <code>proxy_pass</code> as target location. Pleese look at last section with <code>default_server</code> atribute. It needs to set default site (in this case page with <code>501 Internal Error</code>).</p>
+<p>I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing <code>server_name</code> and <code>proxy_pass</code> as target location. Please look at last section with <code>default_server</code> attribute. It needs to set default site (in this case page with <code>501 Internal Error</code>).</p>
 <h2 id="quickstart">Quickstart</h2>
 <ol>
 <li>
@@ -212,7 +212,7 @@ if (!doNotTrack) {
 </ul>
 <h2 id="scratches">Scratches</h2>
 <p>In an ideal situation I want to set name of container, a local port (inside that container), external domain names and owner email.</p>
-<p>I woudn&rsquo;t want to throw in a container to any networks or set any env variables.</p>
+<p>I wouldn&rsquo;t want to throw in a container to any networks or set any env variables.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker inspect -f <span style="color:#a31515">&#34;{{ .NetworkSettings.GlobalIPv6Address }}&#34;</span> webproxy
 docker inspect -f <span style="color:#a31515">&#34;{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#34;</span> webproxy
 </code></pre></div><ul>

@@ -23,12 +23,12 @@
     </item>
     
     <item>
-      <title>Python: Stack implementaion by text file</title>
+      <title>Python: Stack implementation by text file</title>
       <link>https://urpylka.com/posts/post-80/</link>
       <pubDate>Tue, 06 Dec 2022 14:16:00 +0200</pubDate>
       
       <guid>https://urpylka.com/posts/post-80/</guid>
-      <description>Some time ago I realised that there is no a library to keep a stack of strings in a text file efficiently in Python. So I coded own one. I commented the code, and I suppose that any additional words will be redundant.
+      <description>Some time ago I realized that there is no a library to keep a stack of strings in a text file efficiently in Python. So I coded own one. I commented the code, and I suppose that any additional words will be redundant.
 #! /usr/bin/env python3 ##################################################################### # The library allows to work with stack of strings in a text file # # To use import this file as library (ex.</description>
     </item>
     
@@ -38,7 +38,7 @@
       <pubDate>Thu, 24 Feb 2022 18:40:00 +0200</pubDate>
       
       <guid>https://urpylka.com/posts/post-68/</guid>
-      <description>After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when vesrions were used 1.4.0 and 1.7.0, there is no problem because it is back compitable. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!
+      <description>After updating at my work Kubernetes cluster and updating Prometheus Operator, was updated its component – kube-state-metrics to 2.3.0. Early when versions were used 1.4.0 and 1.7.0, there is no problem because it is back compatible. But since 2.0.0 was deleted some metric. And I need to discover this, because some of them was used in alerts!
 For that I wrote 3 scripts:
 Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; WORD_TO_FIND=&amp;#34;prometheus.</description>
     </item>
@@ -50,7 +50,7 @@ Get 1.4.0 metrics #! /bin/bash  PATH_TO_CODE=&amp;#34;./pkg/collectors&amp;#34; 
       
       <guid>https://urpylka.com/posts/post-58/</guid>
       <description>Hi! So, about prometheus configuration updating on the fly.
-Update configution file The one problem is the deleting configuration file and changing inode file data.
+Update configuration file The one problem is the deleting configuration file and changing inode file data.
 Upload file to remote server and update conf file there:
 import paramiko hostname = &amp;#34;example.com&amp;#34; username = &amp;#34;user ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(hostname=hostname, username=username) sftp = ssh.open_sftp() # https://docs.paramiko.org/en/stable/api/sftp.html#paramiko.sftp_client.SFTPClient.file with sftp.file(target_file, &amp;#39;w+&amp;#39;) as output, open(local_file, &amp;#39;r&amp;#39;) as input: while True: try: buffer = input.read(5000) # 5KB if buffer == &amp;#39;&amp;#39;: print(&amp;#34;Uploading was finished&amp;#34;) break output.</description>
     </item>
@@ -108,7 +108,7 @@ Basically it consist links to russian resources.
       
       <guid>https://urpylka.com/posts/post-12/</guid>
       <description>Nginx reverse proxy needs where we want to get access to few resources by one external IP address and port.
-I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing server_name and proxy_pass as target location. Pleese look at last section with default_server atribute. It needs to set default site (in this case page with 501 Internal Error).
+I used that for several http web services (debian repository, my website and phpmyadmin). The following config is pairing server_name and proxy_pass as target location. Please look at last section with default_server attribute. It needs to set default site (in this case page with 501 Internal Error).
 Quickstart   Create webproxy.</description>
     </item>
     

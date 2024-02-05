@@ -116,7 +116,7 @@ if (!doNotTrack) {
 <p><img src="./assets/screenshot-2018-02-02-at-12.37.59.png" alt="image"></p>
 <p><strong>UUID</strong> задается при форматировании файловой системы и хранится в её суперблоке. Поэтому при побайтовом копировании разделов <code>UUID</code> не меняется.</p>
 <p>При подключении нескольких блочных устройств с одинаковыми <code>UUID</code>, в <code>/dev/disk/by-uuid</code> отображается только последнее подключенное устройство. Подробнее <a href="http://rus-linux.net/nlib.php?name=/MyLDP/hard/izmenenie-uuid-i-metki-toma-na-diske.html">rus-linux.net</a>.</p>
-<p><strong>PARTUUID</strong> также не меняется при побайтовом копировании. А также не меняется при ручном изменении размера файловой системы. Однако, как пример, в Raspberry Pi при первом запуске системы вызывается <code>raspi-config</code> для расширения <code>rootfs</code> раздела до максимально возможного. При её исполнении меняется <code>partuuid</code>, а также меняется <code>partuuid</code> указанный в <code>/boot/cmdline.txt</code>).</p>
+<p><strong>PARTUUID</strong> также не меняется при побайтовом копировании. А также не меняется при ручном изменении размера файловой системы. Однако, как пример, в Raspberry Pi при первом запуске системы вызывается <code>raspi-config</code> для расширения <code>rootfs</code> раздела до максимально возможного. При её исполнении меняется <code>partuuid</code>, а также меняется <code>partuuid</code> указанный в <code>/boot/cmdline.txt</code>.</p>
 <p>Подробнее о разнице <code>UUID</code> и <code>PARTUUID</code> здесь <a href="https://raspberrypi.stackexchange.com/questions/75027/whats-the-difference-between-uuid-and-partuuid">raspberrypi.stackexchange.com</a>.</p>
 <h2 id="raspberry-pi-and-bootcmdlinetxt">Raspberry Pi and /boot/cmdline.txt</h2>
 <p>Файл <code>/boot/cmdline.txt</code> содержит сроку аргументов для загрузчика. В параметре &ldquo;root&rdquo; указывается путь к разделу <code>rootfs</code>.</p>
@@ -124,7 +124,7 @@ if (!doNotTrack) {
 </code></pre></div><p>Вместо указания конкретного <code>PARTUUID</code> (например <code>root=PARTUUID=37665771-02</code>), можно использовать <code>root=/dev/sda2</code>.</p>
 <p>Не работают следующие варианты:</p>
 <ul>
-<li><code>root=UUID=&lt;валиндый UUID как в /dev/disk/by-uuid/\*&gt;</code></li>
+<li><code>root=UUID=&lt;валидный UUID как в /dev/disk/by-uuid/\*&gt;</code></li>
 <li><code>root=PATH=&lt;валидный путь как в /dev/disk/by-path/\*&gt;</code></li>
 <li><code>root=/dev/disk/by-path/&lt;валидный идентификатор пути&gt;</code></li>
 </ul>
@@ -143,7 +143,7 @@ sudo ~/raspi-config
 <li><code>if</code> – устройство источник</li>
 <li><code>of</code> – устройство получатель</li>
 <li><code>bs</code> – размер чанка для копирования</li>
-<li><code>count</code> – количество чанков для копирования (можно указат чуть больше)</li>
+<li><code>count</code> – количество чанков для копирования (можно указать чуть больше)</li>
 <li><code>status</code> – вывод в терминал статуса копирования. В некоторых пакетах <code>dd</code> не предусмотрен показ статус, тогда для этого можно воспользоваться утилитой <code>pv</code>. Подробнее на <a href="https://askubuntu.com/questions/215505/how-do-you-monitor-the-progress-of-dd">askubuntu.com</a>.</li>
 </ul>
 <p>Также у этой утилиты есть и другие параметры, например параметр смещения <code>seek</code>.</p>
