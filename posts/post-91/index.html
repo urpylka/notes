@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><meta property="og:site_name" content="urpylka՚s blog!" data-vmid="og:site_name"><title>Создание CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ – urpylka՚s blog!</title><meta property="og:title" content="Создание CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ" />
-<meta property="og:description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ. Хотя данная информация может также быть использована и для других серверов, где есть неоходимость в TLS протоколе." />
+<meta property="og:description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ. Хотя данная информация может также быть использована и для других серверов, где есть необходимость в TLS протоколе." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://urpylka.com/posts/post-91/" />
 <meta property="article:published_time" content="2023-04-26T14:18:00+03:00" />
 <meta property="article:modified_time" content="2023-04-26T14:18:00+03:00" /><meta property="og:site_name" content="urpylka՚s blog!" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Создание CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ"/>
-<meta name="twitter:description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ. Хотя данная информация может также быть использована и для других серверов, где есть неоходимость в TLS протоколе."/>
+<meta name="twitter:description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ. Хотя данная информация может также быть использована и для других серверов, где есть необходимость в TLS протоколе."/>
 <link rel="icon" type="image/x-icon" href="https://urpylka.com/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://urpylka.com/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="https://urpylka.com/favicon/apple-icon-60x60.png">
@@ -29,10 +29,10 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="https://urpylka.com/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="name" content="Создание CA, сертификатов сервера и клиента с помощью OpenSSL для RabbitMQ">
-<meta itemprop="description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ. Хотя данная информация может также быть использована и для других серверов, где есть неоходимость в TLS протоколе.">
+<meta itemprop="description" content="В данной заметке изложены основные команды для работы с OpenSSL при создании CA и сертификатов для RabbitMQ. Хотя данная информация может также быть использована и для других серверов, где есть необходимость в TLS протоколе.">
 <meta itemprop="datePublished" content="2023-04-26T14:18:00&#43;03:00" />
 <meta itemprop="dateModified" content="2023-04-26T14:18:00&#43;03:00" />
-<meta itemprop="wordCount" content="1590">
+<meta itemprop="wordCount" content="1589">
 
 
 
@@ -111,25 +111,25 @@ if (!doNotTrack) {
             </div>
 
             <div class="markdown">
-                <p>Коротко зачем это все? Протокол TLS решает две проблемы, первая – то что клиент и сервер уверены что они никто из них не подменен, второе – все передаваемые данные - зашифрованы. При использовании MQTT данные могут быть перехвачены и подменены. А главное могут быть перехвачены учетные данные броккера сообщений (RabbitMQ) и в случае широких прав, злоумышленник может получить доступ к данным других клиентов броккера.</p>
+                <p>Коротко зачем это все? Протокол TLS решает две проблемы, первая – то что клиент и сервер уверены что они никто из них не подменен, второе – все передаваемые данные - зашифрованы. При использовании MQTT данные могут быть перехвачены и подменены. А главное могут быть перехвачены учетные данные брокера сообщений (RabbitMQ) и в случае широких прав, злоумышленник может получить доступ к данным других клиентов брокера.</p>
 <blockquote>
 <p>Для тех кто мало знаком с терминами SSL и TLS - это одно и тоже, в прошлом был только SSL, затем его переименовали в TLS. На практике люди до сих называют TLS как SSL и наоборот.</p>
 </blockquote>
-<p>Также можно включить не только шифрование и проверку подписи через TLS, но и аутентификацию пользователя <a href="https://www.rabbitmq.com/access-control.html#certificate-authentication">Authentication using Client TLS (x.509) Certificate Data</a> (я это не использую, далее речь пойдет только о шифровании). Другими словами пользователю не нужно будет вводить логин и пароль, а достаточно просто использовать сертификат. Для этого требуется прописать пару настроек в основном конфигурационном файле броккера, а также в соотвествии с именами пользователей задать соотвествующие поля (<code>Subject Alternative Name</code> / <code>Common Name</code> ) в сертификате клиента, подробнее в <a href="https://github.com/rabbitmq/rabbitmq-server/tree/main/deps/rabbitmq_auth_mechanism_ssl#username-extraction-from-certificate">README модуля SSL аутентификации</a>.</p>
+<p>Также можно включить не только шифрование и проверку подписи через TLS, но и аутентификацию пользователя <a href="https://www.rabbitmq.com/access-control.html#certificate-authentication">Authentication using Client TLS (x.509) Certificate Data</a> (я это не использую, далее речь пойдет только о шифровании). Другими словами пользователю не нужно будет вводить логин и пароль, а достаточно просто использовать сертификат. Для этого требуется прописать пару настроек в основном конфигурационном файле брокера, а также в соответствии с именами пользователей задать соответствующие поля (<code>Subject Alternative Name</code> / <code>Common Name</code> ) в сертификате клиента, подробнее в <a href="https://github.com/rabbitmq/rabbitmq-server/tree/main/deps/rabbitmq_auth_mechanism_ssl#username-extraction-from-certificate">README модуля SSL аутентификации</a>.</p>
 <h2 id="требования-к-сертификатам">Требования к сертификатам</h2>
 <p>В целом большая часть информации касаемо критериев к сертификатам содержится в официальной документации RabbitMQ. Однако там нет практических примеров.</p>
 <ul>
 <li><a href="https://www.rabbitmq.com/ssl.html">TLS Support</a></li>
 <li><a href="https://www.rabbitmq.com/troubleshooting-ssl.html">Troubleshooting TLS-enabled Connections</a></li>
 </ul>
-<p>В кратце:</p>
-<p>От сертификата сервера требуется совпадение <code>CN (Common Name)</code> (имя сертификата) с именем хоста сервера, иначе при TSL соединении будет ошибка, что сертификат выписан не на тот хост. Также можно в сертификате сервера определить алиасы (<a href="https://en.wikipedia.org/wiki/Subject_Alternative_Name">SAN (Subject Alternative Name)</a>) или допольнительные доменные имена и тогда будет проверять не только имя сертификата, но еще и этот список алиасов. Подробнее здесь <a href="https://www.rabbitmq.com/ssl.html#peer-verification-configuration">Enabling Peer Verification</a>.</p>
+<p>Вкратце:</p>
+<p>От сертификата сервера требуется совпадение <code>CN (Common Name)</code> (имя сертификата) с именем хоста сервера, иначе при TSL соединении будет ошибка, что сертификат выписан не на тот хост. Также можно в сертификате сервера определить алиасы (<a href="https://en.wikipedia.org/wiki/Subject_Alternative_Name">SAN (Subject Alternative Name)</a>) или дополнительные доменные имена и тогда будет проверять не только имя сертификата, но еще и этот список алиасов. Подробнее здесь <a href="https://www.rabbitmq.com/ssl.html#peer-verification-configuration">Enabling Peer Verification</a>.</p>
 <p>Теперь пройдемся по X509v3 Extensions - это что-то вроде определенных функций (из перечня) для которых может использоваться сертификат.</p>
-<p>Требованием <code>X509v3 Key Usage</code> к сертификату CA - собственно иметь разрешение на выписку других сертификтов, а также я добавил возможность создавать Certificate Revocation List (CRL). В конфигурационном файле это выглядит вот так:</p>
+<p>Требованием <code>X509v3 Key Usage</code> к сертификату CA - собственно иметь разрешение на выписку других сертификатов, а также я добавил возможность создавать Certificate Revocation List (CRL). В конфигурационном файле это выглядит вот так:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#00f">[ root_ca_extensions ]</span>
 basicConstraints        = <span style="color:#a31515">CA:true</span>
 keyUsage                = <span style="color:#a31515">keyCertSign, cRLSign</span>
-</code></pre></div><p>Требованием <code>X509v3 Key Usage</code> к сертификату сервера это право пользоваться им для цифровой подписи, а также для участия в шифрованни симметричного ключа (<a href="https://security.stackexchange.com/questions/185366/difference-between-key-encipherment-and-data-encipherment">Difference between key encipherment and data encipherment?</a>). Хотя вот тут <a href="https://www.rabbitmq.com/ssl.html#key-usage-effects-on-cipher-suites">Extensions and Their Effect on Accepted Cipher Suites (Cipher Suite Filtering)</a> немного другая логика, поправьте если я не прав:</p>
+</code></pre></div><p>Требованием <code>X509v3 Key Usage</code> к сертификату сервера это право пользоваться им для цифровой подписи, а также для участия в шифровании симметричного ключа (<a href="https://security.stackexchange.com/questions/185366/difference-between-key-encipherment-and-data-encipherment">Difference between key encipherment and data encipherment?</a>). Хотя вот тут <a href="https://www.rabbitmq.com/ssl.html#key-usage-effects-on-cipher-suites">Extensions and Their Effect on Accepted Cipher Suites (Cipher Suite Filtering)</a> немного другая логика, поправьте если я не прав:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#00f">[ ${SR_NAME}_ca_extensions ]</span>
 basicConstraints        = <span style="color:#a31515">CA:false</span>
 keyUsage                = <span style="color:#a31515">digitalSignature, keyEncipherment</span>
@@ -179,7 +179,7 @@ CL_CRT=<span style="color:#a31515">${</span>DIR_EX<span style="color:#a31515">}<
 <li>Секция <code>[ req ]</code> отвечает как раз за генерацию CA сертификата.</li>
 <li><code>[ ca ]</code> – используется для CSR запроса.</li>
 <li><code>[ ${CA_NAME} ]</code> отвечает за создание файловой структуры CA.</li>
-<li>Секции <code>${SR_NAME}_ca_extensions</code> и <code>${CL_NAME}_ca_extensions</code> отвечают за выбор расширений для сертифакта сервера и клиента соотвественно.</li>
+<li>Секции <code>${SR_NAME}_ca_extensions</code> и <code>${CL_NAME}_ca_extensions</code> отвечают за выбор расширений для сертификата сервера и клиента соответственно.</li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#a31515">&lt;&lt; EOF &gt; $CA_CFG
 </span><span style="color:#a31515">[ ca ]
@@ -285,7 +285,7 @@ openssl req -x509 -config $CA_CFG -days 3650 -outform PEM -out $CA_CRT -subj /CN
 <li><code>-days n</code> – when the -x509 option is being used this specifies the number of days to certify the certificate for. The default is 30 days.</li>
 </ul>
 <p>Полное описание параметров <a href="https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html">openssl.org</a>.</p>
-<h3 id="просмотр-сгенированного-сертификата">Просмотр сгенированного сертификата</h3>
+<h3 id="просмотр-сгенерированного-сертификата">Просмотр сгенерированного сертификата</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl x509 -in $CA_CRT -text -noout
 </code></pre></div><h3 id="создание-сертификатов-сервера-и-клиента">Создание сертификатов сервера и клиента</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Создание CSR (Certificate Signing Request)</span>

@@ -219,10 +219,10 @@ ip addr del 192.168.11.218/24 dev wlan0
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ifup eth0
 </code></pre></div><p><code>ifup</code> утилита читает <code>/etc/network/interfaces</code> и выполняет описанные там инструкции для корректной конфигурации интерфейса.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ip link set eth0 up
-</code></pre></div><p>Команда <code>ip link up</code> только меняет статус интерфейса и не проводит никаких дополнтельных настроек. Утилита не имеет никаких конфигураций и тд.</p>
+</code></pre></div><p>Команда <code>ip link up</code> только меняет статус интерфейса и не проводит никаких дополнительных настроек. Утилита не имеет никаких конфигураций и тд.</p>
 <p>Чтобы это было понятнее: <code>ip</code> команда которая делает низкоуровневое действие, а команда <code>ifup</code> может/использует <code>ip</code> команду в составе других для настройки согласно конфигурации конфигурации.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ifconfig eth0 up
-</code></pre></div><p><code>ifconfig up</code> тоже самое, что и <code>ip link up</code>, аналоги из <code>net-tools</code> и <code>iproute2</code> соотвественно.</p>
+</code></pre></div><p><code>ifconfig up</code> тоже самое, что и <code>ip link up</code>, аналоги из <code>net-tools</code> и <code>iproute2</code> соответственно.</p>
 <p>Больше информации на <a href="https://serverfault.com/questions/603906/ip-link-set-not-assigning-ip-address-but-ifup-does">serverfault.com</a>.</p>
 <h3 id="tuntap-интерфейсы">TUN/TAP интерфейсы</h3>
 <ul>
@@ -230,7 +230,7 @@ ip addr del 192.168.11.218/24 dev wlan0
 <li><a href="https://mkdev.me/posts/kak-rabotayut-seti-chast-2-otkazoustoychivost-s-teaming-rezhem-soedineniya-s-traffic-control-a-tak-zhe-tap-interfeysy-i-linux-bridge">mkdev.me</a></li>
 </ul>
 <h3 id="виртуальные-интерфейсы">Виртуальные интерфейсы</h3>
-<p>С помощью виртуального интерфейса к одному физического сетевому интерфейсу можно присвоить более одгого IP-адреса. Это полезно, например при работе с Apache и виртуальными хостами, так как позволяет получить доступ к одному и тому же серверу Apache с двух разных IP-адресов.</p>
+<p>С помощью виртуального интерфейса к одному физического сетевому интерфейсу можно присвоить более одного IP-адреса. Это полезно, например при работе с Apache и виртуальными хостами, так как позволяет получить доступ к одному и тому же серверу Apache с двух разных IP-адресов.</p>
 <p>Источники:</p>
 <ul>
 <li><a href="https://toster.ru/q/30275">toster.ru</a></li>
@@ -249,7 +249,7 @@ ip addr del 192.168.11.218/24 dev wlan0
 <span style="color:#008000"># невозможно без указания IP адреса</span>
 ifconfig wlan0:router 192.168.11.1/24 up
 
-<span style="color:#008000"># удаление вирутального интерфейса</span>
+<span style="color:#008000"># удаление виртуального интерфейса</span>
 ifconfig wlan0:router down
 </code></pre></div><blockquote>
 <p>Нельзя использовать виртуальный интерфейс в режиме моста или в режиме DHCP-клиента, для интерфейса должен быть задан статичный IP.<br>
@@ -275,7 +275,7 @@ ifconfig_em0_alias0=<span style="color:#a31515">&#34;inet 192.168.111.110&#34;</
 <span style="color:#008000"># Удалить существующий алиас с интерфейса:</span>
 ifconfig em0 -alias 192.168.111.110
 </code></pre></div><p><strong>Debian/Ubuntu</strong></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Установка алиаса на интерфейс (eth0 — оригинальный, eth0:0, eth0:1 — дополнителные)</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># Установка алиаса на интерфейс (eth0 — оригинальный, eth0:0, eth0:1 — дополнительные)</span>
 ifconfig eth0:0 192.168.111.110 up
 
 <span style="color:#008000"># Установка алиаса при загрузке системы (/etc/network/interfaces)</span>
@@ -373,7 +373,7 @@ IP ipsec-vpn-server.1701 &gt; 185.211.158.69.53760:  l2tp:[](31/15401) {LCP, Con
 <li><a href="http://sysadminz.ru/index.php?topic=8859.0">sysadminz.ru</a> Форум VPN-сервер с помощью openswan+l2tpd</li>
 <li><a href="https://toster.ru/q/31021">toster.ru</a> IPSEC/L2TP VPN на Ubuntu 12.04.1 на AWS</li>
 <li><a href="https://alexell.ru/blog/ubuntu/podnimaem-svoj-vpn-l2tp-ipsec-na-ubuntu.html">alexell.ru</a> Поднимаем свой VPN — L2TP/IPsec на Ubuntu</li>
-<li><a href="https://itsecforu.ru/2018/11/22/%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-ipsec-vpn-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0-%D1%81-l2tp-%D0%B8-cisco-ipsec-%D0%BD%D0%B0-ubuntu-centos-debian/">itsecforu.ru</a> Настройка IPSec VPN-сервера с L2TP и Cisco IPsec на Ubuntu / CentOS / Debian (просто перевел то, что было в репе hwdsl2</li>
+<li><a href="https://itsecforu.ru/2018/11/22/%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-ipsec-vpn-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0-%D1%81-l2tp-%D0%B8-cisco-ipsec-%D0%BD%D0%B0-ubuntu-centos-debian/">itsecforu.ru</a> Настройка IPSec VPN-сервера с L2TP и Cisco IPsec на Ubuntu / CentOS / Debian (просто перевел то, что было в репе hwdsl2)</li>
 <li><a href="https://raymii.org/s/tutorials/IPSEC_L2TP_vpn_with_Ubuntu_14.04.html">raymii.org</a> IPSEC L2TP VPN on Ubuntu 14.04 with OpenSwan, xl2tpd and ppp</li>
 <li><a href="https://github.com/sarfata/voodooprivacy/blob/master/voodoo-vpn.sh">github.com</a> github fork hwdsl2 on sarfata/voodooprivacy</li>
 <li><a href="https://github.com/libreswan/libreswan/blob/master/docs/examples/l2tp-psk.conf">github.com</a> github libreswan l2tp-psk.conf</li>
