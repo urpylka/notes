@@ -111,31 +111,31 @@ if (!doNotTrack) {
             </div>
 
             <div class="markdown">
-                <h2 id="скачать-файл">Скачать файл</h2>
+                <p>Скачать файл:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop
-</code></pre></div><h2 id="обратный-и-прямой-туннели">Обратный и прямой туннели</h2>
+</code></pre></div><p>Обратный и прямой туннели:</p>
 <ul>
 <li><a href="https://habr.com/ru/post/435546/">habr.com</a></li>
 <li><a href="http://rus-linux.net/MyLDP/sec/reverse-SSH-tunnel.html">rus-linux.net</a></li>
 <li><a href="https://itsecforu.ru/2019/07/04/%F0%9F%9A%9E-%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9-%D1%82%D1%83%D0%BD%D0%BD%D0%B5%D0%BB%D1%8C-ssh/">itsecforu.ru</a></li>
 </ul>
-<h2 id="проброс-порта">Проброс порта</h2>
+<p>Проброс порта:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -L 443:10.246.182.189:8443 &lt;login&gt;@&lt;remote_host&gt; -p &lt;port&gt;
 </code></pre></div><p>где <code>443</code> – локальный порт вашей машины куда будет мапиться порт <code>8443</code> машины доступной по адресу <code>10.246.182.189</code> с удаленной машины <code>&lt;remote_host&gt;</code>.</p>
-<h2 id="подключение-с-хосту-как-только-откроется-порт">Подключение с хосту, как только откроется порт</h2>
+<p>Подключение с хосту, как только откроется порт:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">while</span> ! nc -z example.com 22; <span style="color:#00f">do</span> sleep 1; <span style="color:#00f">done</span> &amp;&amp; ssh -p 22 user@example.com
 </code></pre></div><h2 id="работа-с-ssh-ключами">Работа с SSH ключами</h2>
-<h3 id="генерация-и-аутентификация-с-помощью-ssh-ключа">Генерация и аутентификация с помощью SSH ключа</h3>
+<p>Генерация и аутентификация с помощью SSH ключа:</p>
 <ul>
 <li><a href="https://habrahabr.ru/post/122445/">habrahabr.ru</a></li>
 <li><a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/">help.github.com</a></li>
 <li><a href="http://itman.in/ssh-keys/">itman.in</a></li>
 </ul>
-<h3 id="добавить-себя-в-authorization_keys-на-удаленном-хосте">Добавить себя в <code>authorization_keys</code> на удаленном хосте</h3>
+<p>Добавить себя в <code>authorization_keys</code> на удаленном хосте:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-copy-id <span style="color:#a31515">&#39;-p 22 pi@172.24.1.1&#39;</span>
-</code></pre></div><h3 id="смена-пароля-приватного-rsa-ключа">Смена пароля приватного RSA ключа</h3>
+</code></pre></div><p>Смена пароля приватного RSA ключа:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-keygen -f &lt;path-to.key&gt; -p
-</code></pre></div><h3 id="просмотр-приватного-ключа">Просмотр приватного ключа:</h3>
+</code></pre></div><p>Просмотр приватного ключа:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl rsa -text -noout -in &lt;path-to.key&gt;
 </code></pre></div><blockquote>
 <p>Также можно сменить пароль на приватный RSA или DSA ключ</p>

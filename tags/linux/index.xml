@@ -64,8 +64,12 @@ systemd-analyze critical-chain # если включен графический 
       <pubDate>Sun, 13 Dec 2020 19:32:00 +0400</pubDate>
       
       <guid>https://urpylka.com/posts/post-5/</guid>
-      <description>Скачать файл scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop Обратный и прямой туннели  habr.com rus-linux.net itsecforu.ru  Проброс порта ssh -L 443:10.246.182.189:8443 &amp;lt;login&amp;gt;@&amp;lt;remote_host&amp;gt; -p &amp;lt;port&amp;gt; где 443 – локальный порт вашей машины куда будет мапиться порт 8443 машины доступной по адресу 10.246.182.189 с удаленной машины &amp;lt;remote_host&amp;gt;.
-Подключение с хосту, как только откроется порт while ! nc -z example.com 22; do sleep 1; done &amp;amp;&amp;amp; ssh -p 22 user@example.com Работа с SSH ключами Генерация и аутентификация с помощью SSH ключа  habrahabr.</description>
+      <description>Скачать файл:
+scp -P 22 pi@172.24.1.1:/home/pi/.ssh/authorization_keys ~/Desktop Обратный и прямой туннели:
+ habr.com rus-linux.net itsecforu.ru  Проброс порта:
+ssh -L 443:10.246.182.189:8443 &amp;lt;login&amp;gt;@&amp;lt;remote_host&amp;gt; -p &amp;lt;port&amp;gt; где 443 – локальный порт вашей машины куда будет мапиться порт 8443 машины доступной по адресу 10.246.182.189 с удаленной машины &amp;lt;remote_host&amp;gt;.
+Подключение с хосту, как только откроется порт:
+while ! nc -z example.com 22; do sleep 1; done &amp;amp;&amp;amp; ssh -p 22 user@example.com Работа с SSH ключами Генерация и аутентификация с помощью SSH ключа:</description>
     </item>
     
     <item>
