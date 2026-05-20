@@ -134,13 +134,17 @@ async function renderDiagram() {
   }
 
   try {
-    mermaid.initialize({
+    if (!window.mermaid) {
+      throw new Error('Mermaid library did not load. Check the CDN request in the browser console.');
+    }
+
+    window.mermaid.initialize({
       startOnLoad: false,
       theme: themeSelect.value,
       securityLevel: 'strict',
     });
 
-    const result = await mermaid.render(`mermaid-diagram-${Date.now()}-${localRenderId}`, source);
+    const result = await window.mermaid.render(`mermaid-diagram-${Date.now()}-${localRenderId}`, source);
     if (localRenderId !== renderId) return;
 
     currentSvg = buildSvgDocument(result.svg);
@@ -219,3 +223,45 @@ async function copySvg() {
   await navigator.clipboard.writeText(currentSvg);
   setMessage('SVG скопирован в буфер обмена.', 'success');
 }
+
+async function openSourceFile(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  try {
+    editor.value = await file.text();
+    filenameInput.value = sanitizeFilename(file.name, 'mermaid-diagram');
+    setMessage(`Открыт файл ${file.name}.`, 'info');
+    scheduleRender();
+  } catch (error) {
+    setMessage(error && error.message ? error.message : 'Не удалось открыть файл.', 'error');
+  } finally {
+    fileInput.value = '';
+  }
+}
+
+function initializeTool() {
+  editor.addEventListener('input', scheduleRender);
+  fileInput.addEventListener('change', openSourceFile);
+  themeSelect.addEventListener('change', renderDiagram);
+  exportSvgButton.addEventListener('click', exportSvg);
+  exportJpegButton.addEventListener('click', exportJpeg);
+  downloadSourceButton.addEventListener('click', downloadSource);
+  copySvgButton.addEventListener('click', () => {
+    copySvg().catch((error) => {
+      setMessage(error && error.message ? error.message : 'Не удалось скопировать SVG.', 'error');
+    });
+  });
+
+  fitToggle.addEventListener('change', () => {
+    preview.classList.toggle('is-fit', fitToggle.checked);
+  });
+
+  document.querySelectorAll('[data-example]').forEach((button) => {
+    button.addEventListener('click', () => loadExample(button.dataset.example));
+  });
+
+  loadExample('sequence');
+}
+
+initializeTool();
