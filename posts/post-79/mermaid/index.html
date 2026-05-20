@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mermaid Diagram Viewer</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="tool-shell">
+    <header class="tool-header">
+      <div>
+        <p class="eyebrow">Mermaid</p>
+        <h1>Diagram Viewer</h1>
+      </div>
+      <a class="back-link" href="../">Back to tools</a>
+    </header>
+
+    <section class="toolbar" aria-label="Diagram options">
+      <label class="field field--name">
+        <span>File name</span>
+        <input id="filename" type="text" value="mermaid-diagram" autocomplete="off">
+      </label>
+
+      <label class="field">
+        <span>Theme</span>
+        <select id="theme">
+          <option value="default">Default</option>
+          <option value="neutral" selected>Neutral</option>
+          <option value="base">Base</option>
+          <option value="forest">Forest</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+
+      <label class="check-field">
+        <input id="fit-width" type="checkbox" checked>
+        <span>Fit preview width</span>
+      </label>
+
+      <label class="file-button">
+        Open .mmd
+        <input id="file-input" type="file" accept=".mmd,.mermaid,.txt,.md,text/plain">
+      </label>
+    </section>
+
+    <section class="quick-actions" aria-label="Examples">
+      <button type="button" data-example="sequence">Sequence</button>
+      <button type="button" data-example="flowchart">Flowchart</button>
+      <button type="button" data-example="state">State</button>
+    </section>
+
+    <section class="workspace">
+      <section class="editor-panel" aria-label="Mermaid source">
+        <div class="panel-title">
+          <h2>Source</h2>
+          <button id="download-source" type="button">Save .mmd</button>
+        </div>
+        <textarea id="diagram-source" spellcheck="false" aria-label="Mermaid source"></textarea>
+      </section>
+
+      <section class="preview-panel" aria-label="Diagram preview">
+        <div class="panel-title">
+          <h2>Preview</h2>
+          <div class="button-row">
+            <button id="copy-svg" type="button" disabled>Copy SVG</button>
+            <button id="export-svg" type="button" disabled>Save SVG</button>
+            <button id="export-jpeg" type="button" disabled>Save JPEG</button>
+          </div>
+        </div>
+        <div id="diagram-preview" class="diagram-preview is-fit">
+          <div class="empty-state">Loading Mermaid...</div>
+        </div>
+      </section>
+    </section>
+
+    <p id="message" class="message" data-type="info">Loading Mermaid...</p>
+    <p class="credit">Based on <a href="https://mermaid.js.org/">Mermaid</a>. Made by <a href="https://urpylka.com">Artem Smirnov</a>.</p>
